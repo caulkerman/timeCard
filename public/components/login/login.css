@@ -1,0 +1,16 @@
+.login-container {
+  height: 300px;
+  width: 50%;
+  margin: auto;
+  border-radius: 10px;
+  border: solid tan; }
+  .login-container .input-div {
+    margin: 20px 10px; }
+  .login-container .login-input {
+    height: 30px;
+    width: 90%;
+    border-radius: 4px; }
+  .login-container h1 {
+    margin-left: 10px; }
+
+/*# sourceMappingURL=login.css.map */

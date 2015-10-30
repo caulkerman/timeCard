@@ -1,5 +1,5 @@
 .login-container {
-	height: 300px;
+	height: 100%;
 	width: 50%;
 	margin: auto;
 	border-radius: 10px;
@@ -20,7 +20,16 @@
 	}
 
 	h1 {
-	margin-left: 10px;
+		margin-left: 10px;
+	}
+
+	.login-button {
+	  margin-left: 10px;
+	  margin-right: 30px;
+	  height: 30px;
+	  width: 86.5%;
+	  background-color: tan;
+	  border-radius: 4px; 
 	}
 
 

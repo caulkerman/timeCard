@@ -6,8 +6,8 @@ angular.module("timeCard", ["ui.router"])
 
 		.state("login", {
 			url: "/login",
-			templateUrl: "components/login/rw-login-template.html",
-			controller: "rwLoginController"
+			templateUrl: "components/login/login-template.html",
+			controller: "loginController"
 		})
 
 		.state("admin", {

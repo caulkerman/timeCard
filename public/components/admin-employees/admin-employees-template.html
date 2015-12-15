@@ -1,5 +1,26 @@
 <div class="admin-employee-container">
 	<h1>Employee List</h1>
 	<input type="text" placeholder="Filter Employee Names" />
-	<button class="rw-button">Add New Employee</button>
+	<button class="rw-button" data-toggle="modal" data-target="#myModal">Add New Employee</button>
 </div>
+
+<div class="modal" id="myModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button class="close" data-dismiss="modal">x</button>
+            <h4 class="modal-title">Create New Employee</h4>
+          </div>
+          <div class="modal-body">
+            
+            <input type="text" class="form-control" placeholder="Enter Employee First Name" />
+            <br />
+            <input type="text" class="form-control" placeholder="Enter Employee Last Name" />
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-default" data-dismiss="modal">Close</button>
+            <button class="btn btn-success">Save Changes</button>
+          </div>
+        </div>
+      </div>
+    </div>

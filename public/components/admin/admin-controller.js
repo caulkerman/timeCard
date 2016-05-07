@@ -1,8 +1,11 @@
 (function() {
-	var $inject = ["$scope"];
-	function adminControllerCB($scope) {
+	var $inject = ["$scope", "$stateParams"];
+	function adminControllerCB($scope, $stateParams) {
 
-		
+		var name = $stateParams.id;
+		var name2 = $stateParams.ids
+		console.log(name, name2)
+
 	}
 	adminControllerCB.$inject = $inject;
 	angular.module("timeCard").controller("adminController", adminControllerCB)

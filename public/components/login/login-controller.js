@@ -1,10 +1,24 @@
 (function() {
 
-	var $inject = ["$scope"];
+	var $inject = ["$scope", "$state"];
 
-	function loginControllerCB($scope) {
+	function loginControllerCB($scope, $state) {
+
+		
 
 		$scope.test = "this is login controller";
+
+		var nameObject = {first: "Randy", last: "Williams"}
+
+		$scope.go_to_admin = function() {
+			$state.go("admin", {id: nameObject.first, ids: nameObject.last } );
+		}
+	
+
+
+
+
+
 
 	}
 

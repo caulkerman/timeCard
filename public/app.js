@@ -11,7 +11,7 @@ angular.module("timeCard", ["ui.router"])
 		})
 
 		.state("admin", {
-			url: "/admin",
+			url: "/admin/:id/:ids",
 			templateUrl: "components/admin/admin-template.html",
 			controller: "adminController"
 		})

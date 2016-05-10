@@ -1,4 +1,4 @@
-angular.module("timeCard", ["ui.router"])
+var app = angular.module("timeCard", ["ui.router", "smart-table"])
 	.config(function($stateProvider, $urlRouterProvider) {
 		
 		$urlRouterProvider.otherwise("/login");

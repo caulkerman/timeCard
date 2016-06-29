@@ -1,8 +1,14 @@
 var app = angular.module("timeCard", ["ui.router", "smart-table"])
 	.config(function($stateProvider, $urlRouterProvider) {
 		
-		$urlRouterProvider.otherwise("/login");
+		$urlRouterProvider.otherwise("/southern-utah-caulking");
 		$stateProvider
+
+		.state("southern-utah-caulking", {
+			url: "/southern-utah-caulking",
+			templateUrl: "components/landing-page/landing-page-template.html",
+			controller: "landingPageController"
+		})
 
 		.state("login", {
 			url: "/login",

@@ -3,7 +3,7 @@
   width: 50%;
   margin: auto;
   border-radius: 10px;
-  border: solid tan; }
+  border: solid #cccccc 1px; }
   .login-container .input-div {
     margin: 20px 10px; }
   .login-container .login-input {
@@ -17,7 +17,9 @@
     margin-right: 30px;
     height: 30px;
     width: 86.5%;
-    background-color: tan;
-    border-radius: 4px; }
+    background-color: #5bc0de;
+    border: solid 1px #428bca;
+    border-radius: 4px;
+    color: #FFFFFF; }
 
 /*# sourceMappingURL=login.css.map */

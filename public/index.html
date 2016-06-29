@@ -2,26 +2,36 @@
 <html ng-app="timeCard">
 <head>
 	<meta charset="UTF-8">
-	<title>Time Card</title>
+	<title>Southern Utah Caulking</title>
 	<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css"> -->
-	<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+	<!-- <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css"> -->
 	<link rel="stylesheet" href="styles/style.css">
 	<script src="bower_components/jquery/dist/jquery.min.js"></script>
-	<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+	<!-- <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script> -->
 
-	<!-- <link rel="stylesheet" href="components/login/app.css"> -->
 </head>
 <body>
 <header></header>
-
-	<h1>Time Card App</h1>
-<hr>
+<h1 id="h1">Southern Utah Caulking</h1>
+	<nav>
+		<ul>
+			<li id="nav-left">
+				<a ui-sref="southern-utah-caulking">Home</a>
+			</li>
+			<li>About</li>
+			<li>Projects</li>
+			<li id="login">
+				<a ui-sref="login">Login</a>
+			</li>
+		</ul>
+	</nav>
 	<div ui-view></div>
 		
 					<!--SCRIPTS-->
 	<script src="bower_components/angular/angular.js"></script>
 	<script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
 	<script src="app.js"></script>
+	<script src="bower_components/angular-smart-table/dist/smart-table.min.js"></script>
 	<script src="components/admin/admin-controller.js"></script>
 	<script src="components/admin/admin-service.js"></script>
 	<script src="components/admin-job-site/admin-job-site-controller.js"></script>
@@ -40,6 +50,8 @@
 	<script src="components/login/login-service.js"></script>
 	<script src="components/employee/employee-controller.js"></script>
 	<script src="components/employee/employee-service.js"></script>
-	<script src="bower_components/angular-smart-table/dist/smart-table.min.js"></script>
+	<script src="components/landing-page/landing-page-controller.js"></script>
+	<script src="components/landing-page/landing-page-service.js"></script>
+	
 </body>
 </html>

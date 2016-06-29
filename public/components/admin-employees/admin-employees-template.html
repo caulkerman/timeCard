@@ -1,3 +1,6 @@
+<link rel="stylesheet" href="components/admin-employees/admin-employees.css">
+
+
 <div class="admin-employee-container">
 	<h1>Employee List</h1>
 	<input type="text" placeholder="Filter Employee Names" />
@@ -6,6 +9,7 @@
 
 <ul>
   <li ng-repeat="employee in employeeArray">{{employee.firstName}} {{employee.lastName}}</li>
+</ul>
                
 
                 <!--//////////// THE MODAL ////////////-->
@@ -20,8 +24,9 @@
           
           <form>
             <div class="modal-body">
-              <input type="text" class="form-control" placeholder="Enter Employee First Name" ng-model="firstName" />
-              <input type="text" class="form-control" placeholder="Enter Employee Last Name" ng-model="lastName" />
+              <input type="text" name="firstName" class="form-control" placeholder="Enter Employee First Name" ng-model="firstName" />
+              <input type="text" name="lastName" class="form-control" placeholder="Enter Employee Last Name" ng-model="lastName" />
+              <input type="email" name="email" class="form-control" placeholder="Enter Employee Gmail Address">
             </div>
 
             <div class="modal-footer">

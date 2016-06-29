@@ -1,7 +1,7 @@
 {
 "version": 3,
-"mappings": "",
-"sources": [],
+"mappings": "AAAA,EAAG;EACF,eAAe,EAAE,IAAI;;AAGtB,kBAAmB;EAClB,aAAa,EAAE,IAAI",
+"sources": ["rw-admin-employees.scss"],
 "names": [],
 "file": "admin-employees.css"
 }

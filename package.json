@@ -16,5 +16,11 @@
     "url": "https://github.com/caulkerman/timeCard/issues"
   },
   "homepage": "https://github.com/caulkerman/timeCard#readme",
-  "description": ""
+  "description": "",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "cors": "^2.7.1",
+    "express": "^4.14.0",
+    "mongoose": "^4.5.2"
+  }
 }

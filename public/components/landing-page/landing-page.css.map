@@ -1,7 +1,7 @@
 {
 "version": 3,
-"mappings": "",
-"sources": [],
+"mappings": "AAAA,IAAK;EACJ,gBAAgB,EAAE,KAAK;EACvB,MAAM,EAAE,eAAe",
+"sources": ["landing-page.scss"],
 "names": [],
 "file": "landing-page.css"
 }

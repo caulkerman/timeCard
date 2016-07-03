@@ -1,2 +1,12 @@
 <h1>Job Site List</h1>
 {{test}}
+
+<input type="text" placeholder="test input to create the ng-repeat" ng-model="job" ng-keydown="$event.which === 13 && pushToJobSiteList(job)">
+<input type="text" placeholder="filter the ng-repeat">
+
+<ul>
+	<li ng-repeat="jobs in jobSiteList track by $index">
+		<a ui-sref="employee-job-site-time-card">{{jobs.name}}</a>
+	</li>
+
+</ul>

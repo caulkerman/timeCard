@@ -2,10 +2,10 @@
 {{test}}
 
 <input type="text" placeholder="test input to create the ng-repeat" ng-model="job" ng-keydown="$event.which === 13 && pushToJobSiteList(job)">
-<input type="text" placeholder="filter the ng-repeat">
+<input type="text" placeholder="filter the ng-repeat" ng-model="filterJob">
 
 <ul>
-	<li ng-repeat="jobs in jobSiteList track by $index">
+	<li ng-repeat="jobs in jobSiteList | filter: filterJob track by $index ">
 		<a ui-sref="employee-job-site-time-card">{{jobs.name}}</a>
 	</li>
 

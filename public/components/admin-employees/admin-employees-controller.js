@@ -1,3 +1,5 @@
+'use strict'
+
 (function() {
 
 	var $inject = ["$scope", "admin_employees_service"];

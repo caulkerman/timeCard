@@ -1,16 +1,26 @@
 (function() {
+var $inject = ["$scope"];
+function adminJobSiteListControllerCB($scope) {
 
-	var $inject = ["$scope"];
+	/////////ENTER CODE BELOW\\\\\\\\
+	$scope.test = "this is from adminJobSiteListController";
 
-	function adminJobSiteListControllerCB($scope) {
+	$scope.jobsArray = [];
 
-		$scope.test = "this is from adminJobSiteListController";
-
+	$scope.addNewJobName = function(newJobName) {
+		var newJob = {
+			name: newJobName
+		}
+		$scope.jobsArray.push(newJob)
 	}
 
-	adminJobSiteListControllerCB.$inject = $inject;
 
-	angular.module("timeCard").controller("adminJobSiteListController", adminJobSiteListControllerCB);
+
+
+}
+
+adminJobSiteListControllerCB.$inject = $inject;
+angular.module("timeCard").controller("adminJobSiteListController", adminJobSiteListControllerCB);
 
 
 })();

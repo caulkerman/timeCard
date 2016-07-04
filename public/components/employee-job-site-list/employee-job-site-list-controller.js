@@ -12,17 +12,14 @@ $scope.test = "this is from employeeJobSiteListController";
 		this.name = job;
 	}
 
-
-//in the function below add a counter to AddJob and contatinate with +1 so each AddJob 
-//pushed to the array has a number added to it such as AddJob1, AddJob2, AddJob3, 
-//and so on.
-	$scope.pushToJobSiteList = function(job, cb) {
+	$scope.pushToJobSiteList = function(job) {
 		var addJob = new AddJob(job);
 		$scope.jobSiteList.push(addJob);
 		console.log($scope.jobSiteList);
 	}
 
-
+//what really needs to happen is the administrator enters the job name and saves it to 
+//the database and this controller/page retrieves it from the database.
 	
 	
 

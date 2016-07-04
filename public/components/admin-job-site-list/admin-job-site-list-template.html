@@ -1,2 +1,17 @@
 <h1>Job Site List</h1>
-{{test}}
+
+<input type="text" placeholder="enter new job name" ng-model="newJobName" ng-keydown="$event.which === 13 && addNewJobName(newJobName)">
+<br />
+<input type="text" placeholder="filter jobs" ng-model="jobs">
+
+<ul ng-repeat="jobs in jobsArray | filter: jobs track by $index">
+	<li>
+		<a ui-sref="admin-job-site">{{jobs.name}}</a>
+	</li>
+</ul>
+
+<br />
+
+
+
+<!-- {{test}} -->

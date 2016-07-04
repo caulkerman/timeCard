@@ -1,10 +1,8 @@
-'use strict'
-
 (function() {
 	var $inject = ["$scope"];
 
 	function employeeControllerCB($scope) {
-
+'use strict'
 
 
 	}

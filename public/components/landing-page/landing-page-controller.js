@@ -1,10 +1,10 @@
-'use strict'
-
 (function() {
 	var $inject = ["$scope"];
 
 	function landingPageControllerCB($scope) {
-		/////ADD YOUR CONTROLLER CODE BELOW///////
+
+'use strict'
+		/////ADD JAVASCRIPT BELOW///////
 
 		$scope.test = "This is the Landing Page Controller test!"
 

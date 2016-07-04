@@ -1,9 +1,8 @@
-'use strict'
-
 (function() {
 var $inject = ["$scope"];
 function employeeJobSiteListControllerCB($scope) {
 
+'use strict'
 		////////ADD CODE BELOW\\\\\\\\\\
 
 $scope.test = "this is from employeeJobSiteListController";

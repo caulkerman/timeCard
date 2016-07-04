@@ -1,9 +1,12 @@
-'use strict'
-
 (function() {
 	var $inject = ["$scope"];
 
 	function employeeTimeCardControllerCB($scope) {
+
+'use strict'
+
+///////ADD JAVASCRIPT BELOW////////
+
 
 $scope.test = "this is from employeeTimeCardController";
 

@@ -1,12 +1,12 @@
-'use strict'
-
 (function() {
 
 	var $inject = ["$scope", "$state"];
 
 	function loginControllerCB($scope, $state) {
 
-		
+'use strict'
+
+		////////ADD JAVASCRIPT BELOW////////	
 
 		$scope.test = "this is login controller";
 

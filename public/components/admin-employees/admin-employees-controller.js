@@ -1,12 +1,10 @@
-'use strict'
-
 (function() {
 
 	var $inject = ["$scope", "admin_employees_service"];
 
 	function adminEmployeesControllerCB($scope, admin_employees_service) {
 
-
+'use strict'
 		//////////    ADD YOUR CONTROLLER CODE BELOW   ///////////
 
 		$scope.createEmployeeName = function(firstName, lastName) {

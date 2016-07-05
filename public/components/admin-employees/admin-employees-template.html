@@ -8,14 +8,16 @@
 </div>
 
 <ul>
-  <li ng-repeat="employee in employeeArray">{{employee.firstName}} {{employee.lastName}}</li>
+  <li ng-repeat="employee in employeeArray">{{employee.firstName}} {{employee.lastName}} {{employee.email}}</li>
 </ul>
                
 
                 <!--//////////// THE MODAL ////////////-->
 
 <div class="modal" id="myModal">
+      
       <div class="modal-dialog">
+        
         <div class="modal-content">
           <div class="modal-header">
             <button class="close" data-dismiss="modal">x</button>
@@ -26,14 +28,17 @@
             <div class="modal-body">
               <input type="text" name="firstName" class="form-control" placeholder="Enter Employee First Name" ng-model="firstName" />
               <input type="text" name="lastName" class="form-control" placeholder="Enter Employee Last Name" ng-model="lastName" />
-              <input type="email" name="email" class="form-control" placeholder="Enter Employee Gmail Address">
+              <input type="email" name="email" class="form-control" placeholder="Enter Employee Gmail Address" ng-model="email">
             </div>
 
             <div class="modal-footer">
               <button class="btn btn-default" data-dismiss="modal">Close</button>
-              <input type="submit" class="btn btn-success" value="Save Changes" ng-click="createEmployeeName(firstName, lastName)" />
+              <input type="submit" class="btn btn-success" value="Save Changes" ng-click="createEmployeeName(firstName, lastName, email)" />
             </div>
           </form>
+        
         </div>
+      
       </div>
+
 </div>

@@ -4,4 +4,7 @@ li {
 input.form-control {
   margin-bottom: 15px; }
 
+p.warning {
+  color: red; }
+
 /*# sourceMappingURL=admin-employees.css.map */

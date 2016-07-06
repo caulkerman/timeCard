@@ -27,17 +27,21 @@
           <form>
             <div class="modal-body">
 
+              <label>Employee First Name</label>
               <p class="warning" ng-show="firstNameWarning">You Must Enter An Employee First Name!</p>
-              <input type="text" name="firstName" class="form-control" placeholder="Enter Employee First Name" ng-model="firstName" />
+              <input type="text" name="firstName" class="form-control" ng-model="firstName" />
               
+              <label>Employee Last Name</label>
               <p class="warning" ng-show="lastNameWarning">You Must Enter An Employee Last Name!</p>
-              <input type="text" name="lastName" class="form-control" placeholder="Enter Employee Last Name" ng-model="lastName" />
-            
-              <p class="warning" ng-show="emailWarning">You Must Enter An Employee Email!</p>
-              <input type="email" name="email" class="form-control" placeholder="Enter Employee Gmail Address" ng-model="email">
+              <input type="text" name="lastName" class="form-control" ng-model="lastName" />
               
+              <label>Employee Email</label>
+              <p class="warning" ng-show="emailWarning">You Must Enter An Employee Email!</p>
+              <input type="email" name="email" class="form-control" ng-model="email">
+              
+              <label>Employee Password</label>
               <p class="warning" ng-show="passwordWarning">You Must Enter An Employee Password!</p>
-              <input type="text" name="password" class="form-control" placeholder="Create Employee Password Here" ng-model="password">
+              <input type="text" name="password" class="form-control" ng-model="password">
               
             </div>
 

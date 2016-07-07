@@ -4,7 +4,7 @@
 <div class="admin-employee-container">
 	<h1>Employee List</h1>
 	<input type="text" placeholder="Filter Employee Names" />
-	<button class="rw-button" data-toggle="modal" data-target="#myModal">Add New Employee</button>
+	<button class="btn btn-success" data-toggle="modal" data-target="#myModal">Add New Employee</button>
 </div>
 
 <ul>
@@ -24,30 +24,38 @@
             <h4 class="modal-title">Create New Employee</h4>
           </div>
           
-          <form>
-            <div class="modal-body">
+          <form ng-submit="createEmployee(firstName, lastName, email, password)">
+            <div class="modal-body" >
 
-              <label>Employee First Name</label>
-              <p class="warning" ng-show="firstNameWarning">You Must Enter An Employee First Name!</p>
-              <input type="text" name="firstName" class="form-control" ng-model="firstName" />
-              
-              <label>Employee Last Name</label>
-              <p class="warning" ng-show="lastNameWarning">You Must Enter An Employee Last Name!</p>
-              <input type="text" name="lastName" class="form-control" ng-model="lastName" />
-              
-              <label>Employee Email</label>
-              <p class="warning" ng-show="emailWarning">You Must Enter An Employee Email!</p>
-              <input type="email" name="email" class="form-control" ng-model="email">
-              
-              <label>Employee Password</label>
-              <p class="warning" ng-show="passwordWarning">You Must Enter An Employee Password!</p>
-              <input type="text" name="password" class="form-control" ng-model="password">
-              
+              <div>
+                <label>Employee First Name</label>
+                <p class="warning" ng-show="firstNameWarning">You Must Enter An Employee First Name!</p>
+                <input type="text" name="firstName" class="form-control" ng-model="firstName" />
+              </div>
+
+              <div>
+                <label>Employee Last Name</label>
+                <p class="warning" ng-show="lastNameWarning">You Must Enter An Employee Last Name!</p>
+                <input type="text" name="lastName" class="form-control" ng-model="lastName" />
+              </div>
+
+              <div>
+                <label>Employee Email</label>
+                <p class="warning" ng-show="emailWarning">You Must Enter An Employee Email!</p>
+                <input type="email" name="email" class="form-control" ng-model="email">
+              </div>
+
+              <div>
+                <label>Employee Password</label>
+                <p class="warning" ng-show="passwordWarning">You Must Enter An Employee Password!</p>
+                <input type="text" name="password" class="form-control" ng-model="password">
+              </div>
+            
             </div>
 
             <div class="modal-footer">
               <button class="btn btn-default" data-dismiss="modal">Close</button>
-              <input type="submit" class="btn btn-success" value="Save Changes" ng-click="createEmployee(firstName, lastName, email, password)" />
+              <input type="submit" class="btn btn-success" value="Save Changes" />
             </div>
           </form>
         

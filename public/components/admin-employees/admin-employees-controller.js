@@ -41,11 +41,11 @@ function adminEmployeesControllerCB($scope, $log, admin_employees_service) {
 
 		for (var prop in employee) {
 			if (employee[prop] === undefined || employee[prop] === "") {
-				$log.warn("hello");
-				return;
-			} else {
-				$log.error("I smell like butter");
-			} 
+				$log.warn("All entries must be completed");
+				return;}
+			// } else {
+			// 	$log.error("I smell like butter");
+			// } 
 		};
 
 		console.log("the employee object, ", employee);

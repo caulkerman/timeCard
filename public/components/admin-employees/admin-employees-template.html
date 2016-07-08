@@ -23,18 +23,9 @@
             <button class="close" data-dismiss="modal">x</button>
             <h4 class="modal-title">Create New Employee</h4>
           </div>
-          
-
-          <form novalidate>
-            <div class="modal-body">
-
-              <p class="warning" ng-show="firstNameWarning">You Must Enter An Employee First Name!</p>
-              <input type="text" name="firstName" class="form-control" placeholder="Enter Employee First Name" ng-model="firstName" />
+        
               
-              <p class="warning" ng-show="lastNameWarning">You Must Enter An Employee Last Name!</p>
-              <input type="text" name="lastName" class="form-control" placeholder="Enter Employee Last Name" ng-model="lastName" />
-              
-              <form ng-submit="createEmployee(firstName, lastName, email, password)">
+          <form ng-submit="createEmployee(firstName, lastName, email, password)">
             <div class="modal-body" >
 
               <div>

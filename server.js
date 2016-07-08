@@ -16,8 +16,17 @@ app.use(bodyParser.json({
   limit: '50mb'
 }));
 
-// Endpoints
 
+//CONTROLLERS\\
+
+var employeeCtrl = require("./api/controllers/api.createEmployee");
+
+// Endpoints\\
+
+// router.route("/api/createEmployee")
+// 	.post(employeeCtrl.create);
+
+app.post("/api/createEmployee", employeeCtrl.create);
 
 // Connections
 var port = 9333;

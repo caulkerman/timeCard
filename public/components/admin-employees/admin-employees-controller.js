@@ -5,7 +5,7 @@ function adminEmployeesControllerCB($scope, $log, admin_employees_service) {
 'use strict'
 		//////////    ADD YOUR CONTROLLER CODE BELOW   ///////////
 
-	$scope.employeeArray = admin_employees_service.employeeArray();
+	// $scope.employeeArray = admin_employees_service.employeeArray();
 
 	$scope.createEmployee = function(firstName, lastName, email, password) {
 		if ($scope.firstName === "" || $scope.firstName === undefined) {
@@ -48,11 +48,14 @@ function adminEmployeesControllerCB($scope, $log, admin_employees_service) {
 			// } 
 		};
 
-		console.log("the employee object, ", employee);
-		
-			
-		// admin_employees_service.newEmployeeNameObject(firstName, lastName, email, password);
-		// $scope.employeeArray = admin_employees_service.employeeArray();
+		// console.log("the employee object, ", employee);
+		admin_employees_service.createEmployee(employee).then(function(response) {
+			if (response) {
+				console.log("success!");
+			} else {
+				console.log("not successful");
+			}
+		});
 	};
 
 		

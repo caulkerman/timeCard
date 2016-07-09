@@ -19,7 +19,7 @@ this.createEmployee = function(employee) {
 	// employee.lastName = lastName;
 	// employee.email = email;
 	// employee.password = password;
-	console.log(employee);
+	// console.log(employee);
 
 	var deferred = $q.defer();
 	$http({
@@ -27,7 +27,19 @@ this.createEmployee = function(employee) {
 		url: "/api/createEmployee",
 		data: employee
 	}).then(function(response) {
-		console.log("the response in service ", response);
+		// console.log("the response in service ", response);
+		deferred.resolve(response);
+	});
+	return deferred.promise;
+};
+
+
+this.getEmployees = function() {
+	var deferred = $q.defer();
+	$http({
+		method: "GET",
+		url: "/api/getEmployees",
+	}).then(function(response) {
 		deferred.resolve(response);
 	});
 	return deferred.promise;

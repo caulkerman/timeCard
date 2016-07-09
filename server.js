@@ -24,6 +24,7 @@ var employeeCtrl = require("./api/controllers/api.createEmployeeCtrl");
 // Endpoints\\
 
 app.post("/api/createEmployee", employeeCtrl.create);
+app.get("/api/getEmployees", employeeCtrl.read);
 
 // Connections
 var port = 9333;

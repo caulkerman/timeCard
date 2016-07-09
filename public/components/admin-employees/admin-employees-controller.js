@@ -6,6 +6,11 @@ function adminEmployeesControllerCB($scope, $log, admin_employees_service) {
 		//////////    ADD YOUR CONTROLLER CODE BELOW   ///////////
 
 
+	admin_employees_service.getEmployees().then(function(response) {
+		$scope.employees = response.data;
+		console.log($scope.employees);
+	})
+
 	$scope.createEmployee = function(firstName, lastName, email, password) {
 		if ($scope.firstName === "" || $scope.firstName === undefined) {
 			$scope.firstNameWarning = true;
@@ -48,7 +53,7 @@ function adminEmployeesControllerCB($scope, $log, admin_employees_service) {
 		// console.log("the employee object, ", employee);
 		admin_employees_service.createEmployee(employee).then(function(response) {
 			if (response) {
-				console.log("success!");
+				console.log("the response ", response.data);
 			} else {
 				console.log("not successful");
 			}

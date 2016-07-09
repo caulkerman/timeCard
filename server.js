@@ -19,12 +19,9 @@ app.use(bodyParser.json({
 
 //CONTROLLERS\\
 
-var employeeCtrl = require("./api/controllers/api.createEmployee");
+var employeeCtrl = require("./api/controllers/api.createEmployeeCtrl");
 
 // Endpoints\\
-
-// router.route("/api/createEmployee")
-// 	.post(employeeCtrl.create);
 
 app.post("/api/createEmployee", employeeCtrl.create);
 

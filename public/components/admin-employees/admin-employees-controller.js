@@ -5,7 +5,6 @@ function adminEmployeesControllerCB($scope, $log, admin_employees_service) {
 'use strict'
 		//////////    ADD YOUR CONTROLLER CODE BELOW   ///////////
 
-	// $scope.employeeArray = admin_employees_service.employeeArray();
 
 	$scope.createEmployee = function(firstName, lastName, email, password) {
 		if ($scope.firstName === "" || $scope.firstName === undefined) {
@@ -42,10 +41,8 @@ function adminEmployeesControllerCB($scope, $log, admin_employees_service) {
 		for (var prop in employee) {
 			if (employee[prop] === undefined || employee[prop] === "") {
 				$log.warn("All entries must be completed");
-				return;}
-			// } else {
-			// 	$log.error("I smell like butter");
-			// } 
+				return;
+			} 
 		};
 
 		// console.log("the employee object, ", employee);

@@ -5,11 +5,13 @@ function adminEmployeesControllerCB($scope, $log, admin_employees_service) {
 'use strict'
 		//////////    ADD YOUR CONTROLLER CODE BELOW   ///////////
 
-
-	admin_employees_service.getEmployees().then(function(response) {
-		$scope.employees = response.data;
-		console.log($scope.employees);
-	})
+	var functionToGetEmployees = function() {
+		admin_employees_service.getEmployees().then(function(response) {
+			$scope.employees = response.data;
+			console.log($scope.employees);
+		});
+	};
+	functionToGetEmployees();
 
 	$scope.createEmployee = function(firstName, lastName, email, password) {
 		if ($scope.firstName === "" || $scope.firstName === undefined) {
@@ -52,11 +54,7 @@ function adminEmployeesControllerCB($scope, $log, admin_employees_service) {
 
 		// console.log("the employee object, ", employee);
 		admin_employees_service.createEmployee(employee).then(function(response) {
-			if (response) {
-				console.log("the response ", response.data);
-			} else {
-				console.log("not successful");
-			}
+			functionToGetEmployees();
 		});
 	};
 

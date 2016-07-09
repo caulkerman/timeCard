@@ -56,6 +56,11 @@ function adminEmployeesControllerCB($scope, $log, admin_employees_service) {
 		admin_employees_service.createEmployee(employee).then(function(response) {
 			functionToGetEmployees();
 		});
+
+		$scope.firstName = "";
+		$scope.lastName = "";
+		$scope.email = "";
+		$scope.password = "";
 	};
 
 		

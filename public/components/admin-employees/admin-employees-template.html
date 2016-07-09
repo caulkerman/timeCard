@@ -3,12 +3,12 @@
 
 <div class="admin-employee-container">
 	<h1>Employee List</h1>
-	<input type="text" placeholder="Filter Employee Names" />
+	<input type="text" placeholder="Filter Employee Names" ng-model="employee_filter"/>
 	<button class="btn btn-success" data-toggle="modal" data-target="#myModal">Add New Employee</button>
 </div>
 
 <ul>
-  <li ng-repeat="employee in employees">{{employee.firstName}} {{employee.lastName}}</li>
+  <li ng-repeat="employee in employees | filter: employee_filter track by $index">{{employee.firstName}} {{employee.lastName}}</li>
 </ul>
                
 

@@ -3,12 +3,12 @@
 
 <div class="admin-employee-container">
 	<h1>Employee List</h1>
-	<input type="text" placeholder="Filter Employee Names" ng-model="employee_filter"/>
+	<input type="text" placeholder="Filter Employee Names" ng-model="employee_filter"/>
 	<button class="btn btn-success" data-toggle="modal" data-target="#myModal">Add New Employee</button>
 </div>
 
 <ul>
-  <li ng-repeat="employee in employees | filter: employee_filter track by $index">{{employee.firstName}} {{employee.lastName}}</li>
+  <li ng-repeat="employee in employees | filter: {fullName:employee_filter} track by $index">{{employee.fullName}}</li>
 </ul>
                
 
@@ -25,19 +25,13 @@
           </div>
         
               
-          <form ng-submit="createEmployee(firstName, lastName, email, password)">
+          <form ng-submit="createEmployee(fullName, email, password, employeeType)">
             <div class="modal-body" >
 
               <div>
-                <label>Employee First Name</label>
-                <p class="warning" ng-show="firstNameWarning">You Must Enter An Employee First Name!</p>
-                <input type="text" name="firstName" class="form-control" ng-model="firstName" />
-              </div>
-
-              <div>
-                <label>Employee Last Name</label>
-                <p class="warning" ng-show="lastNameWarning">You Must Enter An Employee Last Name!</p>
-                <input type="text" name="lastName" class="form-control" ng-model="lastName" />
+                <label>Employee Full Name</label>
+                <p class="warning" ng-show="nameWarning">You Must Enter An Employee Full Name!</p>
+                <input type="text" name="fullName" class="form-control" ng-model="fullName" />
               </div>
 
               <div>
@@ -54,8 +48,8 @@
 
               <div>
                 <label>Employee Type</label>
-                <p class="warning" ng-show="typeWarning">You Must Enter the Type of Employee... Worker or Admin!</p>
-                <input type="text" name="type" class="form-control" ng-model="type" placeholder="Add whether is 'Worker' or 'Admin'">
+                <p class="warning" ng-show="emplyeeTypeWarning">You Must Enter the Type of Employee... Worker or Admin!</p>
+                <input type="text" name="type" class="form-control" ng-model="employeeType" placeholder="Add whether is 'Worker' or 'Admin'">
 
             <div class="modal-footer">
               <button class="btn btn-default" data-dismiss="modal">Close</button>

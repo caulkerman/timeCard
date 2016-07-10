@@ -13,17 +13,11 @@ function adminEmployeesControllerCB($scope, $log, admin_employees_service) {
 	};
 	functionToGetEmployees();
 
-	$scope.createEmployee = function(firstName, lastName, email, password) {
-		if ($scope.firstName === "" || $scope.firstName === undefined) {
-			$scope.firstNameWarning = true;
+	$scope.createEmployee = function(fullName, email, password, employeeType) {
+		if ($scope.fullName === "" || $scope.fullName === undefined) {
+			$scope.nameWarning = true;
 		} else {
-			$scope.firstNameWarning = false;
-		};
-		
-		if ($scope.lastName === "" || $scope.lastName === undefined) {
-			$scope.lastNameWarning = true;
-		} else {
-			$scope.lastNameWarning = false;
+			$scope.nameWarning = false;
 		};
 		
 		if ($scope.email === "" || $scope.email === undefined) {
@@ -37,12 +31,20 @@ function adminEmployeesControllerCB($scope, $log, admin_employees_service) {
 		} else {
 			$scope.passwordWarning = false;
 		};
+
+		if ($scope.employeeType === "" || $scope.employeeType === undefined) {
+			$scope.employeeTypeWarning = true;
+		} else {
+			$scope.employeeTypeWarning = false;
+		}
 		
 		var employee = {
-			firstName: firstName,
-			lastName: lastName,
+			fullName: fullName,
 			email: email,
-			password: password
+			password: password,
+			employeeType: employeeType,
+			jobsites: [],
+			hours_worked: []
 		}
 
 		for (var prop in employee) {
@@ -57,10 +59,10 @@ function adminEmployeesControllerCB($scope, $log, admin_employees_service) {
 			functionToGetEmployees();
 		});
 
-		$scope.firstName = "";
-		$scope.lastName = "";
+		$scope.fullName = "";
 		$scope.email = "";
 		$scope.password = "";
+		$scope.employeeType = "";
 	};
 
 		

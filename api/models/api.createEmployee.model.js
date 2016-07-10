@@ -4,11 +4,10 @@ var Schema = Mongoose.Schema;
 
 var employeesSchema = new Schema({
 
-	firstName: { type: String, required: true },
-	lastName: { type: String, required: true },
+	fullName: { type: String, required: true },
 	email: { type: String, required: true },
 	password: { type: String, required: true },
-	type: { type: String, required: true },
+	employeeType: { type: String, required: true },
 	jobsites: { type: Array },
 	hours_worked: { type: Array}
 

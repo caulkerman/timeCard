@@ -15,11 +15,6 @@ app.service("admin_employees_service", ["$q", "$http", function($q, $http) {
 // var employee = {};
 
 this.createEmployee = function(employee) {
-	// employee.firstName = firstName;
-	// employee.lastName = lastName;
-	// employee.email = email;
-	// employee.password = password;
-	// console.log(employee);
 
 	var deferred = $q.defer();
 	$http({
@@ -27,7 +22,7 @@ this.createEmployee = function(employee) {
 		url: "/api/createEmployee",
 		data: employee
 	}).then(function(response) {
-		// console.log("the response in service ", response);
+		// console.log("response in employee service ", response);
 		deferred.resolve(response);
 	});
 	return deferred.promise;

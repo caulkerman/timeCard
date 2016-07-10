@@ -20,11 +20,15 @@ app.use(bodyParser.json({
 //CONTROLLERS\\
 
 var employeeCtrl = require("./api/controllers/api.createEmployeeCtrl");
+var newJobCtrl = require("./api/controllers/api.createNewJobCtrl");
 
 // Endpoints\\
 
 app.post("/api/createEmployee", employeeCtrl.create);
+app.post("/api/addNewJob", newJobCtrl.create);
+
 app.get("/api/getEmployees", employeeCtrl.read);
+app.get("/api/getJobs", newJobCtrl.read);
 
 // Connections
 var port = 9333;

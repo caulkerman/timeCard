@@ -4,9 +4,9 @@
 <br />
 <input type="text" placeholder="filter jobs" ng-model="jobs">
 
-<ul ng-repeat="jobs in jobsArray | filter: jobs track by $index">
+<ul ng-repeat="job_site in job_sites | filter: {name:jobs} track by $index">
 	<li>
-		<a ui-sref="admin-job-site">{{jobs.name}}</a>
+		<a ui-sref="admin-job-site">{{job_site.name}}</a>
 	</li>
 </ul>
 

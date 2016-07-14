@@ -1,12 +1,16 @@
 <h1>Job Site List</h1>
 {{test}}
 
-<input type="text" placeholder="test input to create the ng-repeat" ng-model="job" ng-keydown="$event.which === 13 && pushToJobSiteList(job)">
-<input type="text" placeholder="filter the ng-repeat" ng-model="filterJob">
+
+<input type="text" placeholder="Filter Job Names" ng-model="filterJob">
 
 <ul>
 	<li ng-repeat="jobs in jobSiteList | filter: filterJob track by $index ">
-		<a ui-sref="employee-job-site-time-card">{{jobs.name}}</a>
+		<!-- <a ui-sref="employee-job-site-time-card">{{jobs.name}}</a> -->
+		<a ng-click="gotoSelectedJobsite($index, _id)">{{jobs.name}}</a>
+
+
+		<!-- This will need to be a function with a $state.go() method so that I can pick a job site by $index and have at least the object Id to bring up that jobsite when I go to the new page.-->
 	</li>
 
 </ul>

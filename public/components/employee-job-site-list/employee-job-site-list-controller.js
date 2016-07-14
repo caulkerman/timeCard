@@ -14,8 +14,9 @@ $scope.getJobsList = function() {
 $scope.getJobsList();
 	
 
-$scope.gotoSelectedJobsite = function(index, _id) {
-	$state.go("employee-job-site-time-card")
+$scope.gotoSelectedJobsite = function(index, id) {
+	console.log("the selected job site id ", id);
+	$state.go("employee-job-site-time-card", {id: id});
 }
 
 $scope.test = "this is from employeeJobSiteListController";

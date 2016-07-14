@@ -47,7 +47,7 @@ var app = angular.module("timeCard", ["ui.router", "smart-table"])
 		})
 
 		.state("employee-job-site-time-card", {
-			url: "/employee-job-site-time-card",
+			url: "/employee-job-site-time-card/:id",
 			templateUrl: "components/employee-job-site-time-card/employee-job-site-time-card-template.html",
 			controller: "employeeJobSiteTimeCardController"
 		})

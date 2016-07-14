@@ -27,31 +27,31 @@
           </div>
         
               
-          <form ng-submit="createEmployee(fullName, email, password, employeeType)">
-            <div class="modal-body" >
+          <form ng-submit="createEmployee(fullName, email, password, employeeType)" novalidate>
+            <div class="modal-body">
 
-              <div>
+              <div >
                 <label>Employee Full Name</label>
                 <p class="warning" ng-show="nameWarning">You Must Enter An Employee Full Name!</p>
-                <input type="text" name="fullName" class="form-control" ng-model="fullName" />
+                <input type="text" name="fullName" class="form-control" ng-model="fullName"/>
               </div>
 
-              <div>
+              <div >
                 <label>Employee Email</label>
                 <p class="warning" ng-show="emailWarning">You Must Enter An Employee Email!</p>
                 <input type="email" name="email" class="form-control" ng-model="email">
               </div>
 
-              <div>
+              <div >
                 <label>Employee Password</label>
                 <p class="warning" ng-show="passwordWarning">You Must Enter An Employee Password!</p>
-                <input type="text" name="password" class="form-control" ng-model="password">
+                <input type="text" name="password" class="form-control" ng-model="password" >
               </div>
 
-              <div>
+              <div >
                 <label>Employee Type</label>
                 <p class="warning" ng-show="emplyeeTypeWarning">You Must Enter the Type of Employee... Worker or Admin!</p>
-                <input type="text" name="type" class="form-control" ng-model="employeeType" placeholder="Add whether is 'Worker' or 'Admin'">
+                <input type="text" name="type" class="form-control" ng-model="employeeType" placeholder="Add whether is 'Worker' or 'Admin'" >
 
             <div class="modal-footer">
               <button class="btn btn-default" data-dismiss="modal">Close</button>

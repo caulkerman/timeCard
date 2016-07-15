@@ -1,8 +1,8 @@
 <h1>Job Site List</h1>
 {{test}}
 
-
-<input type="text" placeholder="Filter Job Names" ng-model="filterJob">
+<label for="jobSiteFilter">Filter Job Name:</label>
+<input name="jobSiteFilter" type="text" placeholder="Filter Job Names" ng-model="filterJob">
 
 <ul>
 	<li ng-repeat="jobs in jobSiteList | filter: filterJob track by $index ">

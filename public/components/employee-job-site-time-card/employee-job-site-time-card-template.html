@@ -1,3 +1,21 @@
-<h1>Employee job site time card template</h1>
+Employee job site time card template
 
-this is the test {{jobsite.name}}
+Job Site Name: <h3 id="jobSiteName">{{jobsite.name}}</h3>
+
+<h2>List of Employees:</h2>
+
+<label for="employeeFilter">Filter Employee:</label>
+<input type="text" name="employeeFilter" ng-model="employee.fullName">
+
+<table ng-repeat="employee in employees | filter: employee.fullName track by $index">
+    
+    <tr>
+        <td>
+            <input type="checkbox" ng-model="checkbox" > <!--there will probably be a ng-click in checkbox to fire a function that takes the employee and adds it to the jobsite object array or something-->
+        </td>
+        <td>
+            {{employee.fullName}}
+        </td>
+    </tr>
+
+</table>

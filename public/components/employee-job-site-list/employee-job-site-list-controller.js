@@ -11,7 +11,7 @@ $scope.filterJob; ///this variable is available from the filter input box.  of c
 
 $scope.getJobsList = function() {
 	adminJobSiteListService.getJobs().then(function(response) {
-		console.log("the response in controller", response)
+		console.log("the response in controller", response.data)
 		$scope.jobSiteList = response.data;
 	})
 }
@@ -23,7 +23,7 @@ $scope.gotoSelectedJobsite = function(index, id) {
 	$state.go("employee-job-site-time-card", {id: id});
 }
 
-$scope.test = "this is from employeeJobSiteListController";
+// $scope.test = "this is from employeeJobSiteListController";
 
 
 

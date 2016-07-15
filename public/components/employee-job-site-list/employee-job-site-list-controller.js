@@ -5,6 +5,10 @@ function employeeJobSiteListControllerCB($scope, adminJobSiteListService, $state
 "use strict"
 
 ///////		ADD CODE BELOW		\\\\\\\\\\
+
+$scope.filterJob; ///this variable is available from the filter input box.  of course if you want to use it, the name must be typed correctly if you are to use it for any other functions in this controller.  I would recommend taking the name property value from the job site object to make the varible in functions.
+
+
 $scope.getJobsList = function() {
 	adminJobSiteListService.getJobs().then(function(response) {
 		console.log("the response in controller", response)
@@ -20,6 +24,9 @@ $scope.gotoSelectedJobsite = function(index, id) {
 }
 
 $scope.test = "this is from employeeJobSiteListController";
+
+
+
 
 
 

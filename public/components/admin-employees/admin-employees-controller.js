@@ -14,30 +14,31 @@ function adminEmployeesControllerCB($scope, $log, admin_employees_service) {
 	functionToGetEmployees();
 
 	$scope.createEmployee = function(fullName, email, password, employeeType, isValid) {
+		$scope.submitted = true;
 		
-		if ($scope.fullName === "" || $scope.fullName === undefined) {
-			$scope.nameWarning = true;
-		} else {
-			$scope.nameWarning = false;
-		};
+		// if ($scope.fullName === "" || $scope.fullName === undefined) {
+		// 	$scope.nameWarning = true;
+		// } else {
+		// 	$scope.nameWarning = false;
+		// };
 		
-		if ($scope.email === "" || $scope.email === undefined) {
-			$scope.emailWarning = true;
-		} else {
-			$scope.emailWarning = false;
-		};
+		// if ($scope.email === "" || $scope.email === undefined) {
+		// 	$scope.emailWarning = true;
+		// } else {
+		// 	$scope.emailWarning = false;
+		// };
 
-		if ($scope.password === "" || $scope.password === undefined) {
-			$scope.passwordWarning = true;
-		} else {
-			$scope.passwordWarning = false;
-		};
+		// if ($scope.password === "" || $scope.password === undefined) {
+		// 	$scope.passwordWarning = true;
+		// } else {
+		// 	$scope.passwordWarning = false;
+		// };
 
-		if ($scope.employeeType === "" || $scope.employeeType === undefined) {
-			$scope.emplyeeTypeWarning = true;
-		} else {
-			$scope.emplyeeTypeWarning = false;
-		}
+		// if ($scope.employeeType === "" || $scope.employeeType === undefined) {
+		// 	$scope.emplyeeTypeWarning = true;
+		// } else {
+		// 	$scope.emplyeeTypeWarning = false;
+		// }
 		
 		var employee = {
 			fullName: fullName,
@@ -63,6 +64,7 @@ function adminEmployeesControllerCB($scope, $log, admin_employees_service) {
 		admin_employees_service.createEmployee(employee).then(function(response) {
 			functionToGetEmployees();
 		});
+		$scope.submitted = false;
 
 		$scope.fullName = "";
 		$scope.email = "";

@@ -5,17 +5,29 @@ Job Site Name: <h3 id="jobSiteName">{{jobsite.name}}</h3>
 <h2>List of Employees:</h2>
 
 <label for="employeeFilter">Filter Employee:</label>
-<input type="text" name="employeeFilter" ng-model="employee.fullName">
+<input type="text" name="employeeFilter" ng-model="employee_filter">
 
-<table ng-repeat="employee in employees | filter: employee.fullName track by $index">
-    
-    <tr>
-        <td>
-            <input type="checkbox" ng-model="checkbox" > <!--there will probably be a ng-click in checkbox to fire a function that takes the employee and adds it to the jobsite object array or something-->
-        </td>
-        <td>
-            {{employee.fullName}}
-        </td>
-    </tr>
-
+<!--<table ng-repeat="employee in employees | filter: {fullName:employee_filter} track by $index">-->
+<table st-table="students" class="table table-striped">
+    <thead>
+        <tr>
+            <td>Checked</td>
+            <td>Employee Name</td>
+            <td>Hours Worked</td>
+        </tr>
+    </thead>
+    <br />
+    <tbody>       
+        <tr ng-repeat="employee in employees | filter: {fullName:employee_filter} track by $index">
+            <td >
+                <input type="checkbox" ng-model="checkbox" ng-change="checkboxfunction(checkbox)"> <!--there will probably be a ng-click in checkbox to fire a function that takes the employee and adds it to the jobsite object array or something-->
+            </td>
+            <td >
+                {{employee.fullName}}
+            </td>
+            <td>
+                <input type="number">
+            </td>
+        </tr>
+    </tbody>
 </table>

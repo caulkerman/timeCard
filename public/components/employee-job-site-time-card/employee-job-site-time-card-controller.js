@@ -27,8 +27,12 @@ var functionToGetEmployees = function() {
 			$scope.employees = response.data;
 			console.log($scope.employees);
 		});
-	};
-	functionToGetEmployees();
+};
+functionToGetEmployees();
+
+$scope.checkboxfunction = function(checkbox) {
+	console.log("hello", checkbox);
+}
 
 
 

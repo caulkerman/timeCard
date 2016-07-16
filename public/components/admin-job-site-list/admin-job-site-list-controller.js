@@ -18,10 +18,14 @@ function adminJobSiteListControllerCB($scope, adminJobSiteListService) {
 	getListOfJobs();
 
 	$scope.addNewJobName = function(newJobName) {
-
+		if ($scope.newJobName === undefined || $scope.newJobName === "") {
+			console.log("you must enter a job name");
+		} else {
 		adminJobSiteListService.addNewJob(newJobName).then(function(response) {
 		})
 		getListOfJobs();
+		$scope.newJobName = "";
+		}
 	}
 
 

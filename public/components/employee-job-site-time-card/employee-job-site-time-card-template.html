@@ -12,23 +12,26 @@ Job Site Name: <h3 id="jobSiteName">{{jobsite.name}}</h3>
 <table st-table="students" class="table table-striped">
     <thead>
         <tr>
-            <td style="font-weight: bold">Submitted</td>  <!--make sure you change the inline styling later-->
-            <td style="font-weight: bold">Employee Name</td>
+            <td style="font-weight: bold">Employee Name</td>  <!--make sure you change the inline styling later-->
             <td style="font-weight: bold">Hours Worked</td>
+            <td style="font-weight: bold">Employee Submitted ?</td>
         </tr>
     </thead>
     <br />
     <tbody>       
         <tr ng-repeat="employee in employees | filter: {fullName:employee_filter} track by $index">
-            <td >
-                <input type="checkbox" ng-model="checkbox" ng-change="checkboxfunction(checkbox)"> <!--I won't be using the checkbox anymore, I will end up using a submit button perhaps I will keep it just so the user will have a visual that the name has been submitted. or maybe curly braces that ng-show when a variable is set to true that says yes.  I think getting rid of the check box would be a good idea and that I should just go with a box that says "yes" to confirm that the person has been added to the daily timecard.  Maybe the submit button will change color when the person has been submitted.-->
-            </td>
+            <!--<td >
+                <input type="checkbox" ng-model="checkbox" ng-change="checkboxfunction(checkbox)"> 
+            </td>-->
             <td >
                 {{employee.fullName}}
             </td>
             <td>
                 <input type="number">
             </td>
+            <td>
+                <button>SUBMIT EMPLOYEE?</button>
+                <!--I won't be using the checkbox anymore, I will end up using a submit button perhaps I will keep it just so the user will have a visual that the name has been submitted. or maybe curly braces that ng-show when a variable is set to true that says yes.  I think getting rid of the check box would be a good idea and that I should just go with a box that says "yes" to confirm that the person has been added to the daily timecard.  Maybe the submit button will change color when the person has been submitted.-->
         </tr>
     </tbody>
 </table>

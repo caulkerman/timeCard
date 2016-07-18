@@ -13,32 +13,10 @@ function adminEmployeesControllerCB($scope, $log, admin_employees_service) {
 	};
 	functionToGetEmployees();
 
+	
+	
 	$scope.createEmployee = function(fullName, email, password, employeeType, isValid) {
 		$scope.submitted = true;
-		
-		// if ($scope.fullName === "" || $scope.fullName === undefined) {
-		// 	$scope.nameWarning = true;
-		// } else {
-		// 	$scope.nameWarning = false;
-		// };
-		
-		// if ($scope.email === "" || $scope.email === undefined) {
-		// 	$scope.emailWarning = true;
-		// } else {
-		// 	$scope.emailWarning = false;
-		// };
-
-		// if ($scope.password === "" || $scope.password === undefined) {
-		// 	$scope.passwordWarning = true;
-		// } else {
-		// 	$scope.passwordWarning = false;
-		// };
-
-		// if ($scope.employeeType === "" || $scope.employeeType === undefined) {
-		// 	$scope.emplyeeTypeWarning = true;
-		// } else {
-		// 	$scope.emplyeeTypeWarning = false;
-		// }
 		
 		var employee = {
 			fullName: fullName,
@@ -47,23 +25,24 @@ function adminEmployeesControllerCB($scope, $log, admin_employees_service) {
 			employeeType: employeeType,
 			jobsites: [],
 			hours_worked: []
-		}
+		};
 
-		//if (isValid) {
-			//run the function
-		// }
-
+		//This for loop prevents the function from functioning any further if all the fields are not filled in.
 		for (var prop in employee) {
 			if (employee[prop] === undefined || employee[prop] === "") {
 				$log.warn("All entries must be completed");
 				return;
-			} 
+			}; 
 		};
 
-		// console.log("the employee object, ", employee);
-		admin_employees_service.createEmployee(employee).then(function(response) {
-			functionToGetEmployees();
-		});
+		//The if conditional is here as a secondary measure to make sure the form is valid before submitting the new employee name to the database.  If I am using the angular way to do forms I might as well do this
+		if (isValid) {
+			// console.log("the employee object, ", employee);
+			admin_employees_service.createEmployee(employee).then(function(response) {
+				functionToGetEmployees();
+			});
+		};
+
 		$scope.submitted = false;
 
 		$scope.fullName = "";

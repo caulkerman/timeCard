@@ -53,11 +53,8 @@
 
               <div ng-class="{ 'has-error' : employeeForm.type.$invalid && submitted }">
                 <label>Employee Type</label>
-                <!--<p class="warning" ng-show="emplyeeTypeWarning">You Must Enter the Type of Employee... Worker or Admin!</p>-->
-                <!--<p class="warning" ng-show="employeeForm.type.$invalid && submitted">You Must Enter the Type of Employee... Worker or Admin!</p>
-                <input type="text" name="type" class="form-control" ng-model="employeeType" placeholder="Add whether is 'Worker' or 'Admin'" required>-->
-
-                <select form="employeeForm" ng-model="employeeType" required>
+                <p class="warning" ng-show="employeeForm.type.$invalid && submitted">You Must Enter the Type of Employee... Worker or Admin!</p>
+                <select name="type" form="employeeForm" ng-model="employeeType" required>
                   <option value="Worker">Worker</option>
                   <option value="Admin">Admin</option>
                 </select>

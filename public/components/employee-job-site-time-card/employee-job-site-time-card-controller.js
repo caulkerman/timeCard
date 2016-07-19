@@ -34,8 +34,14 @@ $scope.checkboxfunction = function(checkbox) {
 	console.log("hello", checkbox);
 }
 
+$scope.addEmployeeTime = function(name, hours, index) {
+    employeeJobSiteTimeCardService.makeEmployeeTimeObject(name, hours, index);
+}
 
 
+// if (hours) {
+			// $scope.jobsite.employees.push(employeeTimeObject);
+		// }
 
 
 

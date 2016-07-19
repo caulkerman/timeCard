@@ -20,18 +20,17 @@ Job Site Name: <h3 id="jobSiteName">{{jobsite.name}}</h3>
     <br />
     <tbody>       
         <tr ng-repeat="employee in employees | filter: {fullName:employee_filter} track by $index">
-            <!--<td >
-                <input type="checkbox" ng-model="checkbox" ng-change="checkboxfunction(checkbox)"> 
-            </td>-->
+           
             <td >
                 {{employee.fullName}}
             </td>
             <td>
-                <input type="number">
+                <input type="number" ng-model="hoursWorked">
+                 <!--There should be some form validation for the hours worked, and if the submit button is clicked with no hours entered then nothing will happen, perhaps the red warning should show saying that particular employee needs to have the hours entered. -->
             </td>
             <td>
-                <button>SUBMIT EMPLOYEE?</button>
-                <!--I won't be using the checkbox anymore, I will end up using a submit button perhaps I will keep it just so the user will have a visual that the name has been submitted. or maybe curly braces that ng-show when a variable is set to true that says yes.  I think getting rid of the check box would be a good idea and that I should just go with a box that says "yes" to confirm that the person has been added to the daily timecard.  Maybe the submit button will change color when the person has been submitted.-->
+                <button ng-click="addEmployeeTime(employee.fullName, hoursWorked, $index)">SUBMIT TIME?</button>
+                <!-- Maybe the submit button will change color when the person has been submitted.-->
         </tr>
     </tbody>
 </table>

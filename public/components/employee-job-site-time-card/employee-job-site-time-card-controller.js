@@ -17,7 +17,7 @@ var jobSiteId = $stateParams.id;
 var getTheJobSiteFromDBbyId = function() {
 	employeeJobSiteTimeCardService.getTheJobSiteFromDBbyId(jobSiteId).then(function(response) {
 		$scope.jobsite = response.data;
-		console.log("the jobsite response in controller ", $scope.jobsite);
+		// console.log("the jobsite response in controller ", $scope.jobsite);
 	})
 }
 getTheJobSiteFromDBbyId();
@@ -25,23 +25,21 @@ getTheJobSiteFromDBbyId();
 var functionToGetEmployees = function() {
 		admin_employees_service.getEmployees().then(function(response) {
 			$scope.employees = response.data;
-			console.log($scope.employees);
+			// console.log($scope.employees);
 		});
 };
 functionToGetEmployees();
 
-$scope.checkboxfunction = function(checkbox) {
-	console.log("hello", checkbox);
-}
 
 $scope.addEmployeeTime = function(name, hours, index) {
     employeeJobSiteTimeCardService.makeEmployeeTimeObject(name, hours, index);
+	var employeeTimeObject = employeeJobSiteTimeCardService.returnEmployeeTimeObject();
+	if (hours) {
+	$scope.jobsite.employees.push(employeeTimeObject);
+	console.warn("the employee time object ", $scope.jobsite);
+	}
 }
 
-
-// if (hours) {
-			// $scope.jobsite.employees.push(employeeTimeObject);
-		// }
 
 
 

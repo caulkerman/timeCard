@@ -38,6 +38,7 @@ $scope.addEmployeeTime = function(name, hours, index) {
 	$scope.jobsite.employees.push(employeeTimeObject);
 	console.warn("the employee time object ", $scope.jobsite);
 	}
+	
 }
 
 //need to figure out how to update the object with new employee array information.  Whether to do it in controller or service

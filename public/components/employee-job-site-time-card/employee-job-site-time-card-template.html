@@ -6,9 +6,10 @@ Job Site Name: <h3 id="jobSiteName">{{jobsite.name}}</h3>
 <br />
 <label for="employeeFilter">Filter Employee:</label>
 <input type="text" name="employeeFilter" ng-model="employee_filter">
+
+<!--MATERIALS: I need to put a text area or create an object that perhaps takes in property values that describe the materials used on the job for that day. -->
 <br />
 
-<!--<table ng-repeat="employee in employees | filter: {fullName:employee_filter} track by $index">-->
 <table st-table="students" class="table table-striped">
     <thead>
         <tr>

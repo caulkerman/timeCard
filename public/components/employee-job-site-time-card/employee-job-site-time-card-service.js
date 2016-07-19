@@ -7,32 +7,18 @@ app.service("employeeJobSiteTimeCardService", ["$q", "$http", function($q, $http
 	var date = new Date();
 	var year = date.getFullYear();
 	var month = date.getMonth();
-	var day = date.getDay();
+	var dayIndex = date.getDay();
+	var dayOfMonth = date.getDate()
 	var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 	var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 	var thisMonth = months[month];
-	var thisDay = days[day];
-
-	this.theDate = function() {
-		return thisDay + ", " + thisMonth + " " + day + ", " + year;
-	}
-	// console.log("In the service the date that I have created ", this.theDate());
+	var thisDay = days[dayIndex];
 
 	
-	//Remember that the id is available from the controller from the previous state.  The only way you get to this current state is by passing through the previous state and you pick up and send the id by clicking on a jobsite $index.  Data in the service persists through page refreshes. The function below calls for the object based on its id that still persists and makes it availble to the view.
-	this.getTheJobSiteFromDBbyId = function(id) {
-		// console.log("the id before it goes to db ", id);
-	 var deferred = $q.defer();
-	 $http({
-	 	method: "GET",
-	 	url: "/api/getJobs/" + id
-	 }).then(function(response) {
-	 	// console.log("the jobsite by Id response in Service ", response);
-	 	deferred.resolve(response);
-	 });
-	 return deferred.promise
-
+	this.theDate = function() {
+		return thisDay + ", " + thisMonth + " " + dayOfMonth + ", " + year;
 	}
+
 
 	this.makeEmployeeTimeObject = function(name, hours, index) {
 		// console.log("the addEmployeeTime function has fired", name, hours, index);
@@ -47,9 +33,40 @@ app.service("employeeJobSiteTimeCardService", ["$q", "$http", function($q, $http
 			}
 	}
 
+	
 	this.returnEmployeeTimeObject = function() {
 		return employeeTimeObject;
 	}
+
+
+
+	//Remember that the id is available from the controller from the previous state.  The only way you get to this current state is by passing through the previous state and you pick up and send the id by clicking on a jobsite $index.  Data in the service persists through page refreshes. The function below calls for the object based on its id that still persists and makes it availble to the view.
+	
+	this.getTheJobSiteFromDBbyId = function(id) {
+		// console.log("the id before it goes to db ", id);
+	 var deferred = $q.defer();
+	 $http({
+	 	method: "GET",
+	 	url: "/api/getJobs/" + id
+	 }).then(function(response) {
+	 	// console.log("the jobsite by Id response in Service ", response);
+	 	deferred.resolve(response);
+	 });
+	 return deferred.promise
+	}
+
+
+
+	// this.updateTheJobSiteInDBbyId = function(id) {
+	// 	var deferred = $q.defer();
+	// 	$http({
+	// 		method: "PUT",
+	// 		url"/api/updateJobs/" + id,
+	// 		data:
+	// 	})
+	// }
+
+	
 		
 			
 

@@ -6,7 +6,7 @@
 
 <ul ng-repeat="job_site in job_sites | filter: {name:jobs} track by $index">
 	<li>
-		<a ui-sref="admin-job-site">{{job_site.name}}</a>
+		<a href="" ng-click="gotoSelectedJobsite($index, job_site._id)">{{job_site.name}}</a>
 	</li>
 </ul>
 

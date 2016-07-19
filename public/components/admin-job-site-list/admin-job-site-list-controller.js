@@ -1,6 +1,6 @@
 (function() {
-var $inject = ["$scope","adminJobSiteListService"];
-function adminJobSiteListControllerCB($scope, adminJobSiteListService) {
+var $inject = ["$scope","adminJobSiteListService", "$state"];
+function adminJobSiteListControllerCB($scope, adminJobSiteListService, $state) {
 
 'use strict'
 
@@ -26,6 +26,10 @@ function adminJobSiteListControllerCB($scope, adminJobSiteListService) {
 		getListOfJobs();
 		$scope.newJobName = "";
 		}
+	}
+
+	$scope.gotoSelectedJobsite = function(index, id) {
+		$state.go("admin-job-site", {id: id});
 	}
 
 

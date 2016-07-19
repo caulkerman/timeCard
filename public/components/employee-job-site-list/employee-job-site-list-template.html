@@ -2,17 +2,12 @@
 {{test}}
 
 <label for="jobSiteFilter">Filter Job Name:</label>
-<input name="jobSiteFilter" type="text" placeholder="Filter Job Names" ng-model="filterJob">
+<input name="jobSiteFilter" type="text" placeholder="Filter Job Names" ng-model="filterJob" autofocus>
 
-<ul>
-	<li ng-repeat="jobs in jobSiteList | filter: filterJob track by $index ">
-		<!-- <a ui-sref="employee-job-site-time-card">{{jobs.name}}</a> -->
-		<a ng-click="gotoSelectedJobsite($index, jobs._id)">{{jobs.name}}</a>
-
-
-		<!-- This will need to be a function with a $state.go() method so that I can pick a job site by $index and have at least the object Id to bring up that jobsite when I go to the new page.-->
+<ul ng-repeat="jobs in jobSiteList | filter: {name:filterJob} track by $index">
+	<li>
+		<a href="" ng-click="gotoSelectedJobsite($index, jobs._id)">{{jobs.name}}</a>
 	</li>
-
 </ul>
 
 {{ filterJob }}

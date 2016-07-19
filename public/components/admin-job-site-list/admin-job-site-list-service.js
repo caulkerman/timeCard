@@ -12,6 +12,8 @@ var newJobObject = {};
 //photos of the job
 this.addNewJob = function(newJob) {
 	newJobObject.name = newJob;
+	newJobObject.employees = [];
+	newJobObject.man_hours = []
 
 	var deferred = $q.defer();
 	$http({

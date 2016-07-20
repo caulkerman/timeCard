@@ -22,26 +22,30 @@ var getTheJobSiteFromDBbyId = function() {
 }
 getTheJobSiteFromDBbyId();
 
+
+
 var functionToGetEmployees = function() {
-		admin_employees_service.getEmployees().then(function(response) {
-			$scope.employees = response.data;
-			// console.log($scope.employees);
-		});
+	admin_employees_service.getEmployees().then(function(response) {
+		$scope.employees = response.data;
+	});
 };
 functionToGetEmployees();
+
+
 
 
 $scope.addEmployeeTime = function(name, hours, index) {
     employeeJobSiteTimeCardService.makeEmployeeTimeObject(name, hours, index);
 	var employeeTimeObject = employeeJobSiteTimeCardService.returnEmployeeTimeObject();
-	if (hours) {
+	if (hours) { 
+		//Loop through the array and if the employeeTimeObject already exists in the array then return so we don't create duplicates.  Maybe set a variable to true and ng-show a warning since you can't return an alert.
 	$scope.jobsite.employees.push(employeeTimeObject);
 	console.warn("the employee time object ", $scope.jobsite);
 	}
 	
 }
 
-//need to figure out how to update the object with new employee array information.  Whether to do it in controller or service
+
 
 
 

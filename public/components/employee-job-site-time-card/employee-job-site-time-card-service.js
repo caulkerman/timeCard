@@ -6,12 +6,12 @@ app.service("employeeJobSiteTimeCardService", ["$q", "$http", function($q, $http
 
 	var date = new Date();
 	var year = date.getFullYear();
-	var month = date.getMonth();
+	var monthIndex = date.getMonth();
 	var dayIndex = date.getDay();
 	var dayOfMonth = date.getDate()
 	var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 	var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-	var thisMonth = months[month];
+	var thisMonth = months[monthIndex];
 	var thisDay = days[dayIndex];
 
 	

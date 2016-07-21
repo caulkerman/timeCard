@@ -7,4 +7,11 @@ input.form-control {
 p.warning {
   color: red; }
 
+#employeeName {
+  font-size: 1.25em;
+  font-weight: bold; }
+
+#fldsRqd {
+  color: red; }
+
 /*# sourceMappingURL=admin-employees.css.map */

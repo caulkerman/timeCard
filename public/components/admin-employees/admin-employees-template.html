@@ -4,12 +4,22 @@
 <div class="admin-employee-container">
 	<h1>Employee List</h1>
 	<input type="text" placeholder="Filter Employee Names" ng-model="employee_filter"/>
-	<button class="btn btn-success" data-toggle="modal" data-target="#myModal">Add New Employee</button>
+	<button class="btn btn-success" data-toggle="modal" data-target="#myModal">Create New Employee</button>
 </div>
 
-<ul>
-  <li ng-repeat="employee in employees | filter: {fullName:employee_filter} track by $index">{{employee.fullName}}</li>
-</ul>
+<table st-table="students" class="table table-striped">
+  <thead>
+    <tr>
+      <td>Employee Name</td>
+      <td>Hours This Week</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="employee in employees | filter: {fullName:employee_filter} track by $index">
+      <td>{{employee.fullName}}</td>
+    </tr>
+  </tbody>
+</table>
                
 
                 <!--//////////// THE MODAL ////////////-->
@@ -23,7 +33,7 @@
         <div class="modal-content">
           <div class="modal-header">
             <button class="close" data-dismiss="modal">x</button>
-            <h4 class="modal-title">Create New Employee</h4> <!-- perhaps right here you add "All fields Required" -->
+            <h3 class="modal-title">Create New Employee</h3> <span id="fldsRqd">*All Fields Required*</span>
           </div>
         
               
@@ -31,22 +41,19 @@
             <div class="modal-body">
 
               <div ng-class="{ 'has-error' : employeeForm.fullName.$invalid && submitted }">
-                <label>Employee Full Name</label>
-                <!--<p class="warning" ng-show="nameWarning">You Must Enter An Employee Full Name!</p>-->
+                <label>Employee Full Name</label
                 <p class="warning" ng-show="employeeForm.fullName.$invalid && submitted">You Must Enter An Employee Full Name!</p>
                 <input type="text" name="fullName" class="form-control" ng-model="fullName"/ required autofocus>
               </div>
 
               <div ng-class="{ 'has-error' : employeeForm.email.$invalid && submitted }">
                 <label>Employee Email</label>
-                <!--<p class="warning" ng-show="emailWarning">You Must Enter An Employee Email!</p>-->
                 <p class="warning" ng-show="employeeForm.email.$invalid && submitted ">You Must Enter An Employee Email!</p>
                 <input type="email" name="email" class="form-control" ng-model="email" required>
               </div>
 
               <div ng-class="{ 'has-error' : employeeForm.password.$invalid && submitted }">
                 <label>Employee Password</label>
-                <!--<p class="warning" ng-show="passwordWarning">You Must Enter An Employee Password!</p>-->
                 <p class="warning" ng-show="employeeForm.password.$invalid && submitted">You Must Enter An Employee Password!</p>
                 <input type="text" name="password" class="form-control" ng-model="password" required>
               </div>

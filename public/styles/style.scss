@@ -52,9 +52,13 @@ li#nav-left {
 	float: left;
 	padding-top: 15px;
 	margin: 0;
-	/*background-color: yellow;*/
 }
 
 nav ul li:hover {
 	color: red;
+}
+
+thead tr td  {
+	font-size: 1.25;
+	font-weight: bold;
 }

@@ -7,4 +7,8 @@ input.form-control {
 p.warning {
   color: red; }
 
+#employeeName {
+  font-size: 1.25em;
+  font-weight: bold; }
+
 /*# sourceMappingURL=admin-employees.css.map */

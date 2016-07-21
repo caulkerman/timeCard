@@ -1,6 +1,6 @@
 {
 "version": 3,
-"mappings": "AAAA,EAAG;EACF,eAAe,EAAE,IAAI;;AAGtB,kBAAmB;EAClB,aAAa,EAAE,IAAI;;AAGpB,SAAU;EACT,KAAK,EAAE,GAAG",
+"mappings": "AAAA,EAAG;EACF,eAAe,EAAE,IAAI;;AAGtB,kBAAmB;EAClB,aAAa,EAAE,IAAI;;AAGpB,SAAU;EACT,KAAK,EAAE,GAAG;;AAGX,aAAc;EACb,SAAS,EAAE,MAAM;EACjB,WAAW,EAAE,IAAI",
 "sources": ["rw-admin-employees.scss"],
 "names": [],
 "file": "admin-employees.css"

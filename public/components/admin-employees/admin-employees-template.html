@@ -4,12 +4,21 @@
 <div class="admin-employee-container">
 	<h1>Employee List</h1>
 	<input type="text" placeholder="Filter Employee Names" ng-model="employee_filter"/>
-	<button class="btn btn-success" data-toggle="modal" data-target="#myModal">Add New Employee</button>
+	<button class="btn btn-success" data-toggle="modal" data-target="#myModal">Create New Employee</button>
 </div>
 
-<ul>
-  <li ng-repeat="employee in employees | filter: {fullName:employee_filter} track by $index">{{employee.fullName}}</li>
-</ul>
+<table st-table="students" class="table table-striped">
+  <thead>
+    <tr>
+      <td id="employeeName">Employee Name</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="employee in employees | filter: {fullName:employee_filter} track by $index">
+      <td>{{employee.fullName}}</td>
+    </tr>
+  </tbody>
+</table>
                
 
                 <!--//////////// THE MODAL ////////////-->

@@ -40,10 +40,13 @@ li#nav-left {
   display: inline-block;
   float: left;
   padding-top: 15px;
-  margin: 0;
-  /*background-color: yellow;*/ }
+  margin: 0; }
 
 nav ul li:hover {
   color: red; }
+
+thead tr td {
+  font-size: 1.25;
+  font-weight: bold; }
 
 /*# sourceMappingURL=style.css.map */

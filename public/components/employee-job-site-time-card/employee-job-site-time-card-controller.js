@@ -35,6 +35,9 @@ functionToGetEmployees();
 
 
 
+$scope.theDate = employeeJobSiteTimeCardService.theDate();
+
+
 
 $scope.addEmployeeTime = function(name, hours, index) {
     employeeJobSiteTimeCardService.makeEmployeeTimeObject(name, hours);

@@ -31,6 +31,8 @@ app.get("/api/getEmployees", employeeCtrl.read);
 app.get("/api/getJobs", newJobCtrl.read);
 app.get("/api/getJobs/:id", newJobCtrl.findById);
 
+app.put("/api/updateJobs/:id", newJobCtrl.update);
+
 // Connections
 var port = 9333;
 // var mongoUri = 'mongodb://localhost:27017/timecard';

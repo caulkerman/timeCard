@@ -6,12 +6,11 @@ module.exports = {
 		// console.log("req in apiCreateNewJobController create", req.body);
 		// console.log("res in apiCreateNewJobController create", res.body);
 
-        var newJob = new NewJob(req.body);
-        newJob.save(function(err, result) {
-            if (err) return res.status(500).send(err);
-            else res.send(result);
-
-        });
+  var newJob = new NewJob(req.body);
+    newJob.save(function(err, result) {
+        if (err) return res.status(500).send(err);
+        else res.send(result);
+    });
 	},
 
 	read: function(req, res) {
@@ -28,14 +27,27 @@ module.exports = {
       if (err) return res.status(500).send(err);
       else res.send(result);
     });
+  },
+
+
+  update: function(req, res) {
+    NewJob.findByIdAndUpdate(req.params.id, {employees: req.body}, {new: true}, 
+      function(err, result) {
+        if (err) return res.status(500);
+        else res.send(result);
+    });
   }
 
-// findById: function(req, res) {
-//   NewJob.findById(req.params._id, function (err, doc){
-//     if (err) return res.status(500).send(err);
-//   // doc is a Document
-//   });
-// }
+  // raffleItemsUpdate: function(req, res) {
+  //   Random.findByIdAndUpdate(req.params.id, {"items.raffleItems": req.body},  { "new": true }, function(err, result) {
+  //     if (err) return res.status(500).send(err);
+  //     else res.send(result);
+  //   });
+  //   console.log("the res.body ", res.body);
+  // },
+
+
+
 
 
 };

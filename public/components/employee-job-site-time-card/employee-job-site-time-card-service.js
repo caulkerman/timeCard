@@ -51,19 +51,22 @@ app.service("employeeJobSiteTimeCardService", ["$q", "$http", function($q, $http
 	 	// console.log("the jobsite by Id response in Service ", response);
 	 	deferred.resolve(response);
 	 });
-	 return deferred.promise
+	 return deferred.promise;
 	}
 
 
 
-	// this.updateTheJobSiteInDBbyId = function(id) {
-	// 	var deferred = $q.defer();
-	// 	$http({
-	// 		method: "PUT",
-	// 		url"/api/updateJobs/" + id,
-	// 		data:
-	// 	})
-	// }
+	this.updateTheJobSiteInDBbyId = function(jobsite, id) {
+		var deferred = $q.defer();
+		$http({
+			method: "PUT",
+			url: "/api/updateJobs/" + id,
+			data: jobsite
+		}).then(function(response) {
+			deferred.resolve(response);
+		});
+		return deferred.promise;
+	}
 
 	
 		

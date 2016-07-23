@@ -43,8 +43,8 @@ $scope.addEmployeeTime = function(name, hours, index) {
 		
 		//Loop through the array and if that employeeTimeObject already exists in the array then return so we don't create duplicates.  Maybe set a variable to true and ng-show a warning since you can't return an alert.
 	$scope.jobsite.employees.push(employeeTimeObject);
-	console.warn("The JOBSITE object with the employee time object ", $scope.jobsite);
-	console.log($scope.employees);
+	// console.log("The JOBSITE.employees", $scope.jobsite.employees[0].employeeName);
+	console.log($scope.jobsite);
 	}
 	
 }

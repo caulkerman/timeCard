@@ -1,6 +1,10 @@
 {
 "version": 3,
+<<<<<<< HEAD
 "mappings": "AAAA,YAAa;EACT,KAAK,EAAE,KAAK;EACZ,SAAS,EAAE,KAAK;;AAGpB,KAAM;EACF,KAAK,EAAE,KAAK",
+=======
+"mappings": "AAAA,YAAa;EACT,KAAK,EAAE,KAAK;EACZ,SAAS,EAAE,GAAG",
+>>>>>>> bea968656238fc50c31478ff0db4f71ceb0cd0f4
 "sources": ["rw-employee-job-site-time-card.scss"],
 "names": [],
 "file": "employee-job-site-time-card.css"

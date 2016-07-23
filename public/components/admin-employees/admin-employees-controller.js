@@ -23,7 +23,7 @@ function adminEmployeesControllerCB($scope, $log, admin_employees_service) {
 			email: email,
 			password: password,
 			employeeType: employeeType,
-			jobsites: [],
+			jobSitesWorkedOn: [],
 			hours_worked: []
 		};
 

@@ -51,7 +51,7 @@ app.service("employeeJobSiteTimeCardService", ["$q", "$http", function($q, $http
 	 	// console.log("the jobsite by Id response in Service ", response);
 	 	deferred.resolve(response);
 	 });
-	 return deferred.promise;
+	 return deferred.promise
 	}
 
 
@@ -60,10 +60,10 @@ app.service("employeeJobSiteTimeCardService", ["$q", "$http", function($q, $http
 		var deferred = $q.defer();
 		$http({
 			method: "PUT",
-			url: "/api/updateJobs/" + id,
+			url:"/api/updateJobs/" + id,
 			data: jobsite
 		}).then(function(response) {
-			deferred.resolve(response);
+		deferred.resolve(response);
 		});
 		return deferred.promise;
 	}

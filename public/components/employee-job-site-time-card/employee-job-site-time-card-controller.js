@@ -43,14 +43,15 @@ $scope.addEmployeeTime = function(name, hours, index) {
 	var id = $scope.jobsite._id;
     employeeJobSiteTimeCardService.makeEmployeeTimeObject(name, hours);
 	var employeeTimeObject = employeeJobSiteTimeCardService.returnEmployeeTimeObject();
+	console.log("the employee time object about to be pushed ", employeeTimeObject);
 	if (hours) { 
 		
 		//Loop through the array and if that employeeTimeObject already exists in the array then return so we don't create duplicates.  Maybe set a variable to true and ng-show a warning since you can't return an alert.
 		$scope.jobsite.employees.push(employeeTimeObject);
-		// console.log("var $scope.jobsite", $scope.jobsite);
-		employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId($scope.jobsite.employees, id).then(function(response) {
-			console.log("the response in controller" ,response.data);
-		})
+		console.log("var $scope.jobsite", $scope.jobsite.employees);
+		// employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId($scope.jobsite.employees, id).then(function(response) {
+		// 	console.log("the response in controller" ,response.data);
+		// })
 	}
 	
 }

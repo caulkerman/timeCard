@@ -1,6 +1,6 @@
 app.service("employeeJobSiteTimeCardService", ["$q", "$http", function($q, $http) {
 
-	var employeeTimeObject = {};
+	
 	
 	//GETTING THE DATE AND TIME\\
 
@@ -14,22 +14,27 @@ app.service("employeeJobSiteTimeCardService", ["$q", "$http", function($q, $http
 	var thisMonth = months[monthIndex];
 	var thisDay = days[dayIndex];
 
+	//in order to filter days weeks and months to review timecard hours worked I will problably need to use the dayIndex and monthIndex to filter.
 	
 	this.theDate = function() {
 		return thisDay + ", " + thisMonth + " " + dayOfMonth + ", " + year;
 	}
 
+	function EmployeeTimeObject(name, hours, date){
+		this.date = date;
+		this.employeeName = name;
+		this.hoursWorked = hours
+	};
+
 
 	this.makeEmployeeTimeObject = function(name, hours) {
 		// console.log("the addEmployeeTime function has fired", name, hours, index);
-			if (hours) {
-				employeeTimeObject.date = this.theDate();
-				employeeTimeObject.employeeName = name;
-				employeeTimeObject.hoursWorked = hours;
+			var date = this.theDate();
+				// employeeTimeObject.date = this.theDate();
+				// employeeTimeObject.employeeName = name;
+				// employeeTimeObject.hoursWorked = hours;
 				// console.log("in the service the employeeTimeObject is ", employeeTimeObject);
-			} else {
-				return "you need to enter hours";
-			}
+			employeeTimeObject = new EmployeeTimeObject(name, hours, date)
 	}
 
 	

@@ -23,17 +23,12 @@ app.service("employeeJobSiteTimeCardService", ["$q", "$http", function($q, $http
 	function EmployeeTimeObject(name, hours, date){
 		this.date = date;
 		this.employeeName = name;
-		this.hoursWorked = hours
+		this.hoursWorked = hours;
 	};
 
 
 	this.makeEmployeeTimeObject = function(name, hours) {
-		// console.log("the addEmployeeTime function has fired", name, hours, index);
 			var date = this.theDate();
-				// employeeTimeObject.date = this.theDate();
-				// employeeTimeObject.employeeName = name;
-				// employeeTimeObject.hoursWorked = hours;
-				// console.log("in the service the employeeTimeObject is ", employeeTimeObject);
 			employeeTimeObject = new EmployeeTimeObject(name, hours, date)
 	}
 

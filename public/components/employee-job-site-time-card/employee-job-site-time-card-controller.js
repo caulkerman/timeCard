@@ -7,11 +7,7 @@ function employeeJobSiteTimeCardControllerCB($scope, $stateParams, employeeJobSi
 /////////ADD JAVASCRIPT BELOW////////
 
 
-$scope.test = "hello, you are at the office";
-
-
 var jobSiteId = $stateParams.id;
-// console.log("the job site id from list controller ", jobSiteId)
 
 
 var getTheJobSiteFromDBbyId = function() {
@@ -47,15 +43,20 @@ $scope.addEmployeeTime = function(name, hours, index) {
 	
 	var employeeTimeObject = employeeJobSiteTimeCardService.returnEmployeeTimeObject();
 	
-	// console.log("the employee time object about to be pushed ", employeeTimeObject);
+	console.log("the employee time object about to be pushed ", employeeTimeObject);
+	
 	if (hours) { 
-		
+			for (var i = 0; i < $scope.jobsite.employees.length; i++) {
+				if (employeeTimeObject.employeeName !== $scopejobsite.employees[i].employeeName) {
+					employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId($scope.jobsite.employees, id).then(function(response) {
+						console.log("the response in controller" ,response.data);
+					})
+				} else {return;}
+			}
 		//Loop through the array and if that employeeTimeObject already exists in the array then return so we don't create duplicates.  Maybe set a variable to true and ng-show a warning since you can't return an alert.
 		$scope.jobsite.employees.push(employeeTimeObject);
 		console.log("var $scope.jobsite", $scope.jobsite.employees);
-		employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId($scope.jobsite.employees, id).then(function(response) {
-			console.log("the response in controller" ,response.data);
-		})
+		
 	}
 	
 }

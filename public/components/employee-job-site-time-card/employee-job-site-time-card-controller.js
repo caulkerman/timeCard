@@ -42,27 +42,37 @@ $scope.addEmployeeTime = function(name, hours, index) {
 	employeeJobSiteTimeCardService.makeEmployeeTimeObject(name, hours);
 	
 	var employeeTimeObject = employeeJobSiteTimeCardService.returnEmployeeTimeObject();
+	var employeeArray = $scope.jobsite.employees;
+	// console.log("employeeArray ", $scope.jobsite.employees);
+
 	
-	console.log("the employee time object about to be pushed ", employeeTimeObject);
+	// console.log("the employee time object about to be pushed ", employeeTimeObject);
 	
-	if (hours) { 
-			for (var i = 0; i < $scope.jobsite.employees.length; i++) {
-				if (employeeTimeObject.employeeName !== $scopejobsite.employees[i].employeeName) {
-					employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId($scope.jobsite.employees, id).then(function(response) {
-						console.log("the response in controller" ,response.data);
-					})
-				} else {return;}
-			}
-		//Loop through the array and if that employeeTimeObject already exists in the array then return so we don't create duplicates.  Maybe set a variable to true and ng-show a warning since you can't return an alert.
-		$scope.jobsite.employees.push(employeeTimeObject);
-		console.log("var $scope.jobsite", $scope.jobsite.employees);
+	if (name && hours) { 
+		var isItThere = false;
+
+		if (employeeArray.length === 0) {
+			employeeArray.push(employeeTimeObject);
+		}
 		
+		for (var i = 0; i < employeeArray.length; i++) {
+			if (employeeTimeObject.employeeName === employeeArray[i].employeeName) {
+				isItThere = true;	
+			}
+		}
+		
+		if (isItThere === false) {
+			employeeArray.push(employeeTimeObject);
+			console.log("the employee time array ", employeeArray)
+		}
 	}
 	
 }
 
 
-
+// employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId($scope.jobsite.employees, id).then(function(response) {
+// 						console.log("the response in controller" ,response.data);
+// 					})
 
 
 

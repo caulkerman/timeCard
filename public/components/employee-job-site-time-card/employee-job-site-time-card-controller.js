@@ -43,10 +43,6 @@ $scope.addEmployeeTime = function(name, hours, index) {
 	
 	var employeeTimeObject = employeeJobSiteTimeCardService.returnEmployeeTimeObject();
 	var employeeArray = $scope.jobsite.employees;
-	// console.log("employeeArray ", $scope.jobsite.employees);
-
-	
-	// console.log("the employee time object about to be pushed ", employeeTimeObject);
 	
 	if (name && hours) { 
 		var isItThere = false;
@@ -64,15 +60,16 @@ $scope.addEmployeeTime = function(name, hours, index) {
 		if (isItThere === false) {
 			employeeArray.push(employeeTimeObject);
 			console.log("the employee time array ", employeeArray)
+			employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId($scope.jobsite.employees, id).then(function(response) {
+						console.log("the response in controller" ,response.data);
+					})
 		}
 	}
 	
 }
 
 
-// employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId($scope.jobsite.employees, id).then(function(response) {
-// 						console.log("the response in controller" ,response.data);
-// 					})
+
 
 
 

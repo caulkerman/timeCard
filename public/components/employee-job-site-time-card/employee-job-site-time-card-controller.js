@@ -13,7 +13,7 @@ var jobSiteId = $stateParams.id;
 var getTheJobSiteFromDBbyId = function() {
 	employeeJobSiteTimeCardService.getTheJobSiteFromDBbyId(jobSiteId).then(function(response) {
 		$scope.jobsite = response.data;
-		// console.log("the jobsite response in controller ", $scope.jobsite);
+		console.log("the jobsite response in controller ", $scope.jobsite);
 	})
 }
 getTheJobSiteFromDBbyId();
@@ -24,7 +24,7 @@ var functionToGetEmployees = function() {
 	admin_employees_service.getEmployees().then(function(response) {
 		$scope.employees = response.data;
 	    console.log("the employees object", $scope.employees);
-	    console.log("the jobsite object", $scope.jobsite);
+	    // console.log("the jobsite object", $scope.jobsite);
 	});
 };
 functionToGetEmployees();

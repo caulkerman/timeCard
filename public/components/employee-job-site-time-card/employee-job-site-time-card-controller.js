@@ -56,7 +56,7 @@ $scope.addEmployeeTime = function(name, hours, index) {
 		}
 		
 		for (var i = 0; i < employeeArray.length; i++) {
-			if (employeeTimeObject.employeeName === employeeArray[i].employeeName) {
+			if (employeeTimeObject.employeeName === employeeArray[i].employeeName && employeeTimeObject.date === employeeArray[i].date) {
 				isItThere = true;	
 			}
 		}

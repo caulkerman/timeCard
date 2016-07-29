@@ -21,6 +21,9 @@ getTheJobSiteFromDBbyId();
 
 
 
+$scope.editEmployee = function(index) {
+	//this is where I create an update function and send it to DB
+}
 
 
 

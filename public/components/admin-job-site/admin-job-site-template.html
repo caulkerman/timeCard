@@ -1,12 +1,25 @@
 <link rel="stylesheet" href="components/admin-job-site/admin-job-site.css">
 <h3>Admin Job Site Page</h3>
-<!--{{test}}-->
-<p>This is the jobsite: <span id="jobSiteNameBold">{{jobsite.name}}<span></p>
-<p>This is the hours worked: {{jobsite.man_hours}}</p>
-<ul ng-repeat="employee in jobsite.employees">
-    <li>{{employee.date}}</li>
-    <li>{{employee.employeeName}}</li>
-    <li>{{employee.hoursWorked}}</li>
-</ul>
 
-<!--I need to make filters based on date, name, etc and put it all into a table just like always-->
+<p><span id="jobSiteNameBold">{{jobsite.name}}<span></p>
+<p>This is the hours worked: {{jobsite.man_hours}}</p>
+
+
+<table st-table="students" class="table table-striped">
+    <thead>
+        <tr>
+            <td>Date Worked</td>
+            <td>Employee Name</td>
+            <td>Hours Worked</td>    
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="employee in jobsite.employees">
+            <td>{{employee.date}}</td>
+            <td>{{employee.employeeName}}</td>
+            <!--<td>{{employee.hoursWorked}}</td>-->
+            <td> <input type="text" class="edit" ng-model="employee.hoursWorked"></td>
+            <td><button ng-click="editEmployee($index)" id="edit">Edit</button></td>
+        </tr>
+    </tbody>
+</table>

@@ -6,7 +6,6 @@ function adminJobSiteControllerCB($scope, $stateParams, employeeJobSiteTimeCardS
 
         ////////ENTER YOUR ANGULAR CODE BELOW\\\\\\\\
 
-$scope.test = "Hello, you are on the adminJobSite page";
 
 var jobSiteId = $stateParams.id;
 console.log(jobSiteId);
@@ -22,7 +21,12 @@ getTheJobSiteFromDBbyId();
 
 
 $scope.editEmployee = function(index) {
-	//this is where I create an update function and send it to DB
+	var id = $scope.jobsite._id;
+	console.log("the employee ", employee);
+	console.log($scope.jobsite._id);
+	employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId($scope.jobsite.employees, id).then(function(response) {
+			console.log("the response in controller" ,response.data);
+	})
 }
 
 

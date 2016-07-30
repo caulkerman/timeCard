@@ -22,11 +22,12 @@ getTheJobSiteFromDBbyId();
 
 $scope.editEmployee = function(index) {
 	var id = $scope.jobsite._id;
-	console.log("the employee ", employee);
+	// console.log("the employee ", employee);
 	console.log($scope.jobsite._id);
 	employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId($scope.jobsite.employees, id).then(function(response) {
 			console.log("the response in controller" ,response.data);
 	})
+	getTheJobSiteFromDBbyId();
 }
 
 

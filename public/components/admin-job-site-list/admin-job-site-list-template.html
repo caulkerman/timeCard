@@ -1,6 +1,17 @@
 <h1>Job Site List</h1>
 
-<input type="text" placeholder="enter new job name" ng-model="newJobName" ng-keydown="$event.which === 13 && addNewJobName(newJobName)">
+<form>
+
+	<input type="text" placeholder="enter new job name" ng-model="newJobName" >
+
+	<br />
+
+	<input type="text" placeholder="Enter General Contractor" ng-model="contractorName" >
+
+	<button type="submit" ng-click="addNewJobSite(newJobName, contractorName)">Submit</button>
+
+</form>
+
 <br />
 <input type="text" placeholder="filter jobs" ng-model="jobs">
 

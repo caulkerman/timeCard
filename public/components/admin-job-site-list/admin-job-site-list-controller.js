@@ -17,11 +17,11 @@ function adminJobSiteListControllerCB($scope, adminJobSiteListService, $state) {
 	}
 	getListOfJobs();
 
-	$scope.addNewJobName = function(newJobName) {
-		if ($scope.newJobName === undefined || $scope.newJobName === "") {
-			console.log("you must enter a job name");
+	$scope.addNewJobSite = function(newJobName, contractorName) {
+		if ($scope.newJobName === undefined || $scope.newJobName === "" && $scope.contractorName === undefined || $scope.contractorName === "") {
+			console.log("you must enter a job name and contractor");
 		} else {
-		adminJobSiteListService.addNewJob(newJobName).then(function(response) {
+		adminJobSiteListService.addNewJob(newJobName, contractorName).then(function(response) {
 		})
 		getListOfJobs();
 		$scope.newJobName = "";

@@ -10,10 +10,11 @@ var newJobObject = {};
 //hours worked on the job
 //the calander days worked on the job
 //photos of the job
-this.addNewJob = function(newJob) {
+this.addNewJob = function(newJob, contractor) {
 	newJobObject.name = newJob;
 	newJobObject.employees = [];
-	newJobObject.man_hours = []
+	newJobObject.man_hours = [];
+	newJobObject.contractor = contractor;
 
 	var deferred = $q.defer();
 	$http({

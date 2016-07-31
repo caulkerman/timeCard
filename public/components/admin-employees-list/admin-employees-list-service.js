@@ -1,4 +1,4 @@
-app.service("admin_employees_service", ["$q", "$http", function($q, $http) {
+app.service("admin_employees_list_service", ["$q", "$http", function($q, $http) {
 
 	
 

@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="components/admin-employees/admin-employees.css">
+<link rel="stylesheet" href="components/admin-employees-list/admin-employees-list.css">
 
 
 <div class="admin-employee-container">
@@ -16,7 +16,7 @@
   </thead>
   <tbody>
     <tr ng-repeat="employee in employees | filter: {fullName:employee_filter} track by $index">
-      <td>{{employee.fullName}}</td>
+      <td><a href="" ng-click="goToTheEmployee($index)">{{employee.fullName}}</a></td>
     </tr>
   </tbody>
 </table>
@@ -41,7 +41,7 @@
             <div class="modal-body">
 
               <div ng-class="{ 'has-error' : employeeForm.fullName.$invalid && submitted }">
-                <label>Employee Full Name</label
+                <label>Employee Full Name</label>
                 <p class="warning" ng-show="employeeForm.fullName.$invalid && submitted">You Must Enter An Employee Full Name!</p>
                 <input type="text" name="fullName" class="form-control" ng-model="fullName"/ required autofocus>
               </div>

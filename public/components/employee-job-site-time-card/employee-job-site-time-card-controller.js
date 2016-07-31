@@ -1,6 +1,6 @@
 (function() {
-var $inject = ["$scope", "$stateParams", "employeeJobSiteTimeCardService", "admin_employees_service"];
-function employeeJobSiteTimeCardControllerCB($scope, $stateParams, employeeJobSiteTimeCardService, admin_employees_service) {
+var $inject = ["$scope", "$stateParams", "employeeJobSiteTimeCardService", "admin_employees_list_service"];
+function employeeJobSiteTimeCardControllerCB($scope, $stateParams, employeeJobSiteTimeCardService, admin_employees_list_service) {
 
 'use strict'
 
@@ -21,7 +21,7 @@ getTheJobSiteFromDBbyId();
 
 
 var functionToGetEmployees = function() {
-	admin_employees_service.getEmployees().then(function(response) {
+	admin_employees_list_service.getEmployees().then(function(response) {
 		$scope.employees = response.data;
 	    console.log("the employees object", $scope.employees);
 	    // console.log("the jobsite object", $scope.jobsite);

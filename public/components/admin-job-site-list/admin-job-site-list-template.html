@@ -1,6 +1,6 @@
 <h1>Job Site List</h1>
 
-<form>
+<form ng-submit="addNewJobsSite(newJobName, contractorName)">
 
 	<input type="text" placeholder="enter new job name" ng-model="newJobName" >
 
@@ -8,7 +8,7 @@
 
 	<input type="text" placeholder="Enter General Contractor" ng-model="contractorName" >
 
-	<button type="submit" ng-click="addNewJobSite(newJobName, contractorName)">Submit</button>
+	<input type="submit" value="Submit">
 
 </form>
 

@@ -22,10 +22,10 @@ var app = angular.module("timeCard", ["ui.router", "smart-table"])
 			controller: "adminController"
 		})
 
-		.state("admin-employees", {
-			url: "/admin-employees",
-			templateUrl: "components/admin-employees/admin-employees-template.html",
-			controller: "adminEmployeesController"
+		.state("admin-employees-list", {
+			url: "/admin-employees-list",
+			templateUrl: "components/admin-employees-list/admin-employees-list-template.html",
+			controller: "adminEmployeesListController"
 		})
 
 		.state("admin-job-site", {
@@ -62,6 +62,12 @@ var app = angular.module("timeCard", ["ui.router", "smart-table"])
 			url: "/employee",
 			templateUrl: "components/employee/employee-template.html",
 			controller: "employeeController"
+		})
+
+		.state("the-employee", {
+			url: "/the-employee/:id",
+			templateUrl: "components/admin-the-employee/admin-the-employee-template.html",
+			controller: "adminTheEmployee"
 		})
 
 	});

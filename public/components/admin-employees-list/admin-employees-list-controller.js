@@ -1,12 +1,12 @@
 (function() {
-var $inject = ["$scope", "$log", "admin_employees_service"];
-function adminEmployeesControllerCB($scope, $log, admin_employees_service) {
+var $inject = ["$scope", "$log", "admin_employees_list_service", "$state"];
+function adminEmployeesListControllerCB($scope, $log, admin_employees_list_service, $state) {
 
 'use strict'
 		//////////    ADD YOUR CONTROLLER CODE BELOW   ///////////
 
 	var functionToGetEmployees = function() {
-		admin_employees_service.getEmployees().then(function(response) {
+		admin_employees_list_service.getEmployees().then(function(response) {
 			$scope.employees = response.data;
 			console.log($scope.employees);
 		});
@@ -38,7 +38,7 @@ function adminEmployeesControllerCB($scope, $log, admin_employees_service) {
 		//The if conditional is here as a secondary measure to make sure the form is valid before submitting the new employee name to the database.  If I am using the angular way to do forms I might as well do this
 		if (isValid) {
 			// console.log("the employee object, ", employee);
-			admin_employees_service.createEmployee(employee).then(function(response) {
+			admin_employees_list_service.createEmployee(employee).then(function(response) {
 				functionToGetEmployees();
 			});
 		};
@@ -50,6 +50,13 @@ function adminEmployeesControllerCB($scope, $log, admin_employees_service) {
 		$scope.password = "";
 		$scope.employeeType = "";
 	};
+
+
+
+	$scope.goToTheEmployee = function(index) {
+		var id = $scope.employees[index]._id;
+		$state.go("the-employee", {id: id})
+	}
 
 		
 
@@ -66,6 +73,6 @@ function adminEmployeesControllerCB($scope, $log, admin_employees_service) {
 
 	}
 
-adminEmployeesControllerCB.$inject = $inject;
-angular.module("timeCard").controller("adminEmployeesController", adminEmployeesControllerCB);
+adminEmployeesListControllerCB.$inject = $inject;
+angular.module("timeCard").controller("adminEmployeesListController", adminEmployeesListControllerCB);
 })();

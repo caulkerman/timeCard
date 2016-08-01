@@ -1,6 +1,6 @@
 (function() {
-var $inject = ["$scope", "$stateParams"];
-function adminTheEmployeeControllerCB($scope, $stateParams) {
+var $inject = ["$scope", "$stateParams", "theEmployeeService"];
+function adminTheEmployeeControllerCB($scope, $stateParams, theEmployeeService) {
 
 
 'use strict'
@@ -9,10 +9,13 @@ function adminTheEmployeeControllerCB($scope, $stateParams) {
 $scope.test = "I like to eat apples and bananas!"
 
 var theEmployeeId = $stateParams.id;
-
+console.log("the id ", theEmployeeId);
 
 var getTheEmployeeFromDBbyId = function() {
-    alert("you still need to make connnection to a service to get the employee by Id");
+    theEmployeeService.getEmployeeById(theEmployeeId).then(function(response) {
+        console.log("the response.data from controller ", response.data);
+        $scope.theEmployee = response.data;
+    })
 }
 getTheEmployeeFromDBbyId(); 
 

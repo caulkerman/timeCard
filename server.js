@@ -30,6 +30,7 @@ app.post("/api/addNewJob", newJobCtrl.create);
 app.get("/api/getEmployees", employeeCtrl.read);
 app.get("/api/getJobs", newJobCtrl.read);
 app.get("/api/getJobs/:id", newJobCtrl.findById);
+app.get("/api/getEmployee/:id", employeeCtrl.findById);
 
 app.put("/api/updateJobs/:id", newJobCtrl.update);
 

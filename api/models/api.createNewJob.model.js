@@ -6,7 +6,7 @@ var newJobSchema = new Schema({
 
 	name: { type: String, required: true },
 	employees: { type: Array },
-	man_hours: { type: Array },
+	// man_hours: { type: Array },
 	contractor: { type: String}
 
 

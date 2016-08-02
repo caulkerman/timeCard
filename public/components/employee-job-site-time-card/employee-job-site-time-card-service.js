@@ -82,6 +82,7 @@ app.service("employeeJobSiteTimeCardService", ["$q", "$http", function($q, $http
 
 
 	this.updateTheEmployeeInDBbyId = function(employee, id) {
+		console.warn("updateTheEmployeeByInDBbyId in Service PUT ", employee, id);
 		var deferred = $q.defer();
 		$http({
 			method: "PUT",

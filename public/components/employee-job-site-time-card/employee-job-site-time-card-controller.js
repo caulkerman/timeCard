@@ -49,11 +49,14 @@ $scope.addEmployeeTime = function(name, hours, index) {
 
 		if (employeeArray.length === 0) {
 			employeeArray.push(employeeTimeObject);
+			console.log("the employeeArray ", employeeArray);
 		}
 		
 		for (var i = 0; i < employeeArray.length; i++) {
 			if (employeeTimeObject.employeeName === employeeArray[i].employeeName && employeeTimeObject.date === employeeArray[i].date) {
 				isItThere = true;	
+
+				///I still need to find a way to make sure the job names match up.
 			}
 		}
 		
@@ -61,8 +64,23 @@ $scope.addEmployeeTime = function(name, hours, index) {
 			employeeArray.push(employeeTimeObject);
 			console.log("the employee time array ", employeeArray)
 			employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId($scope.jobsite.employees, id).then(function(response) {
-						console.log("the response in controller" ,response.data);
-					})
+				console.log("the response in controller" ,response.data);
+			});
+			
+			function JobHoursDate(jobName, hours, date) {
+				this.jobName = jobName,
+				this.hours = hours,
+				this.date = date
+			}
+			
+			var jobHoursDate = new JobHoursDate($scope.jobsite.name, hours, $scope.theDate);
+			$scope.employees[index].job_site_hours_worked.push(jobHoursDate);
+
+			console.log("the new JobHoursDate object ", jobHoursDate);
+			console.log("the updated job_site_hours_worked array ", $scope.employees[index].job_site_hours_worked);
+			employeeJobSiteTimeCardService.updateTheEmployeeInDBbyId($scope.employees[index].job_site_hours_worked, $scope.employees._id).then(function(response) {
+				console.warn("after the employee.job_site_hours_worked array has been sent to DB ", response.data);
+			})
 		}
 	}
 	
@@ -70,7 +88,7 @@ $scope.addEmployeeTime = function(name, hours, index) {
 
 
 
-
+//I need a jobsite name, hours worked, and the date the hours were worked on that job site.
 
 
 

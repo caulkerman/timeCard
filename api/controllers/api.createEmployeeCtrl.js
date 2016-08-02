@@ -27,14 +27,23 @@ module.exports = {
   },
 
   findById: function(req, res) {
-    console.log("req in apiCreateEmployeeController read ", req.body);
-    console.log("res in apiCreateEmployeeController read ", res.body);
+    // console.log("req in apiCreateEmployeeController read ", req.body);
+    // console.log("res in apiCreateEmployeeController read ", res.body);
     NewEmployee.findOne({_id: req.params.id })
     .exec(function(err, result) {
       if (err) return res.status(500).send(err);
       else res.send(result);
     });
   },
+
+
+  update: function(req, res) {
+    NewEmployee.findByIdAndUpdate(req.params.id, {job_site_hours_worked: req.body}, {new: true}, 
+      function(err, result) {
+        if (err) return res.status(500);
+        else res.send(result);
+    });
+  }
 
 
 

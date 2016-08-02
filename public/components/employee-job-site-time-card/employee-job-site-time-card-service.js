@@ -79,6 +79,20 @@ app.service("employeeJobSiteTimeCardService", ["$q", "$http", function($q, $http
 		return deferred.promise;
 	}
 
+
+
+	this.updateTheEmployeeInDBbyId = function(employee, id) {
+		var deferred = $q.defer();
+		$http({
+			method: "PUT",
+			url: "/api/updateEmployee/" + id,
+			data: employee
+		}).then(function(response) {
+			deferred.resolve(response);
+		});
+		return deferred.promise;
+	}
+
 	
 		
 			

@@ -33,6 +33,7 @@ app.get("/api/getJobs/:id", newJobCtrl.findById);
 app.get("/api/getEmployee/:id", employeeCtrl.findById);
 
 app.put("/api/updateJobs/:id", newJobCtrl.update);
+app.put("/api/updateEmployee/:id", employeeCtrl.update);
 
 // Connections
 var port = 9333;

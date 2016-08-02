@@ -23,8 +23,8 @@ function adminEmployeesListControllerCB($scope, $log, admin_employees_list_servi
 			email: email,
 			password: password,
 			employeeType: employeeType,
-			jobSitesWorkedOn: [],
-			hours_worked: []
+			// jobSitesWorkedOn: [],
+			job_site_hours_worked: []
 		};
 
 		//This for loop prevents the function from functioning any further if all the fields are not filled in.

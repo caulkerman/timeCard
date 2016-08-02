@@ -17,7 +17,7 @@ function adminJobSiteListControllerCB($scope, adminJobSiteListService, $state) {
 	}
 	getListOfJobs();
 
-	$scope.addNewJobSite = function(newJobName, contractorName) {
+	$scope.addNewJobsSite = function(newJobName, contractorName) {
 		if ($scope.newJobName === undefined || $scope.newJobName === "" && $scope.contractorName === undefined || $scope.contractorName === "") {
 			console.log("you must enter a job name and contractor");
 		} else {
@@ -25,9 +25,12 @@ function adminJobSiteListControllerCB($scope, adminJobSiteListService, $state) {
 		})
 		getListOfJobs();
 		$scope.newJobName = "";
+		$scope.contractorName = "";
 		}
 	}
 
+	
+	
 	$scope.gotoSelectedJobsite = function(index, id) {
 		$state.go("admin-job-site", {id: id});
 	}

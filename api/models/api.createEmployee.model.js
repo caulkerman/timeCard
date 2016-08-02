@@ -8,8 +8,8 @@ var employeesSchema = new Schema({
 	email: { type: String, required: true },
 	password: { type: String, required: true },
 	employeeType: { type: String, required: true },
-	jobsites: { type: Array },
-	hours_worked: { type: Array}
+	// jobsites: { type: Array },
+	job_site_hours_worked: { type: Array}
 
 });
 

@@ -38,13 +38,7 @@ module.exports = {
     });
   }
 
-  // raffleItemsUpdate: function(req, res) {
-  //   Random.findByIdAndUpdate(req.params.id, {"items.raffleItems": req.body},  { "new": true }, function(err, result) {
-  //     if (err) return res.status(500).send(err);
-  //     else res.send(result);
-  //   });
-  //   console.log("the res.body ", res.body);
-  // },
+ 
 
 
 

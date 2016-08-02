@@ -13,7 +13,7 @@ var jobSiteId = $stateParams.id;
 var getTheJobSiteFromDBbyId = function() {
 	employeeJobSiteTimeCardService.getTheJobSiteFromDBbyId(jobSiteId).then(function(response) {
 		$scope.jobsite = response.data;
-		console.log("the jobsite response in controller ", $scope.jobsite);
+		console.log("the jobsite object ", $scope.jobsite);
 	})
 }
 getTheJobSiteFromDBbyId();
@@ -23,8 +23,7 @@ getTheJobSiteFromDBbyId();
 var functionToGetEmployees = function() {
 	admin_employees_list_service.getEmployees().then(function(response) {
 		$scope.employees = response.data;
-	    console.log("the employees object", $scope.employees);
-	    // console.log("the jobsite object", $scope.jobsite);
+	    console.log("the employees object ", $scope.employees);
 	});
 };
 functionToGetEmployees();
@@ -32,7 +31,7 @@ functionToGetEmployees();
 $scope.theDate = employeeJobSiteTimeCardService.theDate();
 
 
-
+//This function adds time for the employee to the jobsite.  It also adds the jobsite and hours worked to the employee.
 $scope.addEmployeeTime = function(name, hours, index) {
 	
 	var id = $scope.jobsite._id;
@@ -42,18 +41,19 @@ $scope.addEmployeeTime = function(name, hours, index) {
 	var employeeTimeObject = employeeJobSiteTimeCardService.returnEmployeeTimeObject();
 	var jobSiteEmployeeArray = $scope.jobsite.employees;
 	
-	// console.log("the employeeTimeObject", employeeTimeObject);
 
 
 	if (name && hours) { 
 		var isItThere = false;
 
+		//checks to see if the array has anything in it and if not adds it and saves it to the DB.  I had to do this because of the for loop below, if there was nothing in the array.
 		if (jobSiteEmployeeArray.length < 1) {
 			jobSiteEmployeeArray.push(employeeTimeObject);
 			
 			employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId($scope.jobsite.employees, id).then(function(response) {
-				console.log("the jobSiteEmployeeArray response" ,response.data);
 			});
+			
+			
 			function JobHoursDate(jobName, hours, date) {
 				this.jobName = jobName,
 				this.hours = hours,
@@ -61,33 +61,25 @@ $scope.addEmployeeTime = function(name, hours, index) {
 			}
 			
 			var jobHoursDate = new JobHoursDate($scope.jobsite.name, hours, $scope.theDate);
-			console.log("the new JobHoursDate object that's supposed to update on the employee object job_site_hours_worked", jobHoursDate);
 			
 			$scope.employees[index].job_site_hours_worked.push(jobHoursDate);
 
-			console.log("the new JobHoursDate object ", jobHoursDate);
-			console.log("the updated job_site_hours_worked array ", $scope.employees[index].job_site_hours_worked);
-			
 			employeeJobSiteTimeCardService.updateTheEmployeeInDBbyId($scope.employees[index].job_site_hours_worked, $scope.employees[index]._id).then(function(response) {
-				console.warn("after the employee.job_site_hours_worked array has been sent to DB ", response.data);
 			})
 			
 		}
 		
+
+		//loops through the array and if the employee has already added time to this job site on this date the input gets rejected and nothing is stored, otherwise 
 		for (var i = 0; i < jobSiteEmployeeArray.length; i++) {
 			if (employeeTimeObject.employeeName === jobSiteEmployeeArray[i].employeeName && employeeTimeObject.date === jobSiteEmployeeArray[i].date) {
 				isItThere = true;
-				console.log("isItThere ", isItThere);
 			}
 		}
-
-		
 		
 		if (isItThere === false) {
 			jobSiteEmployeeArray.push(employeeTimeObject);
-			// console.log("the jobSiteEmployeeArray ", jobSiteEmployeeArray)
 			employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId($scope.jobsite.employees, id).then(function(response) {
-				// console.log("the response in controller" ,response.data);
 			});
 			
 			function JobHoursDate(jobName, hours, date) {
@@ -97,15 +89,10 @@ $scope.addEmployeeTime = function(name, hours, index) {
 			}
 			
 			var jobHoursDate = new JobHoursDate($scope.jobsite.name, hours, $scope.theDate);
-			console.log("the new JobHoursDate object that's supposed to update on the employee object job_site_hours_worked");
 			
 			$scope.employees[index].job_site_hours_worked.push(jobHoursDate);
 
-			console.log("the new JobHoursDate object ", jobHoursDate);
-			console.log("the updated job_site_hours_worked array ", $scope.employees[index].job_site_hours_worked);
-			
 			employeeJobSiteTimeCardService.updateTheEmployeeInDBbyId($scope.employees[index].job_site_hours_worked, $scope.employees[index]._id).then(function(response) {
-				console.warn("after the employee.job_site_hours_worked array has been sent to DB ", response.data);
 			})
 		}
 	}
@@ -114,7 +101,6 @@ $scope.addEmployeeTime = function(name, hours, index) {
 
 
 
-//I need a jobsite name, hours worked, and the date the hours were worked on that job site.
 
 
 

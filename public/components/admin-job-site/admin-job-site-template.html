@@ -14,6 +14,12 @@
         </tr>
     </thead>
     <tbody>
+        <tr>
+            <td><input type="text" placeholder="Add Date" ng-model="addDate"></td>
+            <td><input type="text" placeholder="Add Name" ng-model="addName"></td>
+            <td><input type="number" placeholder="Hours Worked" ng-model="addHours"></td>
+            <td><button ng-click="addNewTimeEvent(addDate, addName, addHours)" >Add</button></td>
+        </tr>
         <tr ng-repeat="employee in jobsite.employees">
             <td>{{employee.date}}</td>
             <td>{{employee.employeeName}}</td>

@@ -39,18 +39,22 @@ $scope.addEmployeeTime = function(name, hours, index) {
 	employeeJobSiteTimeCardService.makeEmployeeTimeObject(name, hours);
 	
 	var employeeTimeObject = employeeJobSiteTimeCardService.returnEmployeeTimeObject();
-	var jobSiteEmployeeArray = $scope.jobsite.employees;
+	console.log("the employeeTimeObject", employeeTimeObject);
+	var jobSiteEmployeeArray = $scope.jobsite.employees_time_entries;
 	
 
 
 	if (name && hours) { 
 		var isItThere = false;
 
+
 		//checks to see if the array has anything in it and if not adds it and saves it to the DB.  I had to do this because of the for loop below, if there was nothing in the array.
 		if (jobSiteEmployeeArray.length < 1) {
 			jobSiteEmployeeArray.push(employeeTimeObject);
+			console.log("first push into array the employeeTimeObject ", $scope.jobsite);
 			
-			employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId($scope.jobsite.employees, id).then(function(response) {
+			employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId(jobSiteEmployeeArray, id).then(function(response) {
+				console.log("the first employee time event response from DB", response.data);
 			});
 			
 			
@@ -74,12 +78,13 @@ $scope.addEmployeeTime = function(name, hours, index) {
 		for (var i = 0; i < jobSiteEmployeeArray.length; i++) {
 			if (employeeTimeObject.employeeName === jobSiteEmployeeArray[i].employeeName && employeeTimeObject.date === jobSiteEmployeeArray[i].date) {
 				isItThere = true;
+				console.log("isItThere ", isItThere);
 			}
 		}
 		
 		if (isItThere === false) {
 			jobSiteEmployeeArray.push(employeeTimeObject);
-			employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId($scope.jobsite.employees, id).then(function(response) {
+			employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId($scope.jobsite.employees_time_entries, id).then(function(response) {
 			});
 			
 			function JobHoursDate(jobName, hours, date) {

@@ -68,12 +68,14 @@ app.service("employeeJobSiteTimeCardService", ["$q", "$http", function($q, $http
 
 
 	this.updateTheJobSiteInDBbyId = function(jobsite, id) {
+		console.log("the jobsite before it goes to DB ", jobsite);
 		var deferred = $q.defer();
 		$http({
 			method: "PUT",
-			url:"/api/updateJobs/" + id,
+			url:"/api/updateJobsEmployees/" + id,
 			data: jobsite
 		}).then(function(response) {
+			console.log("the jobsite after it comes from DB ", response.data);
 		deferred.resolve(response);
 		});
 		return deferred.promise;
@@ -82,17 +84,22 @@ app.service("employeeJobSiteTimeCardService", ["$q", "$http", function($q, $http
 
 
 	this.updateTheEmployeeInDBbyId = function(employee, id) {
-		console.warn("updateTheEmployeeByInDBbyId in Service PUT ", employee, id);
+		// console.warn("updateTheEmployeeByInDBbyId in Service PUT ", employee, id);
 		var deferred = $q.defer();
 		$http({
 			method: "PUT",
 			url: "/api/updateEmployee/" + id,
 			data: employee
 		}).then(function(response) {
+			// console.log("the PUT response in service ", response);
 			deferred.resolve(response);
 		});
 		return deferred.promise;
 	}
+
+
+
+	
 
 	
 		

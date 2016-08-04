@@ -20,7 +20,7 @@
             <td><input type="number" placeholder="Hours Worked" ng-model="addHours"></td>
             <td><button ng-click="addNewTimeEvent(addDate, addName, addHours)" >Add</button></td>
         </tr>
-        <tr ng-repeat="employee in jobsite.employees">
+        <tr ng-repeat="employee in jobsite.employees_time_entries track by $index">
             <td>{{employee.date}}</td>
             <td>{{employee.employeeName}}</td>
             <!--<td>{{employee.hoursWorked}}</td>-->

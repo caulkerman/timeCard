@@ -30,14 +30,23 @@ module.exports = {
   },
 
 
-  update: function(req, res) {
-    NewJob.findByIdAndUpdate(req.params.id, {employees: req.body}, {new: true}, 
+  updateEmployees: function(req, res) {
+    NewJob.findByIdAndUpdate(req.params.id, {employees_time_entries: req.body}, {new: true}, 
+      function(err, result) {
+        if (err) return res.status(500);
+        else res.send(result);
+    });
+  },
+
+
+
+ updateLateTimeCard: function(req, res) {
+    NewJob.findByIdAndUpdate(req.params.id, {late_time_entries: req.body}, {new: true}, 
       function(err, result) {
         if (err) return res.status(500);
         else res.send(result);
     });
   }
-
  
 
 

@@ -32,7 +32,8 @@ app.get("/api/getJobs", newJobCtrl.read);
 app.get("/api/getJobs/:id", newJobCtrl.findById);
 app.get("/api/getEmployee/:id", employeeCtrl.findById);
 
-app.put("/api/updateJobs/:id", newJobCtrl.update);
+app.put("/api/updateJobsEmployees/:id", newJobCtrl.updateEmployees);
+app.put("/api/updateJobsLateTimeCard/:id", newJobCtrl.updateLateTimeCard);
 app.put("/api/updateEmployee/:id", employeeCtrl.update);
 
 // Connections

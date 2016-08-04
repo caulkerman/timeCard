@@ -5,8 +5,8 @@ var Schema = Mongoose.Schema;
 var newJobSchema = new Schema({
 
 	name: { type: String, required: true },
-	employees: { type: Array },
-	// man_hours: { type: Array },
+	employees_time_entries: { type: Array },
+	late_time_entries: { type: Array },
 	contractor: { type: String}
 
 

@@ -1,6 +1,6 @@
 (function() {
-var $inject = ["$scope", "$stateParams", "employeeJobSiteTimeCardService"];
-function adminJobSiteControllerCB($scope, $stateParams, employeeJobSiteTimeCardService) {
+var $inject = ["$scope", "$stateParams", "employeeJobSiteTimeCardService", "adminJobSiteService"];
+function adminJobSiteControllerCB($scope, $stateParams, employeeJobSiteTimeCardService, adminJobSiteService) {
 
 'use strict'
 
@@ -28,6 +28,31 @@ $scope.editEmployee = function(index) {
 			console.log("the response in controller" ,response.data);
 	})
 	getTheJobSiteFromDBbyId();
+}
+
+
+
+$scope.addNewTimeEvent = function(date, name, hours) {
+	if (date && name && hours) {
+		var id = $scope.jobsite._id;
+
+		function NewTimeEvent(date, name, hours) {
+			this.date = date;
+			this.employeeName = name;
+			this.hoursWorked = hours;
+		}
+		var newTimeEvent = new NewTimeEvent(date, name, hours);
+	//at this point we need to compare the name to the array list of employee names, if it exists then push, if it doesn't we need to do some validation
+		$scope.jobsite.late_time_entries.push(newTimeEvent);
+
+		adminJobSiteService.addLateTimeCard($scope.jobsite.late_time_entries, id).then(function(response) {
+			console.log("the late_time_entry ", response.data);
+			getTheJobSiteFromDBbyId();
+		})
+		$scope.addDate = "";
+		$scope.addName = "";
+		$scope.addHours = "";
+	}
 }
 
 

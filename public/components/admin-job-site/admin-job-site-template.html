@@ -1,9 +1,11 @@
 <link rel="stylesheet" href="components/admin-job-site/admin-job-site.css">
 
 <p><span id="jobSiteNameBold">{{jobsite.name}}<span></p>
-<p>{{jobsite.contractor}}</p>
+<p>General Contractor: {{jobsite.contractor}}</p>
 <p>Total Job Site Man Hours: {{jobsite.man_hours}}</p>
 
+<button ng-click="showAddTime()" ng-hide="showNewTimeEvent">Add A Late Time Event</button>
+<button ng-click="hideAddTime()" ng-show="showNewTimeEvent">Hide Late Time Event Form</button>
 
 <table st-table="students" class="table table-striped">
     <thead>
@@ -13,13 +15,15 @@
             <td>Hours Worked</td>    
         </tr>
     </thead>
+    
     <tbody>
-        <tr>
+        <tr ng-show="showNewTimeEvent">
             <td><input type="text" placeholder="Add Date" ng-model="addDate"></td>
             <td><input type="text" placeholder="Add Name" ng-model="addName"></td>
-            <td><input type="number" placeholder="Hours Worked" ng-model="addHours"></td>
-            <td><button ng-click="addNewTimeEvent(addDate, addName, addHours)" >Add</button></td>
+            <td><input type="number" min=".25" max="24" placeholder="Hours Worked" ng-model="addHours"></td>
+            <td><button ng-click="addNewTimeEvent(addDate, addName, addHours)">Add</td>
         </tr>
+        
         <tr ng-repeat="employee in jobsite.employees_time_entries track by $index">
             <td>{{employee.date}}</td>
             <td>{{employee.employeeName}}</td>
@@ -27,5 +31,11 @@
             <td> <input type="text" class="edit" ng-model="employee.hoursWorked"></td>
             <td><button ng-click="editEmployee($index)" id="edit">Edit</button></td>
         </tr>
+    
     </tbody>
 </table>
+
+<ul ng-repeat="lates in jobsite.late_time_entries track by $index">
+    <li>{{lates}}</li>
+</ul>
+

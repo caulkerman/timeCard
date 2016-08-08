@@ -12,8 +12,8 @@ $scope.filterJob; ///this variable is available from the filter input box.  Of c
 //we need to separate the Admins from the Workers so the Admins aren't listed as employees who fill out time cards.
 $scope.getJobsList = function() {
 	adminJobSiteListService.getJobs().then(function(response) {
-		// console.log("the response in controller", response.data)
 		$scope.jobSiteList = response.data;
+		console.log("the jobsite list ", $scope.jobSiteList);
 	})
 }
 $scope.getJobsList();

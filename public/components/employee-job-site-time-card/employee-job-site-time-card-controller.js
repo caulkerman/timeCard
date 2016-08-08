@@ -106,6 +106,26 @@ $scope.addEmployeeTime = function(name, hours, index) {
 
 
 
+$scope.showTextArea = function() {
+	$scope.textAreaShow = true;
+}
+
+$scope.addMaterials = function(materials) {
+	if ($scope.materials === "" || $scope.materials === undefined) {
+		console.log("You need to enter some materials");
+		return;
+	} else {
+		var materials = $scope.materials;
+		var dailyMaterials = $scope.jobsite.materials;
+		dailyMaterials.push(materials);
+		console.log("$scope.jobsite.materials ", $scope.jobsite);
+
+		$scope.textAreaShow = false;
+	}
+}
+
+
+
 
 
 

@@ -9,16 +9,19 @@
 <label for="employeeFilter">Filter Employee: </label>
 
 <input type="text" name="employeeFilter" ng-model="employee_filter">
-
-<!--MATERIALS: I need to put a text area or create an object that perhaps takes in property values that describe the materials used on the job for that day. -->
 <br />
 
+<button ng-click="showTextArea()">Add Material</button>
+<br />
+
+<div id="textArea" ng-show="textAreaShow">
+    <textarea ng-model="materials"></textarea>
+    <button ng-click="addMaterials(materials)">Add</button>
+</div>
 <table st-table="students" class="table table-striped">
     <thead>
         <tr>
-            <td>Employee Name</td>  <!--make sure you change the inline styling later-->
-            <td>Hours Worked Today</td>
-            <!--<td>Submit Time</td>-->
+            <td>Hours Worked</td>
         </tr>
     </thead>
     <br />
@@ -33,7 +36,7 @@
                  <!--There should be some form validation for the hours worked, and if the submit button is clicked with no hours entered then nothing will happen, perhaps the red warning should show saying that particular employee needs to have the hours entered. -->
             </td>
             <td>
-                <button ng-click="addEmployeeTime(employee.fullName, hoursWorked, $index)">SUBMIT EMPLOYEE TIME</button>
+                <button ng-click="addEmployeeTime(employee.fullName, hoursWorked, $index)">SUBMIT TIME</button>
                 <!-- Maybe the submit button will change color when the person has been submitted. But I think this should be linked to the success of the update, so... if (response.status === 200) { turn the button green};-->
         </tr>
     </tbody>
@@ -59,34 +62,40 @@ SPAN.td
     <form class="tr" method="post" action="blah.html">
         <span class="td"><input type="text"/></span>
         <span class="td"><input type="text"/></span>
-        </form>
-        <form class="tr" method="post" action="blah.html">
-        <span class="td"><input type="text"/></span>
         <span class="td"><input type="text"/></span>
         </form>
         <form class="tr" method="post" action="blah.html">
         <span class="td"><input type="text"/></span>
         <span class="td"><input type="text"/></span>
+        <span class="td"><input type="text"/></span>
         </form>
         <form class="tr" method="post" action="blah.html">
+        <span class="td"><input type="text"/></span>
+        <span class="td"><input type="text"/></span>
+        <span class="td"><input type="text"/></span>
+        </form>
+        <form class="tr" method="post" action="blah.html">
+        <span class="td"><input type="text"/></span>
         <span class="td"><input type="text"/></span>
         <span class="td"><input type="text"/></span>
     </form>
     <div class="tr">
         <span class="td">(cell data)</span>
         <span class="td">(cell data)</span>
-        </div>
-        <div class="tr">
-        <span class="td">(cell data)</span>
         <span class="td">(cell data)</span>
         </div>
         <div class="tr">
         <span class="td">(cell data)</span>
         <span class="td">(cell data)</span>
+        <span class="td">(cell data)</span>
         </div>
         <div class="tr">
+        <span class="td">(cell data)</span>
+        <span class="td">(cell data)</span>
+        <span class="td">(cell data)</span>
+        </div>
+        <div class="tr">
+        <span class="td">(cell data)</span>
         <span class="td">(cell data)</span>
         <span class="td">(cell data)</span>
     </div>-->
-    ...
-</div>

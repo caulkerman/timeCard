@@ -5,10 +5,9 @@ function adminJobSiteListControllerCB($scope, adminJobSiteListService, $state) {
 'use strict'
 
 	/////////ENTER CODE BELOW\\\\\\\\
-	$scope.test = "this is from adminJobSiteListController";
 
-	// $scope.jobsArray = [];
-
+	
+	
 	function getListOfJobs() {
 		adminJobSiteListService.getJobs().then(function(response) {
 			$scope.job_sites = response.data;
@@ -17,6 +16,8 @@ function adminJobSiteListControllerCB($scope, adminJobSiteListService, $state) {
 	}
 	getListOfJobs();
 
+	
+	
 	$scope.addNewJobsSite = function(newJobName, contractorName) {
 		if ($scope.newJobName === undefined || $scope.newJobName === "" && $scope.contractorName === undefined || $scope.contractorName === "") {
 			console.log("you must enter a job name and contractor");

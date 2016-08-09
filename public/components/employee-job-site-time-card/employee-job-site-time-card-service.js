@@ -20,16 +20,15 @@ app.service("employeeJobSiteTimeCardService", ["$q", "$http", function($q, $http
 		return thisDay + ", " + thisMonth + " " + dayOfMonth + ", " + year;
 	}
 
-	function EmployeeTimeObject(name, hours, date){
-		this.date = date;
+	function EmployeeTimeObject(name, hours){
 		this.employeeName = name;
-		this.hoursWorked = hours;
+		this.hours_worked = hours;
 	};
 
 
 	this.makeEmployeeTimeObject = function(name, hours) {
 			var date = this.theDate();
-			employeeTimeObject = new EmployeeTimeObject(name, hours, date)
+			employeeTimeObject = new EmployeeTimeObject(name, hours)
 	}
 
 	

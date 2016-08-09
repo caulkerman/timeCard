@@ -11,7 +11,7 @@ var newJobSchema = new Schema({
 			date: { type: Date, default: Date.now },
 			employees_worked: [
 				{
-					name: String,
+					employeeName: String,
 					hours_worked: Number
 				}
 			],

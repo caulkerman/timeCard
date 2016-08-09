@@ -49,7 +49,7 @@ $scope.addEmployeeTime = function(name, hours, index) {
 
 
 		//checks to see if the array has anything in it and if not adds it and saves it to the DB.  I had to do this because of the for loop below, if there was nothing in the array.
-		if (jobSiteEmployeeArray.length < 1) {
+		if (jobSiteEmployeeArray.length < 1) { //what did you do with this on another? You used || so you wouldn't have to duplicate so much
 			jobSiteEmployeeArray.push(employeeTimeObject);
 			console.log("first push into array the employeeTimeObject ", $scope.jobsite);
 			
@@ -76,7 +76,7 @@ $scope.addEmployeeTime = function(name, hours, index) {
 
 		//loops through the array and if the employee has already added time to this job site on this date the input gets rejected and nothing is stored, otherwise 
 		for (var i = 0; i < jobSiteEmployeeArray.length; i++) {
-			if (employeeTimeObject.employeeName === jobSiteEmployeeArray[i].employeeName && employeeTimeObject.date === jobSiteEmployeeArray[i].date) {
+			if (employeeTimeObject.employeeName === jobSiteEmployeeArray[i].employeeName && employeeTimeObject.date === jobSiteEmployeeArray[i].date) {//I might be able to eliminate the other function above by doing || blah blah < 1 
 				isItThere = true;
 				console.log("isItThere ", isItThere);
 			}
@@ -124,9 +124,24 @@ $scope.addMaterials = function(materials) {
 	}
 }
 
+//I need to create this.
 
+// {
+// 		date: { type: Date, default: Date.now },
+// 		employees_worked: [
+// 			{
+// 			employeeName: String,
+// 			hours_worked: Number
+// 			}
+// 		],
+// 		materials_used: String,
+// 		notes: String
+// 	}
 
-
+//I could do:
+//$scope.jobsite.employees_worked = [];
+//var employees_worked_array = $scope.jobsite.employees_worked;
+//employees_worked_array.push(employeeTimeObject);
 
 
 

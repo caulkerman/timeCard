@@ -35,7 +35,19 @@ $scope.theDate = employeeJobSiteTimeCardService.theDate();
 $scope.addEmployeeTime = function(name, hours, index) {
 	
 	var id = $scope.jobsite._id;
-    
+    //instead of creating a simple object like the employeeTimeObject, we need t create this" 
+	
+//{
+// 		date: { type: Date, default: Date.now },
+// 		employees_worked: [
+// 			{
+// 			employeeName: String,
+// 			hours_worked: Number
+// 			}
+// 		],
+// 		materials_used: String,
+// 		notes: String
+// 	}
 	employeeJobSiteTimeCardService.makeEmployeeTimeObject(name, hours);
 	
 	var employeeTimeObject = employeeJobSiteTimeCardService.returnEmployeeTimeObject();
@@ -76,7 +88,8 @@ $scope.addEmployeeTime = function(name, hours, index) {
 
 		//loops through the array and if the employee has already added time to this job site on this date the input gets rejected and nothing is stored, otherwise 
 		for (var i = 0; i < jobSiteEmployeeArray.length; i++) {
-			if (employeeTimeObject.employeeName === jobSiteEmployeeArray[i].employeeName && employeeTimeObject.date === jobSiteEmployeeArray[i].date) {//I might be able to eliminate the other function above by doing || blah blah < 1 
+			if (employeeTimeObject.employeeName === jobSiteEmployeeArray[i].employeeName && employeeTimeObject.date === jobSiteEmployeeArray[i].date) {
+				//as this is set up right now if the array is < 1 then it will cause isItThere to become true. Isolate it from the isItThere = true
 				isItThere = true;
 				console.log("isItThere ", isItThere);
 			}

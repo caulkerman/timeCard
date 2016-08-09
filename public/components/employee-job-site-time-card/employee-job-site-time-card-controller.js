@@ -40,7 +40,7 @@ $scope.addEmployeeTime = function(name, hours, index) {
 	
 	var employeeTimeObject = employeeJobSiteTimeCardService.returnEmployeeTimeObject();
 	console.log("the employeeTimeObject", employeeTimeObject);
-	var jobSiteEmployeeArray = $scope.jobsite.employees_time_entries;
+	var jobSiteEmployeeArray = $scope.jobsite.employees_time_entries;//rename these
 	
 
 
@@ -49,29 +49,29 @@ $scope.addEmployeeTime = function(name, hours, index) {
 
 
 		//checks to see if the array has anything in it and if not adds it and saves it to the DB.  I had to do this because of the for loop below, if there was nothing in the array.
-		if (jobSiteEmployeeArray.length < 1) { //what did you do with this on another? You used || so you wouldn't have to duplicate so much
-			jobSiteEmployeeArray.push(employeeTimeObject);
-			console.log("first push into array the employeeTimeObject ", $scope.jobsite);
+// if (jobSiteEmployeeArray.length < 1) { //what did you do with this on another? You used || so you wouldn't have to duplicate so much
+		// 	jobSiteEmployeeArray.push(employeeTimeObject);
+		// 	console.log("first push into array the employeeTimeObject ", $scope.jobsite);
 			
-			employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId(jobSiteEmployeeArray, id).then(function(response) {
-				console.log("the first employee time event response from DB", response.data);
-			});
+		// 	employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId(jobSiteEmployeeArray, id).then(function(response) {
+		// 		console.log("the first employee time event response from DB", response.data);
+		// 	});
 			
 			
-			function JobHoursDate(jobName, hours, date) {
-				this.jobName = jobName,
-				this.hours = hours,
-				this.date = date
-			}
+		// 	function JobHoursDate(jobName, hours, date) {
+		// 		this.jobName = jobName,
+		// 		this.hours = hours,
+		// 		this.date = date
+		// 	}
 			
-			var jobHoursDate = new JobHoursDate($scope.jobsite.name, hours, $scope.theDate);
+		// 	var jobHoursDate = new JobHoursDate($scope.jobsite.name, hours, $scope.theDate);
 			
-			$scope.employees[index].job_site_hours_worked.push(jobHoursDate);
+		// 	$scope.employees[index].job_site_hours_worked.push(jobHoursDate);
 
-			employeeJobSiteTimeCardService.updateTheEmployeeInDBbyId($scope.employees[index].job_site_hours_worked, $scope.employees[index]._id).then(function(response) {
-			})
+		// 	employeeJobSiteTimeCardService.updateTheEmployeeInDBbyId($scope.employees[index].job_site_hours_worked, $scope.employees[index]._id).then(function(response) {
+		// 	})
 			
-		}
+		// }
 		
 
 		//loops through the array and if the employee has already added time to this job site on this date the input gets rejected and nothing is stored, otherwise 
@@ -139,9 +139,7 @@ $scope.addMaterials = function(materials) {
 // 	}
 
 //I could do:
-//$scope.jobsite.employees_worked = [];
-//var employees_worked_array = $scope.jobsite.employees_worked;
-//employees_worked_array.push(employeeTimeObject);
+//var employees_worked = [];
 
 
 

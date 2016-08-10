@@ -19,13 +19,13 @@ var newJobSchema = new Schema({
 			notes: String
 		}
 	]
-	
-		
-	
-
-
-
 })
+
+
+
+
+
+
 
 var collectionName = "jobs";
 module.exports = Mongoose.model("jobs", newJobSchema, collectionName);

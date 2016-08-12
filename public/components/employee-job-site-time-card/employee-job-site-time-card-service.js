@@ -30,21 +30,7 @@ var dailyTimeCard = new DailyTimeCard(this.theDate());
 console.log("the new dailyTimeCard ", dailyTimeCard);
 
 
-	// function EmployeeTimeObject(name, hours){
-	// 	this.employeeName = name;
-	// 	this.hours_worked = hours;
-	// };
-
-
-	// this.makeEmployeeTimeObject = function(name, hours) {
-	// 		var date = this.theDate();
-	// 		employeeTimeObject = new EmployeeTimeObject(name, hours)
-	// }
-
 	
-	// this.returnEmployeeTimeObject = function() {
-	// 	return employeeTimeObject;
-	// }
 
 
 

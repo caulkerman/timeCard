@@ -20,21 +20,31 @@ app.service("employeeJobSiteTimeCardService", ["$q", "$http", function($q, $http
 		return thisDay + ", " + thisMonth + " " + dayOfMonth + ", " + year;
 	}
 
-	function EmployeeTimeObject(name, hours){
-		this.employeeName = name;
-		this.hours_worked = hours;
-	};
+function DailyTimeCard(theDate) {
+	this.theDate = theDate;
+	this.employees_worked = [];
+	this.materials_used = '';
+	this.notes = '';
+}
+var dailyTimeCard = new DailyTimeCard(this.theDate());
+console.log("the new dailyTimeCard ", dailyTimeCard);
 
 
-	this.makeEmployeeTimeObject = function(name, hours) {
-			var date = this.theDate();
-			employeeTimeObject = new EmployeeTimeObject(name, hours)
-	}
+	// function EmployeeTimeObject(name, hours){
+	// 	this.employeeName = name;
+	// 	this.hours_worked = hours;
+	// };
+
+
+	// this.makeEmployeeTimeObject = function(name, hours) {
+	// 		var date = this.theDate();
+	// 		employeeTimeObject = new EmployeeTimeObject(name, hours)
+	// }
 
 	
-	this.returnEmployeeTimeObject = function() {
-		return employeeTimeObject;
-	}
+	// this.returnEmployeeTimeObject = function() {
+	// 	return employeeTimeObject;
+	// }
 
 
 
@@ -52,13 +62,11 @@ app.service("employeeJobSiteTimeCardService", ["$q", "$http", function($q, $http
 	//Remember that the id is available from the controller from the previous state.  The only way you get to this current state is by passing through the previous state and you pick up and send the id by clicking on a jobsite $index.  Data in the service persists through page refreshes. The function below calls for the object based on its id that still persists and makes it availble to the view.
 	
 	this.getTheJobSiteFromDBbyId = function(id) {
-		// console.log("the id before it goes to db ", id);
 	 var deferred = $q.defer();
 	 $http({
 	 	method: "GET",
 	 	url: "/api/getJobs/" + id
 	 }).then(function(response) {
-	 	// console.log("the jobsite by Id response in Service ", response);
 	 	deferred.resolve(response);
 	 });
 	 return deferred.promise
@@ -83,14 +91,12 @@ app.service("employeeJobSiteTimeCardService", ["$q", "$http", function($q, $http
 
 
 	this.updateTheEmployeeInDBbyId = function(employee, id) {
-		// console.warn("updateTheEmployeeByInDBbyId in Service PUT ", employee, id);
 		var deferred = $q.defer();
 		$http({
 			method: "PUT",
 			url: "/api/updateEmployee/" + id,
 			data: employee
 		}).then(function(response) {
-			// console.log("the PUT response in service ", response);
 			deferred.resolve(response);
 		});
 		return deferred.promise;

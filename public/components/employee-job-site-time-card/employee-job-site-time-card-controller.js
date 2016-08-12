@@ -52,23 +52,31 @@ $scope.theDate = employeeJobSiteTimeCardService.theDate();
 
 
 
-function DailyTimeCard() {
-	this.theDate = $scope.theDate;
-	this.employees_worked = [];
-	this.materials_used = '';
-	this.notes = '';
-}
-var dailyTimeCard = new DailyTimeCard();
+// function DailyTimeCard() {
+// 	this.theDate = $scope.theDate;
+// 	this.employees_worked = [];
+// 	this.materials_used = '';
+// 	this.notes = '';
+// }
+// var dailyTimeCard = new DailyTimeCard();
+// console.log("the new dailyTimeCard ", dailyTimeCard);
 //include this inside an automatically called function that checks to see if it already exists in the array, if it does, don't create a new one.
 
-function addTheDailyTimeCardToJobsiteObject () {
-	$timeout(function() {
-		$scope.jobsite.daily_time_cards.push(dailyTimeCard);
-	console.log("the new jobsite ", $scope.jobsite);
+function addTheDailyTimeCardToJobsiteObject() {
+// debugger
+	if ($scope.jobsite === undefined) {
 		
-	}, 2000);
+		$timeout(function() {
+			addTheDailyTimeCardToJobsiteObject();
+		}, 300);
+ 	} 
+	
+	if ($scope.jobsite !== undefined) {
 
-}
+	}
+
+	
+};
 addTheDailyTimeCardToJobsiteObject();
 // console.log("the new DailyTimeCard object", dailyTimeCard);
 

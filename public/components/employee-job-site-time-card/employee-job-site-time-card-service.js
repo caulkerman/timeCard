@@ -1,4 +1,4 @@
-app.service("employeeJobSiteTimeCardService", ["$q", "$http", function($q, $http) {
+app.service("employeeJobSiteTimeCardService", ["$q", "$http", "$timeout", function($q, $http, $timeout) {
 
 	
 	
@@ -30,7 +30,11 @@ var dailyTimeCard = new DailyTimeCard(this.theDate());
 console.log("the new dailyTimeCard ", dailyTimeCard);
 
 
-	
+
+function timeout() {
+		console.log("the jobsite in $timeout function ", jobsite);
+		console.log("the new dailyTimeCard ", dailyTimeCard);
+};//the jobsite object IS available with this function, it does console.log as long as this function waits until the data becomes availble from DB
 
 
 
@@ -53,6 +57,8 @@ console.log("the new dailyTimeCard ", dailyTimeCard);
 	 	method: "GET",
 	 	url: "/api/getJobs/" + id
 	 }).then(function(response) {
+		 jobsite = response.data;
+		 timeout();
 	 	deferred.resolve(response);
 	 });
 	 return deferred.promise

@@ -20,20 +20,27 @@ app.service("employeeJobSiteTimeCardService", ["$q", "$http", "$timeout", functi
 		return thisDay + ", " + thisMonth + " " + dayOfMonth + ", " + year;
 	}
 
-function DailyTimeCard(theDate) {
-	this.theDate = theDate;
-	this.employees_worked = [];
-	this.materials_used = '';
-	this.notes = '';
-}
-var dailyTimeCard = new DailyTimeCard(this.theDate());
-console.log("the new dailyTimeCard ", dailyTimeCard);
 
+this.addTheNewDailyTimeCardToJobsiteObject = function() {
+	
+	function DailyTimeCard(theDate) {
+		this.theDate = theDate;
+		this.employees_worked = [];
+		this.materials_used = '';
+		this.notes = '';
+	}
+	dailyTimeCard = new DailyTimeCard(this.theDate());
+	console.log("the new dailyTimeCard ", dailyTimeCard);
+
+};
 
 
 function timeout() {
+	if (jobsite.daily_time_cards.length < 1) {
+		jobsite.daily_time_cards.push(dailyTimeCard);
+		updateTheJobSiteInDBbyId(jobsite, jobsite._id);
+	}
 		console.log("the jobsite in $timeout function ", jobsite);
-		console.log("the new dailyTimeCard ", dailyTimeCard);
 };//the jobsite object IS available with this function, it does console.log as long as this function waits until the data becomes availble from DB
 
 
@@ -66,7 +73,7 @@ function timeout() {
 
 
 
-	this.updateTheJobSiteInDBbyId = function(jobsite, id) {
+	var updateTheJobSiteInDBbyId = function(jobsite, id) {
 		console.log("the jobsite before it goes to DB ", jobsite);
 		var deferred = $q.defer();
 		$http({

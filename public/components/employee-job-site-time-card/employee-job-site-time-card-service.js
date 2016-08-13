@@ -25,7 +25,7 @@ this.addTheNewDailyTimeCardToJobsiteObject = function() {
 	
 	function DailyTimeCard(theDate) {
 		this.theDate = theDate;
-		this.employees_worked = [];
+		this.employees_worked = [];  //this object would be better done in the controller.
 		this.materials_used = '';
 		this.notes = '';
 	}
@@ -36,10 +36,17 @@ this.addTheNewDailyTimeCardToJobsiteObject = function() {
 
 
 function timeout() {
+
+	if (jobsite.daily_time_cards.length > 0) {
+		jobsite.daily_time_cards.push(dailyTimeCard);
+	}
+
 	if (jobsite.daily_time_cards.length < 1) {
 		jobsite.daily_time_cards.push(dailyTimeCard);
 		updateTheJobSiteInDBbyId(jobsite, jobsite._id);
 	}
+
+	
 		console.log("the jobsite in $timeout function ", jobsite);
 };//the jobsite object IS available with this function, it does console.log as long as this function waits until the data becomes availble from DB
 

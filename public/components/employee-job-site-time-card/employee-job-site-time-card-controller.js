@@ -13,7 +13,7 @@ var jobSiteId = $stateParams.id;
 var getTheJobSiteFromDBbyId = function() {
 	employeeJobSiteTimeCardService.getTheJobSiteFromDBbyId(jobSiteId).then(function(response) {
 		$scope.jobsite = response.data;
-		console.log("the jobsite object ", $scope.jobsite);
+		console.log("controller the jobsite object ", $scope.jobsite);
 	})
 }
 getTheJobSiteFromDBbyId();

@@ -10,7 +10,7 @@ function employeeJobSiteTimeCardControllerCB($scope, $stateParams, employeeJobSi
 var jobSiteId = $stateParams.id;
 
 
-var getTheJobSiteFromDBbyId = function() {
+function getTheJobSiteFromDBbyId() {
 	employeeJobSiteTimeCardService.getTheJobSiteFromDBbyId(jobSiteId).then(function(response) {
 		$scope.jobsite = response.data;
 		console.log("controller the jobsite object ", $scope.jobsite);
@@ -50,28 +50,19 @@ $scope.theDate = employeeJobSiteTimeCardService.theDate();
 // 	]
 // })
 
-
-
-// function DailyTimeCard() {
-// 	this.theDate = $scope.theDate;
-// 	this.employees_worked = [];
-// 	this.materials_used = '';
-// 	this.notes = '';
-// }
-// var dailyTimeCard = new DailyTimeCard();
-// console.log("the new dailyTimeCard ", dailyTimeCard);
 //include this inside an automatically called function that checks to see if it already exists in the array, if it does, don't create a new one.
 
 function addTheNewDailyTimeCardToJobsiteObject() {
 	
-	function DailyTimeCard(theDate) {
-		this.theDate = theDate;
-		this.employees_worked = [];  //this object would be better done in the controller.
+	function DailyTimeCard() {
+		this.theDate = $scope.theDate;
+		this.employees_worked = [];
 		this.materials_used = '';
 		this.notes = '';
 	}
-	dailyTimeCard = new DailyTimeCard(this.theDate());
+	var dailyTimeCard = new DailyTimeCard();
 	console.log("the new dailyTimeCard ", dailyTimeCard);
+
 
 
 // if (jobsite.daily_time_cards.length > 0) {
@@ -90,6 +81,14 @@ addTheNewDailyTimeCardToJobsiteObject();
 
 
 
+$scope.showTextArea = function() {
+	$scope.textAreaShow = true;
+};
+
+$scope.addMaterials = function(materials) {
+	//might have to use a loop and if it matches the date then reasign the materials string in the new dailyTimeCard object to the materials submitted in this 
+$scope.textAreaShow = false;
+}
 
 
 

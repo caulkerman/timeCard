@@ -18,7 +18,7 @@ app.service("employeeJobSiteTimeCardService", ["$q", "$http", "$timeout", functi
 	
 	this.theDate = function() {
 		return thisDay + ", " + thisMonth + " " + dayOfMonth + ", " + year;
-	
+	}
 
 	
 	

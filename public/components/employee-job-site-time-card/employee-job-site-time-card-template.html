@@ -11,13 +11,14 @@
 <input type="text" name="employeeFilter" ng-model="employee_filter">
 <br />
 
-<button ng-click="showTextArea()">Add Material</button>
+<button ng-click="showTextArea()" ng-hide="textAreaShow" >Add Material</button>
 <br />
 
 <div id="textArea" ng-show="textAreaShow">
     <textarea ng-model="materials"></textarea>
     <button ng-click="addMaterials(materials)">Add</button>
 </div>
+
 <table st-table="students" class="table table-striped">
     <thead>
         <tr>

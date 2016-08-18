@@ -43,7 +43,7 @@ app.service("employeeJobSiteTimeCardService", ["$q", "$http", "$timeout", functi
 
 
 
-	var updateTheJobSiteInDBbyId = function(jobsite, id) {
+	this.updateTheJobSiteInDBbyId = function(jobsite, id) {
 		console.log("the jobsite before it goes to DB ", jobsite);
 		var deferred = $q.defer();
 		$http({

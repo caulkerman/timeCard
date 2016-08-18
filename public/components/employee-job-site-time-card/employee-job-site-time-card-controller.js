@@ -14,6 +14,7 @@ function getTheJobSiteFromDBbyId() {
 	employeeJobSiteTimeCardService.getTheJobSiteFromDBbyId(jobSiteId).then(function(response) {
 		$scope.jobsite = response.data;
 		console.log("controller the jobsite object ", $scope.jobsite);
+		addTheNewDailyTimeCardToJobsiteObject();
 	})
 }
 getTheJobSiteFromDBbyId();
@@ -61,34 +62,39 @@ function addTheNewDailyTimeCardToJobsiteObject() {
 		this.notes = '';
 	}
 	var dailyTimeCard = new DailyTimeCard();
-	console.log("the new dailyTimeCard ", dailyTimeCard);
 
 
 
-// if (jobsite.daily_time_cards.length > 0) {
-// 		jobsite.daily_time_cards.push(dailyTimeCard);
-// 		updateTheJobSiteInDBbyId(jobsite, jobsite._id);
-// 	}
+	if ($scope.jobsite.daily_time_cards.length > 0) {
+		$scope.jobsite.daily_time_cards.push(dailyTimeCard);
+		employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId($scope.jobsite.daily_time_cards, $scope.jobsite._id);
+	}
 
-// 	if (jobsite.daily_time_cards.length < 1) {
-// 		jobsite.daily_time_cards.push(dailyTimeCard);
-// 		updateTheJobSiteInDBbyId(jobsite, jobsite._id);
-// 	}
-};
-
-addTheNewDailyTimeCardToJobsiteObject();
-
-
-
+	if ($scope.jobsite.daily_time_cards.length < 1) {
+		$scope.jobsite.daily_time_cards.push(dailyTimeCard);
+		employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId($scope.jobsite.daily_time_cards, $scope.jobsite._id);
+	}
 
 $scope.showTextArea = function() {
 	$scope.textAreaShow = true;
 };
 
 $scope.addMaterials = function(materials) {
-	//might have to use a loop and if it matches the date then reasign the materials string in the new dailyTimeCard object to the materials submitted in this 
+	//might have to use a loop and if it matches the date then reasign the materials string in the new dailyTimeCard object to the materials submitted in this.
+	//you may also have to make it so having materials is part of the form validation, so that the employee cannot enter unless materials has been entered.
+dailyTimeCard.materials_used = materials;
+console.warn("materials added to the dailyTimeCard ", dailyTimeCard);
 $scope.textAreaShow = false;
 }
+
+};
+
+
+
+
+
+
+
 
 
 

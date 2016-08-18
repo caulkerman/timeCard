@@ -53,7 +53,10 @@ $scope.theDate = employeeJobSiteTimeCardService.theDate();
 
 //include this inside an automatically called function that checks to see if it already exists in the array, if it does, don't create a new one.
 
+
+
 function addTheNewDailyTimeCardToJobsiteObject() {
+	var flag = false;
 	
 	function DailyTimeCard() {
 		this.theDate = $scope.theDate;
@@ -63,12 +66,19 @@ function addTheNewDailyTimeCardToJobsiteObject() {
 	}
 	var dailyTimeCard = new DailyTimeCard();
 
-
-
 	if ($scope.jobsite.daily_time_cards.length > 0) {
+
+		for (var i = 0; i < $scope.jobsite.daily_time_cards.length; i++) {
+			if ($scope.jobsite.daily_time_cards[i].theDate === dailyTimeCard.theDate) {
+				flag = true;
+			};
+		};
+
+		if (flag === false) {
 		$scope.jobsite.daily_time_cards.push(dailyTimeCard);
 		employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId($scope.jobsite.daily_time_cards, $scope.jobsite._id);
-	}
+		};
+	};
 
 	if ($scope.jobsite.daily_time_cards.length < 1) {
 		$scope.jobsite.daily_time_cards.push(dailyTimeCard);

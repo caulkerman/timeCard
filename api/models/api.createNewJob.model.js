@@ -6,20 +6,20 @@ var newJobSchema = new Schema({
 
 	name: { type: String, required: true },
 	contractor: { type: String },	
-	daily_time_cards: { type: Array },
-	//[
-		//{
+	daily_time_cards: [
+		{
+			theDate: {type: String },
 			// date: { type: Date, default: Date.now },
-			// employees_worked: [
-			// 	{
-			// 		employeeName: String,
-			// 		hours_worked: Number
-			// 	}
-			//],
-			//materials_used: String,
-			//notes: String
-		//}
-	//]
+			employees_worked: [
+				{
+					employeeName: String,
+					hours_worked: Number
+				}
+			],
+			materials_used: String,
+			notes: String
+		}
+	]
 })
 
 

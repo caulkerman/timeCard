@@ -66,7 +66,7 @@ function addTheNewDailyTimeCardToJobsiteObject() {
 	}
 	$scope.dailyTimeCard = new DailyTimeCard();
 
-	if ($scope.jobsite.daily_time_cards.length > 0) {
+	if ($scope.jobsite.daily_time_cards.length > 0) { //you should take away the $scope and assign it to a $scope property that is smaller and easier to write
 
 		for (var i = 0; i < $scope.jobsite.daily_time_cards.length; i++) {
 			if ($scope.jobsite.daily_time_cards[i].theDate === $scope.dailyTimeCard.theDate) {
@@ -97,12 +97,21 @@ $scope.hideTextBox = function() {
 }
 
 $scope.addMaterials = function(materials) {
+	
+	for (var i = 0; i < $scope.jobsite.daily_time_cards.length; i++) {
+		// console.log("I am a winner ", $scope.jobsite.daily_time_cards[i].theDate)
+		if ($scope.jobsite.daily_time_cards[i].theDate === $scope.dailyTimeCard.theDate) {
+			$scope.dailyTimeCard.materials_used = materials;
+			console.warn("materials added to the dailyTimeCard ", $scope.jobsite.daily_time_cards[i]._id);
+	// employeeJobSiteTimeCardService.updateTheDailyTimeCard($scope.dailyTimeCard).then(function() {
+
+	// });
+		}
+	}
 	//might have to use a loop and if it matches the date then reasign the materials string in the new dailyTimeCard object to the materials submitted in this.
 	//you may also have to make it so having materials is part of the form validation, so that the employee cannot enter unless materials has been entered.
-$scope.dailyTimeCard.materials_used = materials;
-console.warn("materials added to the dailyTimeCard ", $scope.dailyTimeCard);
-
-$scope.textAreaShow = false;
+	
+	$scope.textAreaShow = false;
 }
 
 

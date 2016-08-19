@@ -75,7 +75,7 @@ function addTheNewDailyTimeCardToJobsiteObject() {
 		};
 
 		if (flag === false) {
-		$scope.jobsite.daily_time_cards.push(dailyTimeCard);
+		$scope.jobsite.daily_time_cards.push($scope.dailyTimeCard);
 		employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId($scope.jobsite.daily_time_cards, $scope.jobsite._id);
 		};
 	};
@@ -92,11 +92,16 @@ $scope.showTextArea = function() {
 	$scope.textAreaShow = true;
 };
 
+$scope.hideTextBox = function() {
+	$scope.textAreaShow = false;
+}
+
 $scope.addMaterials = function(materials) {
 	//might have to use a loop and if it matches the date then reasign the materials string in the new dailyTimeCard object to the materials submitted in this.
 	//you may also have to make it so having materials is part of the form validation, so that the employee cannot enter unless materials has been entered.
 $scope.dailyTimeCard.materials_used = materials;
 console.warn("materials added to the dailyTimeCard ", $scope.dailyTimeCard);
+
 $scope.textAreaShow = false;
 }
 

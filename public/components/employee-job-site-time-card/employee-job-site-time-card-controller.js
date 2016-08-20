@@ -32,28 +32,6 @@ functionToGetEmployees();
 $scope.theDate = employeeJobSiteTimeCardService.theDate();
 
 
-// var newJobSchema = new Schema({
-
-// 	name: { type: String, required: true },
-// 	contractor: { type: String },	
-// 	daily_time_cards: [
-// 		{
-// 			date: { type: Date, default: Date.now },
-// 			employees_worked: [
-// 				{
-// 					employeeName: String,
-// 					hours_worked: Number
-// 				}
-// 			],
-// 			materials_used: String,
-// 			notes: String
-// 		}
-// 	]
-// })
-
-//include this inside an automatically called function that checks to see if it already exists in the array, if it does, don't create a new one.
-
-
 
 function addTheNewDailyTimeCardToJobsiteObject() {
 	var flag = false;
@@ -66,7 +44,7 @@ function addTheNewDailyTimeCardToJobsiteObject() {
 	}
 	$scope.dailyTimeCard = new DailyTimeCard();
 
-	if ($scope.jobsite.daily_time_cards.length > 0) { //you should take away the $scope and assign it to a $scope property that is smaller and easier to write
+	if ($scope.jobsite.daily_time_cards.length > 0) {
 
 		for (var i = 0; i < $scope.jobsite.daily_time_cards.length; i++) {
 			if ($scope.jobsite.daily_time_cards[i].theDate === $scope.dailyTimeCard.theDate) {
@@ -75,45 +53,85 @@ function addTheNewDailyTimeCardToJobsiteObject() {
 		};
 
 		if (flag === false) {
-		$scope.jobsite.daily_time_cards.push($scope.dailyTimeCard);
-		employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId($scope.jobsite.daily_time_cards, $scope.jobsite._id);
+			$scope.jobsite.daily_time_cards.push($scope.dailyTimeCard);
+			employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId($scope.jobsite.daily_time_cards, $scope.jobsite._id);
 		};
 	};
 
 	if ($scope.jobsite.daily_time_cards.length < 1) {
-		$scope.jobsite.daily_time_cards.push(dailyTimeCard);
-		employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId($scope.jobsite.daily_time_cards, $scope.jobsite._id);
+			$scope.jobsite.daily_time_cards.push($scope.dailyTimeCard);
+			employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId($scope.jobsite.daily_time_cards, $scope.jobsite._id);
 	}
 
 };
+
+
 
 
 $scope.showTextArea = function() {
 	$scope.textAreaShow = true;
 };
 
+
 $scope.hideTextBox = function() {
 	$scope.textAreaShow = false;
-}
+};
+
+
 
 $scope.addMaterials = function(materials) {
 	
 	for (var i = 0; i < $scope.jobsite.daily_time_cards.length; i++) {
-		// console.log("I am a winner ", $scope.jobsite.daily_time_cards[i].theDate)
+		
 		if ($scope.jobsite.daily_time_cards[i].theDate === $scope.dailyTimeCard.theDate) {
-			$scope.dailyTimeCard.materials_used = materials;
-			console.warn("materials added to the dailyTimeCard ", $scope.jobsite.daily_time_cards[i]._id);
-	// employeeJobSiteTimeCardService.updateTheDailyTimeCard($scope.dailyTimeCard).then(function() {
-
-	// });
-		}
-	}
-	//might have to use a loop and if it matches the date then reasign the materials string in the new dailyTimeCard object to the materials submitted in this.
+			$scope.jobsite.daily_time_cards[i].materials_used = materials;
+			
+			employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId($scope.jobsite.daily_time_cards, $scope.jobsite._id).then(function(response) {
+				console.log("the materials update response ", response);
+			});
+		};
+	
 	//you may also have to make it so having materials is part of the form validation, so that the employee cannot enter unless materials has been entered.
 	
 	$scope.textAreaShow = false;
-}
+	};
+};
 
+
+
+
+$scope.addEmployeeTime = function(employeeName, hours_worked, index) {
+
+	var flag = false;
+	
+	function NameHoursDate(e, h, d) {
+		this.employeeName = e,
+		this.hours_worked = h,
+		this.date_worked = d
+	}
+	var nameHoursDate = new NameHoursDate(employeeName, hours_worked, $scope.theDate);
+
+
+	for (var i = 0; i < $scope.jobsite.daily_time_cards.length; i++) {
+
+		if ($scope.jobsite.daily_time_cards[i].theDate === $scope.dailyTimeCard.theDate) {
+
+			for (var j = 0; j < $scope.jobsite.daily_time_cards[i].employees_worked.length; j++) {
+				if ($scope.jobsite.daily_time_cards[i].employees_worked[j].date_worked === nameHoursDate.date_worked) {
+					flag = true;
+				};
+			};
+						///the conditionals are not working yet
+			if (flag === false && $scope.jobsite.daily_time_cards[i].employees_worked[j].employeeName !== nameHoursDate.employeeName) {	
+				$scope.jobsite.daily_time_cards[i].employees_worked.push(nameHoursDate);
+				
+				employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId($scope.jobsite.daily_time_cards, $scope.jobsite._id).then(function(response) {
+					console.log("the nameHoursDate update response ", response);
+				});
+			};
+		};
+	};
+};
 
 
 

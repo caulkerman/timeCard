@@ -6,10 +6,7 @@
 <p>Contractor:  {{jobsite.contractor}}
 <br />
 <br />
-<label for="employeeFilter">Filter Employee: </label>
 
-<input type="text" name="employeeFilter" ng-model="employee_filter">
-<br />
 <button ng-click="hideTextBox()" ng-show="textAreaShow">Close Text Box</button>
 <button ng-click="showTextArea()" ng-hide="textAreaShow" >Add Material</button>
 <br />
@@ -18,6 +15,11 @@
     <textarea ng-model="materials"></textarea>
     <button ng-click="addMaterials(materials)">Add</button>
 </div>
+
+<label for="employeeFilter">Filter Employee: </label>
+
+<input type="text" name="employeeFilter" ng-model="employee_filter">
+<br />
 
 <table st-table="students" class="table table-striped">
     <thead>

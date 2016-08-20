@@ -13,7 +13,8 @@ var newJobSchema = new Schema({
 			employees_worked: [
 				{
 					employeeName: String,
-					hours_worked: Number
+					hours_worked: Number,
+					date_worked: String
 				}
 			],
 			materials_used: String,

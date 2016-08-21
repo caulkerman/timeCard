@@ -121,29 +121,22 @@ $scope.addEmployeeTime = function(employeeName, hours_worked, index) {
 				employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId(dailyTCArray, $scope.jobsite._id).then(function(response) {
 				console.log("the nameHoursDate update response ", response.data);
 				});
-				console.log("the dailyTCArray.employees_worked array ", dailyTCArray[i].employees_worked);
 				break;
 			}
+			
 			var flag = false;
-			for (var j = 0; j < dailyTCArray[i].employees_worked.length; j++) {
-				
-				// break;
-				console.warn("nameHoursDate.employeeName ", nameHoursDate.employeeName , "dailyTCArray[i].employees_worked[j].employeeName ", dailyTCArray[i].employees_worked[j].employeeName);
-				
+			for (var j = 0; j < dailyTCArray[i].employees_worked.length; j++) {				
 
 				if (nameHoursDate.employeeName === dailyTCArray[i].employees_worked[j].employeeName) {
 					flag = true;
-					console.warn(dailyTCArray[i].employees_worked[j].employeeName);
-				}
-					console.log("flag", flag);
-					console.log("controller the jobsite object ", $scope.jobsite);
-				
-				
 				}
 			}
-			if (flag === false) {
-				dailyTCArray[i].employees_worked.push(nameHoursDate);
-				employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId(dailyTCArray, $scope.jobsite._id).then(function(response) {
+		}
+			
+		if (flag === false) {
+			dailyTCArray[i].employees_worked.push(nameHoursDate);
+				
+			employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId(dailyTCArray, $scope.jobsite._id).then(function(response) {
 				console.log("the nameHoursDate update response ", response.data);
 			});
 		};

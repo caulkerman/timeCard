@@ -111,27 +111,18 @@ $scope.addEmployeeTime = function(employeeName, hours_worked, index) {
 	}
 	var nameHoursDate = new NameHoursDate(employeeName, hours_worked, $scope.theDate);
 
-
 	for (var i = 0; i < $scope.jobsite.daily_time_cards.length; i++) {
 
-		if ($scope.jobsite.daily_time_cards[i].theDate === $scope.dailyTimeCard.theDate) {
+		if ($scope.jobsite.daily_time_cards[i].theDate === nameHoursDate.date_worked) { //everything needs to be done inside of this if statement
 
-			for (var j = 0; j < $scope.jobsite.daily_time_cards[i].employees_worked.length; j++) {
-				if ($scope.jobsite.daily_time_cards[i].employees_worked[j].date_worked === nameHoursDate.date_worked) {
-					flag = true;
-				};
-			};
-						///the conditionals are not working yet
-			if (flag === false && $scope.jobsite.daily_time_cards[i].employees_worked[j].employeeName !== nameHoursDate.employeeName) {	
-				$scope.jobsite.daily_time_cards[i].employees_worked.push(nameHoursDate);
+			$scope.jobsite.daily_time_cards[i].employees_worked.push(nameHoursDate);
+				console.log($scope.jobsite.daily_time_cards[i].employees_worked);
 				
-				employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId($scope.jobsite.daily_time_cards, $scope.jobsite._id).then(function(response) {
-					console.log("the nameHoursDate update response ", response);
-				});
 			};
 		};
-	};
+	
 };
+
 
 
 

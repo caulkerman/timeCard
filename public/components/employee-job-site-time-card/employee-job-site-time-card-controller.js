@@ -45,11 +45,13 @@ function addTheNewDailyTimeCardToJobsiteObject() {
 	}
 	$scope.dailyTimeCard = new DailyTimeCard();
 
-	if (dailyTCArray > 0) {
+	if (dailyTCArray.length > 0) {
 
 		for (var i = 0; i < dailyTCArray.length; i++) {
 			if (dailyTCArray[i].theDate === $scope.dailyTimeCard.theDate) {
 				flag = true;
+			console.log("addTheNewDailyTimeCardToJobsiteObject flag", flag);
+				
 			};
 		};
 

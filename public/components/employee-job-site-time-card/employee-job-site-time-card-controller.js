@@ -8,11 +8,12 @@ function employeeJobSiteTimeCardControllerCB($scope, $stateParams, employeeJobSi
 
 
 var jobSiteId = $stateParams.id;
-
+var dailyTCArray;
 
 function getTheJobSiteFromDBbyId() {
 	employeeJobSiteTimeCardService.getTheJobSiteFromDBbyId(jobSiteId).then(function(response) {
 		$scope.jobsite = response.data;
+		dailyTCArray = $scope.jobsite.daily_time_cards;
 		console.log("controller the jobsite object ", $scope.jobsite);
 		addTheNewDailyTimeCardToJobsiteObject();
 	})
@@ -44,23 +45,23 @@ function addTheNewDailyTimeCardToJobsiteObject() {
 	}
 	$scope.dailyTimeCard = new DailyTimeCard();
 
-	if ($scope.jobsite.daily_time_cards.length > 0) {
+	if (dailyTCArray > 0) {
 
-		for (var i = 0; i < $scope.jobsite.daily_time_cards.length; i++) {
-			if ($scope.jobsite.daily_time_cards[i].theDate === $scope.dailyTimeCard.theDate) {
+		for (var i = 0; i < dailyTCArray.length; i++) {
+			if (dailyTCArray[i].theDate === $scope.dailyTimeCard.theDate) {
 				flag = true;
 			};
 		};
 
 		if (flag === false) {
-			$scope.jobsite.daily_time_cards.push($scope.dailyTimeCard);
-			employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId($scope.jobsite.daily_time_cards, $scope.jobsite._id);
+			dailyTCArray.push($scope.dailyTimeCard);
+			employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId(dailyTCArray, $scope.jobsite._id);
 		};
 	};
 
-	if ($scope.jobsite.daily_time_cards.length < 1) {
-			$scope.jobsite.daily_time_cards.push($scope.dailyTimeCard);
-			employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId($scope.jobsite.daily_time_cards, $scope.jobsite._id);
+	if (dailyTCArray.length < 1) {
+			dailyTCArray.push($scope.dailyTimeCard);
+			employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId(dailyTCArray, $scope.jobsite._id);
 	}
 
 };
@@ -81,12 +82,12 @@ $scope.hideTextBox = function() {
 
 $scope.addMaterials = function(materials) {
 	
-	for (var i = 0; i < $scope.jobsite.daily_time_cards.length; i++) {
+	for (var i = 0; i < dailyTCArray.length; i++) {
 		
-		if ($scope.jobsite.daily_time_cards[i].theDate === $scope.dailyTimeCard.theDate) {
-			$scope.jobsite.daily_time_cards[i].materials_used = materials;
+		if (dailyTCArray[i].theDate === $scope.dailyTimeCard.theDate) {
+			dailyTCArray[i].materials_used = materials;
 			
-			employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId($scope.jobsite.daily_time_cards, $scope.jobsite._id).then(function(response) {
+			employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId(dailyTCArray, $scope.jobsite._id).then(function(response) {
 				console.log("the materials update response ", response);
 			});
 		};
@@ -102,7 +103,6 @@ $scope.addMaterials = function(materials) {
 
 $scope.addEmployeeTime = function(employeeName, hours_worked, index) {
 
-	var flag = false;
 	
 	function NameHoursDate(e, h, d) {
 		this.employeeName = e,
@@ -111,16 +111,43 @@ $scope.addEmployeeTime = function(employeeName, hours_worked, index) {
 	}
 	var nameHoursDate = new NameHoursDate(employeeName, hours_worked, $scope.theDate);
 
-	for (var i = 0; i < $scope.jobsite.daily_time_cards.length; i++) {
+	for (var i = 0; i < dailyTCArray.length; i++) {
 
-		if ($scope.jobsite.daily_time_cards[i].theDate === nameHoursDate.date_worked) { //everything needs to be done inside of this if statement
-
-			$scope.jobsite.daily_time_cards[i].employees_worked.push(nameHoursDate);
-				console.log($scope.jobsite.daily_time_cards[i].employees_worked);
-				
-			};
-		};
+		if (dailyTCArray[i].theDate === nameHoursDate.date_worked) { //everything needs to be done inside of this if statement
 	
+			if (dailyTCArray[i].employees_worked.length < 1) {
+				dailyTCArray[i].employees_worked.push(nameHoursDate);
+				
+				employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId(dailyTCArray, $scope.jobsite._id).then(function(response) {
+				console.log("the nameHoursDate update response ", response.data);
+				});
+				console.log("the dailyTCArray.employees_worked array ", dailyTCArray[i].employees_worked);
+				break;
+			}
+			var flag = false;
+			for (var j = 0; j < dailyTCArray[i].employees_worked.length; j++) {
+				
+				// break;
+				console.warn("nameHoursDate.employeeName ", nameHoursDate.employeeName , "dailyTCArray[i].employees_worked[j].employeeName ", dailyTCArray[i].employees_worked[j].employeeName);
+				
+
+				if (nameHoursDate.employeeName === dailyTCArray[i].employees_worked[j].employeeName) {
+					flag = true;
+					console.warn(dailyTCArray[i].employees_worked[j].employeeName);
+				}
+					console.log("flag", flag);
+					console.log("controller the jobsite object ", $scope.jobsite);
+				
+				
+				}
+			}
+			if (flag === false) {
+				dailyTCArray[i].employees_worked.push(nameHoursDate);
+				employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId(dailyTCArray, $scope.jobsite._id).then(function(response) {
+				console.log("the nameHoursDate update response ", response.data);
+			});
+		};
+	};
 };
 
 

@@ -70,6 +70,13 @@ function addTheNewDailyTimeCardToJobsiteObject() {
 
 
 
+$scope.showNoteTextBox = function() {
+	$scope.noteShow = true;
+}
+
+$scope.hideNoteTextBox = function() {
+	$scope.noteShow = false;
+}
 
 $scope.showTextArea = function() {
 	$scope.textAreaShow = true;
@@ -79,6 +86,37 @@ $scope.showTextArea = function() {
 $scope.hideTextBox = function() {
 	$scope.textAreaShow = false;
 };
+
+$scope.showJobDetails = function() {
+	$scope.jobDetails = true;
+};
+
+$scope.hideJobDetails = function() {
+	$scope.jobDetails = false;
+};
+
+
+
+$scope.addNote = function(notes) {
+	for (var i = 0; i < dailyTCArray.length; i++) {
+		
+		if (dailyTCArray[i].theDate === $scope.dailyTimeCard.theDate) {
+			dailyTCArray[i].notes = notes;
+			
+			employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId(dailyTCArray, $scope.jobsite._id).then(function(response) {
+				console.log("the notes update response ", response);
+				if (response.status === 200) {
+
+				};
+			});
+		};
+	
+	//you may also have to make it so having materials is part of the form validation, so that the employee cannot enter unless materials has been entered.
+	
+	$scope.noteShow = false;
+	};
+};
+
 
 
 
@@ -91,6 +129,9 @@ $scope.addMaterials = function(materials) {
 			
 			employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId(dailyTCArray, $scope.jobsite._id).then(function(response) {
 				console.log("the materials update response ", response);
+				if (respons.status === 200) {
+
+				};
 			});
 		};
 	
@@ -123,7 +164,7 @@ $scope.addEmployeeTime = function(employeeName, hours_worked, index) {
 				employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId(dailyTCArray, $scope.jobsite._id).then(function(response) {
 				console.log("the nameHoursDate update response ", response.data);
 				});
-				break;
+				// break;
 			}
 			
 			var flag = false;

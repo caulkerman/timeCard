@@ -1,18 +1,35 @@
 <h1>Job Site List</h1>
 <!--make sure you add angular for validation-->
-<form ng-submit="addNewJobsSite(newJobName, contractorName)">
+<button id="addNewJobSite" ng-click="showJobSiteForm()" ng-hide="showJobSite">Add New Job Site</button>
+<button ng-click="hideJobSiteForm()" ng-show="showJobSite">Close Form</button>
 
-	<input type="text" placeholder="Enter New Job Name"" ng-model="newJobName" >
 
-	<br />
+<div ng-show="showJobSite">
 
-	<input type="text" placeholder="Enter General Contractor" ng-model="contractorName" >
+	<form ng-submit="addNewJobsSite(newJobName, contractorName, jobAddress)">
 
-	<input type="submit" value="Submit">
+		<div class="jobNameDiv">
+			<label for="jobName">Job Name:</label>
+			<input type="text" placeholder="Enter New Job Name"" ng-model="newJobName" name="jobName">
+		</div>
+		
+		<div class="contractorNameDiv">
+			<label for="contractorName">Contractor Name:</label>
+			<input type="text" placeholder="Enter General Contractor" ng-model="contractorName" name="contractorName">
+		</div>
 
-</form>
+		<div class="jobAddress">
+			<label for="jobAddress">Job Address:</label>
+			<input type="text" ng-model="jobAddress" name="jobAddress" placeholder="Enter Job Adress">
+		</div>
 
+		<input type="submit" value="Submit">
+	
+	</form>
+
+</div>
 <br />
+
 <input type="text" placeholder="filter jobs" ng-model="jobs">
 
 <ul ng-repeat="job_site in job_sites | filter: {name:jobs} track by $index">
@@ -22,7 +39,5 @@
 </ul>
 
 <br />
-<!--maybe you can make it so that any job sites worked on today will be highlighted.-->
+<!--maybe you can make it so that any job sites worked on today will be highlighted, or at least have them in their own separate div at the top.-->
 
-
-<!-- {{test}} -->

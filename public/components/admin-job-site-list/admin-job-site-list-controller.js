@@ -19,14 +19,17 @@ function adminJobSiteListControllerCB($scope, adminJobSiteListService, $state) {
 	
 	
 	$scope.addNewJobsSite = function(newJobName, contractorName) {
+		
 		if ($scope.newJobName === undefined || $scope.newJobName === "" && $scope.contractorName === undefined || $scope.contractorName === "") {
 			console.log("you must enter a job name and contractor");
 		} else {
-		adminJobSiteListService.addNewJob(newJobName, contractorName).then(function(response) {
-		})
-		getListOfJobs();
-		$scope.newJobName = "";
-		$scope.contractorName = "";
+		
+			adminJobSiteListService.addNewJob(newJobName, contractorName).then(function(response) {
+			});
+		
+			getListOfJobs();
+			$scope.newJobName = "";
+			$scope.contractorName = "";
 		}
 	}
 
@@ -38,17 +41,25 @@ function adminJobSiteListControllerCB($scope, adminJobSiteListService, $state) {
 
 
 
+	$scope.showJobSiteForm = function() {
+		$scope.showJobSite = true;
+	}
+
+	$scope.hideJobSiteForm = function() {
+		$scope.showJobSite = false;
+	}
+
+
+
+
+
+
+
+
+
+
 
 }
-
-
-
-
-
-
-
 adminJobSiteListControllerCB.$inject = $inject;
 angular.module("timeCard").controller("adminJobSiteListController", adminJobSiteListControllerCB);
-
-
 })();

@@ -129,7 +129,7 @@ $scope.addMaterials = function(materials) {
 			
 			employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId(dailyTCArray, $scope.jobsite._id).then(function(response) {
 				console.log("the materials update response ", response);
-				if (respons.status === 200) {
+				if (response.status === 200) {
 
 				};
 			});

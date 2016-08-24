@@ -4,9 +4,15 @@ var newJobObject = {};
 
 
 
-this.addNewJob = function(newJob, contractor) {
+this.addNewJob = function(newJob, contractor, address, superName, phone, details, materials) {
 	newJobObject.name = newJob;
 	newJobObject.contractor = contractor;
+	newJobObject.job_address = address;
+	newJobObject.superintendent_name = superName;
+	newJobObject.superintendent_telephone = phone;
+	newJobObject.job_details = details;
+	newJobObject.materials_needed = materials;
+console.log(newJobObject);
 
 	var deferred = $q.defer();
 	$http({

@@ -3,8 +3,8 @@ var NewJob = require("../models/api.createNewJob.model")
 module.exports = {
 	
 	create: function(req, res) {
-		// console.log("req in apiCreateNewJobController create", req.body);
-		// console.log("res in apiCreateNewJobController create", res.body);
+		console.log("req in apiCreateNewJobController create", req.body);
+		console.log("res in apiCreateNewJobController create", res.body);
 
   var newJob = new NewJob(req.body);
     newJob.save(function(err, result) {

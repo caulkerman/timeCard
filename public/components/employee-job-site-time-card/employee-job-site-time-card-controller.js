@@ -146,13 +146,17 @@ $scope.addMaterials = function(materials) {
 
 $scope.addEmployeeTime = function(employeeName, hours_worked, index) {
 
-	
-	function NameHoursDate(e, h, d) {
-		this.employeeName = e,
-		this.hours_worked = h,
-		this.date_worked = d
+	if (!employeeName, !hours_worked) {
+		alert("hey, you need to add some stuff. You may want to make this a <p> that shows when the inputs are empty");
+		return;
 	}
+		function NameHoursDate(e, h, d) {
+			this.employeeName = e,
+			this.hours_worked = h,
+			this.date_worked = d
+		}
 	var nameHoursDate = new NameHoursDate(employeeName, hours_worked, $scope.theDate);
+	
 
 	for (var i = 0; i < dailyTCArray.length; i++) {
 
@@ -172,6 +176,9 @@ $scope.addEmployeeTime = function(employeeName, hours_worked, index) {
 
 				if (nameHoursDate.employeeName === dailyTCArray[i].employees_worked[j].employeeName) {
 					flag = true;
+					if (flag) {
+						alert("you may want to make it so that a <p> shows saying that time has already been entered for this employee for this day.  If changes are needed to be made talk to an administrator. Maybe see if you can do it by index so it shows up right there at where the name is.")
+					}
 				}
 			}
 		}

@@ -42,6 +42,7 @@ function addTheNewDailyTimeCardToJobsiteObject() {
 		this.employees_worked = [];
 		this.materials_used = '';
 		this.notes = '';
+		this.TandM = false; // if we do a t & M it will have to create a new dailyTimeCard object, but I am worrying about the view's curent state at the moment that it is created.  or something like this, boolean value will have to be brought from html through the funtion, will probably have to use a radio button or checkbox.
 	}
 	$scope.dailyTimeCard = new DailyTimeCard();
 

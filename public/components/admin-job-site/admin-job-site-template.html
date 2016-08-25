@@ -16,7 +16,7 @@
         </tr>
     </thead>
     
-    <tbody>
+    <tbody> <!-- You need to set up a spot to show whether the job time is T&M, maybe use hide/show if it is.-->
         <tr ng-show="showNewTimeEvent">
             <td><input type="text" placeholder="Add Date" ng-model="addDate"></td>
             <td><input type="text" placeholder="Add Name" ng-model="addName"></td>
@@ -24,8 +24,8 @@
             <td><button ng-click="addNewTimeEvent(addDate, addName, addHours)">Add</td>
         </tr>
         
-        <tr ng-repeat="employee in jobsite.employees_time_entries track by $index">
-            <td>{{employee.date}}</td>
+        <tr ng-repeat="employee in dateNameHours track by $index"> <!--maybe filter by date and name -->
+            <td>{{employee.date_worked}}</td>
             <td>{{employee.employeeName}}</td>
             <!--<td>{{employee.hoursWorked}}</td>-->
             <td> <input type="text" class="edit" ng-model="employee.hoursWorked"></td>

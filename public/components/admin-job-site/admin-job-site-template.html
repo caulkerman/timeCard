@@ -28,8 +28,8 @@
             <td>{{employee.date_worked}}</td>
             <td>{{employee.employeeName}}</td>
             <!--<td>{{employee.hoursWorked}}</td>-->
-            <td> <input type="text" class="edit" ng-model="employee.hoursWorked"></td>
-            <td><button ng-click="editEmployee($index)" id="edit">Edit</button></td>
+            <td> <input type="text" class="edit" ng-model="employee.hours_worked"></td>
+            <td><button ng-click="editEmployee(employee.hours_worked, $index)" id="edit">Edit</button></td>
         </tr>
     
     </tbody>

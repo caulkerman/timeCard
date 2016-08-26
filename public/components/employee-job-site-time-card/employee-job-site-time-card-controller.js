@@ -16,8 +16,8 @@ function getTheJobSiteFromDBbyId() {
 		dailyTCArray = $scope.jobsite.daily_time_cards;
 		console.log("controller the jobsite object ", $scope.jobsite);
 		addTheNewDailyTimeCardToJobsiteObject();
-	})
-}
+	});
+};
 getTheJobSiteFromDBbyId();
 
 
@@ -65,7 +65,7 @@ function addTheNewDailyTimeCardToJobsiteObject() {
 	if (dailyTCArray.length < 1) {
 			dailyTCArray.push($scope.dailyTimeCard);
 			employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId(dailyTCArray, $scope.jobsite._id);
-	}
+	};
 
 };
 
@@ -73,16 +73,15 @@ function addTheNewDailyTimeCardToJobsiteObject() {
 
 $scope.showNoteTextBox = function() {
 	$scope.noteShow = true;
-}
+};
 
 $scope.hideNoteTextBox = function() {
 	$scope.noteShow = false;
-}
+};
 
 $scope.showTextArea = function() {
 	$scope.textAreaShow = true;
 };
-
 
 $scope.hideTextBox = function() {
 	$scope.textAreaShow = false;
@@ -150,27 +149,27 @@ $scope.addEmployeeTime = function(employeeName, hours_worked, index) {
 	if (!employeeName, !hours_worked) {
 		alert("hey, you need to add some stuff. You may want to make this a <p> that shows when the inputs are empty");
 		return;
-	}
-		function NameHoursDate(e, h, d) {
-			this.employeeName = e,
-			this.hours_worked = h,
-			this.date_worked = d
-		}
+	};
+
+	function NameHoursDate(e, h, d) {
+		this.employeeName = e,
+		this.hours_worked = h,
+		this.date_worked = d
+	};
 	var nameHoursDate = new NameHoursDate(employeeName, hours_worked, $scope.theDate);
-	
 
 	for (var i = 0; i < dailyTCArray.length; i++) {
 
-		if (dailyTCArray[i].theDate === nameHoursDate.date_worked) { //everything needs to be done inside of this if statement
+		if (dailyTCArray[i].theDate === nameHoursDate.date_worked) { //this makes sure that the new nameHoursDate object gets pushed to the correct dailyTimeCard based on the date
 	
 			if (dailyTCArray[i].employees_worked.length < 1) {
 				dailyTCArray[i].employees_worked.push(nameHoursDate);
+				pushToJobSiteHoursWorked(hours_worked, index);
 				
 				employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId(dailyTCArray, $scope.jobsite._id).then(function(response) {
 				console.log("the nameHoursDate update response ", response.data);
 				});
-				// break;
-			}
+			};
 			
 			var flag = false;
 			for (var j = 0; j < dailyTCArray[i].employees_worked.length; j++) {				
@@ -178,14 +177,15 @@ $scope.addEmployeeTime = function(employeeName, hours_worked, index) {
 				if (nameHoursDate.employeeName === dailyTCArray[i].employees_worked[j].employeeName) {
 					flag = true;
 					if (flag) {
-						alert("you may want to make it so that a <p> shows saying that time has already been entered for this employee for this day.  If changes are needed to be made talk to an administrator. Maybe see if you can do it by index so it shows up right there at where the name is.")
-					}
-				}
-			}
-		}
+						alert("you may want to make it so that a <p> shows saying that time has already been entered for this employee for this day.  If changes are needed to be made talk to an administrator. Maybe see if you can do it by index so it shows up right there at where the name is.");
+					};
+				};
+			};
+		};
 			
 		if (flag === false) {
 			dailyTCArray[i].employees_worked.push(nameHoursDate);
+			pushToJobSiteHoursWorked(hours_worked, index);
 				
 			employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId(dailyTCArray, $scope.jobsite._id).then(function(response) {
 				console.log("the nameHoursDate update response ", response.data);
@@ -196,7 +196,24 @@ $scope.addEmployeeTime = function(employeeName, hours_worked, index) {
 
 
 
+function pushToJobSiteHoursWorked(hours_worked, index) {
 
+	var id = $scope.employees[index]._id;
+	var employee = $scope.employees[index].job_site_hours_worked;
+
+	function EmployeeNameHoursJob(d, h, j) {
+		this.date_worked = d,
+		this.hours_worked = h,
+		this.job_site = j
+	}
+	var employeeNameHoursJob = new EmployeeNameHoursJob($scope.theDate, hours_worked, $scope.jobsite.name);
+
+	$scope.employees[index].job_site_hours_worked.push(employeeNameHoursJob);
+
+	employeeJobSiteTimeCardService.updateTheEmployeeInDBbyId(employee, id).then(function(response) {
+		console.log("the response employee job_site_hours_worked ", response.data);
+	});
+};
 
 
 

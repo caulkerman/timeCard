@@ -30,8 +30,18 @@ module.exports = {
   },
 
 
-  updateEmployees: function(req, res) {
+  update_daily_time_cards: function(req, res) {
     NewJob.findByIdAndUpdate(req.params.id, {daily_time_cards: req.body}, {new: true}, 
+      function(err, result) {
+        if (err) return res.status(500);
+        else res.send(result);
+    });
+  },
+
+
+
+  update_employees_worked: function(req, res) {
+    NewJob.findByIdAndUpdate(req.params.id, {employees_worked: req.body}, {new: true}, 
       function(err, result) {
         if (err) return res.status(500);
         else res.send(result);

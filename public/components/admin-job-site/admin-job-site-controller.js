@@ -10,7 +10,7 @@ function adminJobSiteControllerCB($scope, $stateParams, employeeJobSiteTimeCardS
 var jobSiteId = $stateParams.id;
 $scope.dateNameHours = [];
 
-var getTheJobSiteFromDBbyId = function() {
+function getTheJobSiteFromDBbyId() {
 
 	employeeJobSiteTimeCardService.getTheJobSiteFromDBbyId(jobSiteId).then(function(response) {
 		$scope.jobsite = response.data;
@@ -31,7 +31,7 @@ getTheJobSiteFromDBbyId();
 
 
 
-var getEmployees = function() {
+function getEmployees() {
 	adminJobSiteService.getEmployees().then(function(response){
 	console.log("the getEmployees response in controller", response.data);
 	$scope.employeesArray = response.data;
@@ -41,15 +41,28 @@ getEmployees();
 
 
 
-$scope.editEmployee = function(hours, index) {
+$scope.editEmployee = function(hours, id, index) {
 
-	//I need to update the $scope.jobsite.employees_worked[i] with the id.
-	var id = $scope.jobsite._id;
-	console.log($scope.jobsite._id);
-	employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId($scope.jobsite.employees, id).then(function(response) {
-			console.log("the editEmployee response in controller" ,response.data);
-	})
-	getTheJobSiteFromDBbyId();
+	for (var i = 0; i < $scope.jobsite.daily_time_cards.length; i++) {
+		for (var j = 0; j < $scope.jobsite.daily_time_cards[i].employees_worked.length; j++) {
+			if ($scope.jobsite.daily_time_cards[i].employees_worked[j]._id === id) {
+				// break;
+				$scope.jobsite.daily_time_cards[i].employees_worked[j].hours_worked = hours;
+
+				var employee_worked = $scope.jobsite.daily_time_cards[i].employees_worked[j];
+
+				console.warn("the employee that worked ", employee_worked);
+
+				adminJobSiteService.updateEmployeesWorkedInDBbyId(employee_worked, id).then(function(response) {
+				console.log("the editEmployee response in controller" ,response.data);
+				})
+				getTheJobSiteFromDBbyId();
+			}
+		}
+		
+	}
+
+
 }
 
 

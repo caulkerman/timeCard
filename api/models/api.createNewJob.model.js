@@ -22,8 +22,8 @@ var newJobSchema = new Schema({
 					date_worked: String
 				}
 			],
-			materials_used: String,
-			notes: String
+		materials_used: String,
+		notes: String
 		}
 	]
 })

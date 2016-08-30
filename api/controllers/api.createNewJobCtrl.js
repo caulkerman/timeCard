@@ -41,6 +41,7 @@ module.exports = {
 
 
   update_employees_worked: function(req, res) {
+    console.log("the update employees_worked ", req.body);
     NewJob.findByIdAndUpdate(req.params.id, {employees_worked: req.body}, {new: true}, 
       function(err, result) {
         if (err) return res.status(500);

@@ -18,10 +18,11 @@ this.updateTheEmployeeInDBbyId = function(employee, id) {
 
 
 this.updateEmployeesWorkedInDBbyId = function (employees_worked, id) {
+	console.log("in the service ", employees_worked);
 	var deferred = $q.defer();
 	$http({
 		method: "PUT",
-		url:"/api/update_employees_worked/" + id,
+		url: "/api/update_employees_worked/" + id,
 		data: employees_worked
 	}).then(function(response) {
 		deferred.resolve(response);

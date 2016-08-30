@@ -46,17 +46,16 @@ $scope.editEmployee = function(hours, id, index) {
 	for (var i = 0; i < $scope.jobsite.daily_time_cards.length; i++) {
 		for (var j = 0; j < $scope.jobsite.daily_time_cards[i].employees_worked.length; j++) {
 			if ($scope.jobsite.daily_time_cards[i].employees_worked[j]._id === id) {
-				// break;
 				$scope.jobsite.daily_time_cards[i].employees_worked[j].hours_worked = hours;
 
 				var employee_worked = $scope.jobsite.daily_time_cards[i].employees_worked[j];
 
-				console.warn("the employee that worked ", employee_worked);
-
-				adminJobSiteService.updateEmployeesWorkedInDBbyId(employee_worked, id).then(function(response) {
-				console.log("the editEmployee response in controller" ,response.data);
+				//maybe at some later time edit the function below so it uses its own service rather than the time card one.
+				employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId($scope.jobsite.daily_time_cards, $scope.jobsite._id).then(function(response) {
+					console.log("editEmployee response ", response.data);
 				})
-				getTheJobSiteFromDBbyId();
+
+				
 			}
 		}
 		

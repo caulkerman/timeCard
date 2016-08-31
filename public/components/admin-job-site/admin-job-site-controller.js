@@ -14,7 +14,7 @@ function getTheJobSiteFromDBbyId() {
 
 	employeeJobSiteTimeCardService.getTheJobSiteFromDBbyId(jobSiteId).then(function(response) {
 		$scope.jobsite = response.data;
-		
+		// console.warn("$scope.jobsite ", $scope.jobsite);
 		console.log("the jobsite.daily_time_card array response in controller ", $scope.jobsite.daily_time_cards);
 
 		for (var i = 0; i < $scope.jobsite.daily_time_cards.length; i++) {
@@ -66,8 +66,6 @@ $scope.editEmployee = function(hours, id, index) {//you still need to clean up t
 			
 			if ($scope.dateNameHours[index].date_worked === $scope.employeesArray[e].job_site_hours_worked[i].date_worked && $scope.dateNameHours[index].employeeName === $scope.employeesArray[e].fullName) {
 				
-				console.warn("crappy conditional is working");
-				
 				$scope.employeesArray[e].job_site_hours_worked[i].hours_worked = hours;
 				
 				adminJobSiteService.updateEmployeesWorkedInDBbyId($scope.employeesArray[e].job_site_hours_worked, $scope.employeesArray[e]._id).then(function(response) {
@@ -91,29 +89,22 @@ $scope.hideAddTime = function() {
 
 
 
-$scope.addNewTimeEvent = function(date, name, hours) {
-	console.log("The addNewTimeEvent function has fired");
+$scope.addLateEmployeeTime= function(date, name, hours) {
+	console.log("The addLateEmplyeeTime function has fired");
 	if (date && name && hours) {
 		var id = $scope.jobsite._id;
 
-		function NewTimeEvent(date, name, hours) {
-			this.date = date;
+		function LateEmployeeTime(date, name, hours) {
+			this.late = true;
+			this.date = 
+			this.date_worked = date;
 			this.employeeName = name;
-			this.hoursWorked = hours;
+			this.hours_worked = hours;
 		}
-		var newTimeEvent = new NewTimeEvent(date, name, hours);
+		var lateEmployeeTime = new LateEmployeeTime(date, name, hours);
 
-		for (var i = 0; i < $scope.employeesArray.length; i++) {
-			if ($scope.employeesArray[i].fullName === newTimeEvent.employeeName || $scope.jobsite.late_time_entries.length < 1) {
+		//do something
 		
-				$scope.jobsite.late_time_entries.push(newTimeEvent);
-			
-				adminJobSiteService.addLateTimeCard($scope.jobsite.late_time_entries, id).then(function(response) {
-				console.log("the late_time_entry ", response.data);
-				getTheJobSiteFromDBbyId();
-				});
-			};
-		};
 		$scope.addDate = "";
 		$scope.addName = "";
 		$scope.addHours = "";

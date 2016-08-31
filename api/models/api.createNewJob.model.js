@@ -16,14 +16,16 @@ var newJobSchema = new Schema({
 			theDate: {type: String },
 			// date: { type: Date, default: Date.now },
 			employees_worked: [
-		{
+				{
+					late: { type: Boolean, default: false },
+					date: { type: Date, default: Date.now },
 					employeeName: String,
 					hours_worked: Number,
 					date_worked: String
 				}
 			],
-		materials_used: String,
-		notes: String
+			materials_used: String,
+			notes: String
 		}
 	]
 })

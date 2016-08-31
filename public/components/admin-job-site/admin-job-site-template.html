@@ -4,8 +4,8 @@
 <p>General Contractor: {{jobsite.contractor}}</p>
 <p>Total Job Site Man Hours: {{jobsite.man_hours}}</p>
 
-<button ng-click="showAddTime()" ng-hide="showNewTimeEvent">Add A Late Time Event</button>
-<button ng-click="hideAddTime()" ng-show="showNewTimeEvent">Hide Late Time Event Form</button>
+<button ng-click="showAddTime()" ng-hide="showNewTimeEvent">Add Late Time Employee Time</button>
+<button ng-click="hideAddTime()" ng-show="showNewTimeEvent">Hide Late Employee Time</button>
 
 <table st-table="students" class="table table-striped">
     <thead>
@@ -21,7 +21,7 @@
             <td><input type="text" placeholder="Add Date" ng-model="addDate"></td>
             <td><input type="text" placeholder="Add Name" ng-model="addName"></td>
             <td><input type="number" min=".25" max="24" placeholder="Hours Worked" ng-model="addHours"></td>
-            <td><button ng-click="addNewTimeEvent(addDate, addName, addHours)">Add</td>
+            <td><button ng-click="addLateEmmployeeTime(addDate, addName, addHours)">Add</td>
         </tr>
         
         <tr ng-repeat="employee in dateNameHours track by $index"> <!--maybe filter by date and name -->

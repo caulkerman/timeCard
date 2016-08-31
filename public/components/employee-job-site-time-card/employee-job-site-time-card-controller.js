@@ -188,7 +188,7 @@ $scope.addEmployeeTime = function(employeeName, hours_worked, index) {
 			pushToJobSiteHoursWorked(hours_worked, index);
 				
 			employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId(dailyTCArray, $scope.jobsite._id).then(function(response) {
-				console.log("the nameHoursDate update response ", response.data);
+				// console.log("the nameHoursDate update response ", response.data);
 			});
 		};
 	};
@@ -197,7 +197,6 @@ $scope.addEmployeeTime = function(employeeName, hours_worked, index) {
 
 
 function pushToJobSiteHoursWorked(hours_worked, index) {
-
 	var id = $scope.employees[index]._id;
 	var employee = $scope.employees[index].job_site_hours_worked;
 
@@ -207,11 +206,10 @@ function pushToJobSiteHoursWorked(hours_worked, index) {
 		this.job_site = j
 	}
 	var employeeNameHoursJob = new EmployeeNameHoursJob($scope.theDate, hours_worked, $scope.jobsite.name);
-
 	$scope.employees[index].job_site_hours_worked.push(employeeNameHoursJob);
-
+	// console.log("the employeeNameHours object pushed ot job_site_hours_worked array ", $scope.employees[index].job_site_hours_worked);
 	employeeJobSiteTimeCardService.updateTheEmployeeInDBbyId(employee, id).then(function(response) {
-		console.log("the response employee job_site_hours_worked ", response.data);
+		// console.log("the response employee job_site_hours_worked ", response.data);
 	});
 };
 

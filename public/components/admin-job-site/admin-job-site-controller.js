@@ -41,27 +41,42 @@ getEmployees();
 
 
 
-$scope.editEmployee = function(hours, id, index) {
+$scope.editEmployee = function(hours, id, index) {//you still need to clean up this function.  It works but there are a lot of things that don't need to be here anymore.
 
 	for (var i = 0; i < $scope.jobsite.daily_time_cards.length; i++) {
+		
 		for (var j = 0; j < $scope.jobsite.daily_time_cards[i].employees_worked.length; j++) {
+			
 			if ($scope.jobsite.daily_time_cards[i].employees_worked[j]._id === id) {
 				$scope.jobsite.daily_time_cards[i].employees_worked[j].hours_worked = hours;
 
 				var employee_worked = $scope.jobsite.daily_time_cards[i].employees_worked[j];
 
-				//maybe at some later time edit the function below so it uses its own service rather than the time card one.
-				employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId($scope.jobsite.daily_time_cards, $scope.jobsite._id).then(function(response) {
-					console.log("editEmployee response ", response.data);
+				adminJobSiteService.updateTheJobSiteInDBbyId($scope.jobsite.daily_time_cards, $scope.jobsite._id).then(function(response) {
 				})
-
-				
 			}
 		}
 		
 	}
-
-
+	
+	//loop through $scope.employees array
+	for (var e = 0; e < $scope.employeesArray.length; e++) {
+		
+		for (var i = 0; i < $scope.employeesArray[e].job_site_hours_worked.length; i++) {
+			
+			if ($scope.dateNameHours[index].date_worked === $scope.employeesArray[e].job_site_hours_worked[i].date_worked && $scope.dateNameHours[index].employeeName === $scope.employeesArray[e].fullName) {
+				
+				console.warn("crappy conditional is working");
+				
+				$scope.employeesArray[e].job_site_hours_worked[i].hours_worked = hours;
+				
+				adminJobSiteService.updateEmployeesWorkedInDBbyId($scope.employeesArray[e].job_site_hours_worked, $scope.employeesArray[e]._id).then(function(response) {
+					
+					console.log("this is the employeesArray updated response ", response.data);
+				})
+			}
+		}
+	}
 }
 
 
@@ -104,19 +119,6 @@ $scope.addNewTimeEvent = function(date, name, hours) {
 		$scope.addHours = "";
 	};
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

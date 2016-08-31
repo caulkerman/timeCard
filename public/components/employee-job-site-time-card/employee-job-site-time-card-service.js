@@ -63,7 +63,7 @@ app.service("employeeJobSiteTimeCardService", ["$q", "$http", "$timeout", functi
 		var deferred = $q.defer();
 		$http({
 			method: "PUT",
-			url: "/api/update_daily_time_cards/" + id,
+			url: "/api/updateEmployee/" + id,
 			data: employee
 		}).then(function(response) {
 			deferred.resolve(response);

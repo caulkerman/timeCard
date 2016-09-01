@@ -10,6 +10,7 @@ function adminJobSiteControllerCB($scope, $stateParams, employeeJobSiteTimeCardS
 var jobSiteId = $stateParams.id;
 $scope.dateNameHours = [];
 
+
 function getTheJobSiteFromDBbyId() {
 
 	employeeJobSiteTimeCardService.getTheJobSiteFromDBbyId(jobSiteId).then(function(response) {

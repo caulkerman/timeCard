@@ -5,39 +5,39 @@
 <p>Total Job Site Man Hours: {{jobsite.man_hours}}</p>
 <h1>This page is going to be rebuilt!</h1>
 
-<button ng-click="showAddTime()" ng-hide="showNewTimeEvent">Add Late Time Employee Time</button>
-<button ng-click="hideAddTime()" ng-show="showNewTimeEvent">Hide Late Employee Time</button>
+<!--<button ng-click="showAddTime()" ng-hide="showNewTimeEvent">Add Late Time Employee Time</button>-->
+<!--<button ng-click="hideAddTime()" ng-show="showNewTimeEvent">Hide Late Employee Time</button>-->
+<button>This Job Site Is Completed</button>
 
-<table st-table="students" class="table table-striped">
-    <thead>
+<!--<table st-table="students" class="table table-striped">-->
+    <!--<thead>
         <tr>
             <td>Date Worked</td>
             <td>Employee Name</td>
             <td>Hours Worked</td>    
         </tr>
-    </thead>
+    </thead>-->
     
-    <tbody> <!-- You need to set up a spot to show whether the job time is T&M, maybe use hide/show if it is.-->
-        <tr ng-show="showNewTimeEvent">
+    <!--<tbody>  You need to set up a spot to show whether the job time is T&M, maybe use hide/show if it is.-->
+        <!--<tr ng-show="showNewTimeEvent">
             <td><input type="text" placeholder="Add Date" ng-model="addDate"></td>
             <td><input type="text" placeholder="Add Name" ng-model="addName"></td>
             <td><input type="number" min=".25" max="24" placeholder="Hours Worked" ng-model="addHours"></td>
             <td><button ng-click="addLateEmmployeeTime(addDate, addName, addHours)">Add</td>
-        </tr>
+        </tr>-->
         
-        <tr ng-repeat="timecard in jobsite.daily_time_cards track by $index"> <!--maybe filter by date and name -->
-            <td>{{timecard.theDate}}
+        <ul ng-repeat="timecard in jobsite.daily_time_cards track by $index"> <!--maybe filter by date and name -->
+            <li>
+                <a href="">{{timecard.theDate}}</a>
+            </li>
             <!--<td>{{employee.date_worked}}</td>-->
             <!--<td>{{employee.employeeName}}</td>-->
             <!--<td>{{employee.hoursWorked}}</td>-->
-            <td> <input type="text" class="edit" ng-model="employee.hours_worked"></td>
-            <td><button ng-click="editEmployee(employee.hours_worked, employee._id, $index)" id="edit">Edit</button></td>
-        </tr>
+            <!--<td> <input type="text" class="edit" ng-model="employee.hours_worked"></td>-->
+            <!--<td><button ng-click="editEmployee(employee.hours_worked, employee._id, $index)" id="edit">Edit</button></td>-->
+        </ul>
     
-    </tbody>
-</table>
+    <!--</tbody>-->
+<!--</table>-->
 
-<ul ng-repeat="lates in jobsite.late_time_entries track by $index">
-    <li>{{lates}}</li>
-</ul>
 

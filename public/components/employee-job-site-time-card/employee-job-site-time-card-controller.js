@@ -57,7 +57,7 @@ function addTheNewDailyTimeCardToJobsiteObject() {
 		};
 
 		if (flag === false) {
-			dailyTCArray.push($scope.dailyTimeCard);
+			dailyTCArray.unshift($scope.dailyTimeCard);
 			employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId(dailyTCArray, $scope.jobsite._id);
 		};
 	};

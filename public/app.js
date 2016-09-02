@@ -17,7 +17,7 @@ var app = angular.module("timeCard", ["ui.router", "smart-table"])
 		})
 
 		.state("admin", {
-			url: "/admin/:id/:ids",
+			url: "/admin",
 			templateUrl: "components/admin/admin-template.html",
 			controller: "adminController"
 		})
@@ -68,6 +68,12 @@ var app = angular.module("timeCard", ["ui.router", "smart-table"])
 			url: "/the-employee/:id",
 			templateUrl: "components/admin-the-employee/admin-the-employee-template.html",
 			controller: "adminTheEmployee"
+		})
+
+		.state("admin-old-job-sites", {
+			url: "/admin-old-job-sites",
+			templateUrl: "components/admin-old-job-sites/admin-old-job-sites.html",
+			controller: "adminOldJobSites"
 		})
 
 	});

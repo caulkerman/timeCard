@@ -10,11 +10,11 @@ var newJobSchema = new Schema({
 	superintendent_name: { type: String },
 	superintendent_telephone: { type: Number },
 	job_details: { type: String },
-	materials_needed: { type: String },	
+	materials_needed: { type: String },
+	completed: { type: Boolean, default: false },
 	daily_time_cards: [
 		{
 			theDate: {type: String },
-			// date: { type: Date, default: Date.now },
 			employees_worked: [
 				{
 					late: { type: Boolean, default: false },

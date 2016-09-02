@@ -1,22 +1,33 @@
 
                 <!--BELOW IS A SAMPLING OF WHAT I MIGHT WANT FOR THE JOB-SITE TIME CARDS-->
 
+<!--I think I just need to make this a Form, this way I use a single function to submit it all rather than using seperate functions for each of them.-->
+<p>Contractor: <input type="text" ng-model="jobsite.contractor" ng-click="updateContractor(jobsite.contractor)"</p>
+<p>Job Address: <input type="text" ng-model="jobsite.address" ng-click="updateJobsiteAddress(jobsite.address)"</p>
+<p>Job Details: <input type="text" ng-model="jobsite.details" ng-click="updteJobDetails(jobsite.details)"</p>
+<p>Materials Needed: {{jobsite.materials_needed}}</p> <!-- Same as above -->
+<p>Job Name: {{jobsite.name}}</p><!-- Same as above -->
+<p>Superintendant Name: {{jobsite.superintendant_name}}</p><!-- Same as above -->
+<p>Superintendant Telephone: {{jobsite.superintendant_telephone}}</p><!-- Same as above -->
+
 <table>
     <thead>
         <tr>
             <td>Employee Name</td>
             <td>Hours Worked</td>
         </tr>
-        
     </thead>
 
     <tbody>
         <tr ng-repeat="employees in employees_worked track by $index">
             <td>{{employees.employeeName}}</td>
-            <td>{{employees.hours_worked}}</td>
+            <td>
+                <input type="number" min=".25" max="24" ng-model="employees.hours_worked" ng-click="updateEmployeeHours(employees.hours_worked)">
+            </td>
         </tr>
     </tbody>
 </table>
+
 
 <div>
     <p>Materials Used: {{materials_used}}</p>

@@ -1,0 +1,27 @@
+
+                <!--BELOW IS A SAMPLING OF WHAT I MIGHT WANT FOR THE JOB-SITE TIME CARDS-->
+
+<table>
+    <thead>
+        <tr>
+            <td>Employee Name</td>
+            <td>Hours Worked</td>
+        </tr>
+        
+    </thead>
+
+    <tbody>
+        <tr ng-repeat="employees in employees_worked track by $index">
+            <td>{{employees.employeeName}}</td>
+            <td>{{employees.hours_worked}}</td>
+        </tr>
+    </tbody>
+</table>
+
+<div>
+    <p>Materials Used: {{materials_used}}</p>
+</div>
+
+<div>
+    <p>Notes: {{notes}}</p>
+</div>

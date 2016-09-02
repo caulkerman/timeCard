@@ -90,27 +90,27 @@ $scope.hideAddTime = function() {
 
 
 
-$scope.addLateEmployeeTime= function(date, name, hours) {
-	console.log("The addLateEmplyeeTime function has fired");
-	if (date && name && hours) {
-		var id = $scope.jobsite._id;
+// $scope.addLateEmployeeTime= function(date, name, hours) {
+// 	console.log("The addLateEmplyeeTime function has fired");
+// 	if (date && name && hours) {
+// 		var id = $scope.jobsite._id;
 
-		function LateEmployeeTime(date, name, hours) {
-			this.late = true;
-			this.date = 
-			this.date_worked = date;
-			this.employeeName = name;
-			this.hours_worked = hours;
-		}
-		var lateEmployeeTime = new LateEmployeeTime(date, name, hours);
+// 		function LateEmployeeTime(date, name, hours) {
+// 			this.late = true;
+// 			this.date = 
+// 			this.date_worked = date;
+// 			this.employeeName = name;
+// 			this.hours_worked = hours;
+// 		}
+// 		var lateEmployeeTime = new LateEmployeeTime(date, name, hours);
 
-		//do something
+// 		//do something
 		
-		$scope.addDate = "";
-		$scope.addName = "";
-		$scope.addHours = "";
-	};
-};
+// 		$scope.addDate = "";
+// 		$scope.addName = "";
+// 		$scope.addHours = "";
+// 	};
+// };
 
 
 

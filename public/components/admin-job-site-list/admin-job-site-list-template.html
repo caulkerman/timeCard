@@ -51,7 +51,7 @@
 
 </div>
 <br />
-
+<br />
 <input type="text" placeholder="filter jobs" ng-model="jobs">
 
 <ul ng-repeat="job_site in job_sites | filter: {name:jobs} track by $index">
@@ -61,5 +61,7 @@
 </ul>
 
 <br />
+<button ui-sref="admin-old-job-sites" href="#/admin-old-job-sites">Old/Completed Job Sites</button>
+
 <!--maybe you can make it so that any job sites worked on today will be highlighted, or at least have them in their own separate div at the top.-->
 

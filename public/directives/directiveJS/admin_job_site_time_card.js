@@ -1,30 +1,17 @@
 (function() {
-var $inject = [];
-function adminJobSiteTimeCardDirectiveCB() {
+var $inject = ["$scope"];
+function rwTableCB($scope) {
 "use strict"
 
 //////ADD JAVASCRIPT HERE\\\\\\\\\
 
-return {
+    return {
+        templateUrl: "directives/directiveTemplates/admin_job_site_time_card.html",
+        link: function(scope, element, attrs) {
 
-
-
-    
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
+        }
+    };
 };
-adminJobSiteTimeCardDirectiveCB.$inject = $inject;
-angular.module("timeCard").directive("adminJobSiteTimeCardDirective", adminJobSiteTimeCardDirectiveCB);
+rwTableCB.$inject = $inject;
+angular.module("timeCard").directive("rwTable", rwTableCB);
 })();

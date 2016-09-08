@@ -88,6 +88,18 @@ $scope.hideAddTime = function() {
 	$scope.showNewTimeEvent = false;
 }
 
+$scope.showUpdateForm = function() {
+	$scope.showUpdateJobSite = true;
+}
+
+$scope.hideUpdateForm = function() {
+	$scope.showUpdateJobSite = false;
+}
+
+$scope.updateTheJobSite = function() {
+	alert("You have updated the job site");
+}
+
 
 
 // $scope.addLateEmployeeTime= function(date, name, hours) {

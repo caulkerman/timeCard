@@ -8,7 +8,50 @@
 <!--<button ng-click="showAddTime()" ng-hide="showNewTimeEvent">Add Late Time Employee Time</button>-->
 <!--<button ng-click="hideAddTime()" ng-show="showNewTimeEvent">Hide Late Employee Time</button>-->
 <button>This Job Site Is Completed</button>
+<br />
+<br />
+<button ng-click="showUpdateForm()" ng-hide="showUpdateJobSite">Update Jobsite Details</button>
+<button ng-click="hideUpdateForm()" ng-show="showUpdateJobSite">Hide Jobsite Details</button>
 
+<form ng-show="showUpdateJobSite" ng-submit="updateTheJobSite(jobsite.contractor, jobsite.job_address, jobsite.job_details, jobsite.materials_needed, jobsite.name, jobsite.superintendent,jobsite.superintendent_telephone)">
+    
+    <div >
+        <label for="contractor">Contractor: </label>
+        <input type="text" class="updateJobSite" ng-model="jobsite.contractor" name="contractor">
+    </div>
+
+    <div>
+        <label for="job_address">Job Address: </label>
+        <input type="text" class="updateJobSite" ng-model="jobsite.job_address" name="job_address">
+    </div>
+
+    <div>
+        <label for="job_details">Job Details: </label>
+        <textarea class="updateJobSite" ng-model="jobsite.job_details" name="job_details"></textarea>
+    </div>
+
+    <div>
+        <label for="materials_needed">Materials Needed: </label>
+        <textarea class="updateJobSite" ng-model="jobsite.materials_needed" name="materials_needed"></textarea>
+    </div>
+
+    <div>
+        <label for="name">Job Name: </label>
+        <input type="text" class="updateJobSite" ng-model="jobsite.name" name="name">
+    </div>
+
+    <div>
+        <label for="superintenent_name">Superintendent Name: </label>
+        <input type="text" class="updateJobSite" ng-model="jobsite.superintendent_name" name="superintendent_name">
+    </div>
+
+    <div>
+        <label for="superintendent_telephone">Superintendant Telephone: </label>
+        <input type="number" class="updateJobSite" ng-model="jobsite.superintendent_telephone" name="superintendent_telephone">
+    </div>
+
+    <input type="submit" class="updateJobSite" value="Update Jobsite">
+</form>
 <!--<table st-table="students" class="table table-striped">-->
     <!--<thead>
         <tr>
@@ -38,7 +81,7 @@
             <!--<td><button ng-click="editEmployee(employee.hours_worked, employee._id, $index)" id="edit">Edit</button></td>-->
         </ul>
 
-        <div rw-table ng-show="showTimeCard"></div>
+        <div rw-table ></div>
     </div>
     
     <!--</tbody>-->

@@ -25,17 +25,21 @@
             <td><input type="number" min=".25" max="24" placeholder="Hours Worked" ng-model="addHours"></td>
             <td><button ng-click="addLateEmmployeeTime(addDate, addName, addHours)">Add</td>
         </tr>-->
-        
-        <ul ng-repeat="timecard in jobsite.daily_time_cards track by $index"> <!--maybe filter by date and name -->
+    <div ng-repeat="timecard in jobsite.daily_time_cards track by $index"> 
+        <ul > <!--maybe filter by date and name -->
             <li>
-                <a href="">{{timecard.theDate}}</a>
+                <a id="timeCard" href="">{{timecard.theDate}}</a>
             </li>
+
             <!--<td>{{employee.date_worked}}</td>-->
             <!--<td>{{employee.employeeName}}</td>-->
             <!--<td>{{employee.hoursWorked}}</td>-->
             <!--<td> <input type="text" class="edit" ng-model="employee.hours_worked"></td>-->
             <!--<td><button ng-click="editEmployee(employee.hours_worked, employee._id, $index)" id="edit">Edit</button></td>-->
         </ul>
+
+        <div rw-table ng-show="showTimeCard"></div>
+    </div>
     
     <!--</tbody>-->
 <!--</table>-->

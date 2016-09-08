@@ -1,13 +1,25 @@
 (function() {
-var $inject = ["$scope"];
-function rwTableCB($scope) {
+var $inject = [];
+function rwTableCB() {
 "use strict"
 
 //////ADD JAVASCRIPT HERE\\\\\\\\\
 
     return {
         templateUrl: "directives/directiveTemplates/admin_job_site_time_card.html",
-        link: function(scope, element, attrs) {
+        // link: function(scope, element, attrs) {
+
+        // }
+
+        controller: function($scope) {
+            $("a#timeCard").on("click", function() {
+                
+                $scope.showTimeCard = true;
+                console.log("showTimeCard ", $scope.showTimeCard);
+                $(this).toggle();
+            })
+
+
 
         }
     };

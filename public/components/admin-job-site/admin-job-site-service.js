@@ -34,17 +34,18 @@ this.updateEmployeesWorkedInDBbyId = function (employees_worked, id) {
 
 
 
-// this.addLateTimeCard = function(jobsite, id) {
-// 	var deferred = $q.defer();
-// 	$http({
-// 		method: "PUT",
-// 		url:"/api/updateJobsLateTimeCard/" + id,
-// 		data: jobsite
-// 	}).then(function(response) {
-// 			deferred.resolve(response);
-// 		});
-// 	return deferred.promise;
-// }
+this.updateJobsite = function(jobsite, id) {
+	console.log("the jobsite ", jobsite, "the id ", id, "before it goes to db");
+	var deferred = $q.defer();
+	$http({
+		method: "PUT",
+		url: "/api/update_jobsite/" + id,
+		data: jobsite
+	}).then(function(response) {
+		deferred.resolve(response);
+	});
+	return deferred.promise;
+}
 
 
 

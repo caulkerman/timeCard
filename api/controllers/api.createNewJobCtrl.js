@@ -3,15 +3,14 @@ var NewJob = require("../models/api.createNewJob.model")
 module.exports = {
 	
 	create: function(req, res) {
-		console.log("req in apiCreateNewJobController create", req.body);
-		console.log("res in apiCreateNewJobController create", res.body);
-
-  var newJob = new NewJob(req.body);
-    newJob.save(function(err, result) {
-        if (err) return res.status(500).send(err);
-        else res.send(result);
-    });
+    var newJob = new NewJob(req.body);
+      newJob.save(function(err, result) {
+          if (err) return res.status(500).send(err);
+          else res.send(result);
+      });
 	},
+
+
 
 	read: function(req, res) {
     NewJob.find(req.query)
@@ -21,6 +20,8 @@ module.exports = {
     });
   },
 
+
+
   findById: function(req, res) {
     NewJob.findOne({ _id: req.params.id })
     .exec(function(err, result) {
@@ -28,6 +29,18 @@ module.exports = {
       else res.send(result);
     });
   },
+
+
+
+  update_jobsite: function(res, req) {
+    // console.log("update_jobsite res ", res.body);
+    console.log("update_jobsite req ", req.body);
+    NewJob.findByIdAndUpdate(req.params.id, req.body, function(err, result) {
+      if (err) return res.status(500);
+      else res.send(result);
+    });
+  },
+
 
 
   update_daily_time_cards: function(req, res) {

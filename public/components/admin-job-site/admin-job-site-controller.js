@@ -15,7 +15,7 @@ function getTheJobSiteFromDBbyId() {
 
 	employeeJobSiteTimeCardService.getTheJobSiteFromDBbyId(jobSiteId).then(function(response) {
 		$scope.jobsite = response.data;
-		// console.warn("$scope.jobsite ", $scope.jobsite);
+		console.warn("$scope.jobsite ", $scope.jobsite);
 		console.log("the jobsite.daily_time_card array response in controller ", $scope.jobsite.daily_time_cards);
 
 		for (var i = 0; i < $scope.jobsite.daily_time_cards.length; i++) {
@@ -96,8 +96,24 @@ $scope.hideUpdateForm = function() {
 	$scope.showUpdateJobSite = false;
 }
 
-$scope.updateTheJobSite = function() {
-	alert("You have updated the job site");
+
+
+$scope.updateTheJobSite = function(contractor, jobAddress, jobDetails, materialsNeeded, name, superintendent, superintendentTelephone) {
+	
+	var j = $scope.jobsite;
+	
+	j.contractor = contractor;
+	j.job_address = jobAddress;
+	j.job_details = jobDetails;
+	j.materials_needed = materialsNeeded;
+	j.name = name;
+	j.superintendent_name = superintendent;
+	j.superintendent_telephone = superintendentTelephone;
+
+	adminJobSiteService.updateJobsite(j, j._id).then(function(response) {
+		console.log("the updateTheJobSite function response from db: ", response);
+	})
+
 }
 
 

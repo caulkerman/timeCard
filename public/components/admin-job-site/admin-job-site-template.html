@@ -13,7 +13,7 @@
 <button ng-click="showUpdateForm()" ng-hide="showUpdateJobSite">Update Jobsite Details</button>
 <button ng-click="hideUpdateForm()" ng-show="showUpdateJobSite">Hide Jobsite Details</button>
 
-<form ng-show="showUpdateJobSite" ng-submit="updateTheJobSite(jobsite.contractor, jobsite.job_address, jobsite.job_details, jobsite.materials_needed, jobsite.name, jobsite.superintendent,jobsite.superintendent_telephone)">
+<form ng-show="showUpdateJobSite" ng-submit="updateTheJobSite(jobsite.contractor, jobsite.job_address, jobsite.job_details, jobsite.materials_needed, jobsite.name, jobsite.superintendent_name, jobsite.superintendent_telephone)">
     
     <div >
         <label for="contractor">Contractor: </label>
@@ -41,7 +41,7 @@
     </div>
 
     <div>
-        <label for="superintenent_name">Superintendent Name: </label>
+        <label for="superintendent_name">Superintendent Name: </label>
         <input type="text" class="updateJobSite" ng-model="jobsite.superintendent_name" name="superintendent_name">
     </div>
 

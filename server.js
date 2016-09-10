@@ -33,9 +33,9 @@ app.get("/api/getJobs/:id", newJobCtrl.findById);
 app.get("/api/getEmployee/:id", employeeCtrl.findById);
 
 app.put("/api/update_daily_time_cards/:id", newJobCtrl.update_daily_time_cards);
-app.put("/api/update_employees_worked/:id" , newJobCtrl.update_employees_worked);
-// app.put("/api/updateJobsLateTimeCard/:id", newJobCtrl.updateLateTimeCard);
+app.put("/api/update_employees_worked/:id", newJobCtrl.update_employees_worked);
 app.put("/api/updateEmployee/:id", employeeCtrl.update);
+app.put("/api/update_jobsite/:id", newJobCtrl.update_jobsite); 
 
 // Connections
 var port = 9333;

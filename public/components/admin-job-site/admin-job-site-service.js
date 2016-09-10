@@ -76,6 +76,19 @@ this.updateTheJobSiteInDBbyId = function(daily_time_card, id) {
 
 
 
+this.getJobs = function() {
+	var deferred = $q.defer();
+	$http({
+		method: "GET",
+		url: "/api/getJobs",
+	}).then(function(response) {
+		deferred.resolve(response);
+	});
+	return deferred.promise;
+};
+
+
+
 
 
 }]);

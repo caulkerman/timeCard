@@ -98,7 +98,16 @@ $scope.hideUpdateForm = function() {
 
 
 
+adminJobSiteService.getJobs().then(function(response) {
+		$scope.listOfJobSites = response.data;
+		console.log("the list of job sites ", $scope.listOfJobSites);
+});
+
+
+
+
 $scope.updateTheJobSite = function(contractor, jobAddress, jobDetails, materialsNeeded, name, superintendent, superintendentTelephone) {
+	
 	
 	var j = $scope.jobsite;
 	
@@ -110,9 +119,9 @@ $scope.updateTheJobSite = function(contractor, jobAddress, jobDetails, materials
 	j.superintendent_name = superintendent;
 	j.superintendent_telephone = superintendentTelephone;
 
-	adminJobSiteService.updateJobsite(j, j._id).then(function(response) {
-		console.log("the updateTheJobSite function response from db: ", response);
-	})
+	// adminJobSiteService.updateJobsite($scope.listOfJobSites, jobSiteId).then(function(response) {
+	// 	console.log("the updateTheJobSite function response from db: ", response);
+	// })
 
 }
 

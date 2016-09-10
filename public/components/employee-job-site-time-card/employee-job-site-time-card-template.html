@@ -9,8 +9,8 @@
 
             <!--With these text areas you need to make a hide/show that shows a success note saying that the note or materials has been saved to the database successfully that dissapears after 2 or 3 seconds-->
 <div class="notesAndMaterials">
-    <button ng-click="hideTextBox()" ng-show="textAreaShow">Close Materials</button>
-    <button ng-click="showTextArea()" ng-hide="textAreaShow" >Add Material</button>
+    <button ng-click="hideTextBox()" ng-show="textAreaShow">Close</button>
+    <button ng-click="showTextArea()" ng-hide="textAreaShow" >Materials Used</button>
     <br />
 
     <div id="textArea" ng-show="textAreaShow">
@@ -21,8 +21,8 @@
 <br />
 
 <div class="notesAndMaterials">
-    <button ng-click="hideNoteTextBox()" ng-show="noteShow">Close Notes</button>
-    <button ng-click="showNoteTextBox()" ng-hide="noteShow">Add Notes</button>
+    <button ng-click="hideNoteTextBox()" ng-show="noteShow">Close</button>
+    <button ng-click="showNoteTextBox()" ng-hide="noteShow">Make a Note</button>
 
     <div id="noteTextArea" ng-show="noteShow">
         <textarea ng-model="notes"></textarea>

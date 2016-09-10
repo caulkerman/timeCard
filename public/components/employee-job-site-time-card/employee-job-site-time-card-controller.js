@@ -169,6 +169,7 @@ $scope.addEmployeeTime = function(employeeName, hours_worked, index) {
 				employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId(dailyTCArray, $scope.jobsite._id).then(function(response) {
 				console.log("the nameHoursDate update response ", response.data);
 				});
+				return;
 			};
 			
 			var flag = false;
@@ -176,14 +177,17 @@ $scope.addEmployeeTime = function(employeeName, hours_worked, index) {
 
 				if (nameHoursDate.employeeName === dailyTCArray[i].employees_worked[j].employeeName) {
 					flag = true;
+					console.warn("The flag value: ", flag);
 					if (flag) {
 						alert("you may want to make it so that a <p> shows saying that time has already been entered for this employee for this day.  If changes are needed to be made talk to an administrator. Maybe see if you can do it by index so it shows up right there at where the name is.");
 					};
 				};
+				console.warn("the value of flag outside of if: ", flag);
 			};
 		};
 			
 		if (flag === false) {
+			console.warn("the flag value just before new time goes to db: ", flag);
 			dailyTCArray[i].employees_worked.push(nameHoursDate);
 			pushToJobSiteHoursWorked(hours_worked, index);
 				

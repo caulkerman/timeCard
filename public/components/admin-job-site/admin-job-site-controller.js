@@ -1,6 +1,6 @@
 (function() {
-var $inject = ["$scope", "$stateParams", "employeeJobSiteTimeCardService", "adminJobSiteService"];
-function adminJobSiteControllerCB($scope, $stateParams, employeeJobSiteTimeCardService, adminJobSiteService) {
+var $inject = ["$scope", "$stateParams", "employeeJobSiteTimeCardService", "adminJobSiteService", "$state"];
+function adminJobSiteControllerCB($scope, $stateParams, employeeJobSiteTimeCardService, adminJobSiteService, $state) {
 
 'use strict'
 
@@ -15,8 +15,8 @@ function getTheJobSiteFromDBbyId() {
 
 	employeeJobSiteTimeCardService.getTheJobSiteFromDBbyId(jobSiteId).then(function(response) {
 		$scope.jobsite = response.data;
-		console.warn("$scope.jobsite ", $scope.jobsite);
-		console.log("the jobsite.daily_time_card array response in controller ", $scope.jobsite.daily_time_cards);
+		// console.warn("$scope.jobsite ", $scope.jobsite);
+		// console.log("the jobsite.daily_time_card array response in controller ", $scope.jobsite.daily_time_cards);
 
 		for (var i = 0; i < $scope.jobsite.daily_time_cards.length; i++) {
 
@@ -25,7 +25,7 @@ function getTheJobSiteFromDBbyId() {
 				$scope.dateNameHours.unshift($scope.jobsite.daily_time_cards[i].employees_worked[j]);
 			};
 		};
-		console.log("the new dateNameHours Array ", $scope.dateNameHours);
+		// console.log("the new dateNameHours Array ", $scope.dateNameHours);
 	});
 };
 getTheJobSiteFromDBbyId();
@@ -34,7 +34,7 @@ getTheJobSiteFromDBbyId();
 
 function getEmployees() {
 	adminJobSiteService.getEmployees().then(function(response){
-	console.log("the getEmployees response in controller", response.data);
+	// console.log("the getEmployees response in controller", response.data);
 	$scope.employeesArray = response.data;
 	})
 }
@@ -71,7 +71,7 @@ $scope.editEmployee = function(hours, id, index) {//you still need to clean up t
 				
 				adminJobSiteService.updateEmployeesWorkedInDBbyId($scope.employeesArray[e].job_site_hours_worked, $scope.employeesArray[e]._id).then(function(response) {
 					
-					console.log("this is the employeesArray updated response ", response.data);
+					// console.log("this is the employeesArray updated response ", response.data);
 				})
 			}
 		}
@@ -100,7 +100,7 @@ $scope.hideUpdateForm = function() {
 
 adminJobSiteService.getJobs().then(function(response) {
 		$scope.listOfJobSites = response.data;
-		console.log("the list of job sites ", $scope.listOfJobSites);
+		// console.log("the list of job sites ", $scope.listOfJobSites);
 });
 
 
@@ -118,36 +118,19 @@ $scope.updateTheJobSite = function(contractor, jobAddress, jobDetails, materials
 	j.name = name;
 	j.superintendent_name = superintendent;
 	j.superintendent_telephone = superintendentTelephone;
+	
 
-	// adminJobSiteService.updateJobsite($scope.listOfJobSites, jobSiteId).then(function(response) {
-	// 	console.log("the updateTheJobSite function response from db: ", response);
-	// })
-
+	adminJobSiteService.delete_job($scope.jobsite).then(function(response) {
+		console.error("The Job Site Has Been DELETED!!!!!!!!")
+		adminJobSiteService.updateJobsite($scope.jobsite, $scope.jobsite._id).then(function(response) {
+		console.log("the updateTheJobSite function response from db: ", response);
+		})
+	})
 }
 
 
 
-// $scope.addLateEmployeeTime= function(date, name, hours) {
-// 	console.log("The addLateEmplyeeTime function has fired");
-// 	if (date && name && hours) {
-// 		var id = $scope.jobsite._id;
 
-// 		function LateEmployeeTime(date, name, hours) {
-// 			this.late = true;
-// 			this.date = 
-// 			this.date_worked = date;
-// 			this.employeeName = name;
-// 			this.hours_worked = hours;
-// 		}
-// 		var lateEmployeeTime = new LateEmployeeTime(date, name, hours);
-
-// 		//do something
-		
-// 		$scope.addDate = "";
-// 		$scope.addName = "";
-// 		$scope.addHours = "";
-// 	};
-// };
 
 
 

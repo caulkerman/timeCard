@@ -6,7 +6,6 @@ var mongoose = require("mongoose");
 
 //express
 var app = express();
-var router = express.Router();
 
 
 // Express Middleware
@@ -36,7 +35,9 @@ app.get("/api/getEmployee/:id", employeeCtrl.findById);
 app.put("/api/update_daily_time_cards/:id", newJobCtrl.update_daily_time_cards);
 app.put("/api/update_employees_worked/:id", newJobCtrl.update_employees_worked);
 app.put("/api/updateEmployee/:id", employeeCtrl.update);
-app.put("/api/update_jobsite/:id", newJobCtrl.update_jobsite); 
+app.post("/api/update_jobsite", newJobCtrl.create); 
+app.delete("/api/delete_job/:id", newJobCtrl.delete_job);
+
 
 // Connections
 var port = 9333;

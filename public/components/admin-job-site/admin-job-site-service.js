@@ -18,14 +18,12 @@ this.updateTheEmployeeInDBbyId = function(employee, id) {
 
 
 this.updateEmployeesWorkedInDBbyId = function (employees_worked, id) {
-	console.log("in the service trying to update the hours that employees worked on the employeesArray", employees_worked);
 	var deferred = $q.defer();
 	$http({
 		method: "PUT",
 		url: "/api/updateEmployee/" + id,
 		data: employees_worked
 	}).then(function(response) {
-			console.warn("the response in trying to update the employeesArray ", response);
 			deferred.resolve(response);
 		});
 	return deferred.promise;
@@ -35,11 +33,10 @@ this.updateEmployeesWorkedInDBbyId = function (employees_worked, id) {
 
 
 this.updateJobsite = function(jobsite, id) {
-	console.log("the jobsite ", jobsite, "the id ", id, "before it goes to db");
 	var deferred = $q.defer();
 	$http({
-		method: "PUT",
-		url: "/api/update_jobsite/" + id,
+		method: "POST",
+		url: "/api/addNewJob" ,
 		data: jobsite
 	}).then(function(response) {
 		deferred.resolve(response);
@@ -86,6 +83,23 @@ this.getJobs = function() {
 	});
 	return deferred.promise;
 };
+
+
+
+this.delete_job = function(jobsite) {
+	console.log("what's the id? ", jobsite._id);
+	var deferred = $q.defer();
+        $http({
+            method: "DELETE",
+            url: "/api/delete_job/" + jobsite._id
+        }).then(function(res) {
+            console.log(res)
+            deferred.resolve(res);
+        });
+        return deferred.promise
+    }
+
+
 
 
 

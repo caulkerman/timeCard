@@ -66,6 +66,16 @@ module.exports = {
 
 
 
+  delete_job: function(req, res) {
+    console.log("Hello!")
+    NewJob.findByIdAndRemove(req.params.id, function(err, result) {
+      if (err) return res.status(500);
+      else res.send(result);
+    })
+  }
+
+
+
 //  updateLateTimeCard: function(req, res) {
 //     NewJob.findByIdAndUpdate(req.params.id, {daily_time_cards: req.body}, {new: true}, 
 //       function(err, result) {

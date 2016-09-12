@@ -97,6 +97,9 @@ $scope.hideJobDetails = function() {
 
 
 
+
+
+
 $scope.addNote = function(notes) {
 	for (var i = 0; i < dailyTCArray.length; i++) {
 		
@@ -116,6 +119,10 @@ $scope.addNote = function(notes) {
 	$scope.noteShow = false;
 	};
 };
+
+
+
+
 
 
 
@@ -144,10 +151,15 @@ $scope.addMaterials = function(materials) {
 
 
 
+
+
+
+
+
 $scope.addEmployeeTime = function(employeeName, hours_worked, index) {
 
 	if (!employeeName, !hours_worked) {
-		alert("hey, you need to add some stuff. You may want to make this a <p> that shows when the inputs are empty");
+		alert("hey, you need to add time. You may want to make this a <p> that shows when the inputs are empty");
 		return;
 	};
 
@@ -177,17 +189,15 @@ $scope.addEmployeeTime = function(employeeName, hours_worked, index) {
 
 				if (nameHoursDate.employeeName === dailyTCArray[i].employees_worked[j].employeeName) {
 					flag = true;
-					console.warn("The flag value: ", flag);
+					
 					if (flag) {
 						alert("you may want to make it so that a <p> shows saying that time has already been entered for this employee for this day.  If changes are needed to be made talk to an administrator. Maybe see if you can do it by index so it shows up right there at where the name is.");
 					};
 				};
-				console.warn("the value of flag outside of if: ", flag);
 			};
 		};
-			
-		if (flag === false) {
-			console.warn("the flag value just before new time goes to db: ", flag);
+			//we might have a problem with the below being outside of the above if statement, right now we are getting duplicate names and times sent to all other daily_time_card arrays on other days.
+		if (flag === false && dailyTCArray[i].theDate === nameHoursDate.date_worked) {
 			dailyTCArray[i].employees_worked.push(nameHoursDate);
 			pushToJobSiteHoursWorked(hours_worked, index);
 				
@@ -197,6 +207,11 @@ $scope.addEmployeeTime = function(employeeName, hours_worked, index) {
 		};
 	};
 };
+
+
+
+
+
 
 
 
@@ -210,6 +225,7 @@ function pushToJobSiteHoursWorked(hours_worked, index) {
 		this.job_site = j
 	}
 	var employeeNameHoursJob = new EmployeeNameHoursJob($scope.theDate, hours_worked, $scope.jobsite.name);
+	
 	$scope.employees[index].job_site_hours_worked.push(employeeNameHoursJob);
 	// console.log("the employeeNameHours object pushed ot job_site_hours_worked array ", $scope.employees[index].job_site_hours_worked);
 	employeeJobSiteTimeCardService.updateTheEmployeeInDBbyId(employee, id).then(function(response) {

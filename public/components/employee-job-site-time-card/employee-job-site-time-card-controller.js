@@ -196,7 +196,7 @@ $scope.addEmployeeTime = function(employeeName, hours_worked, index) {
 				};
 			};
 		};
-			//we might have a problem with the below being outside of the above if statement, right now we are getting duplicate names and times sent to all other daily_time_card arrays on other days.
+		
 		if (flag === false && dailyTCArray[i].theDate === nameHoursDate.date_worked) {
 			dailyTCArray[i].employees_worked.push(nameHoursDate);
 			pushToJobSiteHoursWorked(hours_worked, index);

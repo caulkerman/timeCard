@@ -80,14 +80,13 @@ $scope.editEmployee = function(hours, id, index) {//you still need to clean up t
 }
 
 
-
-$scope.showAddTime = function() {
-	$scope.showNewTimeEvent = true;
+$scope.showDTCs = [];
+$scope.showDailyTCs = function(index) {
+	console.log("the showDailyTCs function has fired");
+	$scope.showDTCs[index] = true;
+	
 }
 
-$scope.hideAddTime = function() {
-	$scope.showNewTimeEvent = false;
-}
 
 $scope.showUpdateForm = function() {
 	$scope.showUpdateJobSite = true;

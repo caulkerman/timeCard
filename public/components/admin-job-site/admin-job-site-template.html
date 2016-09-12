@@ -52,28 +52,17 @@
 
     <input type="submit" class="updateJobSite" value="Update Jobsite">
 </form>
-<!--<table st-table="students" class="table table-striped">-->
-    <!--<thead>
-        <tr>
-            <td>Date Worked</td>
-            <td>Employee Name</td>
-            <td>Hours Worked</td>    
-        </tr>
-    </thead>-->
+
     
-    <!--<tbody>  You need to set up a spot to show whether the job time is T&M, maybe use hide/show if it is.-->
-        <!--<tr ng-show="showNewTimeEvent">
-            <td><input type="text" placeholder="Add Date" ng-model="addDate"></td>
-            <td><input type="text" placeholder="Add Name" ng-model="addName"></td>
-            <td><input type="number" min=".25" max="24" placeholder="Hours Worked" ng-model="addHours"></td>
-            <td><button ng-click="addLateEmmployeeTime(addDate, addName, addHours)">Add</td>
-        </tr>-->
-    <input type="text" placeholder="Filter the Dates">
-    <div ng-repeat="timecard in dailyTCs track by $index"> 
-        <ul > <!--maybe filter by date and name -->
+    <!--  You need to set up a spot to show whether the job time is T&M, maybe use hide/show if it is.-->
+       
+    <input type="text" placeholder="Filter the Dates" ng-model="timecard.theDate"> 
+    <div ng-repeat="timecard in dailyTCs | filter: timecard.theDate track by $index">  <!-- This filter is not complete, it needs to filter only the daily_time_cards array and not the employees_worked array too.-->
+        <ul > 
             <li>
-                <a id="timeCard" href="">{{timecard.theDate}}</a>
-                <div class="hidden-daily-time-card"> <!--there will be a ng-show here-->
+                <a id="timeCard" href="" ng-click="showDailyTCs($index)">{{timecard.theDate}}</a>
+                
+                <div class="hidden-daily-time-card" ng-show="showDTCs[$index]"> <!-- In this tag is where you need to put your directive that will choose the specific $index to hide and show -->
                     <p>Materials Used: {{timecard.materials_used}}</p>
                     <p>Notes: {{timecard.notes}}</p>
                     
@@ -95,18 +84,11 @@
                 
                 </div>
             </li>
-
-            <!--<td>{{employee.date_worked}}</td>-->
-            <!--<td>{{employee.employeeName}}</td>-->
-            <!--<td>{{employee.hoursWorked}}</td>-->
-            <!--<td> <input type="text" class="edit" ng-model="employee.hours_worked"></td>-->
-            <!--<td><button ng-click="editEmployee(employee.hours_worked, employee._id, $index)" id="edit">Edit</button></td>-->
         </ul>
 
-        <div rw-table ></div>
+        <hr>
     </div>
     
-    <!--</tbody>-->
-<!--</table>-->
+
 
 

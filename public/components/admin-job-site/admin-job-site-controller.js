@@ -15,16 +15,17 @@ function getTheJobSiteFromDBbyId() {
 
 	employeeJobSiteTimeCardService.getTheJobSiteFromDBbyId(jobSiteId).then(function(response) {
 		$scope.jobsite = response.data;
+		$scope.dailyTCs = $scope.jobsite.daily_time_cards;
 		console.warn("$scope.jobsite ", $scope.jobsite);
 		// console.log("the jobsite.daily_time_card array response in controller ", $scope.jobsite.daily_time_cards);
 
-		for (var i = 0; i < $scope.jobsite.daily_time_cards.length; i++) {
+		// for (var i = 0; i < $scope.dailyTCs.length; i++) {
 
-			for (var j = 0; j < $scope.jobsite.daily_time_cards[i].employees_worked.length; j++) {
+		// 	for (var j = 0; j < $scope.dailyTCs[i].employees_worked.length; j++) {
 
-				$scope.dateNameHours.unshift($scope.jobsite.daily_time_cards[i].employees_worked[j]);
-			};
-		};
+		// 		$scope.dateNameHours.unshift($scope.dailyTCs[i].employees_worked[j]);
+		// 	};
+		// };
 		// console.log("the new dateNameHours Array ", $scope.dateNameHours);
 	});
 };

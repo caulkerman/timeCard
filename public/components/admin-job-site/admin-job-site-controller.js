@@ -1,6 +1,6 @@
 (function() {
-var $inject = ["$scope", "$stateParams", "employeeJobSiteTimeCardService", "adminJobSiteService", "$state"];
-function adminJobSiteControllerCB($scope, $stateParams, employeeJobSiteTimeCardService, adminJobSiteService, $state) {
+var $inject = ["$scope", "$stateParams", "employeeJobSiteTimeCardService", "adminJobSiteService"];
+function adminJobSiteControllerCB($scope, $stateParams, employeeJobSiteTimeCardService, adminJobSiteService) {
 
 'use strict'
 
@@ -15,7 +15,7 @@ function getTheJobSiteFromDBbyId() {
 
 	employeeJobSiteTimeCardService.getTheJobSiteFromDBbyId(jobSiteId).then(function(response) {
 		$scope.jobsite = response.data;
-		// console.warn("$scope.jobsite ", $scope.jobsite);
+		console.warn("$scope.jobsite ", $scope.jobsite);
 		// console.log("the jobsite.daily_time_card array response in controller ", $scope.jobsite.daily_time_cards);
 
 		for (var i = 0; i < $scope.jobsite.daily_time_cards.length; i++) {
@@ -119,9 +119,10 @@ $scope.updateTheJobSite = function(contractor, jobAddress, jobDetails, materials
 	j.superintendent_name = superintendent;
 	j.superintendent_telephone = superintendentTelephone;
 	
-
 	adminJobSiteService.delete_job($scope.jobsite).then(function(response) {
-		console.error("The Job Site Has Been DELETED!!!!!!!!")
+
+		console.error("The Job Site Has Been DELETED!!!!!!!!....but will be back in a split second")
+		
 		adminJobSiteService.updateJobsite($scope.jobsite, $scope.jobsite._id).then(function(response) {
 		console.log("the updateTheJobSite function response from db: ", response);
 		})
@@ -129,7 +130,12 @@ $scope.updateTheJobSite = function(contractor, jobAddress, jobDetails, materials
 }
 
 
+////////Start of Connor's code\\\\\\\\
 
+
+// console.warn("OOOOOOHHH WHAAATS THAAATZZZZ")
+
+///////End of Connor's code\\\\\\\
 
 
 

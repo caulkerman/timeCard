@@ -6,18 +6,18 @@ function rwTableCB() {
 //////ADD JAVASCRIPT HERE\\\\\\\\\
 
     return {
-        templateUrl: "directives/directiveTemplates/admin_job_site_time_card.html",
+        templateUrl: "directives/directiveTemplates/directive.admin_job_site_time_card.html",
         // link: function(scope, element, attrs) {
 
         // }
 
         controller: function($scope) {
-            $("a#timeCard").on("click", function() {
+            // $("a#timeCard").on("click", function() {
                 
-                $scope.showTimeCard = true;
-                console.log("showTimeCard ", $scope.showTimeCard);
-                $(this).toggle();
-            })
+            //     $scope.showTimeCard = true;
+            //     console.log("showTimeCard ", $scope.showTimeCard);
+            //     $(this).toggle();
+            // })
 
 
 

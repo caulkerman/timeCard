@@ -17,7 +17,8 @@ app.service("employeeJobSiteTimeCardService", ["$q", "$http", "$timeout", functi
 	//in order to filter days weeks and months to review timecard hours worked I will problably need to use the dayIndex and monthIndex to filter.
 	
 	this.theDate = function() {
-		return thisDay + ", " + thisMonth + " " + dayOfMonth + ", " + year;
+		// return thisDay + ", " + thisMonth + " " + dayOfMonth + ", " + year;
+		return thisMonth + " " + dayOfMonth + ", " + year + ": " + thisDay;
 	}
 
 	

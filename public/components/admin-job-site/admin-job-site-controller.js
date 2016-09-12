@@ -87,6 +87,11 @@ $scope.showDailyTCs = function(index) {
 	
 }
 
+$scope.hideDailyTCs = function(index) {
+	console.log("the hideDailyTCS function has fired");
+	$scope.showDTCs[index] = false;
+}
+
 
 $scope.showUpdateForm = function() {
 	$scope.showUpdateJobSite = true;

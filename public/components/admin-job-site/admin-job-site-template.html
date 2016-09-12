@@ -60,7 +60,8 @@
     <div ng-repeat="timecard in dailyTCs | filter: timecard.theDate track by $index">  <!-- This filter is not complete, it needs to filter only the daily_time_cards array and not the employees_worked array too.-->
         <ul > 
             <li>
-                <a id="timeCard" href="" ng-click="showDailyTCs($index)">{{timecard.theDate}}</a>
+                <button ng-show="showDTCs[$index]" ng-click="hideDailyTCs($index)">Hide This Time Card</button>
+                <a id="timeCard" href="" ng-click="showDailyTCs($index)" ng-hide="showDTCs[$index]">{{timecard.theDate}}</a>
                 
                 <div class="hidden-daily-time-card" ng-show="showDTCs[$index]"> <!-- In this tag is where you need to put your directive that will choose the specific $index to hide and show -->
                     <p>Materials Used: {{timecard.materials_used}}</p>

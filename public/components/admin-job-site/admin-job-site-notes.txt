@@ -5,7 +5,7 @@
     
     Make it so when admin clicks to show the timecard for a day that the date continues to show, that way the admin will have a date reference to the time card they are lookin at.  This will look good when the hidden-daily-time-card div looks like a modal as the date will be in its original position, the X to hide can be in the upper right corner like normal.
     
-    Make it so the admin can edit the employee hours.
+   *DONE" Make it so the admin can edit the employee hours.
     
     Make it so the admin can enter a late time event time card, this is still important even though you got rid of it while rebuilding the page, it needs to come back and it will hide and show.
 

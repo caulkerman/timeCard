@@ -7,10 +7,11 @@ function adminJobSiteControllerCB($scope, $stateParams, employeeJobSiteTimeCardS
         ////////ENTER YOUR ANGULAR CODE BELOW\\\\\\\\
 
 
-var jobSiteId = $stateParams.id;
+const jobSiteId = $stateParams.id;
 
 
-function getTheJobSiteFromDBbyId() {
+function getTheJobSiteFromDBbyId() {// we might want to have this function call for the job site using its own service rather than sending to another
+	
 	employeeJobSiteTimeCardService.getTheJobSiteFromDBbyId(jobSiteId).then(function(response) {
 		$scope.jobsite = response.data;
 		$scope.dailyTCs = $scope.jobsite.daily_time_cards;
@@ -22,61 +23,57 @@ getTheJobSiteFromDBbyId();
 
 
 function getEmployees() {
+
 	adminJobSiteService.getEmployees().then(function(response){
-	console.log("the getEmployees function response object: ", response.data);
-	$scope.employeesArray = response.data;
+		console.log("the getEmployees function response object: ", response.data);
+		$scope.employeesArray = response.data;
 	})
 }
 getEmployees();
 
 
 
-$scope.editEmployee = function(hours, id, index) {//you still need to clean up this function.  It works but there are a lot of things that don't need to be here anymore.
-	//the for functionality sends the new data to the jobsite objects
+//Edits the employee's time and updates the jobsite objects
+$scope.editEmployee = function(hours, id) {
+
 	for (var i = 0; i < $scope.jobsite.daily_time_cards.length; i++) {
-		// var jobsiteEmployeesWorked = $scope.jobsite.daily_time_cards[i].employees_worked;
 		for (var j = 0; j < $scope.jobsite.daily_time_cards[i].employees_worked.length; j++) {
 			
 			if ($scope.jobsite.daily_time_cards[i].employees_worked[j]._id === id) {
 				$scope.jobsite.daily_time_cards[i].employees_worked[j].hours_worked = hours;
 
-				
 				adminJobSiteService.updateTheJobSiteInDBbyId($scope.jobsite.daily_time_cards, $scope.jobsite._id).then(function(response) {
 					console.log("the jobsite response for update employee hours: ", response.data);
-					
 				})
-				console.error($scope.jobsite.daily_time_cards[i].employees_worked[j].employeeName);
-					addToEmployeesArray(hours, $scope.jobsite.daily_time_cards[i].employees_worked[j]);
-				
-				
+				addToEmployeesArray(hours, $scope.jobsite.daily_time_cards[i].employees_worked[j]);
 			}
-			
-			
 		}
-		
 	}
-	
 }
 
-var addToEmployeesArray = function(hours, jobsiteEmployeesWorked) {
+
+
+//Takes the hours from editEmployee function and updates the employees objects
+function addToEmployeesArray(hours, jobsiteEmployeesWorked) {
+
 	for (var e = 0; e < $scope.employeesArray.length; e++) {
-				for (var i = 0; i < $scope.employeesArray[e].job_site_hours_worked.length; i++) {
-					// console.info("hello, line 64", jobsiteEmployeesWorked);
+		for (var i = 0; i < $scope.employeesArray[e].job_site_hours_worked.length; i++) {
 					
-			//the if conditional must compare fullName, theDate, and the job name
-					if (jobsiteEmployeesWorked.employeeName === $scope.employeesArray[e].fullName && jobsiteEmployeesWorked.date_worked === $scope.employeesArray[e].job_site_hours_worked[i].date_worked && $scope.jobsite.name === $scope.employeesArray[e].job_site_hours_worked[i].job_site) {
-						$scope.employeesArray[e].job_site_hours_worked[i].hours_worked = hours;
+			if (jobsiteEmployeesWorked.employeeName === $scope.employeesArray[e].fullName && jobsiteEmployeesWorked.date_worked === $scope.employeesArray[e].job_site_hours_worked[i].date_worked && $scope.jobsite.name === $scope.employeesArray[e].job_site_hours_worked[i].job_site) {
+				$scope.employeesArray[e].job_site_hours_worked[i].hours_worked = hours;
 				
-						adminJobSiteService.updateEmployeesWorkedInDBbyId($scope.employeesArray[e].job_site_hours_worked, $scope.employeesArray[e]._id).then(function(response) {
-					
-							console.log("this is the employeesArray updated response ", response.data);
-						})
-					}
-				}
+				adminJobSiteService.updateEmployeesWorkedInDBbyId($scope.employeesArray[e].job_site_hours_worked, $scope.employeesArray[e]._id).then(function(response) {
+					console.log("this is the employeesArray updated response ", response.data);
+				})
 			}
 		}
+	}
+}
 
 
+
+
+//ng-hide and ng-show
 $scope.showDTCs = [];
 $scope.showDailyTCs = function(index) {
 	$scope.showDTCs[index] = true;
@@ -97,16 +94,15 @@ $scope.hideUpdateForm = function() {
 
 
 
+
 adminJobSiteService.getJobs().then(function(response) {
 		$scope.listOfJobSites = response.data;
-		// console.log("the list of job sites ", $scope.listOfJobSites);
 });
 
 
 
-
+//Takes in new data from the form and updates the job site with that new data
 $scope.updateTheJobSite = function(contractor, jobAddress, jobDetails, materialsNeeded, name, superintendent, superintendentTelephone) {
-	
 	
 	var j = $scope.jobsite;
 	

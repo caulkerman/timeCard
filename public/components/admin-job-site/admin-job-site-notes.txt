@@ -9,5 +9,5 @@
     
     Make it so the admin can enter a late time event time card, this is still important even though you got rid of it while rebuilding the page, it needs to come back and it will hide and show.
 
-
+    Make it so the filter works correctly
     

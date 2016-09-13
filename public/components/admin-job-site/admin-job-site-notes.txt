@@ -1,9 +1,7 @@
-STYLING: 
-    make it so the ng-hide and ng-show divs have to styling of a modal.
+
+    Make it so the ng-hide and ng-show divs have the styling of a modal.
     Make it so the late time event hides and shows with a button and make it look like a modal.
-
-
-
-JAVASCRIPT: 
+    Make it so when admin clicks to show the timecard for a day that the date continues to show, that way the admin will have a date reference to the time card they are lookin at.
     Make it so the admin can edit the employee hours.
     Make it so the admin can enter a late time event time card, this is still important even though you got rid of it while rebuilding the page, it needs to come back and it will hide and show.
+    

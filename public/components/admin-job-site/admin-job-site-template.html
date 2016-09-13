@@ -3,7 +3,6 @@
 <p><span id="jobSiteNameBold">{{jobsite.name}}<span></p>
 <p>General Contractor: {{jobsite.contractor}}</p>
 <p>Total Job Site Man Hours: {{jobsite.man_hours}}</p>
-<h1>This page is going to be rebuilt!</h1>
 
 <!--<button ng-click="showAddTime()" ng-hide="showNewTimeEvent">Add Late Time Employee Time</button>-->
 <!--<button ng-click="hideAddTime()" ng-show="showNewTimeEvent">Hide Late Employee Time</button>-->
@@ -56,8 +55,8 @@
     
     <!--  You need to set up a spot to show whether the job time is T&M, maybe use hide/show if it is.-->
        
-    <input type="text" placeholder="Filter the Dates" ng-model="timecard.theDate"> 
-    <div ng-repeat="timecard in dailyTCs | filter: timecard.theDate track by $index">  <!-- This filter is not complete, it needs to filter only the daily_time_cards array and not the employees_worked array too.-->
+    <input type="text" placeholder="Filter the Dates" ng-model="filter_date"> 
+    <div ng-repeat="timecard in dailyTCs | filter: {theDate:filter_date} track by $index">  <!-- This filter is not complete, it needs to filter only the daily_time_cards array and not the employees_worked array too.-->
         <ul > 
             <li>
                 

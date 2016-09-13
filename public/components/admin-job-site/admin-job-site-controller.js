@@ -8,25 +8,13 @@ function adminJobSiteControllerCB($scope, $stateParams, employeeJobSiteTimeCardS
 
 
 var jobSiteId = $stateParams.id;
-$scope.dateNameHours = [];
 
 
 function getTheJobSiteFromDBbyId() {
-
 	employeeJobSiteTimeCardService.getTheJobSiteFromDBbyId(jobSiteId).then(function(response) {
 		$scope.jobsite = response.data;
 		$scope.dailyTCs = $scope.jobsite.daily_time_cards;
 		console.warn("$scope.jobsite ", $scope.jobsite);
-		// console.log("the jobsite.daily_time_card array response in controller ", $scope.jobsite.daily_time_cards);
-
-		// for (var i = 0; i < $scope.dailyTCs.length; i++) {
-
-		// 	for (var j = 0; j < $scope.dailyTCs[i].employees_worked.length; j++) {
-
-		// 		$scope.dateNameHours.unshift($scope.dailyTCs[i].employees_worked[j]);
-		// 	};
-		// };
-		// console.log("the new dateNameHours Array ", $scope.dateNameHours);
 	});
 };
 getTheJobSiteFromDBbyId();
@@ -35,7 +23,7 @@ getTheJobSiteFromDBbyId();
 
 function getEmployees() {
 	adminJobSiteService.getEmployees().then(function(response){
-	// console.log("the getEmployees response in controller", response.data);
+	console.log("the getEmployees function response object: ", response.data);
 	$scope.employeesArray = response.data;
 	})
 }
@@ -44,40 +32,49 @@ getEmployees();
 
 
 $scope.editEmployee = function(hours, id, index) {//you still need to clean up this function.  It works but there are a lot of things that don't need to be here anymore.
-
+	//the for functionality sends the new data to the jobsite objects
 	for (var i = 0; i < $scope.jobsite.daily_time_cards.length; i++) {
-		
+		// var jobsiteEmployeesWorked = $scope.jobsite.daily_time_cards[i].employees_worked;
 		for (var j = 0; j < $scope.jobsite.daily_time_cards[i].employees_worked.length; j++) {
 			
 			if ($scope.jobsite.daily_time_cards[i].employees_worked[j]._id === id) {
 				$scope.jobsite.daily_time_cards[i].employees_worked[j].hours_worked = hours;
 
-				var employee_worked = $scope.jobsite.daily_time_cards[i].employees_worked[j];
-
+				
 				adminJobSiteService.updateTheJobSiteInDBbyId($scope.jobsite.daily_time_cards, $scope.jobsite._id).then(function(response) {
+					console.log("the jobsite response for update employee hours: ", response.data);
+					
 				})
+				console.error($scope.jobsite.daily_time_cards[i].employees_worked[j].employeeName);
+					addToEmployeesArray(hours, $scope.jobsite.daily_time_cards[i].employees_worked[j]);
+				
+				
 			}
+			
+			
 		}
 		
 	}
 	
-	//loop through $scope.employees array
+}
+
+var addToEmployeesArray = function(hours, jobsiteEmployeesWorked) {
 	for (var e = 0; e < $scope.employeesArray.length; e++) {
-		
-		for (var i = 0; i < $scope.employeesArray[e].job_site_hours_worked.length; i++) {
-			
-			if ($scope.dateNameHours[index].date_worked === $scope.employeesArray[e].job_site_hours_worked[i].date_worked && $scope.dateNameHours[index].employeeName === $scope.employeesArray[e].fullName) {
-				
-				$scope.employeesArray[e].job_site_hours_worked[i].hours_worked = hours;
-				
-				adminJobSiteService.updateEmployeesWorkedInDBbyId($scope.employeesArray[e].job_site_hours_worked, $scope.employeesArray[e]._id).then(function(response) {
+				for (var i = 0; i < $scope.employeesArray[e].job_site_hours_worked.length; i++) {
+					// console.info("hello, line 64", jobsiteEmployeesWorked);
 					
-					// console.log("this is the employeesArray updated response ", response.data);
-				})
+			//the if conditional must compare fullName, theDate, and the job name
+					if (jobsiteEmployeesWorked.employeeName === $scope.employeesArray[e].fullName && jobsiteEmployeesWorked.date_worked === $scope.employeesArray[e].job_site_hours_worked[i].date_worked && $scope.jobsite.name === $scope.employeesArray[e].job_site_hours_worked[i].job_site) {
+						$scope.employeesArray[e].job_site_hours_worked[i].hours_worked = hours;
+				
+						adminJobSiteService.updateEmployeesWorkedInDBbyId($scope.employeesArray[e].job_site_hours_worked, $scope.employeesArray[e]._id).then(function(response) {
+					
+							console.log("this is the employeesArray updated response ", response.data);
+						})
+					}
+				}
 			}
 		}
-	}
-}
 
 
 $scope.showDTCs = [];

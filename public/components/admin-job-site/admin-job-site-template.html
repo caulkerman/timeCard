@@ -60,9 +60,9 @@
     <div ng-repeat="timecard in dailyTCs | filter: timecard.theDate track by $index">  <!-- This filter is not complete, it needs to filter only the daily_time_cards array and not the employees_worked array too.-->
         <ul > 
             <li>
-                <button ng-show="showDTCs[$index]" ng-click="hideDailyTCs($index)">Hide This Time Card</button>
-                <a id="timeCard" href="" ng-click="showDailyTCs($index)" ng-hide="showDTCs[$index]">{{timecard.theDate}}</a>
                 
+                <a id="timeCard" href="" ng-click="showDailyTCs($index)" >{{timecard.theDate}}</a>
+                <button ng-show="showDTCs[$index]" ng-click="hideDailyTCs($index)">X</button>
                 <div class="hidden-daily-time-card" ng-show="showDTCs[$index]"> <!-- In this tag is where you need to put your directive that will choose the specific $index to hide and show -->
                     <p>Materials Used: {{timecard.materials_used}}</p>
                     <p>Notes: {{timecard.notes}}</p>
@@ -72,13 +72,15 @@
                             <tr>
                                 <td>Employee Name</td>
                                 <td>Hours Worked</td>
+                                <td>Edit</td>
                             </tr>
                         </thead>
 
                         <tbody>
                             <tr ng-repeat="employees in dailyTCs[$index].employees_worked track by $index" > <!--make sure to ng-repeat this -->
                                 <td>{{employees.employeeName}}</td>
-                                <td>{{employees.hours_worked}}</td>
+                                <td><input type="number" min=".25" max="24" ng-model="employees.hours_worked"></td>
+                                <td><button ng-click="editEmployee(employees.hours_worked, employees._id, $index)">Edit</button></td>
                             </tr>
                         </tbody>
                     </table>

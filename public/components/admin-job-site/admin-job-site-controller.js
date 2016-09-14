@@ -74,14 +74,22 @@ function addToEmployeesArray(hours, jobsiteEmployeesWorked) {
 
 
 //ng-hide and ng-show
-$scope.showDTCs = [];
-$scope.showDailyTCs = function(index) {
-	$scope.showDTCs[index] = true;
-	}
-
-$scope.hideDailyTCs = function(index) {
-	$scope.showDTCs[index] = false;
+$scope.showDailyTCs = function() {
+	$scope.showDTCs = true;
 }
+
+$scope.hideDailyTCs = function() {
+	$scope.showDTCs = false;
+}
+
+// $scope.showDTCs = [];
+// $scope.showDailyTCs = function(index) {
+	// $scope.showDTCs[index] = true;
+// }
+
+// $scope.hideDailyTCs = function(index) {
+// 	$scope.showDTCs[index] = false;
+// }
 
 
 $scope.showUpdateForm = function() {

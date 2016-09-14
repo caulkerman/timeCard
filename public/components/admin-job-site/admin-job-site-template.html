@@ -60,15 +60,15 @@
         <ul > 
             <li>
                 
-                <!--<a id="timeCard" href="" ng-click="showDailyTCs($index)" >{{timecard.theDate}}</a>-->
-                <a href="" ng-hide="showDTCs" ng-click="showDailyTCs()" >{{timecard.theDate}}</a>
-                <!--<a href="" ng-show="showDTCs[$index]" ng-click="hideDailyTCs($index)" >{{timecard.theDate}}</a>-->
-                <a href="" ng-show="showDTCs" ng-click="hideDailyTCs()" >{{timecard.theDate}}</a>
+                <a id="timeCard" ng-hide="showDTCs[$index]" href="" ng-click="showDailyTCs($index)" >{{timecard.theDate}}</a>
+                <!--<a href="" ng-hide="showDTCs" ng-click="showDailyTCs()" >{{timecard.theDate}}</a>-->
+                <a href="" ng-show="showDTCs[$index]" ng-click="hideDailyTCs($index)" >{{timecard.theDate}}</a>
+                <!--<a href="" ng-show="showDTCs" ng-click="hideDailyTCs()" >{{timecard.theDate}}</a>-->
                 
                 
                 <!--<button ng-show="showDTCs[$index]" ng-click="hideDailyTCs($index)">X</button>-->
-                <!--<div class="hidden-daily-time-card" ng-show="showDTCs[$index]"> -->
-                <div class="hidden-daily-time-card" ng-show="showDTCs">    
+                <div class="hidden-daily-time-card" ng-show="showDTCs[$index]"> 
+                <!--<div class="hidden-daily-time-card" ng-show="showDTCs">    -->
                     <p>Materials Used: {{timecard.materials_used}}</p>
                     <p>Notes: {{timecard.notes}}</p>
                     

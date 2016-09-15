@@ -142,6 +142,21 @@ $scope.createLateTimeCard = function() {
 }
 
 
+
+
+$scope.lateEmployee = function() {
+	alert("the lateEmployee function has fired.")
+}
+
+
+
+
+$scope.deleteTC = function(index) {
+	console.log(index);
+	alert("the deleteTC function has fired");
+}
+
+
 ////////Start of Connor's code\\\\\\\\
 
 

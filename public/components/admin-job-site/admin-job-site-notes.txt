@@ -1,15 +1,23 @@
 
-    Make it so the ng-hide and ng-show divs have the styling of a modal.
-    
-    Make it so the late time event hides and shows with a button and make it look like a modal.
-    
-    Make it so when admin clicks to show the timecard for a day that the date continues to show, that way the admin will have a date reference to the time card they are lookin at.  This will look good when the hidden-daily-time-card div looks like a modal as the date will be in its original position, the X to hide can be in the upper right corner like normal.
-    
-   *DONE" Make it so the admin can edit the employee hours.
-    
-    Make it so the admin can enter a late time event time card, this is still important even though you got rid of it while rebuilding the page, it needs to come back and it will hide and show.
+Make it so the ng-hide and ng-show divs have the styling of a modal.
 
-    Make it so the filter works correctly
-
-    The comments in html says to make a spot for whether the timecard is T&M, because if it IS then there would be duplicate dates, and that would be ok if it's T&M.
+Make it so the late time event hides and shows with a button and make it look like a modal.
     
+*DONE* Make it so when admin clicks to show the timecard for a day that the date continues to show, that way the admin will have a date reference to the time card they are lookin at. 
+    
+Make it (MAYBE) so the hidden-daily-time-card div looks like a modal with the date in its original position, the X to hide can be in the upper right corner like normal.
+    
+*DONE* Make it so the admin can edit the employee hours.
+    
+Make it so the admin can enter a late time event time card where it hide/shows with only the notes and materials with a submit button that creates the new time card and has it call to the DB so it shows in the ng-repeat immediately.
+
+Make it so the filter works correctly
+
+The comments in html says to make a spot for whether the timecard is T&M, because if it IS then there would be duplicate dates, and that would be ok if it's T&M.
+
+Make it so there is a delete button in the parent ng-repeat to delete the entire daily_time_card if an employee accidently creates an empty time card, puts no employee time and/or materials etc in it.
+
+Make it so with the late time card that the admin can enter multiple employees and late time.
+
+Make it so the materials_used and notes are editable
+

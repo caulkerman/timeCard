@@ -1,19 +1,19 @@
 <link rel="stylesheet" href="components/admin-job-site/admin-job-site.css">
 
 <p><span id="jobSiteNameBold">{{jobsite.name}}<span></p>
-<p>General Contractor: {{jobsite.contractor}}</p>
-<p>Total Job Site Man Hours: {{jobsite.man_hours}}</p>
 
-<!--<button ng-click="showAddTime()" ng-hide="showNewTimeEvent">Add Late Time Employee Time</button>-->
-<!--<button ng-click="hideAddTime()" ng-show="showNewTimeEvent">Hide Late Employee Time</button>-->
+
+<button ng-click="showAddTime(); createLateTimeCard()">Create Late Time Card</button>
 <button>This Job Site Is Completed</button>
-<br />
-<br />
-<button ng-click="showUpdateForm()" ng-hide="showUpdateJobSite">Update Jobsite Details</button>
+<button ng-click="showUpdateForm()" ng-hide="showUpdateJobSite">Show Jobsite Details</button>
 <button ng-click="hideUpdateForm()" ng-show="showUpdateJobSite">Hide Jobsite Details</button>
+<input type="text" placeholder="Filter the Dates" ng-model="filter_date"> 
+
 
 <form ng-show="showUpdateJobSite" ng-submit="updateTheJobSite(jobsite.contractor, jobsite.job_address, jobsite.job_details, jobsite.materials_needed, jobsite.name, jobsite.superintendent_name, jobsite.superintendent_telephone)">
     
+    <p>You can edit and change the job site details</p>
+
     <div >
         <label for="contractor">Contractor: </label>
         <input type="text" class="updateJobSite" ng-model="jobsite.contractor" name="contractor">
@@ -52,23 +52,35 @@
     <input type="submit" class="updateJobSite" value="Update Jobsite">
 </form>
 
-    
+                <!-- Late Time Card -->
+
+<form class="late-time-card" ng-submit="someSubmitFunction(late_notes, late_materials)" ng-show="showLateTC">
+
+    <label for="notes">Notes: </label>
+    <textarea type="text" name="notes" ng-model="late_notes"></textarea>
+
+    <label for="materials">Materials: </label>
+    <textarea type="text" name="materials" ng-model="late_materials"></textarea>
+
+    <input type="submit" value="Submit">
+    <button ng-click="hideAddTime()">X</button>
+
+</form>
+
+
     <!--  You need to set up a spot to show whether the job time is T&M, maybe use hide/show if it is.-->
        
-    <input type="text" placeholder="Filter the Dates" ng-model="filter_date"> 
+    <br />
+    <br />
     <div ng-repeat="timecard in dailyTCs | filter: {theDate:filter_date} track by $index">  <!-- This filter is not complete, it needs to filter only the daily_time_cards array and not the employees_worked array too.-->
-        <ul > 
-            <li>
+        <hr> 
+            <div>
                 
                 <a id="timeCard" ng-hide="showDTCs[$index]" href="" ng-click="showDailyTCs($index)" >{{timecard.theDate}}</a>
-                <!--<a href="" ng-hide="showDTCs" ng-click="showDailyTCs()" >{{timecard.theDate}}</a>-->
                 <a href="" ng-show="showDTCs[$index]" ng-click="hideDailyTCs($index)" >{{timecard.theDate}}</a>
-                <!--<a href="" ng-show="showDTCs" ng-click="hideDailyTCs()" >{{timecard.theDate}}</a>-->
-                
-                
-                <!--<button ng-show="showDTCs[$index]" ng-click="hideDailyTCs($index)">X</button>-->
+
                 <div class="hidden-daily-time-card" ng-show="showDTCs[$index]"> 
-                <!--<div class="hidden-daily-time-card" ng-show="showDTCs">    -->
+                    
                     <p>Materials Used: {{timecard.materials_used}}</p>
                     <p>Notes: {{timecard.notes}}</p>
                     
@@ -82,6 +94,13 @@
                         </thead>
 
                         <tbody>
+
+                            <tr>
+                                <td><input type="text" ng-model="late_employee"></td>
+                                <td><input type="number" min=".25" max="24" ng-model="late_hours"></td>
+                                <td><button ng-click="something(late_employee, late_hours)">Submit</button></td>
+                            </tr>
+
                             <tr ng-repeat="employees in dailyTCs[$index].employees_worked track by $index" > <!--make sure to ng-repeat this -->
                                 <td>{{employees.employeeName}}</td>
                                 <td><input type="number" min=".25" max="24" ng-model="employees.hours_worked"></td>
@@ -91,8 +110,8 @@
                     </table>
                 
                 </div>
-            </li>
-        </ul>
+
+            </div>
 
         <hr>
     </div>

@@ -73,14 +73,7 @@ function addToEmployeesArray(hours, jobsiteEmployeesWorked) {
 
 
 
-//ng-hide and ng-show
-// $scope.showDailyTCs = function() {
-// 	$scope.showDTCs = true;
-// }
-
-// $scope.hideDailyTCs = function() {
-// 	$scope.showDTCs = false;
-// }
+///////THE NG-HIDES AND NG-SHOWS\\\\\\\\
 
 $scope.showDTCs = [];
 $scope.showDailyTCs = function(index) {
@@ -98,6 +91,15 @@ $scope.showUpdateForm = function() {
 
 $scope.hideUpdateForm = function() {
 	$scope.showUpdateJobSite = false;
+}
+
+
+$scope.showAddTime = function() {
+	$scope.showLateTC = true;
+}
+
+$scope.hideAddTime = function() {
+	$scope.showLateTC = false;
 }
 
 
@@ -130,6 +132,13 @@ $scope.updateTheJobSite = function(contractor, jobAddress, jobDetails, materials
 		console.log("the updateTheJobSite function response from db: ", response);
 		})
 	})
+}
+
+
+
+
+$scope.createLateTimeCard = function() {
+	alert("this function has fired");
 }
 
 

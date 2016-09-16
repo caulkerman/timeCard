@@ -9,12 +9,12 @@ Make it so the admin can enter a late time event time card where it hide/shows w
 
 The comments in html says to make a spot for whether the timecard is T&M, because if it IS then there would be duplicate dates, and that would be ok if it's T&M.
 
-Make it so there is a delete button in the parent ng-repeat to delete the entire daily_time_card if an employee accidently creates an empty time card, puts no employee time and/or materials etc in it.
+Make it so there is a delete button in the parent ng-repeat to delete the entire daily_time_card if an employee accidently creates an empty time card, puts no employee time and/or materials etc in it. Make it so there is a warning so admin doesnt delete it accidently.
 
-Make it so with the late time card that the admin can enter multiple employees and late time.
+Make it so with the late time card that the admin can enter multiple employees and late time, updates immediately.
 
-Make it so the materials_used and notes are editable
+Make it so the materials_used and notes are editable, which means that they have their own update function.
 
 The 'late' property needs to be moved out of the employees_worked array objects and into the daily_time_cards objects to the late will be next to the date, highlite in red.
 
-Add total job site man hours to the jobsite details modal.
+Add total job site man hours to the jobsite details modal. /Create a function that adds all the hours up.

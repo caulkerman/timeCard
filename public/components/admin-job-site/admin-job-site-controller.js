@@ -146,7 +146,42 @@ $scope.updateTheJobSite = function(contractor, jobAddress, jobDetails, materials
 
 
 $scope.createLateTimeCard = function() {
-	alert("This is the first of 2 functions to fire with this button click, this function will create a new daily_time_cards object that will be sent to the DB and will be immediately availble in the ng-repeat below and marked late.");
+	console.log("the createLateTimeCard function has fired");
+	alert("make sure that this function can fire only once per day");
+// 	var flag = false;
+	
+// 	function DailyTimeCard() {
+// 		this.theDate = $scope.theDate;
+// 		this.employees_worked = [];
+// 		this.materials_used = '';
+// 		this.notes = '';
+// 		//this.TandM = false; //if we do a t & M it will have to create a new dailyTimeCard object, but I am worrying about the view's curent state at the moment that it is created.  or something like this, boolean value will have to be brought from html through the funtion, will probably have to use a radio button or checkbox.
+// 		this.late = false;
+// 	}
+// 	$scope.dailyTimeCard = new DailyTimeCard();
+
+// 	if (dailyTCArray.length > 0) {  (dailyTCArray doesn't exist in this file)
+
+// 		for (var i = 0; i < dailyTCArray.length; i++) {
+// 			if (dailyTCArray[i].theDate === $scope.dailyTimeCard.theDate) {
+// 				flag = true;
+// 			console.log("addTheNewDailyTimeCardToJobsiteObject flag", flag);
+				
+// 			};
+// 		};
+
+// 		if (flag === false) {
+// 			dailyTCArray.unshift($scope.dailyTimeCard);
+// 			employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId(dailyTCArray, $scope.jobsite._id);
+// 		};
+// 	};
+
+// 	if (dailyTCArray.length < 1) {
+// 			dailyTCArray.push($scope.dailyTimeCard);
+// 			employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId(dailyTCArray, $scope.jobsite._id);
+// 	};
+
+// };
 }
 
 
@@ -162,6 +197,13 @@ $scope.lateEmployee = function() {
 $scope.deleteTC = function(index) {
 	console.log(index);
 	alert("the deleteTC function has fired");
+}
+
+
+
+
+$scope.addMaterialsAndNotes = function(late_notes, late_materials) {
+	console.log("the addMaterialsAndNotes function has fired");
 }
 
 

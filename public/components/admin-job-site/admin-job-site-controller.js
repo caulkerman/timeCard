@@ -102,6 +102,14 @@ $scope.hideAddTime = function() {
 	$scope.showLateTC = false;
 }
 
+//I need some more thinking on this one.
+// function checkIfLate() {
+
+// 	if ($scope.dailyTCs.late) {
+// 		$scope.late = true;
+// 	}
+// }
+
 
 
 

@@ -62,7 +62,7 @@
     <textarea type="text" name="materials" ng-model="late_materials"></textarea>
 
     <input type="submit" value="Submit">
-    <button ng-click="hideAddTime()">X</button>
+    <button ng-click="hideAddTime()">Close Form</button>
 
 </form>
 
@@ -70,7 +70,7 @@
     <!--  You need to set up a spot to show whether the job time is T&M, maybe use hide/show if it is.-->
        
     <br />
-<!--<input type="text" placeholder="Filter the Dates" ng-model="filter_date"> -->
+<input type="text" placeholder="Filter the Dates" ng-model="filter_date"> 
     
     <br />
     <div ng-repeat="timecard in dailyTCs | filter: {theDate:filter_date} track by $index">  <!-- This filter is not complete, it needs to filter only the daily_time_cards array and not the employees_worked array too.-->
@@ -103,7 +103,7 @@
                                 <td><button ng-click="lateEmployee(late_employee, late_hours)" >Submit</button></td>
                             </tr>
 
-                            <tr ng-repeat="employees in dailyTCs[$index].employees_worked track by $index" > <!--make sure to ng-repeat this -->
+                            <tr ng-repeat="employees in timecard.employees_worked track by $index" > <!--make sure to ng-repeat this -->
                                 <td>{{employees.employeeName}}</td>
                                 <td><input type="number" min=".25" max="24" ng-model="employees.hours_worked"></td>
                                 <td><button ng-click="editEmployee(employees.hours_worked, employees._id)">Edit</button></td>

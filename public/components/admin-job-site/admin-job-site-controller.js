@@ -138,7 +138,7 @@ $scope.updateTheJobSite = function(contractor, jobAddress, jobDetails, materials
 
 
 $scope.createLateTimeCard = function() {
-	alert("this function has fired");
+	alert("This is the first of 2 functions to fire with this button click, this function will create a new daily_time_cards object that will be sent to the DB and will be immediately availble in the ng-repeat below and marked late.");
 }
 
 

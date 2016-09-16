@@ -12,6 +12,7 @@ var newJobSchema = new Schema({
 	job_details: { type: String },
 	materials_needed: { type: String },
 	completed: { type: Boolean, default: false },
+	timeAndMaterial: { type: Boolean, default: false },
 	daily_time_cards: [
 		{
 			theDate: {type: String },
@@ -25,7 +26,8 @@ var newJobSchema = new Schema({
 				}
 			],
 			materials_used: String,
-			notes: String
+			notes: String,
+			late: { type: Boolean, default: false }
 		}
 	]
 })

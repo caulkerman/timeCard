@@ -1,9 +1,9 @@
 
-Make it so the ng-hide and ng-show divs have the styling of a modal.
+Modal - Make it so the ng-hide and ng-show divs have the styling of a modal.
 
-Make it so the late time event hides and shows with a button and make it look like a modal.
+Modal - Make it so the late time event hides and shows with a button and make it look like a modal.
     
-Make it (MAYBE) so the hidden-daily-time-card div looks like a modal with the date in its original position, the X to hide can be in the upper right corner like normal.
+Modal - Make it (MAYBE) so the hidden-daily-time-card div looks like a modal with the date in its original position, the X to hide can be in the upper right corner like normal.
     
 Make it so the admin can enter a late time event time card where it hide/shows with only the notes and materials with a submit button that creates the new time card and has it call to the DB so it shows in the ng-repeat immediately.
 

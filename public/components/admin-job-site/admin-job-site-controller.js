@@ -16,6 +16,7 @@ function getTheJobSiteFromDBbyId() {// we might want to have this function call 
 		$scope.jobsite = response.data;
 		$scope.dailyTCs = $scope.jobsite.daily_time_cards;
 		console.warn("$scope.jobsite ", $scope.jobsite);
+		// makeItLate();
 	});
 };
 getTheJobSiteFromDBbyId();
@@ -93,22 +94,23 @@ $scope.hideUpdateForm = function() {
 	$scope.showUpdateJobSite = false;
 }
 
-
-$scope.showAddTime = function() {
+$scope.showLateTCdiv = function() {
 	$scope.showLateTC = true;
 }
 
-$scope.hideAddTime = function() {
+function hideLateTCdiv() {
 	$scope.showLateTC = false;
 }
 
-//I need some more thinking on this one.
-// function checkIfLate() {
 
-// 	if ($scope.dailyTCs.late) {
-// 		$scope.late = true;
-// 	}
+// $scope.showAddMaterialsAndNotes = function() {
+// 	$scope.showLateTC = true;
 // }
+
+// $scope.hideAddMaterialsAndNotes = function() {
+// 	$scope.showLateTC = false;
+// }
+
 
 
 
@@ -145,36 +147,40 @@ $scope.updateTheJobSite = function(contractor, jobAddress, jobDetails, materials
 
 
 
-$scope.createLateTimeCard = function() {
-	console.log("the createLateTimeCard function has fired");
-	alert("make sure that this function can fire only once per day");
-// 	var flag = false;
+$scope.theDate = employeeJobSiteTimeCardService.theDate();
+
+$scope.createLateTimeCard = function(theNewDate) {
+	var flag = false;
 	
-// 	function DailyTimeCard() {
-// 		this.theDate = $scope.theDate;
-// 		this.employees_worked = [];
-// 		this.materials_used = '';
-// 		this.notes = '';
-// 		//this.TandM = false; //if we do a t & M it will have to create a new dailyTimeCard object, but I am worrying about the view's curent state at the moment that it is created.  or something like this, boolean value will have to be brought from html through the funtion, will probably have to use a radio button or checkbox.
-// 		this.late = false;
-// 	}
-// 	$scope.dailyTimeCard = new DailyTimeCard();
+	function DailyTimeCard() {
+		this.theDate = $scope.newDate;
+		this.employees_worked = [];
+		this.materials_used = '';
+		this.notes = '';
+		this.TandM = false; //if we do a t & M it will have to create a new dailyTimeCard object, but I am worrying about the view's curent state at the moment that it is created.  or something like this, boolean value will have to be brought from html through the funtion, will probably have to use a radio button or checkbox.
+		this.late = true;
+	}
+	$scope.dailyTimeCard = new DailyTimeCard();
 
-// 	if (dailyTCArray.length > 0) {  (dailyTCArray doesn't exist in this file)
+	// if (dailyTCs.length > 0) {
 
-// 		for (var i = 0; i < dailyTCArray.length; i++) {
-// 			if (dailyTCArray[i].theDate === $scope.dailyTimeCard.theDate) {
-// 				flag = true;
-// 			console.log("addTheNewDailyTimeCardToJobsiteObject flag", flag);
+		for (var i = 0; i < $scope.dailyTCs.length; i++) {
+			if ($scope.dailyTCs[i].theDate === $scope.dailyTimeCard.theDate) {
+				flag = true;
+			console.log("addTheNewDailyTimeCardToJobsiteObject flag", flag);
+			alert("A time card for this job site on this day already exists.")
 				
-// 			};
-// 		};
+			};
+		};
 
-// 		if (flag === false) {
-// 			dailyTCArray.unshift($scope.dailyTimeCard);
-// 			employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId(dailyTCArray, $scope.jobsite._id);
-// 		};
-// 	};
+		if (flag === false) {
+			$scope.dailyTCs.push($scope.dailyTimeCard);
+			employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId($scope.dailyTCs, $scope.jobsite._id).then(function(response) {
+				getTheJobSiteFromDBbyId();
+				hideLateTCdiv();
+			})
+		};
+	// };
 
 // 	if (dailyTCArray.length < 1) {
 // 			dailyTCArray.push($scope.dailyTimeCard);
@@ -182,7 +188,7 @@ $scope.createLateTimeCard = function() {
 // 	};
 
 // };
-}
+};
 
 
 
@@ -195,9 +201,11 @@ $scope.lateEmployee = function() {
 
 
 $scope.deleteTC = function(index) {
-	console.log(index);
-	alert("the deleteTC function has fired");
-}
+	$scope.dailyTCs.splice(index, 1);
+		employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId($scope.dailyTCs, $scope.jobsite._id).then(function(response) {
+			getTheJobSiteFromDBbyId();
+		});
+};
 
 
 

@@ -5,7 +5,7 @@ Modal - Make it so the late time event hides and shows with a button and make it
     
 Modal - Make it (MAYBE) so the hidden-daily-time-card div looks like a modal with the date in its original position, the X to hide can be in the upper right corner like normal.
     
-Make it so the admin can enter a late time event time card where it hide/shows with only the notes and materials with a submit button that creates the new time card and has it call to the DB so it shows in the ng-repeat immediately.
+Highlight the "LATE" in red.
 
 The comments in html says to make a spot for whether the timecard is T&M, because if it IS then there would be duplicate dates, and that would be ok if it's T&M.
 
@@ -15,6 +15,7 @@ Make it so with the late time card that the admin can enter multiple employees a
 
 Make it so the materials_used and notes are editable, which means that they have their own update function.
 
-The 'late' property needs to be moved out of the employees_worked array objects and into the daily_time_cards objects to the late will be next to the date, highlite in red.
-
 Add total job site man hours to the jobsite details modal. /Create a function that adds all the hours up.
+
+The createLateTimeCard function in the html needs to be moved to an button inside an element that hides and shows that is an input box where a date is to be entered. The button takes the inputted date and calles the function creating a new late daily time card.
+

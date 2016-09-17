@@ -3,7 +3,7 @@
 <p><span id="jobSiteNameBold">{{jobsite.name}}<span></p>
 
 
-<button ng-click="showAddTime(); createLateTimeCard()">Create Late Time Card</button>
+<button ng-click="showLateTCdiv()">Create Late Time Card</button>
 <button>This Job Site Is Completed</button>
 <button ng-click="showUpdateForm()" ng-hide="showUpdateJobSite">Show Jobsite Details</button>
 <button ng-click="hideUpdateForm()" ng-show="showUpdateJobSite">Hide Jobsite Details</button>
@@ -51,9 +51,13 @@
     <input type="submit" class="updateJobSite" value="Update Jobsite">
 </form>
 
-                <!-- Late Time Card -->
+<div class="late-time-card-date" ng-show="showLateTC">
+    <input type="text" placeholder="Enter the New Date" ng-model="newDate">
+    <button ng-click="createLateTimeCard(newDate)">Submit New Date</button>
+</div>
 
-<form class="late-time-card" ng-submit="addMaterialsAndNotes(late_notes, late_materials)" ng-show="showLateTC">
+                <!-- Late Time Card -->
+<!--<form class="late-time-card" ng-submit="addMaterialsAndNotes(late_notes, late_materials)" ng-show="showLateTC">
 
     <label for="notes">Notes: </label>
     <textarea type="text" name="notes" ng-model="late_notes"></textarea>
@@ -62,9 +66,9 @@
     <textarea type="text" name="materials" ng-model="late_materials"></textarea>
 
     <input type="submit" value="Submit">
-    <button ng-click="hideAddTime()">Close Form</button>
+    <button ng-click="hideAddMaterialsAndNotes()">Close Form</button>
 
-</form>
+</form>-->
 
 
     <!--  You need to set up a spot to show whether the job time is T&M, maybe use hide/show if it is.-->
@@ -79,13 +83,16 @@
                 
                 <a id="timeCard" ng-hide="showDTCs[$index]" href="" ng-click="showDailyTCs($index)" >{{timecard.theDate}}</a>
                 <a href="" ng-show="showDTCs[$index]" ng-click="hideDailyTCs($index)" >{{timecard.theDate}}</a>
-                <span ng-show="late">LATE!</span>
-                <!--<button ng-click="deleteTC($index)">X</button>-->
+                <span ng-show="timecard.late">LATE!</span>
+                <button ng-click="deleteTC($index)">X</button>
 
                 <div class="hidden-daily-time-card" ng-show="showDTCs[$index]"> 
                     
-                    <p>Materials Used: {{timecard.materials_used}}</p>
-                    <p>Notes: {{timecard.notes}}</p>
+                    <!--MAKE SURE TO MAKE THESE STYLED AS display: block -->
+                    <label for="materials">Materials Used: </label>
+                    <textarea name="materials" ng-model="timecard.materials_used"></textarea></p>
+                    <label for="notes">Notes: </label>
+                    <textarea name="notes" ng-model="timecard.notes"></textarea>
                     
                     <table st-table="students" class="table table-striped">
                         <thead>

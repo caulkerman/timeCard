@@ -54,21 +54,7 @@
 <div class="late-time-card-date" ng-show="showLateTC">
     <input type="text" placeholder="Enter the New Date" ng-model="newDate">
     <button ng-click="createLateTimeCard(newDate)">Submit New Date</button>
-</div>
-
-                <!-- Late Time Card -->
-<!--<form class="late-time-card" ng-submit="addMaterialsAndNotes(late_notes, late_materials)" ng-show="showLateTC">
-
-    <label for="notes">Notes: </label>
-    <textarea type="text" name="notes" ng-model="late_notes"></textarea>
-
-    <label for="materials">Materials: </label>
-    <textarea type="text" name="materials" ng-model="late_materials"></textarea>
-
-    <input type="submit" value="Submit">
-    <button ng-click="hideAddMaterialsAndNotes()">Close Form</button>
-
-</form>-->
+</div
 
 
     <!--  You need to set up a spot to show whether the job time is T&M, maybe use hide/show if it is.-->
@@ -89,13 +75,15 @@
                 <div class="hidden-daily-time-card" ng-show="showDTCs[$index]"> 
                     
                     <!--MAKE SURE TO MAKE THESE STYLED AS display: block -->
-                    <label for="materials">Materials Used: </label>
-                    <textarea name="materials" ng-model="timecard.materials_used"></textarea></p>
+                    <div>
+                        <label for="materials">Materials Used: </label>
+                        <textarea name="materials" ng-model="timecard.materials_used"></textarea></p>
 
-                    <label for="notes">Notes: </label>
-                    <textarea name="notes" ng-model="timecard.notes"></textarea>
-                    <button ng-click="addMaterialsAndNotes(timecard.notes, timecard.materials_used, $index)">Submit Materials and Notes</button>
-                    
+                        <label for="notes">Notes: </label>
+                        <textarea name="notes" ng-model="timecard.notes"></textarea>
+
+                        <button ng-click="addMaterialsAndNotes(timecard.notes, timecard.materials_used, $index)">Submit Materials and Notes</button>
+                    </div>
                     
                     <!-- THE TABLE -->
                     <table st-table="students" class="table table-striped">

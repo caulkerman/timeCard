@@ -104,16 +104,6 @@ function hideLateTCdiv() {
 }
 
 
-// $scope.showAddMaterialsAndNotes = function() {
-// 	$scope.showLateTC = true;
-// }
-
-// $scope.hideAddMaterialsAndNotes = function() {
-// 	$scope.showLateTC = false;
-// }
-
-
-
 
 
 adminJobSiteService.getJobs().then(function(response) {

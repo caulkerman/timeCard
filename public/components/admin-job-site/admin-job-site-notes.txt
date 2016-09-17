@@ -11,11 +11,12 @@ The comments in html says to make a spot for whether the timecard is T&M, becaus
 
 Make it so there is a delete button in the parent ng-repeat to delete the entire daily_time_card if an employee accidently creates an empty time card, puts no employee time and/or materials etc in it. Make it so there is a warning so admin doesnt delete it accidently.
 
+Complete the functions to add late employee names and times.
+
 Make it so with the late time card that the admin can enter multiple employees and late time, updates immediately.
 
-Make it so the materials_used and notes are editable, which means that they have their own update function.
+Make it so the materials_used and notes are editable, which means that they have their own update functions.
 
 Add total job site man hours to the jobsite details modal. /Create a function that adds all the hours up.
 
-The createLateTimeCard function in the html needs to be moved to an button inside an element that hides and shows that is an input box where a date is to be entered. The button takes the inputted date and calles the function creating a new late daily time card.
-
+Create your own regex that loops over months, days, years, and week days and compare it to the what the admin enters into the input box.  If it diesn't match send an error.

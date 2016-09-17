@@ -91,9 +91,13 @@
                     <!--MAKE SURE TO MAKE THESE STYLED AS display: block -->
                     <label for="materials">Materials Used: </label>
                     <textarea name="materials" ng-model="timecard.materials_used"></textarea></p>
+
                     <label for="notes">Notes: </label>
                     <textarea name="notes" ng-model="timecard.notes"></textarea>
+                    <button ng-click="addMaterialsAndNotes(timecard.notes, timecard.materials_used, $index)">Submit Materials and Notes</button>
                     
+                    
+                    <!-- THE TABLE -->
                     <table st-table="students" class="table table-striped">
                         <thead>
                             <tr>

@@ -100,6 +100,7 @@ $scope.showLateTCdiv = function() {
 
 function hideLateTCdiv() {
 	$scope.showLateTC = false;
+	$scope.newDate = "";
 }
 
 
@@ -150,44 +151,40 @@ $scope.updateTheJobSite = function(contractor, jobAddress, jobDetails, materials
 $scope.theDate = employeeJobSiteTimeCardService.theDate();
 
 $scope.createLateTimeCard = function(theNewDate) {
-	var flag = false;
+	hideLateTCdiv();
 	
-	function DailyTimeCard() {
-		this.theDate = $scope.newDate;
-		this.employees_worked = [];
-		this.materials_used = '';
-		this.notes = '';
-		this.TandM = false; //if we do a t & M it will have to create a new dailyTimeCard object, but I am worrying about the view's curent state at the moment that it is created.  or something like this, boolean value will have to be brought from html through the funtion, will probably have to use a radio button or checkbox.
-		this.late = true;
-	}
-	$scope.dailyTimeCard = new DailyTimeCard();
+	var flag = false;
 
-	// if (dailyTCs.length > 0) {
+	if (theNewDate) {
+	
+		function DailyTimeCard() {
+			this.theDate = theNewDate;
+			this.employees_worked = [];
+			this.materials_used = '';
+			this.notes = '';
+			this.TandM = false; //if we do a t & M it will have to create a new dailyTimeCard object, but I am worrying about the view's curent state at the moment that it is created.  or something like this, boolean value will have to be brought from html through the funtion, will probably have to use a radio button or checkbox.
+			this.late = true;
+		}
+		$scope.dailyTimeCard = new DailyTimeCard();
 
-		for (var i = 0; i < $scope.dailyTCs.length; i++) {
-			if ($scope.dailyTCs[i].theDate === $scope.dailyTimeCard.theDate) {
-				flag = true;
-			console.log("addTheNewDailyTimeCardToJobsiteObject flag", flag);
-			alert("A time card for this job site on this day already exists.")
-				
+		// if (dailyTCs.length > 0) {
+
+			for (var i = 0; i < $scope.dailyTCs.length; i++) {
+				if ($scope.dailyTCs[i].theDate === $scope.dailyTimeCard.theDate) {
+					flag = true;
+				console.log("addTheNewDailyTimeCardToJobsiteObject flag", flag);
+				alert("A time card for this job site on this day already exists.")
+					
+				};
 			};
+
+			if (flag === false) {
+				$scope.dailyTCs.push($scope.dailyTimeCard);
+				employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId($scope.dailyTCs, $scope.jobsite._id).then(function(response) {
+					getTheJobSiteFromDBbyId();
+				})
 		};
-
-		if (flag === false) {
-			$scope.dailyTCs.push($scope.dailyTimeCard);
-			employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId($scope.dailyTCs, $scope.jobsite._id).then(function(response) {
-				getTheJobSiteFromDBbyId();
-				hideLateTCdiv();
-			})
-		};
-	// };
-
-// 	if (dailyTCArray.length < 1) {
-// 			dailyTCArray.push($scope.dailyTimeCard);
-// 			employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId(dailyTCArray, $scope.jobsite._id);
-// 	};
-
-// };
+	};
 };
 
 
@@ -210,8 +207,13 @@ $scope.deleteTC = function(index) {
 
 
 
-$scope.addMaterialsAndNotes = function(late_notes, late_materials) {
-	console.log("the addMaterialsAndNotes function has fired");
+$scope.addMaterialsAndNotes = function(notes, materials, index) {
+	console.log("the addMaterialsAndNotes function has fired", notes, materials);
+	$scope.dailyTCs[index].materials_used = materials;
+	$scope.dailyTCs[index].notes = notes;
+	employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId($scope.dailyTCs, $scope.jobsite._id).then(function(response) {
+			getTheJobSiteFromDBbyId();
+		});
 }
 
 

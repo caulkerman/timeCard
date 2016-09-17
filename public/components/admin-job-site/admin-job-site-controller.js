@@ -140,15 +140,15 @@ $scope.updateTheJobSite = function(contractor, jobAddress, jobDetails, materials
 
 $scope.theDate = employeeJobSiteTimeCardService.theDate();
 
-$scope.createLateTimeCard = function(theNewDate) {
+$scope.createLateTimeCard = function(newDate) {
 	hideLateTCdiv();
 	
 	var flag = false;
 
-	if (theNewDate) {
+	if (newDate) {
 	
 		function DailyTimeCard() {
-			this.theDate = theNewDate;
+			this.theDate = newDate;
 			this.employees_worked = [];
 			this.materials_used = '';
 			this.notes = '';
@@ -170,7 +170,7 @@ $scope.createLateTimeCard = function(theNewDate) {
 
 			if (flag === false) {
 				$scope.dailyTCs.push($scope.dailyTimeCard);
-				employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId($scope.dailyTCs, $scope.jobsite._id).then(function(response) {
+employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId($scope.dailyTCs, $scope.jobsite._id).then(function(response) {
 					getTheJobSiteFromDBbyId();
 				})
 		};
@@ -180,9 +180,25 @@ $scope.createLateTimeCard = function(theNewDate) {
 
 
 
-$scope.lateEmployee = function() {
-	alert("the lateEmployee function has fired.")
-}
+$scope.lateEmployee = function(late_employee, late_hours, index, date) {
+
+	if (late_employee && late_hours && index && date) {
+
+		function NameHoursDate(e, h, d) {
+			this.employeeName = e,
+			this.hours_worked = h,
+			this.date_worked = d
+		};
+		var nameHoursDate = new NameHoursDate(late_employee, late_hours, date);
+		// console.log("the new nameHoursDate object: ", nameHoursDate, "and the index: ", index);
+
+		$scope.dailyTCs[index].employees_worked.push(nameHoursDate);
+		console.log("lateEmployee function: ", $scope.jobsite);
+		employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId($scope.dailyTCs, $scope.jobsite._id).then(function(response) {
+			getTheJobSiteFromDBbyId();
+		})
+	}
+};
 
 
 

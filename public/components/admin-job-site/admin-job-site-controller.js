@@ -182,23 +182,55 @@ employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId($scope.dailyTCs, $scope.
 
 $scope.lateEmployee = function(late_employee, late_hours, index, date) {
 
-	if (late_employee && late_hours && index && date) {
-
-		function NameHoursDate(e, h, d) {
-			this.employeeName = e,
-			this.hours_worked = h,
-			this.date_worked = d
-		};
-		var nameHoursDate = new NameHoursDate(late_employee, late_hours, date);
-		// console.log("the new nameHoursDate object: ", nameHoursDate, "and the index: ", index);
-
-		$scope.dailyTCs[index].employees_worked.push(nameHoursDate);
-		console.log("lateEmployee function: ", $scope.jobsite);
-		employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId($scope.dailyTCs, $scope.jobsite._id).then(function(response) {
-			getTheJobSiteFromDBbyId();
-		})
+	var empsArray = [], empArray = [], flag = false;
+	
+	for (var i = 0; i < $scope.employeesArray.length; i++) {
+		empArray.push($scope.employeesArray[i].fullName);
 	}
-};
+		
+	for (var i = 0; i < $scope.dailyTCs[index].employees_worked.length; i++) {
+		empsArray.push($scope.dailyTCs[index].employees_worked[i].employeeName);
+	}
+
+	for (var j = 0; j < empsArray.length; j++) {
+		if (late_employee === empsArray[j]) {
+			flag = true;
+		}
+	}
+	console.log("the flag: ", flag);
+	
+
+	console.log("the employee empArray: ", empArray);
+	console.log("the jobsite empsArray: ", empsArray);
+
+	for (var i = 0; i < empArray.length; i++) {
+		var empArrayEmp = empArray[i];
+		console.warn(empArrayEmp);
+	
+		if (late_employee === empArray[i] && late_hours && flag === false){
+			
+			function NameHoursDate(e, h, d) {
+				this.employeeName = e,
+				this.hours_worked = h,
+				this.date_worked = d
+			};
+			var nameHoursDate = new NameHoursDate(late_employee, late_hours, date);
+
+			$scope.dailyTCs[index].employees_worked.push(nameHoursDate);
+
+			employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId($scope.dailyTCs, $scope.jobsite._id).then(function(response) {
+				getTheJobSiteFromDBbyId();
+			});
+			
+			break;
+
+		} else {
+			$scope.badName = true;
+			console.log("check the name or spelling of the name you are entering");
+		}
+	} //also make sure that you push to the employees array
+	
+}
 
 
 
@@ -223,12 +255,6 @@ $scope.addMaterialsAndNotes = function(notes, materials, index) {
 }
 
 
-////////Start of Connor's code\\\\\\\\
-
-
-// console.warn("OOOOOOHHH WHAAATS THAAATZZZZ")
-
-///////End of Connor's code\\\\\\\
 
 
 

@@ -20,3 +20,5 @@ Make it so the materials_used and notes are editable, which means that they have
 Add total job site man hours to the jobsite details modal. /Create a function that adds all the hours up.
 
 Create your own regex that loops over months, days, years, and week days and compare it to the what the admin enters into the input box.  If it diesn't match send an error.
+
+In the lateEmployees function need to make it so it compares the late_employee to a list of employee names so admin doesn't enter in bogus names and a warning, need to make it so the late_employee is sent to the employees object.

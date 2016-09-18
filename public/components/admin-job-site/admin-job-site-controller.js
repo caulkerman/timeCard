@@ -229,8 +229,8 @@ $scope.lateEmployee = function(late_employee, late_hours, index, date) {
 			console.log("check the name or spelling of the name you are entering");
 		}
 	} //also make sure that you push to the employees array
-	
 }
+
 
 
 

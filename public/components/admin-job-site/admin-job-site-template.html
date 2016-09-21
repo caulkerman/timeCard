@@ -13,6 +13,8 @@
     
     <p>You can edit and change the job site details</p>
 
+    <p>Total Job Site Hours Worked: {{totalJobSiteHours}}</p>
+
     <div >
         <label for="contractor">Contractor: </label>
         <input type="text" class="updateJobSite" ng-model="jobsite.contractor" name="contractor">
@@ -52,9 +54,9 @@
 </form>
 
 <div class="late-time-card-date" ng-show="showLateTC">
-    <input type="text" placeholder="Enter the New Date" ng-model="newDate">
+    <input type="text" placeholder="Example: May 2, 2016: Monday" ng-model="newDate">
     <button ng-click="createLateTimeCard(newDate)">Submit New Date</button>
-</div
+</div>
 
 
     <!--  You need to set up a spot to show whether the job time is T&M, maybe use hide/show if it is.-->

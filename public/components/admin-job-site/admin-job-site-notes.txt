@@ -1,11 +1,11 @@
 
-Modal - Make it so the ng-hide and ng-show divs have the styling of a modal.
+Styling Modal - Make it so the ng-hide and ng-show divs have the styling of a modal.
 
-Modal - Make it so the late time event hides and shows with a button and make it look like a modal.
+Styling Modal - Make it so the late time event hides and shows with a button and make it look like a modal.
     
-Modal - Make it (MAYBE) so the hidden-daily-time-card div looks like a modal with the date in its original position, the X to hide can be in the upper right corner like normal.
+Styling Modal - Make it (MAYBE) so the hidden-daily-time-card div looks like a modal with the date in its original position, the X to hide can be in the upper right corner like normal.
     
-Highlight the "LATE" in red.
+Styling Highlight the "LATE" in red.
 
 The comments in html says to make a spot for whether the timecard is T&M, because if it IS then there would be duplicate dates, and that would be ok if it's T&M.
 
@@ -15,8 +15,10 @@ See if you can make the late_employee input to clear at the end of the function.
 
 Add total job site man hours to the jobsite details modal. /Create a function that adds all the hours up.
 
-Create your own regex that loops over months, days, years, and week days and compare it to the what the admin enters into the input box.  If it diesn't match send an error.
-
-In the lateEmployees function need to make it so there is a warning, need to make it so the late_employee is sent to the employees object.
+In the lateEmployees function need to make it so there is a warning ******** A warning for what?  I wish I had been clearer.
 
 Make the old/completed jobsites button functional, make it so the whole jobsite is taken from the jobsites array and put into the new schema oldJobSites array.
+
+Make it so when admin enters or updates materials and notes that something says that it is updating or updated, for like 2 or 3 seconds.
+
+Currently I can make duplicate late time cards, make it so it isn't so.

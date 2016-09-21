@@ -15,8 +15,8 @@ function getTheJobSiteFromDBbyId() {// we might want to have this function call 
 	employeeJobSiteTimeCardService.getTheJobSiteFromDBbyId(jobSiteId).then(function(response) {
 		$scope.jobsite = response.data;
 		$scope.dailyTCs = $scope.jobsite.daily_time_cards;
+		addAllTheHours();
 		console.warn("$scope.jobsite ", $scope.jobsite);
-		// makeItLate();
 	});
 };
 getTheJobSiteFromDBbyId();
@@ -28,8 +28,8 @@ function getEmployees() {
 	adminJobSiteService.getEmployees().then(function(response){
 		console.log("the getEmployees function response object: ", response.data);
 		$scope.employeesArray = response.data;
-	})
-}
+	});
+};
 getEmployees();
 
 
@@ -45,12 +45,12 @@ $scope.editEmployee = function(hours, id) {
 
 				adminJobSiteService.updateTheJobSiteInDBbyId($scope.jobsite.daily_time_cards, $scope.jobsite._id).then(function(response) {
 					console.log("the jobsite response for update employee hours: ", response.data);
-				})
+				});
 				addToEmployeesArray(hours, $scope.jobsite.daily_time_cards[i].employees_worked[j]);
-			}
-		}
-	}
-}
+			};
+		};
+	};
+};
 
 
 
@@ -65,11 +65,12 @@ function addToEmployeesArray(hours, jobsiteEmployeesWorked) {
 				
 				adminJobSiteService.updateEmployeesWorkedInDBbyId($scope.employeesArray[e].job_site_hours_worked, $scope.employeesArray[e]._id).then(function(response) {
 					console.log("this is the employeesArray updated response ", response.data);
-				})
-			}
-		}
-	}
-}
+					addAllTheHours();						
+				});
+			};
+		};
+	};
+};
 
 
 
@@ -79,29 +80,29 @@ function addToEmployeesArray(hours, jobsiteEmployeesWorked) {
 $scope.showDTCs = [];
 $scope.showDailyTCs = function(index) {
 	$scope.showDTCs[index] = true;
-}
+};
 
 $scope.hideDailyTCs = function(index) {
 	$scope.showDTCs[index] = false;
-}
+};
 
 
 $scope.showUpdateForm = function() {
 	$scope.showUpdateJobSite = true;
-}
+};
 
 $scope.hideUpdateForm = function() {
 	$scope.showUpdateJobSite = false;
-}
+};
 
 $scope.showLateTCdiv = function() {
 	$scope.showLateTC = true;
-}
+};
 
 function hideLateTCdiv() {
 	$scope.showLateTC = false;
 	$scope.newDate = "";
-}
+};
 
 
 
@@ -131,9 +132,11 @@ $scope.updateTheJobSite = function(contractor, jobAddress, jobDetails, materials
 		
 		adminJobSiteService.updateJobsite($scope.jobsite, $scope.jobsite._id).then(function(response) {
 		console.log("the updateTheJobSite function response from db: ", response);
-		})
-	})
-}
+		addAllTheHours();
+		
+		});
+	});	
+};
 
 
 
@@ -154,26 +157,29 @@ $scope.createLateTimeCard = function(newDate) {
 			this.notes = '';
 			this.TandM = false; //if we do a t & M it will have to create a new dailyTimeCard object, but I am worrying about the view's curent state at the moment that it is created.  or something like this, boolean value will have to be brought from html through the funtion, will probably have to use a radio button or checkbox.
 			this.late = true;
-		}
+		};
 		$scope.dailyTimeCard = new DailyTimeCard();
 
-		// if (dailyTCs.length > 0) {
-
-			for (var i = 0; i < $scope.dailyTCs.length; i++) {
-				if ($scope.dailyTCs[i].theDate === $scope.dailyTimeCard.theDate) {
-					flag = true;
+		for (var i = 0; i < $scope.dailyTCs.length; i++) {
+			if ($scope.dailyTCs[i].theDate === $scope.dailyTimeCard.theDate) {
+				flag = true;
 				console.log("addTheNewDailyTimeCardToJobsiteObject flag", flag);
 				alert("A time card for this job site on this day already exists.")
 					
-				};
 			};
-
-			if (flag === false) {
-				$scope.dailyTCs.push($scope.dailyTimeCard);
-employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId($scope.dailyTCs, $scope.jobsite._id).then(function(response) {
-					getTheJobSiteFromDBbyId();
-				})
 		};
+
+		if (flag === false) {
+			$scope.dailyTCs.push($scope.dailyTimeCard);
+				
+			employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId($scope.dailyTCs, $scope.jobsite._id).then(function(response) {
+			getTheJobSiteFromDBbyId();
+			});
+		};
+	};
+
+	if (!newDate) {
+		console.error("Nothing Saved, box closed");
 	};
 };
 
@@ -187,23 +193,19 @@ $scope.lateEmployee = function(late_employee, late_hours, index, date) {
 	
 	for (var i = 0; i < $scope.employeesArray.length; i++) {
 		empArray.push($scope.employeesArray[i].fullName);
-	}
+	};
 		
 	for (var i = 0; i < $scope.dailyTCs[index].employees_worked.length; i++) {
 		empsArray.push($scope.dailyTCs[index].employees_worked[i].employeeName);
-	}
+	};
 
 	for (var j = 0; j < empsArray.length; j++) {
 		if (late_employee === empsArray[j]) {
 			flag = true;
-		}
-	}
+		};
+	};
 	console.log("the flag: ", flag);
 	
-
-	console.log("the employee empArray: ", empArray);
-	console.log("the jobsite empsArray: ", empsArray);
-
 	for (var i = 0; i < empArray.length; i++) {
 		var empArrayEmp = empArray[i];
 		console.warn(empArrayEmp);
@@ -222,6 +224,7 @@ $scope.lateEmployee = function(late_employee, late_hours, index, date) {
 			employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId($scope.dailyTCs, $scope.jobsite._id).then(function(response) {
 				sendLateToEmpArray(late_hours, date, late_employee);
 				getTheJobSiteFromDBbyId();
+				addAllTheHours();				
 			});
 			
 			break;
@@ -229,9 +232,9 @@ $scope.lateEmployee = function(late_employee, late_hours, index, date) {
 		} else {
 			$scope.badName = true; //this is for ng-hide/show to pop up saying they got it wrong.
 			console.log("check the name or spelling of the name you are entering");
-		}
-	} 
-}
+		};
+	};
+};
 
 
 
@@ -242,7 +245,7 @@ function sendLateToEmpArray(late_hours, date, late_employee, index) {
 		this.date_worked = date;
 		this.hours_worked = late_hours;
 		this.job_site = $scope.jobsite.name
-	}
+	};
 	var lateEmployeeToEmpArray = new LateEmployeeToEmpArray(late_hours, date);
 
 	for (var i = 0; i < $scope.employeesArray.length; i++) {
@@ -252,12 +255,10 @@ function sendLateToEmpArray(late_hours, date, late_employee, index) {
 			
 			adminJobSiteService.updateEmployeesWorkedInDBbyId($scope.employeesArray[i].job_site_hours_worked, $scope.employeesArray[i]._id).then(function(response) {
 					console.log("this is the employeesArray updated response ", response.data);
-				})
-			
-		}
-	}
-
-}
+			});
+		};
+	};
+};
 
 
 
@@ -265,9 +266,10 @@ function sendLateToEmpArray(late_hours, date, late_employee, index) {
 
 $scope.deleteTC = function(index) {
 	$scope.dailyTCs.splice(index, 1);
-		employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId($scope.dailyTCs, $scope.jobsite._id).then(function(response) {
-			getTheJobSiteFromDBbyId();
-		});
+	employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId($scope.dailyTCs, $scope.jobsite._id).then(function(response) {
+		getTheJobSiteFromDBbyId();
+		addAllTheHours();			
+	});
 };
 
 
@@ -279,7 +281,24 @@ $scope.addMaterialsAndNotes = function(notes, materials, index) {
 	$scope.dailyTCs[index].notes = notes;
 	employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId($scope.dailyTCs, $scope.jobsite._id).then(function(response) {
 			getTheJobSiteFromDBbyId();
-		});
+	});
+};
+
+
+
+
+function addAllTheHours() {
+
+$scope.totalJobSiteHours = 0;
+
+	for (var i = 0; i < $scope.dailyTCs.length; i++) {
+		for (var j = 0; j < $scope.dailyTCs[i].employees_worked.length; j++) {
+
+			$scope.totalJobSiteHours += $scope.dailyTCs[i].employees_worked[j].hours_worked;
+		}	
+	}
+	console.log("total hours", $scope.totalJobSiteHours);
+
 }
 
 

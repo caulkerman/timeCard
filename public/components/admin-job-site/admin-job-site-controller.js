@@ -180,6 +180,7 @@ employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId($scope.dailyTCs, $scope.
 
 
 
+//creates a late employee time entry, checks it against the list of employees and if there adds a new time event for that employee, if the name is not there nothing happens.
 $scope.lateEmployee = function(late_employee, late_hours, index, date) {
 
 	var empsArray = [], empArray = [], flag = false;
@@ -219,16 +220,43 @@ $scope.lateEmployee = function(late_employee, late_hours, index, date) {
 			$scope.dailyTCs[index].employees_worked.push(nameHoursDate);
 
 			employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId($scope.dailyTCs, $scope.jobsite._id).then(function(response) {
+				sendLateToEmpArray(late_hours, date, late_employee);
 				getTheJobSiteFromDBbyId();
 			});
 			
 			break;
 
 		} else {
-			$scope.badName = true;
+			$scope.badName = true; //this is for ng-hide/show to pop up saying they got it wrong.
 			console.log("check the name or spelling of the name you are entering");
 		}
-	} //also make sure that you push to the employees array
+	} 
+}
+
+
+
+
+function sendLateToEmpArray(late_hours, date, late_employee, index) {
+
+	function LateEmployeeToEmpArray() {
+		this.date_worked = date;
+		this.hours_worked = late_hours;
+		this.job_site = $scope.jobsite.name
+	}
+	var lateEmployeeToEmpArray = new LateEmployeeToEmpArray(late_hours, date);
+
+	for (var i = 0; i < $scope.employeesArray.length; i++) {
+
+		if ($scope.employeesArray[i].fullName === late_employee) {
+			$scope.employeesArray[i].job_site_hours_worked.push(lateEmployeeToEmpArray );
+			
+			adminJobSiteService.updateEmployeesWorkedInDBbyId($scope.employeesArray[i].job_site_hours_worked, $scope.employeesArray[i]._id).then(function(response) {
+					console.log("this is the employeesArray updated response ", response.data);
+				})
+			
+		}
+	}
+
 }
 
 

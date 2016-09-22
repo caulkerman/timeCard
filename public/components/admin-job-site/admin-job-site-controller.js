@@ -197,6 +197,7 @@ $scope.createLateTimeCard = function(newDate) {
 
 //creates a late employee time entry, checks it against the list of employees and if there adds a new time event for that employee, if the name is not there nothing happens.
 $scope.lateEmployee = function(late_employee, late_hours, index, date) {
+	console.log("the index: ", index);
 
 	var empsArray = [], empArray = [], flag = false;
 	
@@ -275,7 +276,11 @@ function sendLateToEmpArray(late_hours, date, late_employee, index) {
 
 
 $scope.deleteTC = function(index) {
+
+	$scope.hideDeleteWarning(index);
+	
 	$scope.dailyTCs.splice(index, 1);
+	
 	employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId($scope.dailyTCs, $scope.jobsite._id).then(function(response) {
 		getTheJobSiteFromDBbyId();
 		addAllTheHours();			

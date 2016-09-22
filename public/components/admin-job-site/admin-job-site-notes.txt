@@ -12,3 +12,7 @@ Styling deleteWarning div needs to look nice.
 The comments in html says to make a spot for whether the timecard is T&M, because if it IS then there would be duplicate dates, and that would be ok if it's T&M.
 
 Make the old/completed jobsites button functional, make it so the whole jobsite is taken from the jobsites array and put into the new schema oldJobSites array.
+
+Find out why when the date is filtered that I cannot update the person correctly
+
+Make it so when they enter a bad name the ng-hide/show pops up telling them.  see controller line 243 at bottom of lateEmployee function.

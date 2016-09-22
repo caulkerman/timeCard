@@ -103,6 +103,7 @@
                                 <td>Employee Name</td>
                                 <td>Hours Worked</td>
                                 <td>Edit</td>
+                                <td>Delete</td>
                             </tr>
                         </thead>
 
@@ -118,6 +119,7 @@
                                 <td>{{employees.employeeName}}</td>
                                 <td><input type="number" min=".25" max="24" ng-model="employees.hours_worked"></td>
                                 <td><button ng-click="editEmployee(employees.hours_worked, employees._id)">Edit</button></td>
+                                <td><button ng-click="deleteEmployeeFromTC($parent.$index, $index)">X</button>
                             </tr>
                         </tbody>
                     </table>

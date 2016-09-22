@@ -12,9 +12,3 @@ Styling deleteWarning div needs to look nice.
 The comments in html says to make a spot for whether the timecard is T&M, because if it IS then there would be duplicate dates, and that would be ok if it's T&M.
 
 Make the old/completed jobsites button functional, make it so the whole jobsite is taken from the jobsites array and put into the new schema oldJobSites array.
-
-Make it so when admin enters or updates materials and notes that something says that it is updating or updated, for like 2 or 3 seconds.
-
-Currently I can make duplicate late time cards, make it so it isn't so.
-
-Should I make it so admin can delete an employee from a daily time card?

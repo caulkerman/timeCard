@@ -263,7 +263,7 @@ function sendLateToEmpArray(late_hours, date, late_employee, index) {
 			$scope.employeesArray[i].job_site_hours_worked.push(lateEmployeeToEmpArray );
 			
 			adminJobSiteService.updateEmployeesWorkedInDBbyId($scope.employeesArray[i].job_site_hours_worked, $scope.employeesArray[i]._id).then(function(response) {
-					console.log("this is the employeesArray updated response ", response.data);
+				console.log("this is the employeesArray updated response ", response.data);
 					
 			});
 		};
@@ -314,6 +314,46 @@ function addAllTheHours() {
 	};
 	console.log("total hours", $scope.totalJobSiteHours);
 };
+
+
+
+
+$scope.deleteEmployeeFromTC = function(pIndex, index) {
+
+	var theOneBeingDeleted = $scope.dailyTCs[pIndex].employees_worked[index];
+	deleteEmployeeFromEmployees(theOneBeingDeleted);
+
+	$scope.dailyTCs[pIndex].employees_worked.splice([index], 1);
+
+	employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId($scope.dailyTCs, $scope.jobsite._id).then(function(response) {
+		getTheJobSiteFromDBbyId();
+	});
+
+}
+
+
+
+
+function deleteEmployeeFromEmployees(theOne) {
+
+	var emps, emp;
+	for (var i = 0; i < $scope.employeesArray.length; i++) {
+		emps = $scope.employeesArray[i];
+
+		for (var j = 0; j < $scope.employeesArray[i].job_site_hours_worked.length; j++) {
+			emp = emps.job_site_hours_worked[j];
+
+			if (emps.fullName === theOne.employeeName && emp.date_worked === theOne.date_worked && emp.job_site === $scope.jobsite.name) {
+				emps.job_site_hours_worked.splice([j], 1);
+				
+				adminJobSiteService.updateEmployeesWorkedInDBbyId(emps.job_site_hours_worked, emps._id).then(function(response) {
+					getEmployees();
+					console.log("this is the employeesArray updated response ", response.data);
+				});
+			}
+		}
+	}
+}
 
 
 

@@ -7,18 +7,14 @@ Styling Modal - Make it (MAYBE) so the hidden-daily-time-card div looks like a m
     
 Styling Highlight the "LATE" in red.
 
+Styling deleteWarning div needs to look nice.
+
 The comments in html says to make a spot for whether the timecard is T&M, because if it IS then there would be duplicate dates, and that would be ok if it's T&M.
-
-Make it so there is a warning before admin deletes the job site
-
-See if you can make the late_employee input to clear at the end of the function.
-
-Add total job site man hours to the jobsite details modal. /Create a function that adds all the hours up.
-
-In the lateEmployees function need to make it so there is a warning ******** A warning for what?  I wish I had been clearer.
 
 Make the old/completed jobsites button functional, make it so the whole jobsite is taken from the jobsites array and put into the new schema oldJobSites array.
 
 Make it so when admin enters or updates materials and notes that something says that it is updating or updated, for like 2 or 3 seconds.
 
 Currently I can make duplicate late time cards, make it so it isn't so.
+
+Should I make it so admin can delete an employee from a daily time card?

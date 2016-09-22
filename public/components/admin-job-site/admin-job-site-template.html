@@ -68,11 +68,19 @@
     <div ng-repeat="timecard in dailyTCs | filter: {theDate:filter_date} track by $index">  <!-- This filter is not complete, it needs to filter only the daily_time_cards array and not the employees_worked array too.-->
         <hr> 
             <div>
+
+                <div ng-show="deleteWarning[$index]">
+                    <p>Are you sure you want to delete this day's time dard?  Clicking yes will delete the whole time card for this day including all time, materials, employees, etc... You WILL NOT be able to get this day back</p>
+                    <button ng-click="hideDeleteWarning($index)">NO</button>
+                    <button ng-click="deleteTC($index)">YES</button>
+                </div>
                 
                 <a id="timeCard" ng-hide="showDTCs[$index]" href="" ng-click="showDailyTCs($index)" >{{timecard.theDate}}</a>
                 <a href="" ng-show="showDTCs[$index]" ng-click="hideDailyTCs($index)" >{{timecard.theDate}}</a>
                 <span ng-show="timecard.late">LATE!</span>
-                <button ng-click="deleteTC($index)">X</button>
+                <button ng-click="showDeleteWarning($index)">X</button>
+
+                
 
                 <div class="hidden-daily-time-card" ng-show="showDTCs[$index]"> 
                     
@@ -83,6 +91,7 @@
 
                         <label for="notes">Notes: </label>
                         <textarea name="notes" ng-model="timecard.notes"></textarea>
+                        <p ng-show="updating">UPDATING!</p>
 
                         <button ng-click="addMaterialsAndNotes(timecard.notes, timecard.materials_used, $index)">Submit Materials and Notes</button>
                     </div>

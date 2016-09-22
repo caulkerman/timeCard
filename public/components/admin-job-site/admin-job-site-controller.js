@@ -1,5 +1,5 @@
 (function() {
-var $inject = ["$scope", "$stateParams", "employeeJobSiteTimeCardService", "adminJobSiteService"];
+var $inject = ["$scope", "$stateParams", "employeeJobSiteTimeCardService", "adminJobSiteService", ];
 function adminJobSiteControllerCB($scope, $stateParams, employeeJobSiteTimeCardService, adminJobSiteService) {
 
 'use strict'
@@ -103,6 +103,15 @@ function hideLateTCdiv() {
 	$scope.showLateTC = false;
 	$scope.newDate = "";
 };
+
+$scope.deleteWarning = [];
+$scope.showDeleteWarning = function(index) {
+	$scope.deleteWarning[index] = true;
+}
+
+$scope.hideDeleteWarning = function(index) {
+	$scope.deleteWarning[index] = false;
+}
 
 
 
@@ -219,7 +228,7 @@ $scope.lateEmployee = function(late_employee, late_hours, index, date) {
 			};
 			var nameHoursDate = new NameHoursDate(late_employee, late_hours, date);
 
-			$scope.dailyTCs[index].employees_worked.push(nameHoursDate);
+			$scope.dailyTCs[index].employees_worked.unshift(nameHoursDate);
 
 			employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId($scope.dailyTCs, $scope.jobsite._id).then(function(response) {
 				sendLateToEmpArray(late_hours, date, late_employee);
@@ -255,6 +264,7 @@ function sendLateToEmpArray(late_hours, date, late_employee, index) {
 			
 			adminJobSiteService.updateEmployeesWorkedInDBbyId($scope.employeesArray[i].job_site_hours_worked, $scope.employeesArray[i]._id).then(function(response) {
 					console.log("this is the employeesArray updated response ", response.data);
+					
 			});
 		};
 	};
@@ -276,30 +286,34 @@ $scope.deleteTC = function(index) {
 
 
 $scope.addMaterialsAndNotes = function(notes, materials, index) {
-	console.log("the addMaterialsAndNotes function has fired", notes, materials);
-	$scope.dailyTCs[index].materials_used = materials;
-	$scope.dailyTCs[index].notes = notes;
-	employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId($scope.dailyTCs, $scope.jobsite._id).then(function(response) {
+	
+	if (notes || materials) {
+		$scope.updating = true;
+
+		$scope.dailyTCs[index].materials_used = materials;
+		$scope.dailyTCs[index].notes = notes;
+
+		employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId($scope.dailyTCs, $scope.jobsite._id).then(function(response) {
 			getTheJobSiteFromDBbyId();
-	});
+			$scope.updating = false;
+		});
+	};
 };
 
 
 
 
 function addAllTheHours() {
-
-$scope.totalJobSiteHours = 0;
+	$scope.totalJobSiteHours = 0;
 
 	for (var i = 0; i < $scope.dailyTCs.length; i++) {
 		for (var j = 0; j < $scope.dailyTCs[i].employees_worked.length; j++) {
 
 			$scope.totalJobSiteHours += $scope.dailyTCs[i].employees_worked[j].hours_worked;
-		}	
-	}
+		};	
+	};
 	console.log("total hours", $scope.totalJobSiteHours);
-
-}
+};
 
 
 

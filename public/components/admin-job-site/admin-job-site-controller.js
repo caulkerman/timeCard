@@ -15,7 +15,9 @@ function getTheJobSiteFromDBbyId() {// we might want to have this function call 
 	employeeJobSiteTimeCardService.getTheJobSiteFromDBbyId(jobSiteId).then(function(response) {
 		$scope.jobsite = response.data;
 		$scope.dailyTCs = $scope.jobsite.daily_time_cards;
-		addAllTheHours();
+		if ($scope.jobsite.length) {
+			addAllTheHours();
+		};
 		console.warn("$scope.jobsite ", $scope.jobsite);
 	});
 };
@@ -435,15 +437,27 @@ function deleteEmployeeFromEmployees(theOne) {
 					getEmployees();
 					console.log("this is the employeesArray updated response ", response.data);
 				});
-			}
-		}
-	}
-}
+			};
+		};
+	};
+};
 
 
 
 
+$scope.completedJob = function() {
+	adminJobSiteService.addOldJob($scope.jobsite).then(function(response) {
+		// console.log("old job site sent");
+		console.log("old job site response from DB: ", response);
 
+		adminJobSiteService.delete_job($scope.jobsite).then(function(response) {
+			console.error("The Job Site Has Been DELETED!!!!!!!!")
+			alert("The job has been deleted");
+			getTheJobSiteFromDBbyId();
+			
+		});
+	});
+};
 
 
 

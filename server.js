@@ -21,11 +21,13 @@ app.use(bodyParser.json({
 
 var employeeCtrl = require("./api/controllers/api.createEmployeeCtrl");
 var newJobCtrl = require("./api/controllers/api.createNewJobCtrl");
+var oldJobCtrl = require("./api/controllers/api.oldJobSitesCtrl");
 
 // Endpoints\\
 
 app.post("/api/createEmployee", employeeCtrl.create);
 app.post("/api/addNewJob", newJobCtrl.create);
+app.post("/api/addOldJob", oldJobCtrl.create);
 
 app.get("/api/getEmployees", employeeCtrl.read);
 app.get("/api/getJobs", newJobCtrl.read);
@@ -41,9 +43,9 @@ app.delete("/api/delete_job/:id", newJobCtrl.delete_job);
 
 // Connections
 var port = 9333;
-// var mongoUri = 'mongodb://localhost:27017/timecard';
-var mLabsPassword = require("./api/mLabsPassword/mLabsPassword")
-var mongoUri = mLabsPassword.password;
+var mongoUri = 'mongodb://localhost:27017/timecard';
+// var mLabsPassword = require("./api/mLabsPassword/mLabsPassword")
+// var mongoUri = mLabsPassword.password;
 mongoose.set('debug', true);
 mongoose.connect(mongoUri);
 mongoose.connection.on('error', console.error.bind(console, 'connection error:'));

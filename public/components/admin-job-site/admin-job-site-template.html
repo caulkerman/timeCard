@@ -117,9 +117,10 @@
                             </tr>
 
                             <tr> <!-- move the ng-shows up to the <td>'s above so those <td>'s ng-hide. -->
-                                <td ng-show="badName">Oops! The employee's name is bad</td>
+                                <td ng-show="badName">Oops! There is something wrong with the employee's name</td>
                                 <td ng-show="noName">Oops!  You forgot the Employee Name</td>                                
                                 <td ng-show="noTime">Oops!  You forgot to enter hours</td>
+                                <td ng-show="name_already_exists">Oops! This employee already has time for this day</td>
                                 <!--<td></td>-->
                                 <td></td>
                                 <td></td>

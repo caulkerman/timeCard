@@ -296,13 +296,10 @@ $scope.lateEmployee = function(late_employee, late_hours, index, date) {
 				break;
 			};
 
-			
-
-
-
-
-			console.log("check the name or spelling of the name you are entering");
-			
+			$scope.name_already_exists = true;
+			$timeout(function() {
+				$scope.name_already_exists = false;
+			}, 3500);
 		};
 	};
 };

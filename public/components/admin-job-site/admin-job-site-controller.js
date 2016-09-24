@@ -248,58 +248,79 @@ $scope.lateEmployee = function(late_employee, late_hours, index, date) {
 		} else {
 
 			if (!late_hours && !late_employee) {
-				console.log(1, late_hours);
 				$scope.noName = true;
 				$scope.noTime = true;
+				$scope.hide_late_employee_td = true;
+				$scope.hide_late_hours_td = true;
+
 				$timeout(function() {
 					$scope.noName = false;
 					$scope.noTime = false;
-				}, 3500);
+					$scope.hide_late_employee_td = false;
+					$scope.hide_late_hours_td = false;
+				}, 2500);
 				break;
 			};
 
 			if (late_hours && !late_employee) {
-				console.log(2)
 				$scope.noName = true;
+				$scope.hide_late_employee_td = true;
+
 				$timeout(function() {
 					$scope.noName = false;
-				}, 3500);
+					$scope.hide_late_employee_td = false;
+				}, 2500);
 				break;
 			};
 
 			if (flag2 === true && !late_hours) {
-				console.log(3);
+				$scope.hide_late_hours_td = true;
 				$scope.noTime = true;
+
 				$timeout(function() {
+					$scope.hide_late_hours_td = false
 					$scope.noTime = false;
-				}, 3500);
+				}, 2500);
 				break;
 			};
 
 			if (flag2 === false && !late_hours) {
-				console.log(4);
+				$scope.hide_late_employee_td = true;
+				$scope.hide_late_hours_td = true;
 				$scope.badName = true;
 				$scope.noTime = true;
+
 				$timeout(function(){
+					$scope.hide_late_employee_td = false;
+					$scope.hide_late_hours_td = false;
 					$scope.badName = false;
 					$scope.noTime = false;
-				}, 3500);
+				}, 2500);
 				break;
 			};
 
 			if (flag2 === false && late_hours) {
-				console.log(5);
+				$scope.hide_late_employee_td = true;
 				$scope.badName = true;
+
 				$timeout(function(){
+					$scope.hide_late_employee_td = false;
 					$scope.badName = false;
-				}, 3500);
+				}, 2500);
 				break;
 			};
 
-			$scope.name_already_exists = true;
-			$timeout(function() {
-				$scope.name_already_exists = false;
-			}, 3500);
+			if (flag1 === true) {
+				$scope.hide_late_hours_td = true;
+				$scope.hide_late_employee_td = true;
+				$scope.name_already_exists = true;
+
+				$timeout(function() {
+					$scope.hide_late_hours_td = false;
+					$scope.hide_late_employee_td = false;
+					$scope.name_already_exists = false;
+				}, 2500);
+			}
 		};
 	};
 };

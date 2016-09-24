@@ -103,28 +103,21 @@
                                 <td>Employee Name</td>
                                 <td>Hours Worked</td>
                                 <td>Edit</td>
-                                <td></td>
+                                <td>=>/X</td>
                             </tr>
                         </thead>
 
                         <tbody>
                             
                             <tr>
-                                <td><input type="text" ng-model="late_employee" placeholder="Add Missing Employee"></td>
-                                <td><input type="number" min=".25" max="24" ng-model="late_hours" placeholder="Hours"></td>
+                                <td ng-show="badName">Oops! There is something wrong with the employee's name</td>
+                                <td ng-show="noName">Oops!  You forgot the Employee Name</td> 
+                                <td ng-show="name_already_exists">Oops! This employee already has time for this day</td>                                
+                                <td ng-hide="hide_late_employee_td"><input type="text" ng-model="late_employee" placeholder="Add Missing Employee"></td>
+                                <td ng-show="noTime">Oops!  You forgot to enter hours</td>                                
+                                <td ng-hide="hide_late_hours_td"><input type="number" min=".25" max="24" ng-model="late_hours" placeholder="Hours"></td>
                                 <td></td>
                                 <td><button ng-click="lateEmployee(late_employee, late_hours, $index, timecard.theDate)" >Submit</button></td>
-                            </tr>
-
-                            <tr> <!-- move the ng-shows up to the <td>'s above so those <td>'s ng-hide. -->
-                                <td ng-show="badName">Oops! There is something wrong with the employee's name</td>
-                                <td ng-show="noName">Oops!  You forgot the Employee Name</td>                                
-                                <td ng-show="noTime">Oops!  You forgot to enter hours</td>
-                                <td ng-show="name_already_exists">Oops! This employee already has time for this day</td>
-                                <!--<td></td>-->
-                                <td></td>
-                                <td></td>
-                                
                             </tr>
 
                             <tr ng-repeat="employees in timecard.employees_worked track by $index" > <!--make sure to ng-repeat this -->

@@ -108,12 +108,22 @@
                         </thead>
 
                         <tbody>
-
+                            
                             <tr>
                                 <td><input type="text" ng-model="late_employee" placeholder="Add Missing Employee"></td>
                                 <td><input type="number" min=".25" max="24" ng-model="late_hours" placeholder="Hours"></td>
                                 <td></td>
                                 <td><button ng-click="lateEmployee(late_employee, late_hours, $index, timecard.theDate)" >Submit</button></td>
+                            </tr>
+
+                            <tr> <!-- move the ng-shows up to the <td>'s above so those <td>'s ng-hide. -->
+                                <td ng-show="badName">Oops! The employee's name is bad</td>
+                                <td ng-show="noName">Oops!  You forgot the Employee Name</td>                                
+                                <td ng-show="noTime">Oops!  You forgot to enter hours</td>
+                                <!--<td></td>-->
+                                <td></td>
+                                <td></td>
+                                
                             </tr>
 
                             <tr ng-repeat="employees in timecard.employees_worked track by $index" > <!--make sure to ng-repeat this -->

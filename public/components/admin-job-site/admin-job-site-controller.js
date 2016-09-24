@@ -1,6 +1,6 @@
 (function() {
-var $inject = ["$scope", "$stateParams", "employeeJobSiteTimeCardService", "adminJobSiteService", ];
-function adminJobSiteControllerCB($scope, $stateParams, employeeJobSiteTimeCardService, adminJobSiteService) {
+var $inject = ["$scope", "$stateParams", "employeeJobSiteTimeCardService", "adminJobSiteService", "$timeout"];
+function adminJobSiteControllerCB($scope, $stateParams, employeeJobSiteTimeCardService, adminJobSiteService, $timeout) {
 
 'use strict'
 
@@ -197,9 +197,8 @@ $scope.createLateTimeCard = function(newDate) {
 
 //creates a late employee time entry, checks it against the list of employees and if there adds a new time event for that employee, if the name is not there nothing happens.
 $scope.lateEmployee = function(late_employee, late_hours, index, date) {
-	console.log("the index: ", index);
 
-	var empsArray = [], empArray = [], flag = false;
+	var empsArray = [], empArray = [], flag1 = false, flag2 = false;
 	
 	for (var i = 0; i < $scope.employeesArray.length; i++) {
 		empArray.push($scope.employeesArray[i].fullName);
@@ -211,16 +210,23 @@ $scope.lateEmployee = function(late_employee, late_hours, index, date) {
 
 	for (var j = 0; j < empsArray.length; j++) {
 		if (late_employee === empsArray[j]) {
-			flag = true;
+			flag1 = true;
 		};
 	};
-	console.log("the flag: ", flag);
+
+	for (var c = 0; c < empArray.length; c++) {
+		if (late_employee === empArray[c]) {
+			flag2 = true;
+		};
+	};
+
+	console.log("the flag1: ", flag1, 'the flag2: ', flag2);
 	
 	for (var i = 0; i < empArray.length; i++) {
 		var empArrayEmp = empArray[i];
-		console.warn(empArrayEmp);
+		// console.warn(empArrayEmp);
 	
-		if (late_employee === empArray[i] && late_hours && flag === false){
+		if (late_employee === empArray[i] && late_hours && flag1 === false){
 			
 			function NameHoursDate(e, h, d) {
 				this.employeeName = e,
@@ -240,8 +246,63 @@ $scope.lateEmployee = function(late_employee, late_hours, index, date) {
 			break;
 
 		} else {
-			$scope.badName = true; //this is for ng-hide/show to pop up saying they got it wrong.
+
+			if (!late_hours && !late_employee) {
+				console.log(1, late_hours);
+				$scope.noName = true;
+				$scope.noTime = true;
+				$timeout(function() {
+					$scope.noName = false;
+					$scope.noTime = false;
+				}, 3500);
+				break;
+			};
+
+			if (late_hours && !late_employee) {
+				console.log(2)
+				$scope.noName = true;
+				$timeout(function() {
+					$scope.noName = false;
+				}, 3500);
+				break;
+			};
+
+			if (flag2 === true && !late_hours) {
+				console.log(3);
+				$scope.noTime = true;
+				$timeout(function() {
+					$scope.noTime = false;
+				}, 3500);
+				break;
+			};
+
+			if (flag2 === false && !late_hours) {
+				console.log(4);
+				$scope.badName = true;
+				$scope.noTime = true;
+				$timeout(function(){
+					$scope.badName = false;
+					$scope.noTime = false;
+				}, 3500);
+				break;
+			};
+
+			if (flag2 === false && late_hours) {
+				console.log(5);
+				$scope.badName = true;
+				$timeout(function(){
+					$scope.badName = false;
+				}, 3500);
+				break;
+			};
+
+			
+
+
+
+
 			console.log("check the name or spelling of the name you are entering");
+			
 		};
 	};
 };

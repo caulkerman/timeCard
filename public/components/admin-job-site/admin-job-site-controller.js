@@ -320,7 +320,8 @@ $scope.lateEmployee = function(late_employee, late_hours, index, date) {
 					$scope.hide_late_employee_td = false;
 					$scope.name_already_exists = false;
 				}, 2500);
-			}
+				break;
+			};
 		};
 	};
 };

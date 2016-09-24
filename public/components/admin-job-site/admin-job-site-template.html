@@ -70,7 +70,7 @@
             <div>
 
                 <div ng-show="deleteWarning[$index]">
-                    <p>Are you sure you want to delete this day's time dard?  Clicking yes will delete the whole time card for this day including all time, materials, employees, etc... You WILL NOT be able to get this day back</p>
+                    <p class="warn">Are you sure you want to delete this day's time dard?  Clicking yes will delete the whole time card for this day including all time, materials, employees, etc... You WILL NOT be able to get this day back</p>
                     <button ng-click="hideDeleteWarning($index)">NO</button>
                     <button ng-click="deleteTC($index)">YES</button>
                 </div>
@@ -110,11 +110,11 @@
                         <tbody>
                             
                             <tr>
-                                <td ng-show="badName">Oops! There is something wrong with the employee's name</td>
-                                <td ng-show="noName">Oops!  You forgot the Employee Name</td> 
-                                <td ng-show="name_already_exists">Oops! This employee already has time for this day</td>                                
+                                <td ng-show="badName" class="warn">Oops! There is something wrong with the employee's name</td>
+                                <td ng-show="noName" class="warn">Oops!  You forgot the Employee Name</td> 
+                                <td ng-show="name_already_exists" class="warn">Oops! This employee already has time for this day</td>                                
                                 <td ng-hide="hide_late_employee_td"><input type="text" ng-model="late_employee" placeholder="Add Missing Employee"></td>
-                                <td ng-show="noTime">Oops!  You forgot to enter hours</td>                                
+                                <td ng-show="noTime" class="warn">Oops!  You forgot to enter hours</td>                                
                                 <td ng-hide="hide_late_hours_td"><input type="number" min=".25" max="24" ng-model="late_hours" placeholder="Hours"></td>
                                 <td></td>
                                 <td><button ng-click="lateEmployee(late_employee, late_hours, $index, timecard.theDate)" >Submit</button></td>

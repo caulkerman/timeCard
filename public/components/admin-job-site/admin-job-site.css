@@ -2,4 +2,10 @@
   font-size: 1.7em;
   font-weight: bold; }
 
+.warn {
+  color: red; }
+
+p.warn {
+  background-color: blanchedalmond; }
+
 /*# sourceMappingURL=admin-job-site.css.map */

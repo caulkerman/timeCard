@@ -70,10 +70,16 @@ var app = angular.module("timeCard", ["ui.router", "smart-table"])
 			controller: "adminTheEmployee"
 		})
 
-		.state("admin-old-job-sites", {
-			url: "/admin-old-job-sites",
-			templateUrl: "components/admin-old-job-sites/admin-old-job-sites.html",
-			controller: "adminOldJobSites"
+		.state("admin-old-job-site-list", {
+			url: "/admin-old-job-site-list",
+			templateUrl: "components/admin-old-job-site-list/admin-old-job-site-list.html",
+			controller: "adminOldJobSiteListController"
+		})
+
+		.state("admin-old-job-site", {
+			url: "/admin-old-job-site/:id",
+			templateUrl: "components/admin-old-job-site/admin-old-job-site.html",
+			controller: "adminOldJobSiteController"
 		})
 
 	});

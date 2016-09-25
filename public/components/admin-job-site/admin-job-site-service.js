@@ -42,10 +42,10 @@ this.getEmployees = function() {
 	var deferred = $q.defer();
 	$http({
 		method: "GET",
-		url: "/api/getEmployees",
+		url: "/api/getEmployees"
 	}).then(function(response) {
-				deferred.resolve(response);
-			});
+		deferred.resolve(response);
+	});
 	return deferred.promise;
 };
 
@@ -55,7 +55,7 @@ this.getJobs = function() {
 	var deferred = $q.defer();
 	$http({
 		method: "GET",
-		url: "/api/getJobs",
+		url: "/api/getJobs"
 	}).then(function(response) {
 		deferred.resolve(response);
 	});
@@ -73,22 +73,22 @@ this.updateTheJobSiteInDBbyId = function(daily_time_card, id) {
 		url:"/api/update_daily_time_cards/" + id,
 		data: daily_time_card
 	}).then(function(response) {
-				deferred.resolve(response);
-			});
+		deferred.resolve(response);
+	});
 		return deferred.promise;
 };
 
 
 
 this.updateTheEmployeeInDBbyId = function(employee, id) {
-		var deferred = $q.defer();
-		$http({
-			method: "PUT",
-			url: "/api/update_daily_time_cards/" + id,
-			data: employee
-		}).then(function(response) {
-				deferred.resolve(response);
-			});
+	var deferred = $q.defer();
+	$http({
+		method: "PUT",
+		url: "/api/update_daily_time_cards/" + id,
+		data: employee
+	}).then(function(response) {
+		deferred.resolve(response);
+	});
 		return deferred.promise;
 	}
 
@@ -101,8 +101,8 @@ this.updateEmployeesWorkedInDBbyId = function (employees_worked, id) {
 		url: "/api/updateEmployee/" + id,
 		data: employees_worked
 	}).then(function(response) {
-			deferred.resolve(response);
-		});
+		deferred.resolve(response);
+	});
 	return deferred.promise;
 }
 
@@ -114,7 +114,7 @@ this.delete_job = function(jobsite) {
 	var deferred = $q.defer();
     $http({
         method: "DELETE",
-         url: "/api/delete_job/" + jobsite._id
+        url: "/api/delete_job/" + jobsite._id
     }).then(function(res) {
         deferred.resolve(res);
     });

@@ -447,14 +447,13 @@ function deleteEmployeeFromEmployees(theOne) {
 
 $scope.completedJob = function() {
 	adminJobSiteService.addOldJob($scope.jobsite).then(function(response) {
-		// console.log("old job site sent");
-		console.log("old job site response from DB: ", response);
 
 		adminJobSiteService.delete_job($scope.jobsite).then(function(response) {
+
 			console.error("The Job Site Has Been DELETED!!!!!!!!")
-			alert("The job has been deleted");
+			$scope.finalFarewell = true;
+						
 			getTheJobSiteFromDBbyId();
-			
 		});
 	});
 };

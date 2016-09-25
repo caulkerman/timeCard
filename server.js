@@ -33,6 +33,7 @@ app.get("/api/getEmployees", employeeCtrl.read);
 app.get("/api/getJobs", newJobCtrl.read);
 app.get("/api/getJobs/:id", newJobCtrl.findById);
 app.get("/api/getEmployee/:id", employeeCtrl.findById);
+app.get("/api/getOldJobSites", oldJobCtrl.read);
 
 app.put("/api/update_daily_time_cards/:id", newJobCtrl.update_daily_time_cards);
 app.put("/api/update_employees_worked/:id", newJobCtrl.update_employees_worked);
@@ -43,9 +44,9 @@ app.delete("/api/delete_job/:id", newJobCtrl.delete_job);
 
 // Connections
 var port = 9333;
-var mongoUri = 'mongodb://localhost:27017/timecard';
-// var mLabsPassword = require("./api/mLabsPassword/mLabsPassword")
-// var mongoUri = mLabsPassword.password;
+// var mongoUri = 'mongodb://localhost:27017/timecard';
+var mLabsPassword = require("./api/mLabsPassword/mLabsPassword")
+var mongoUri = mLabsPassword.password;
 mongoose.set('debug', true);
 mongoose.connect(mongoUri);
 mongoose.connection.on('error', console.error.bind(console, 'connection error:'));

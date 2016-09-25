@@ -1,10 +1,30 @@
 (function() {
 
-var $inject = ["$scope"];
+var $inject = ["$scope", "$stateParams", "adminOldJobSiteService"];
 
-adminOldJobSiteControllerCB = function($scope) {
+adminOldJobSiteControllerCB = function($scope, $stateParams, adminOldJobSiteService) {
 
-$scope.test = "this is the admin-old-job-site controller test";
+/////////ADD JAVASCRIPT BELOW\\\\\\\\\\
+
+const oldJobSiteId = $stateParams.id;
+
+
+
+//////This function gets the job site by ID
+function getOldJobSiteFromDBbyId() {
+	
+	adminOldJobSiteService.getOldJobSiteFromDBbyId(oldJobSiteId).then(function(response) {
+		$scope.oldJobSite = response.data;
+        $scope.oldDTCs = $scope.oldJobSite.daily_time_cards;
+		
+		console.warn("$scope.oldJobsite ", $scope.oldJobSite);
+	});
+};
+getOldJobSiteFromDBbyId();
+
+
+
+
 
 
 }

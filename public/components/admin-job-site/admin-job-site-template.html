@@ -65,7 +65,7 @@
 <!--<input type="text" placeholder="Filter the Dates" ng-model="filter_date"> -->
     
     <br />
-    <div ng-repeat="timecard in dailyTCs | filter: {theDate:filter_date} track by $index">  <!-- This filter is not complete, it needs to filter only the daily_time_cards array and not the employees_worked array too.-->
+    <div ng-repeat="timecard in dailyTCs | filter: {theDate:filter_date} track by $index">  
         <hr> 
             <div>
 

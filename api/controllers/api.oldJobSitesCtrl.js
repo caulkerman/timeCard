@@ -21,7 +21,17 @@ module.exports = {
             if (err) return res.status(500).send(err);
             else res.send(result);
         });
-    }
+    },
+
+
+
+    findById: function(req, res) {
+        OldJob.findOne({ _id: req.params.id })
+        .exec(function(err, result) {
+            if (err) return res.status(500).send(err);
+            else res.send(result);
+         });
+     },
 
 
 

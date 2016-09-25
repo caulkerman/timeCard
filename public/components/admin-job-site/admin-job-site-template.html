@@ -15,9 +15,25 @@
 
     <p>Total Job Site Hours Worked: {{totalJobSiteHours}}</p>
 
+
+    <div>
+        <label for="name">Job Name: </label>
+        <input type="text" class="updateJobSite" ng-model="jobsite.name" name="name">
+    </div>
+
     <div >
         <label for="contractor">Contractor: </label>
         <input type="text" class="updateJobSite" ng-model="jobsite.contractor" name="contractor">
+    </div>
+
+    <div>
+        <label for="superintendent_name">Superintendent Name: </label>
+        <input type="text" class="updateJobSite" ng-model="jobsite.superintendent_name" name="superintendent_name">
+    </div>
+
+    <div>
+        <label for="superintendent_telephone">Superintendant Telephone: </label>
+        <input type="number" class="updateJobSite" ng-model="jobsite.superintendent_telephone" name="superintendent_telephone">
     </div>
 
     <div>
@@ -35,20 +51,9 @@
         <textarea class="updateJobSite" ng-model="jobsite.materials_needed" name="materials_needed"></textarea>
     </div>
 
-    <div>
-        <label for="name">Job Name: </label>
-        <input type="text" class="updateJobSite" ng-model="jobsite.name" name="name">
-    </div>
+    
 
-    <div>
-        <label for="superintendent_name">Superintendent Name: </label>
-        <input type="text" class="updateJobSite" ng-model="jobsite.superintendent_name" name="superintendent_name">
-    </div>
-
-    <div>
-        <label for="superintendent_telephone">Superintendant Telephone: </label>
-        <input type="number" class="updateJobSite" ng-model="jobsite.superintendent_telephone" name="superintendent_telephone">
-    </div>
+    
 
     <input type="submit" class="updateJobSite" value="Update Jobsite">
 </form>

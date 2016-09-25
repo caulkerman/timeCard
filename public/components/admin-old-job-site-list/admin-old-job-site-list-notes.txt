@@ -1,1 +1,7 @@
-Figure out what to do with the property "completed", do I need it or not?
+Figure out what to do with the $scope.oldJobSite property "completed", do I need it or not?
+
+Make the resurrect job site button put the oldJobSite object back into the jobs array, make it delete from the oldJob array.  Make it float right or put it in a table.
+
+
+
+

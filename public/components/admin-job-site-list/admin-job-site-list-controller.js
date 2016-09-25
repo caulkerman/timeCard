@@ -36,6 +36,8 @@ function adminJobSiteListControllerCB($scope, adminJobSiteListService, $state) {
 			$scope.jobDetails = "";
 			$scope.materialsNeeded = "";
 		};
+			$scope.showJobSite = false;
+		
 	};
 
 	

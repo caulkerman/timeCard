@@ -1,12 +1,13 @@
 (function() {
 
-var $inject = ["$scope", "$stateParams", "adminOldJobSiteService"];
+var $inject = ["$scope", "$stateParams", "adminOldJobSiteService", "adminJobSiteListService"];
 
-adminOldJobSiteControllerCB = function($scope, $stateParams, adminOldJobSiteService) {
+adminOldJobSiteControllerCB = function($scope, $stateParams, adminOldJobSiteService, adminJobSiteListService) {
 
 /////////ADD JAVASCRIPT BELOW\\\\\\\\\\
 
 const oldJobSiteId = $stateParams.id;
+var oldJobSites;
 
 
 
@@ -21,6 +22,51 @@ function getOldJobSiteFromDBbyId() {
 	});
 };
 getOldJobSiteFromDBbyId();
+
+
+
+//////This function gets all Old Jobs
+function getAllOldJobSites() {
+
+	adminOldJobSiteService.getAllOldJobSites().then(function(response) {
+		oldJobSites = response.data;
+	})
+}
+getAllOldJobSites();
+
+
+
+///////This function gets all current/live jobs
+// function getListOfJobs() {
+// 	adminJobSiteListService.getJobs().then(function(response) {
+// 		$scope.job_sites = response.data;
+// 		console.log("getListOfJobs function in jobsite controller ", $scope.job_sites);
+// 	})
+// }
+// getListOfJobs();
+
+
+
+
+////////This function pushes this job site back into the current/live jobs and deletes it from the old jobs
+$scope.resurrectJob = function() {
+
+	for (var i = 0; i < oldJobSites.length; i++) {
+
+		if (oldJobSites[i]._id = oldJobSiteId) {
+
+			adminOldJobSiteService.recreateJob(oldJobSites[i]).then(function(response) {
+				
+				adminOldJobSiteService.deleteTheJobById(oldJobSiteId).then(function(response) {
+					
+					$scope.finalFarewell = true;					
+					
+					getOldJobSiteFromDBbyId();
+				});
+			});
+		}
+	}
+}//this is the end of the resurrectJob function
 
 
 

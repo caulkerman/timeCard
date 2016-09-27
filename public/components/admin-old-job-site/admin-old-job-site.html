@@ -1,9 +1,8 @@
 <h1>{{oldJobSite.name}}</h1>
 
-
-<h3>The Dates</h3>
 <button ng-click="showDetails()" ng-hide="showTheDetails">Show Job Details</button>
 <button ng-click="hideDetails()" ng-show="showTheDetails">Hide Job Details</button>
+<button ng-click="resurrectJob()">Resurrect Job Site</button>
 
 <div ng-show="showTheDetails">
     <p><label for="contractor">Contractor: </label> {{oldJobSite.contractor}}</p>
@@ -14,6 +13,8 @@
     <p><label for="materials_needed">Job Materials Needed: </label> {{oldJobSite.materials_needed}}</p>
 </div>
 
+<h3>The Dates</h3>
+
 <div ng-repeat="oldDTC in oldDTCs track by $index">
 
     <hr />    
@@ -21,28 +22,31 @@
     <a href="" ng-click="showTC($index)" ng-hide="showTheTC[$index]">{{oldDTC.theDate}}</a>
     <a href="" ng-click="hideTC($index)" ng-show="showTheTC[$index]">{{oldDTC.theDate}}</a>
 
-        <div ng-show="showTheTC[$index]">
+    <div ng-show="showTheTC[$index]">
 
-            <label for="materials">Materials Used: </label><p name="materials">{{oldDTC.materials_used}}</p>
-            <label for="notes">Notes: </label><p name="notes">{{oldDTC.notes}}</p>
+        <label for="materials">Materials Used: </label><p name="materials">{{oldDTC.materials_used}}</p>
+        <label for="notes">Notes: </label><p name="notes">{{oldDTC.notes}}</p>
 
-            <table st-table="students" class="table table-striped">
-                <thead>
-                    <tr>
-                        <td>Employee Name</td>
-                        <td>Daily Time</td>
-                    </tr>
-                </thead>
+        <table st-table="students" class="table table-striped">
+             <thead>
+                <tr>
+                    <td>Employee Name</td>
+                    <td>Daily Time</td>
+                </tr>
+            </thead>
 
-                <tbody>
-                    <tr ng-repeat="employees in oldDTC.employees_worked track by $index">
-                        <td>{{employees.employeeName}}</td>
-                        <td>{{employees.hours_worked}}</td>
-                    </tr>
-                </tbody>
-            </table>
-            <hr />
+            <tbody>
+                 <tr ng-repeat="employees in oldDTC.employees_worked track by $index">
+                    <td>{{employees.employeeName}}</td>
+                    <td>{{employees.hours_worked}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <hr />
 
+    </div>
 
+</div>   
 
-</div>
+<p ng-show="finalFarewell">This job site has been moved to the admin-job-site-list page</p>
+

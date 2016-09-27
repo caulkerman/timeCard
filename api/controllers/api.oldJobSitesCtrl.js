@@ -35,4 +35,13 @@ module.exports = {
 
 
 
+     delete: function(req, res) {
+        OldJob.findByIdAndRemove(req.params.id, function(err, result) {
+            if (err) return res.status(500);
+            else res.send(result);
+        });
+    }
+
+
+
 }

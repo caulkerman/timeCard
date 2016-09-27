@@ -28,6 +28,7 @@ var oldJobCtrl = require("./api/controllers/api.oldJobSitesCtrl");
 app.post("/api/createEmployee", employeeCtrl.create);
 app.post("/api/addNewJob", newJobCtrl.create);
 app.post("/api/addOldJob", oldJobCtrl.create);
+app.post("/api/update_jobsite", newJobCtrl.create); 
 
 app.get("/api/getEmployees", employeeCtrl.read);
 app.get("/api/getJobs", newJobCtrl.read);
@@ -39,8 +40,9 @@ app.get("/api/getOldJob/:id", oldJobCtrl.findById);
 app.put("/api/update_daily_time_cards/:id", newJobCtrl.update_daily_time_cards);
 app.put("/api/update_employees_worked/:id", newJobCtrl.update_employees_worked);
 app.put("/api/updateEmployee/:id", employeeCtrl.update);
-app.post("/api/update_jobsite", newJobCtrl.create); 
+
 app.delete("/api/delete_job/:id", newJobCtrl.delete_job);
+app.delete("/api/delete_old_job:id", oldJobCtrl.delete);
 
 
 // Connections

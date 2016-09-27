@@ -65,9 +65,7 @@ module.exports = {
   },
 
 
-
   delete_job: function(req, res) {
-    console.log("Hello!")
     NewJob.findByIdAndRemove(req.params.id, function(err, result) {
       if (err) return res.status(500);
       else res.send(result);

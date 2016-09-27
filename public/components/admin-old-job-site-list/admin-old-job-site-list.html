@@ -9,5 +9,4 @@
 
 <div ng-repeat="oldJobSite in oldJobSites | filter: {name: oldJobSiteNames} track by $index">
     <p><a href="" ng-click="goToOldJobSite($index)">{{oldJobSite.name}}</a></p>
-    <button ng-click="resurrectOldJob(oldjobSite.name)">Resurrect Old Job Site</button>
 </div>

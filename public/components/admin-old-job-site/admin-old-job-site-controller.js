@@ -59,6 +59,7 @@ $scope.resurrectJob = function() {
 				
 				adminOldJobSiteService.deleteTheJobById(oldJobSiteId).then(function(response) {
 					
+					$scope.showTheDetails = false;
 					$scope.finalFarewell = true;					
 					
 					getOldJobSiteFromDBbyId();

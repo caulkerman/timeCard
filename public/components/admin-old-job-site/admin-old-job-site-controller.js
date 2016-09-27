@@ -25,6 +25,20 @@ getOldJobSiteFromDBbyId();
 
 
 
+////////NG-HIDES AND NG-SHOWS\\\\\\\
+
+$scope.showTheTC = [];
+$scope.showTC = function(index) {
+	$scope.showTheTC[index] = true;
+}
+
+$scope.hideTC = function(index) {
+	$scope.showTheTC[index] = false;
+}
+
+
+
+
 
 
 }

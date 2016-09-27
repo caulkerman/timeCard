@@ -36,6 +36,14 @@ $scope.hideTC = function(index) {
 	$scope.showTheTC[index] = false;
 }
 
+$scope.showDetails = function() {
+	$scope.showTheDetails = true;
+}
+
+$scope.hideDetails = function() {
+	$scope.showTheDetails = false;
+}
+
 
 
 

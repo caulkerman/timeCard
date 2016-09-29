@@ -44,12 +44,13 @@ $scope.editEmployee = function(hours, id, index) {
 		for (var j = 0; j < $scope.jobsite.daily_time_cards[i].employees_worked.length; j++) {
 			
 			if ($scope.jobsite.daily_time_cards[i].employees_worked[j]._id === id) {
-				$scope.jobsite.daily_time_cards[i].employees_worked[j].hours_worked = hours;
+				$scope.jobsite.daily_time_cards[i].employees_worked[j].edited_hours = hours;
+				$scope.jobsite.daily_time_cards[i].employees_worked[j].edited_hours_ok = true;
 
 				adminJobSiteService.updateTheJobSiteInDBbyId($scope.jobsite.daily_time_cards, $scope.jobsite._id).then(function(response) {
 					console.log("the jobsite response for update employee hours: ", response.data);
 				});
-				addToEmployeesArray(hours, $scope.jobsite.daily_time_cards[i].employees_worked[j]);
+				// addToEmployeesArray(hours, $scope.jobsite.daily_time_cards[i].employees_worked[j]);
 				$scope.editHours[index] = false;
 			};
 		};

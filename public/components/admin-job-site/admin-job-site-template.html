@@ -80,7 +80,7 @@
                     <button ng-click="deleteTC($index)">YES</button>
                 </div>
                 
-                <a id="timeCard" ng-hide="showDTCs[$index]" href="" ng-click="showDailyTCs($index)" >{{timecard.theDate}}</a>
+                <a ng-hide="showDTCs[$index]" href="" ng-click="showDailyTCs($index)" >{{timecard.theDate}}</a>
                 <a href="" ng-show="showDTCs[$index]" ng-click="hideDailyTCs($index)" >{{timecard.theDate}}</a>
                 <span ng-show="timecard.late">LATE!</span>
                 <button ng-click="showDeleteWarning($index)">X</button>
@@ -108,8 +108,8 @@
                                 <td>Employee Name</td>
                                 <td>Hours Worked</td>
                                 <td ng-show="editHours"></td>
-                                <td>Edit</td>
-                                <td>=>/X</td>
+                                <td></td>
+                                <td></td>
                             </tr>
                         </thead>
 
@@ -130,7 +130,7 @@
                             <tr ng-repeat="employees in timecard.employees_worked track by $index" > <!--make sure to ng-repeat this -->
                                 <td>{{employees.employeeName}}</td>
                                 <td>{{employees.hours_worked}}</td>
-                                <td><button ng-click="showTheEditHours($index)" ng-hide="editHours[$index]">Edit</button>
+                                <td><button ng-click="showTheEditHours($index)" ng-hide="editHours[$index]">Edit Hours</button>
                                 
                                 <td><input ng-show="editHours[$index]" type="number" min=".25" max="24" ng-model="newHours">
                                     <p ng-show="editHours[$index]">

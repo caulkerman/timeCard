@@ -22,6 +22,8 @@ var newJobSchema = new Schema({
 					date: { type: Date, default: Date.now },
 					employeeName: String,
 					hours_worked: Number,
+					edited_hours: Number,
+					edited_hours_ok: { type: Boolean, default: false },
 					date_worked: String
 				}
 			],

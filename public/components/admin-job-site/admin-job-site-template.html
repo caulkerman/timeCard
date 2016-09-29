@@ -107,9 +107,8 @@
                             <tr>
                                 <td>Employee Name</td>
                                 <td>Hours Worked</td>
-                                <td ng-show="editHours"></td>
-                                <td></td>
-                                <td></td>
+                                <td>bob</td>
+                                <td>bill</td>
                             </tr>
                         </thead>
 
@@ -130,15 +129,15 @@
                             <tr ng-repeat="employees in timecard.employees_worked track by $index" > <!--make sure to ng-repeat this -->
                                 <td>{{employees.employeeName}}</td>
                                 <td>{{employees.hours_worked}}</td>
-                                <td><button ng-click="showTheEditHours($index)" ng-hide="editHours[$index]">Edit Hours</button>
+                                <td><button ng-click="showTheEditHours($parent.$index, $index)" ng-hide="editHours[$parent.$index][$index]">Edit Hours</button>
                                 
-                                <td><input ng-show="editHours[$index]" type="number" min=".25" max="24" ng-model="newHours">
-                                    <p ng-show="editHours[$index]">
+                                <td><input ng-show="editHours[$parent.$index][$index]" type="number" min=".25" max="24" ng-model="newHours">
+                                    <p ng-show="editHours[$parent.$index][$index]">
                                         Note: The new hours will not be updated until the employee approves of the change.
                                     </p>
                                 </td>
                                 <!--<td><button ng-click="editEmployee(employees.hours_worked, employees._id)">Edit</button></td>-->
-                                <td ng-show="editHours[$index]"><button ng-click="editEmployee(newHours, employees._id, $index)">submit</button>
+                                <td ng-show="editHours[$parent.$index][$index]"><button ng-click="editEmployee(newHours, employees._id, $parent.$index, $index)">submit</button>
                                 <td><button ng-click="deleteEmployeeFromTC($parent.$index, $index)">Delete</button>
                             </tr>
                         </tbody>

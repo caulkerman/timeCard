@@ -36,8 +36,9 @@ getEmployees();
 
 
 
+
 //Edits the employee's time and updates the jobsite objects
-$scope.editEmployee = function(hours, id) {
+$scope.editEmployee = function(hours, id, index) {
 
 	for (var i = 0; i < $scope.jobsite.daily_time_cards.length; i++) {
 		for (var j = 0; j < $scope.jobsite.daily_time_cards[i].employees_worked.length; j++) {
@@ -49,6 +50,7 @@ $scope.editEmployee = function(hours, id) {
 					console.log("the jobsite response for update employee hours: ", response.data);
 				});
 				addToEmployeesArray(hours, $scope.jobsite.daily_time_cards[i].employees_worked[j]);
+				$scope.editHours[index] = false;
 			};
 		};
 	};
@@ -114,6 +116,13 @@ $scope.showDeleteWarning = function(index) {
 $scope.hideDeleteWarning = function(index) {
 	$scope.deleteWarning[index] = false;
 }
+
+$scope.editHours = [];
+$scope.showTheEditHours = function(index) {
+	$scope.editHours[index] = true;
+}
+
+
 
 
 

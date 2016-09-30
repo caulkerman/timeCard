@@ -36,7 +36,6 @@ $scope.theDate = employeeJobSiteTimeCardService.theDate();
 
 $scope.addTheNewDailyTimeCardToJobsiteObject = function() {
 	var flag = false;
-	$scope.timeCardCreated = true;
 	
 	function DailyTimeCard() {
 		this.theDate = $scope.theDate;
@@ -61,7 +60,9 @@ $scope.addTheNewDailyTimeCardToJobsiteObject = function() {
 
 		if (flag === false) {
 			dailyTCArray.unshift($scope.dailyTimeCard);
-			employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId(dailyTCArray, $scope.jobsite._id);
+			employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId(dailyTCArray, $scope.jobsite._id).then(function(response) {
+				$scope.timeCardCreated = true;
+			});
 		};
 	};
 

@@ -15,7 +15,7 @@ function getTheJobSiteFromDBbyId() {
 		$scope.jobsite = response.data;
 		dailyTCArray = $scope.jobsite.daily_time_cards;
 		console.log("controller the jobsite object ", $scope.jobsite);
-		addTheNewDailyTimeCardToJobsiteObject();
+		// addTheNewDailyTimeCardToJobsiteObject();
 	});
 };
 getTheJobSiteFromDBbyId();
@@ -34,8 +34,9 @@ $scope.theDate = employeeJobSiteTimeCardService.theDate();
 
 
 
-function addTheNewDailyTimeCardToJobsiteObject() {
+$scope.addTheNewDailyTimeCardToJobsiteObject = function() {
 	var flag = false;
+	$scope.timeCardCreated = true;
 	
 	function DailyTimeCard() {
 		this.theDate = $scope.theDate;
@@ -52,8 +53,9 @@ function addTheNewDailyTimeCardToJobsiteObject() {
 		for (var i = 0; i < dailyTCArray.length; i++) {
 			if (dailyTCArray[i].theDate === $scope.dailyTimeCard.theDate) {
 				flag = true;
-			console.log("addTheNewDailyTimeCardToJobsiteObject flag", flag);
-				
+				if (flag) {
+					$scope.timeCardAlreadyExists = true;
+				};
 			};
 		};
 

@@ -8,34 +8,15 @@
 <br />
 
             <!--With these text areas you need to make a hide/show that shows a success note saying that the note or materials has been saved to the database successfully that dissapears after 2 or 3 seconds-->
-<div class="notesAndMaterials">
-    <button ng-click="hideTextBox()" ng-show="textAreaShow">Close</button>
-    <button ng-click="showTextArea()" ng-hide="textAreaShow" >Materials Used</button>
-    <br />
 
-    <div id="textArea" ng-show="textAreaShow">
-        <textarea ng-model="materials"></textarea>
-        <button ng-click="addMaterials(materials)">Add</button>
-    </div>
-</div>
-<br />
-
-<div class="notesAndMaterials">
-    <button ng-click="hideNoteTextBox()" ng-show="noteShow">Close</button>
-    <button ng-click="showNoteTextBox()" ng-hide="noteShow">Make a Note</button>
-
-    <div id="noteTextArea" ng-show="noteShow">
-        <textarea ng-model="notes"></textarea>
-        <button ng-click="addNote(notes)">Add</button>
-    </div>
-</div>
-<br />
 
 <div class="jobDetails">
     <button ng-click="showJobDetails()" ng-hide="jobDetails">Show Job Details</button>
     <button ng-click="hideJobDetails()" ng-show="jobDetails">Hide Job Details</button>
 
+    <button ng-click="addTheNewDailyTimeCardToJobsiteObject()">Create a New Time Card</button>
 
+    <p ng-show="timeCardAlreadyExists" class="warning">Oops! A time card already exists for this day. A new time card will not be created.</p>
                 <!--This div may turn out to be very large depending on what I am putting into it.-->
     <div class="jobDetails" ng-show="jobDetails">
         <p>Hey, these are the job details!</p>
@@ -45,34 +26,62 @@
 
 <!--<button class="addPhotos">Add Photos</button>-->
 
+<div name="employeesDiv" ng-show="timeCardCreated">
 
-<label for="employeeFilter">Filter Employee: </label>
+    <div class="notesAndMaterials">
+        <button ng-click="hideTextBox()" ng-show="textAreaShow">Close</button>
+        <button ng-click="showTextArea()" ng-hide="textAreaShow" >Materials Used</button>
+        <br />
 
-<input type="text" name="employeeFilter" ng-model="employee_filter">
-
-<table st-table="students" class="table table-striped">
-    <thead>
-        <tr>
-            <td>Hours Worked</td>
-        </tr>
-    </thead>
+        <div id="textArea" ng-show="textAreaShow">
+            <textarea ng-model="materials"></textarea>
+            <button ng-click="addMaterials(materials)">Add</button>
+        </div>
+    </div>
     <br />
-    <tbody>       
-        <tr ng-repeat="employee in employees | filter: {fullName:employee_filter} track by $index">
-           
-            <td >
-                {{employee.fullName}}
-            </td>
-            <td>
-                <input type="number" ng-model="hoursWorked" min=".25" max="24">
-                 <!--There should be some form validation for the hours worked, and if the submit button is clicked with no hours entered then nothing will happen, perhaps the red warning should show saying that particular employee needs to have the hours entered. -->
-            </td>
-            <td>
-                <button ng-click="addEmployeeTime(employee.fullName, hoursWorked, $index)">SUBMIT TIME</button>
-                <!-- Maybe the submit button will change color when the person has been submitted. But I think this should be linked to the success of the update, so... if (response.status === 200) { turn the button green};-->
-        </tr>
-    </tbody>
-</table>
+
+    <div class="notesAndMaterials">
+        <button ng-click="hideNoteTextBox()" ng-show="noteShow">Close</button>
+        <button ng-click="showNoteTextBox()" ng-hide="noteShow">Make a Note</button>
+
+        <div id="noteTextArea" ng-show="noteShow">
+            <textarea ng-model="notes"></textarea>
+            <button ng-click="addNote(notes)">Add</button>
+        </div>
+    </div>
+    <br />
+
+    <label for="employeeFilter">Filter Employee: </label>
+
+    <input type="text" name="employeeFilter" ng-model="employee_filter">
+
+    <table st-table="students" class="table table-striped">
+        <thead>
+            <tr>
+                <td>Employee</td>
+                <td>Hours Worked</td>
+            </tr>
+        </thead>
+        <br />
+        <tbody>       
+            <tr ng-repeat="employee in employees | filter: {fullName:employee_filter} track by $index">
+            
+                <td >
+                    {{employee.fullName}}
+                </td>
+                <td>
+                    <input type="number" ng-model="hoursWorked" min=".25" max="24">
+                    <!--There should be some form validation for the hours worked, and if the submit button is clicked with no hours entered then nothing will happen, perhaps the red warning should show saying that particular employee needs to have the hours entered. -->
+                </td>
+                <td>
+                    <button ng-click="addEmployeeTime(employee.fullName, hoursWorked, $index)">SUBMIT TIME</button>
+                    <!-- Maybe the submit button will change color when the person has been submitted. But I think this should be linked to the success of the update, so... if (response.status === 200) { turn the button green};-->
+                </td>
+            </tr>
+        </tbody>
+    </table
+
+</div>
 
 <!--BELOW THIS IS THE EXPERIMENT WITH CSS TABLE STUFF
 <style>

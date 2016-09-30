@@ -136,6 +136,8 @@ $scope.badName = [];
 
 $scope.name_already_exists = [];
 
+$scope.updating = [];
+
 
 
 
@@ -398,14 +400,14 @@ $scope.deleteTC = function(index) {
 $scope.addMaterialsAndNotes = function(notes, materials, index) {
 	
 	if (notes || materials) {
-		$scope.updating = true;
+		$scope.updating[index] = true;
 
 		$scope.dailyTCs[index].materials_used = materials;
 		$scope.dailyTCs[index].notes = notes;
 
 		employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId($scope.dailyTCs, $scope.jobsite._id).then(function(response) {
 			getTheJobSiteFromDBbyId();
-			$scope.updating = false;
+			$scope.updating[index] = false;
 		});
 	};
 };

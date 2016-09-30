@@ -37,29 +37,29 @@
           </div>
         
               
-          <form name="employeeForm" ng-submit="createEmployee(fullName, email, password, employeeType, employeeForm.$valid)" novalidate>
+          <form name="employeeForm" ng-submit="createEmployee(fullName, username, password, employeeType, employeeForm.$valid)" novalidate>
             <div class="modal-body">
 
               <div ng-class="{ 'has-error' : employeeForm.fullName.$invalid && submitted }">
-                <label>Employee Full Name</label>
-                <p class="warning" ng-show="employeeForm.fullName.$invalid && submitted">You Must Enter An Employee Full Name!</p>
+                <label for="fullName">Employee Full Name</label>
+                <p class="warning" ng-show="employeeForm.fullName.$invalid && submitted">You Must Enter An Employee's Full Name!</p>
                 <input type="text" name="fullName" class="form-control" ng-model="fullName"/ required autofocus>
               </div>
 
-              <div ng-class="{ 'has-error' : employeeForm.email.$invalid && submitted }">
-                <label>Employee Email</label>
-                <p class="warning" ng-show="employeeForm.email.$invalid && submitted ">You Must Enter An Employee Email!</p>
-                <input type="email" name="email" class="form-control" ng-model="email" required>
+              <div ng-class="{ 'has-error' : employeeForm.username.$invalid && submitted }">
+                <label for="username">Employee Username</label>
+                <p class="warning" ng-show="employeeForm.username.$invalid && submitted ">You Must Enter An Employee's Username!</p>
+                <input type="text" name="username" class="form-control" ng-model="username" required>
               </div>
 
               <div ng-class="{ 'has-error' : employeeForm.password.$invalid && submitted }">
-                <label>Employee Password</label>
-                <p class="warning" ng-show="employeeForm.password.$invalid && submitted">You Must Enter An Employee Password!</p>
+                <label for="password">Employee Password</label>
+                <p class="warning" ng-show="employeeForm.password.$invalid && submitted">You Must Enter An Employee's Password!</p>
                 <input type="text" name="password" class="form-control" ng-model="password" required>
               </div>
 
               <div ng-class="{ 'has-error' : employeeForm.type.$invalid && submitted }">
-                <label>Employee Type</label>
+                <label for="type">Employee Type</label>
                 <p class="warning" ng-show="employeeForm.type.$invalid && submitted">You Must Enter the Type of Employee... Worker or Admin!</p>
                 
                 <select name="type" form="employeeForm" ng-model="employeeType" required>

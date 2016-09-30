@@ -124,6 +124,18 @@ $scope.showTheEditHours = function(pIndex, index) {
 	$scope.editHours[pIndex][index] = true;
 }
 
+$scope.noName = [];
+
+$scope.noTime = [];
+
+$scope.hide_late_employee_td = [];
+
+$scope.hide_late_hours_td = [];
+
+$scope.badName = [];
+
+$scope.name_already_exists = [];
+
 
 
 
@@ -261,77 +273,77 @@ $scope.lateEmployee = function(late_employee, late_hours, index, date) {
 		} else {
 
 			if (!late_hours && !late_employee) {
-				$scope.noName = true;
-				$scope.noTime = true;
-				$scope.hide_late_employee_td = true;
-				$scope.hide_late_hours_td = true;
+				$scope.noName[index] = true;
+				$scope.noTime[index] = true;
+				$scope.hide_late_employee_td[index] = true;
+				$scope.hide_late_hours_td[index] = true;
 
 				$timeout(function() {
-					$scope.noName = false;
-					$scope.noTime = false;
-					$scope.hide_late_employee_td = false;
-					$scope.hide_late_hours_td = false;
+					$scope.noName[index] = false;
+					$scope.noTime[index] = false;
+					$scope.hide_late_employee_td[index] = false;
+					$scope.hide_late_hours_td[index] = false;
 				}, 2500);
 				break;
 			};
 
 			if (late_hours && !late_employee) {
-				$scope.noName = true;
-				$scope.hide_late_employee_td = true;
+				$scope.noName[index] = true;
+				$scope.hide_late_employee_td[index] = true;
 
 				$timeout(function() {
-					$scope.noName = false;
-					$scope.hide_late_employee_td = false;
+					$scope.noName[index] = false;
+					$scope.hide_late_employee_td[index] = false;
 				}, 2500);
 				break;
 			};
 
 			if (flag2 === true && !late_hours) {
-				$scope.hide_late_hours_td = true;
-				$scope.noTime = true;
+				$scope.hide_late_hours_td[index] = true;
+				$scope.noTime[index] = true;
 
 				$timeout(function() {
-					$scope.hide_late_hours_td = false
-					$scope.noTime = false;
+					$scope.hide_late_hours_td[index] = false
+					$scope.noTime[index] = false;
 				}, 2500);
 				break;
 			};
 
 			if (flag2 === false && !late_hours) {
-				$scope.hide_late_employee_td = true;
-				$scope.hide_late_hours_td = true;
-				$scope.badName = true;
-				$scope.noTime = true;
+				$scope.hide_late_employee_td[index] = true;
+				$scope.hide_late_hours_td[index] = true;
+				$scope.badName[index] = true;
+				$scope.noTime[index] = true;
 
 				$timeout(function(){
-					$scope.hide_late_employee_td = false;
-					$scope.hide_late_hours_td = false;
-					$scope.badName = false;
-					$scope.noTime = false;
+					$scope.hide_late_employee_td[index] = false;
+					$scope.hide_late_hours_td[index] = false;
+					$scope.badName[index] = false;
+					$scope.noTime[index] = false;
 				}, 2500);
 				break;
 			};
 
 			if (flag2 === false && late_hours) {
-				$scope.hide_late_employee_td = true;
-				$scope.badName = true;
+				$scope.hide_late_employee_td[index] = true;
+				$scope.badName[index] = true;
 
 				$timeout(function(){
-					$scope.hide_late_employee_td = false;
-					$scope.badName = false;
+					$scope.hide_late_employee_td[index] = false;
+					$scope.badName[index] = false;
 				}, 2500);
 				break;
 			};
 
 			if (flag1 === true) {
-				$scope.hide_late_hours_td = true;
-				$scope.hide_late_employee_td = true;
-				$scope.name_already_exists = true;
+				$scope.hide_late_hours_td[index] = true;
+				$scope.hide_late_employee_td[index] = true;
+				$scope.name_already_exists[index] = true;
 
 				$timeout(function() {
-					$scope.hide_late_hours_td = false;
-					$scope.hide_late_employee_td = false;
-					$scope.name_already_exists = false;
+					$scope.hide_late_hours_td[index] = false;
+					$scope.hide_late_employee_td[index] = false;
+					$scope.name_already_exists[index] = false;
 				}, 2500);
 				break;
 			};

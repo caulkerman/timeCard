@@ -14,7 +14,7 @@
     <button ng-click="showJobDetails()" ng-hide="jobDetails">Show Job Details</button>
     <button ng-click="hideJobDetails()" ng-show="jobDetails">Hide Job Details</button>
 
-    <button ng-click="addTheNewDailyTimeCardToJobsiteObject()">Create a New Time Card</button>
+    <button ng-click="addTheNewDailyTimeCardToJobsiteObject()" ng-hide="timeCardCreated">Create a New Time Card</button>
 
     <p ng-show="timeCardAlreadyExists" class="warning">Oops! A time card already exists for this day. A new time card will not be created.</p>
                 <!--This div may turn out to be very large depending on what I am putting into it.-->
@@ -27,6 +27,8 @@
 <!--<button class="addPhotos">Add Photos</button>-->
 
 <div name="employeesDiv" ng-show="timeCardCreated">
+
+    <p ng-show="needMaterials" class="warning">Oops! You must enter the materials used for today before submitting time for employees</p>
 
     <div class="notesAndMaterials">
         <button ng-click="hideTextBox()" ng-show="textAreaShow">Close</button>

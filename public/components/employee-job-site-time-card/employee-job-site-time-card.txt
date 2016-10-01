@@ -1,4 +1,3 @@
 Make it so the Job Details has something to show.
 
-Make it so that user has to create a new time card manually.  There may be times when an employee needs to look at a job site and details before going onto the job, they don't need to create a new time card just for looking at details.
-
+Styling: make it so when the user has submitted time that the submit button does something like turn green or dissappear.

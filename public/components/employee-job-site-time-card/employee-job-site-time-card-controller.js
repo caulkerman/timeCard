@@ -140,9 +140,7 @@ $scope.addMaterials = function(materials) {
 			
 			employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId(dailyTCArray, $scope.jobsite._id).then(function(response) {
 				console.log("the materials update response ", response);
-				if (response.status === 200) {
-
-				};
+				$scope.needMaterials = false;
 			});
 		};
 	
@@ -162,10 +160,16 @@ $scope.addMaterials = function(materials) {
 
 $scope.addEmployeeTime = function(employeeName, hours_worked, index) {
 
-	if (!employeeName, !hours_worked) {
+	if (!hours_worked) {
 		alert("hey, you need to add time. You may want to make this a <p> that shows when the inputs are empty");
 		return;
 	};
+
+	if (!$scope.jobsite.daily_time_cards[0].materials_used) {
+		console.log("I am a bum");
+		$scope.needMaterials = true;
+		return;
+	}
 
 	function NameHoursDate(e, h, d) {
 		this.employeeName = e,

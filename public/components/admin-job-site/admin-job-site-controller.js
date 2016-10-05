@@ -15,9 +15,9 @@ function getTheJobSiteFromDBbyId() {// we might want to have this function call 
 	employeeJobSiteTimeCardService.getTheJobSiteFromDBbyId(jobSiteId).then(function(response) {
 		$scope.jobsite = response.data;
 		$scope.dailyTCs = $scope.jobsite.daily_time_cards;
-		if ($scope.jobsite.length) {
+		//if ($scope.jobsite.length) {//If the job site has some length then call the function.
 			addAllTheHours();
-		};
+		//};
 		console.warn("$scope.jobsite ", $scope.jobsite);
 	});
 };

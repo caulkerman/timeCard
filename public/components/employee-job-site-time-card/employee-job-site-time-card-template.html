@@ -19,7 +19,35 @@
     <p ng-show="timeCardAlreadyExists" class="warning">Oops! A time card already exists for this day. A new time card will not be created.</p>
                 <!--This div may turn out to be very large depending on what I am putting into it.-->
     <div class="jobDetails" ng-show="jobDetails">
-        <p>Hey, these are the job details!</p>
+        <div>
+            <label>Total Jobsite Man Hours Worked: </label><span> {{totalJobSiteHours}}
+        <div>
+            <label>Job Name: </label><span> {{jobsite. name}}</span>
+        </div>
+        
+        <div>
+            <label>Contractor: </label><span> {{jobsite.contractor}}</span>
+        </div>
+        
+        <div>
+            <label>Superintendent Name: </label><span> {{jobsite.superintendent_name}}</span>
+        </div>
+        
+        <div>
+            <label>Superintendent Telephone: </label><span> {{jobsite.superintendent_telephone}}</span>
+        </div>
+        
+        <div>
+            <label>Job Address: </label><span> {{jobsite.job_address}}</span>
+        </div>
+        
+        <div>
+            <label>Job Contract Details: </label><span> {{jobsite.job_details}}</span>
+        </div>
+        
+        <div>
+            <label>Materials Needed: </label><span> {{jobsite.materials_needed}}</span>
+        </div>
     </div>
 </div>
 <br />
@@ -72,8 +100,8 @@
                     {{employee.fullName}}
                 </td>
                 <td>
-                    <input type="number" ng-model="hoursWorked" min=".25" max="24">
-                    <!--There should be some form validation for the hours worked, and if the submit button is clicked with no hours entered then nothing will happen, perhaps the red warning should show saying that particular employee needs to have the hours entered. -->
+                    <input type="number" ng-model="hoursWorked" min=".25" max="24" ng-hide="needTime[$index]">
+                    <p class="warning" ng-show="needTime[$index]">Oops! You forgot to add time!</p>
                 </td>
                 <td>
                     <button ng-click="addEmployeeTime(employee.fullName, hoursWorked, $index)">SUBMIT TIME</button>

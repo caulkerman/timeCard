@@ -1,3 +1,1 @@
-Make it so the Job Details has something to show.
-
-Styling: make it so when the user has submitted time that the submit button does something like turn green or dissappear.
+Styling: make it so when the user has submitted time that the submit button does something like turn green or disappear.

@@ -45,7 +45,7 @@ $scope.editEmployee = function(hours, id, pIndex, index) {
 			
 			if ($scope.jobsite.daily_time_cards[i].employees_worked[j]._id === id) {
 				$scope.jobsite.daily_time_cards[i].employees_worked[j].edited_hours = hours;
-				$scope.jobsite.daily_time_cards[i].employees_worked[j].edited_hours_ok = true;
+				$scope.jobsite.daily_time_cards[i].employees_worked[j].edited_hours_flag = true;//set to true so in the employee's time card it will flag a warning to the employee that the time has been altered. 
 
 				adminJobSiteService.updateTheJobSiteInDBbyId($scope.jobsite.daily_time_cards, $scope.jobsite._id).then(function(response) {
 					console.log("the jobsite response for update employee hours: ", response.data);

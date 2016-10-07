@@ -1,0 +1,1 @@
+make it so under the table header Hours This Week that the hours for this employee shows up for the week.

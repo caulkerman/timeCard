@@ -82,4 +82,10 @@ var app = angular.module("timeCard", ["ui.router", "smart-table"])
 			controller: "adminOldJobSiteController"
 		})
 
+		.state("admin-old-employees", {
+			url: "/admin-old-employees/",
+			templateUrl: "components/admin-old-employees/admin-old-employees.html",
+			controller: "adminOldEmployees"
+		})
+
 	});

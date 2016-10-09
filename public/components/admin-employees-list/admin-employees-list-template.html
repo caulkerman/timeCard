@@ -38,7 +38,7 @@
           </div>
         
               
-          <form name="employeeForm" ng-submit="createEmployee(fullName, username, password, employeeType, employeeForm.$valid)" novalidate>
+          <form name="employeeForm" ng-submit="createEmployee(fullName, userName, password, employeeType, employeeForm.$valid)" novalidate>
             <div class="modal-body">
 
               <div ng-class="{ 'has-error' : employeeForm.fullName.$invalid && submitted }">
@@ -47,10 +47,10 @@
                 <input type="text" name="fullName" class="form-control" ng-model="fullName"/ required autofocus>
               </div>
 
-              <div ng-class="{ 'has-error' : employeeForm.username.$invalid && submitted }">
-                <label for="username">Employee Username</label>
-                <p class="warning" ng-show="employeeForm.username.$invalid && submitted ">You Must Enter An Employee's Username!</p>
-                <input type="text" name="username" class="form-control" ng-model="username" required>
+              <div ng-class="{ 'has-error' : employeeForm.userName.$invalid && submitted }">
+                <label for="userName">Employee Username</label>
+                <p class="warning" ng-show="employeeForm.userName.$invalid && submitted ">You Must Enter An Employee's Username!</p>
+                <input type="text" name="userName" class="form-control" ng-model="userName" required>
               </div>
 
               <div ng-class="{ 'has-error' : employeeForm.password.$invalid && submitted }">

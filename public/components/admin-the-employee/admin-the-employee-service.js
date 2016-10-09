@@ -12,8 +12,21 @@ app.service("theEmployeeService", ["$q", "$http", function($q, $http) {
             deferred.resolve(response);
         });
         return deferred.promise;
-    }
+    };
 
+
+
+
+    this.getTheJobSitesFromDB = function() {
+        var deferred = $q.defer();
+        $http({
+            method: "GET",
+            url: "/api/getJobs/"
+        }).then(function(response) {
+            deferred.resolve(response);
+        });
+        return deferred.promise;
+    };
 
 
 

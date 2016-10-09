@@ -1,28 +1,63 @@
 (function() {
-var $inject = ["$scope", "$stateParams", "theEmployeeService"];
-function adminTheEmployeeControllerCB($scope, $stateParams, theEmployeeService) {
+var $inject = ["$scope", "$stateParams", "theEmployeeService", "$state", "$timeout"];
+function adminTheEmployeeControllerCB($scope, $stateParams, theEmployeeService, $state, $timeout) {
 
 
 'use strict'
         //////ADD YOUR ANGULAR JAVASCRIPT BELOW\\\\\\\\\
 
-$scope.test = "I like to eat apples and bananas!"
 
-var theEmployeeId = $stateParams.id;
-console.log("the id ", theEmployeeId);
+const theEmployeeId = $stateParams.id;
+console.log("the employee _id ", theEmployeeId);
 
-var getTheEmployeeFromDBbyId = function() {
+$scope.noJobSite = [];
+
+const getTheEmployeeFromDBbyId = function() {
     theEmployeeService.getEmployeeById(theEmployeeId).then(function(response) {
         console.log("the response.data from controller ", response.data);
         $scope.theEmployee = response.data;
-    })
-}
+        $scope.hours_worked = $scope.theEmployee.job_site_hours_worked.reverse();
+    });
+};
 getTheEmployeeFromDBbyId(); 
 
 
 
 
+const getTheJobSitesFromDB = function() {
+    theEmployeeService.getTheJobSitesFromDB().then(function(response) {
+        console.log("the job sites: ", response.data);
+        $scope.jobSites = response.data;
+    });
+};
+getTheJobSitesFromDB();
 
+
+
+
+$scope.goToJobSite = function(jobName, index) {
+    // debugger
+    var flag = false;
+    
+    console.log("the goToJobSite function has fired");
+
+    for (var i = 0; i < $scope.jobSites.length; i++) {
+         
+        if (jobName === $scope.jobSites[i].name) {
+            flag = true;
+            let id = $scope.jobSites[i]._id;
+            $state.go("admin-job-site", {id: id});
+            break;  
+        };
+    };
+     
+    if (flag === false){
+        $scope.noJobSite[index] = true
+        $timeout(function() {
+            $scope.noJobSite[index] = false;
+        }, 2500);
+    };
+};
 
 
 

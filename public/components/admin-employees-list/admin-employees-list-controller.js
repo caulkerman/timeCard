@@ -15,12 +15,12 @@ function adminEmployeesListControllerCB($scope, $log, admin_employees_list_servi
 
 	
 	
-	$scope.createEmployee = function(fullName, username, password, employeeType, isValid) {
+	$scope.createEmployee = function(fullName, userName, password, employeeType, isValid) {
 		$scope.submitted = true;
 		
 		var employee = {
 			fullName: fullName,
-			username: username,
+			userName: userName,
 			password: password,
 			employeeType: employeeType,
 			// jobSitesWorkedOn: [],
@@ -46,7 +46,7 @@ function adminEmployeesListControllerCB($scope, $log, admin_employees_list_servi
 		$scope.submitted = false;
 
 		$scope.fullName = "";
-		$scope.username = "";
+		$scope.userName = "";
 		$scope.password = "";
 		$scope.employeeType = "";
 	};

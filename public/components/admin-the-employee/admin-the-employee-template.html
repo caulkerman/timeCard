@@ -1,5 +1,33 @@
-<h2 style="color: brown;">{{theEmployee.fullName}}</h2>
-<p>The Employee"s Email Adress: <span style="font-size: 1.25em; font-weight: bold; color: red;">{{theEmployee.email}}</span></p> 
+<h2>{{theEmployee.fullName}}</h2>
+
+<div>
+    <p>The Employee's User Name: <span>{{theEmployee.userName}}{{theEmployee.email}}</span></p> 
  <!--make sure you take off the in-line styling-->
-<p>The Employee's Current Password: <span style="font-size: 1.25em; font-weight: bold; color: red;">{{theEmployee.password}}</span></p>
-<p>The Employee's Type: <span style="font-size: 1.25em; font-weight: bold; color: red;">{{theEmployee.employeeType}}</span></p>
+    <p>The Employee's Current Password: <span>{{theEmployee.password}}</span></p>
+    <p>The Employee's Type: <span>{{theEmployee.employeeType}}</span></p>
+</div>
+
+<div>
+
+    <table st-table="students" class="table table-striped">
+        
+        <thead>
+            <tr>
+                <td>Date</td>
+                <td>Hours</td>
+                <td>Job Site</td>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr ng-repeat="hours in hours_worked track by $index">
+                <td>{{hours.date_worked}}</td>
+                <td>{{hours.hours_worked}}</td>
+                <td ng-hide="noJobSite[$index]"><a href="" ng-click="goToJobSite(hours.job_site, $index)">{{hours.job_site}}</a></td>
+                <td ng-show="noJobSite[$index]" class="rw-warning">Oops! This job site has been completed and is now inactive.</td>
+            </tr>
+        </tbody>
+
+    </table>
+
+</div>

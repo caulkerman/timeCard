@@ -71,6 +71,7 @@ $scope.addTheNewDailyTimeCardToJobsiteObject = function() {
 	if (dailyTCArray.length < 1) {
 			dailyTCArray.push($scope.dailyTimeCard);
 			employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId(dailyTCArray, $scope.jobsite._id);
+			$scope.timeCardCreated = true;
 	};
 
 };

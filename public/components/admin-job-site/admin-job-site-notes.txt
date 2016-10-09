@@ -15,3 +15,6 @@ Maybe in the future make it so photos can be uploaded --- this is a wish list it
 
 Make it so when admin wants to change time that a modal type thingy pops up, we need to make sure that this can all fit on a phone.
 
+The edits to the time are being pushed to the employee object so right now I have multiple entries for the same date under the same name.
+
+Make it so when admin completes the job that a property on on the employee array shows the jobsite is completed also so if admin clicks on the job site link in admin-the-employee that the link goes nowhere.

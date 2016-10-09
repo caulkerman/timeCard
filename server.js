@@ -22,13 +22,15 @@ app.use(bodyParser.json({
 var employeeCtrl = require("./api/controllers/api.createEmployeeCtrl");
 var newJobCtrl = require("./api/controllers/api.createNewJobCtrl");
 var oldJobCtrl = require("./api/controllers/api.oldJobSitesCtrl");
+var oldEmployeesCtrl = require("./api/controllers/api.oldEmployeesCtrl");
 
 // Endpoints\\
 
 app.post("/api/createEmployee", employeeCtrl.create);
 app.post("/api/addNewJob", newJobCtrl.create);
 app.post("/api/addOldJob", oldJobCtrl.create);
-app.post("/api/update_jobsite", newJobCtrl.create); 
+app.post("/api/update_jobsite", newJobCtrl.create);
+app.post("/api//addOldEmployee", oldEmployeesCtrl.create);
 
 app.get("/api/getEmployees", employeeCtrl.read);
 app.get("/api/getJobs", newJobCtrl.read);

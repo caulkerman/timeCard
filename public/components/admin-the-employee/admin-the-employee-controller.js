@@ -36,12 +36,11 @@ getTheJobSitesFromDB();
 
 
 $scope.goToJobSite = function(jobName, index) {
-    // debugger
     var flag = false;
     
     console.log("the goToJobSite function has fired");
 
-    for (var i = 0; i < $scope.jobSites.length; i++) {
+    for (let i = 0; i < $scope.jobSites.length; i++) {
          
         if (jobName === $scope.jobSites[i].name) {
             flag = true;

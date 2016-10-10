@@ -2,47 +2,47 @@
 
 <h1>Job Site List</h1>
 <!--make sure you add angular for validation-->
-<button id="addNewJobSite" ng-click="showJobSiteForm()" ng-hide="showJobSite">Add New Job Site</button>
-<button ng-click="hideJobSiteForm()" ng-show="showJobSite">Close Form</button>
+<button id="addNewJobSite" ng-click="ctrl.showJobSiteForm()" ng-hide="ctrl.showJobSite">Add New Job Site</button>
+<button ng-click="ctrl.hideJobSiteForm()" ng-show="ctrl.showJobSite">Close Form</button>
 
 
-<div ng-show="showJobSite" class="form-div">
+<div ng-show="ctrl.showJobSite" class="form-div">
 
-<form ng-submit="addNewJobsSite(newJobName, contractorName, jobAddress, superName, superTelephone, jobDetails, materialsNeeded)">
+<form ng-submit="ctrl.addNewJobsSite(ctrl.newJobName, ctrl.contractorName, ctrl.jobAddress, ctrl.superName, ctrl.superTelephone, ctrl.jobDetails, ctrl.materialsNeeded)">
 
 		<div class="jobNameDiv">
 			<label for="jobName">Job Name:</label>
-			<input type="text" ng-model="newJobName" name="jobName" class="newJobForm">
+			<input type="text" ng-model="ctrl.newJobName" name="jobName" class="newJobForm">
 		</div>
 		
 		<div class="contractorNameDiv">
 			<label for="contractorName">Contractor Name:</label>
-			<input type="text"  ng-model="contractorName" name="contractorName" class="newJobForm">
+			<input type="text"  ng-model="ctrl.contractorName" name="contractorName" class="newJobForm">
 		</div>
 
 		<div class="superName">
 			<label for="superName">Superintendent Name:</label>
-			<input type="text" ng-model="superName" name="superName" class="newJobForm">
+			<input type="text" ng-model="ctrl.superName" name="superName" class="newJobForm">
 		</div>
 
 		<div class="superTelephone">
 			<label for="superTelephone">Superintendent Telephone:</label>
-			<input type="number" ng-model="superTelephone" name="superTelephone" class="newJobForm">
+			<input type="number" ng-model="ctrl.superTelephone" name="superTelephone" class="newJobForm">
 		</div>
 
 		<div class="jobAddress">
 			<label for="jobAddress">Job Address:</label>
-			<input type="text" ng-model="jobAddress" name="jobAddress"  class="newJobForm">
+			<input type="text" ng-model="ctrl.jobAddress" name="jobAddress"  class="newJobForm">
 		</div>
 
 		<div class="jobDetails">
 			<label for="jobDetails">Job Contract Details:</label>
-			<textarea name="jobDetails" ng-model="jobDetails" class="newJobForm" placeholder="such as how many feet of expansion joints:"></textarea>
+			<textarea name="jobDetails" ng-model="ctrl.jobDetails" class="newJobForm" placeholder="such as how many feet of expansion joints:"></textarea>
 		</div>
 
 		<div class="materialsNeeded">
 			<label for="materialsNeeded">Materials Needed:</label>
-			<textarea name="materialsNeeded" ng-model="materialsNeeded" class="newJobForm" placeholder="such as whether to use ladders, silicone or urethane:"></textarea>
+			<textarea name="materialsNeeded" ng-model="ctrl.materialsNeeded" class="newJobForm" placeholder="such as whether to use ladders, silicone or urethane:"></textarea>
 		</div>
 		
 		<input type="submit" value="Submit">
@@ -52,11 +52,11 @@
 </div>
 <br />
 <br />
-<input type="text" placeholder="filter jobs" ng-model="jobs">
+<input type="text" placeholder="filter jobs" ng-model="ctrl.jobs">
 
-<ul ng-repeat="job_site in job_sites | filter: {name:jobs} track by $index">
+<ul ng-repeat="job_site in ctrl.job_sites | filter: {name:ctrl.jobs} track by $index">
 	<li>
-		<a href="" ng-click="gotoSelectedJobsite($index, job_site._id)">{{job_site.name}}</a>
+		<a href="" ng-click="ctrl.gotoSelectedJobsite($index, job_site._id)">{{job_site.name}}</a>
 	</li>
 </ul>
 

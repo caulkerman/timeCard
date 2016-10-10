@@ -3,6 +3,7 @@ var $inject = ["$scope", "$log", "admin_employees_list_service", "$state"];
 function adminEmployeesListControllerCB($scope, $log, admin_employees_list_service, $state) {
 
 'use strict'
+const ctrl = this;
 		//////////    ADD YOUR CONTROLLER CODE BELOW   ///////////
 
 	var functionToGetEmployees = function() {

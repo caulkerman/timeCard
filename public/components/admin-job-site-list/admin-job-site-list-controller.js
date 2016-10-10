@@ -3,6 +3,7 @@ var $inject = ["$scope","adminJobSiteListService", "$state"];
 function adminJobSiteListControllerCB($scope, adminJobSiteListService, $state) {
 
 'use strict'
+const ctrl = this;
 
 	/////////ENTER CODE BELOW\\\\\\\\
 
@@ -10,17 +11,17 @@ function adminJobSiteListControllerCB($scope, adminJobSiteListService, $state) {
 	
 	function getListOfJobs() {
 		adminJobSiteListService.getJobs().then(function(response) {
-			$scope.job_sites = response.data;
-			console.log("getListOfJobs funciton in jobsite controller ", $scope.job_sites);
+			ctrl.job_sites = response.data;
+			console.log("getListOfJobs funciton in jobsite controller ", ctrl.job_sites);
 		})
 	}
 	getListOfJobs();
 
 	
 	
-	$scope.addNewJobsSite = function(newJobName, contractorName, jobAddress, superName, superTelephone, jobDetails, materialsNeeded) {
+	ctrl.addNewJobsSite = function(newJobName, contractorName, jobAddress, superName, superTelephone, jobDetails, materialsNeeded) {
 		
-		if ($scope.newJobName === undefined || $scope.newJobName === "" && $scope.contractorName === undefined || $scope.contractorName === "") {
+		if (ctrl.newJobName === undefined || ctrl.newJobName === "" && ctrl.contractorName === undefined || ctrl.contractorName === "") {
 			console.log("you must enter a job name and contractor");
 		} else {
 		
@@ -28,32 +29,32 @@ function adminJobSiteListControllerCB($scope, adminJobSiteListService, $state) {
 			});
 		
 			getListOfJobs();
-			$scope.newJobName = "";
-			$scope.contractorName = "";
-			$scope.jobAddress = "";
-			$scope.superName = "";
-			$scope.superTelephone = "";
-			$scope.jobDetails = "";
-			$scope.materialsNeeded = "";
+			ctrl.newJobName = "";
+			ctrl.contractorName = "";
+			ctrl.jobAddress = "";
+			ctrl.superName = "";
+			ctrl.superTelephone = "";
+			ctrl.jobDetails = "";
+			ctrl.materialsNeeded = "";
 		};
-			$scope.showJobSite = false;
+			ctrl.showJobSite = false;
 		
 	};
 
 	
 	
-	$scope.gotoSelectedJobsite = function(index, id) {
+	ctrl.gotoSelectedJobsite = function(index, id) {
 		$state.go("admin-job-site", {id: id});
 	};
 
 
 
-	$scope.showJobSiteForm = function() {
-		$scope.showJobSite = true;
+	ctrl.showJobSiteForm = function() {
+		ctrl.showJobSite = true;
 	};
 
-	$scope.hideJobSiteForm = function() {
-		$scope.showJobSite = false;
+	ctrl.hideJobSiteForm = function() {
+		ctrl.showJobSite = false;
 	};
 
 

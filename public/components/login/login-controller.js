@@ -5,10 +5,10 @@
 	function loginControllerCB($scope, $state) {
 
 'use strict'
+const ctrl = this;
 
 		////////ADD JAVASCRIPT BELOW////////	
 
-	
 
 
 

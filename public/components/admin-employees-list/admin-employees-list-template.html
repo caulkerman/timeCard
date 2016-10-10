@@ -3,7 +3,7 @@
 
 <div class="admin-employee-container">
 	<h1>Employee List</h1>
-	<input type="text" placeholder="Filter Employee Names" ng-model="ctrl.employee_filter"/>
+	<input type="text" placeholder="Filter Employee Names" ng-model="employee_filter"/>
 	<button class="btn btn-success" data-toggle="modal" data-target="#myModal">Create New Employee</button>
 </div>
 
@@ -15,8 +15,8 @@
     </tr>
   </thead>
   <tbody>
-    <tr ng-repeat="employee in ctrl.employees | filter: {fullName:ctrl.employee_filter} track by $index">
-      <td><a href="" ng-click="ctrl.goToTheEmployee($index)">{{employee.fullName}}</a></td>
+    <tr ng-repeat="employee in employees | filter: {fullName:employee_filter} track by $index">
+      <td><a href="" ng-click="goToTheEmployee($index)">{{employee.fullName}}</a></td>
       <td><!--you need to make it so weekly hours for this employee shows up --></td>
     </tr>
   </tbody>
@@ -38,32 +38,32 @@
           </div>
         
               
-          <form name="employeeForm" ng-submit="ctrl.createEmployee(ctrl.fullName, ctrl.userName, ctrl.password, ctrl.employeeType, employeeForm.$valid)" novalidate>
+          <form name="employeeForm" ng-submit="createEmployee(fullName, userName, password, employeeType, employeeForm.$valid)" novalidate>
             <div class="modal-body">
 
-              <div ng-class="{ 'has-error' : employeeForm.ctrl.fullName.$invalid && submitted }">
+              <div ng-class="{ 'has-error' : employeeForm.fullName.$invalid && submitted }">
                 <label for="fullName">Employee Full Name</label>
-                <p class="warning" ng-show="employeeForm.ctrl.fullName.$invalid && submitted">You Must Enter An Employee's Full Name!</p>
-                <input type="text" name="fullName" class="form-control" ng-model="ctrl.fullName"/ required autofocus>
+                <p class="warning" ng-show="employeeForm.fullName.$invalid && submitted">You Must Enter An Employee's Full Name!</p>
+                <input type="text" name="fullName" class="form-control" ng-model="fullName"/ required autofocus>
               </div>
 
-              <div ng-class="{ 'has-error' : employeeForm.ctrl.userName.$invalid && submitted }">
+              <div ng-class="{ 'has-error' : employeeForm.userName.$invalid && submitted }">
                 <label for="userName">Employee Username</label>
-                <p class="warning" ng-show="employeeForm.ctrl.userName.$invalid && submitted ">You Must Enter An Employee's Username!</p>
-                <input type="text" name="userName" class="form-control" ng-model="ctrl.userName" required>
+                <p class="warning" ng-show="employeeForm.userName.$invalid && submitted ">You Must Enter An Employee's Username!</p>
+                <input type="text" name="userName" class="form-control" ng-model="userName" required>
               </div>
 
-              <div ng-class="{ 'has-error' : employeeForm.ctrl.password.$invalid && submitted }">
+              <div ng-class="{ 'has-error' : employeeForm.password.$invalid && submitted }">
                 <label for="password">Employee Password</label>
-                <p class="warning" ng-show="ctrl.employeeForm.password.$invalid && submitted">You Must Enter An Employee's Password!</p>
-                <input type="text" name="password" class="form-control" ng-model="ctrl.password" required>
+                <p class="warning" ng-show="employeeForm.password.$invalid && submitted">You Must Enter An Employee's Password!</p>
+                <input type="text" name="password" class="form-control" ng-model="password" required>
               </div>
 
-              <div ng-class="{ 'has-error' : employeeForm.ctrl.type.$invalid && submitted }">
+              <div ng-class="{ 'has-error' : employeeForm.type.$invalid && submitted }">
                 <label for="type">Employee Type</label>
-                <p class="warning" ng-show="ctrl.employeeForm.type.$invalid && submitted">You Must Enter the Type of Employee... Worker or Admin!</p>
+                <p class="warning" ng-show="employeeForm.type.$invalid && submitted">You Must Enter the Type of Employee... Worker or Admin!</p>
                 
-                <select name="type" form="employeeForm" ng-model="ctrl.employeeType" required>
+                <select name="type" form="employeeForm" ng-model="employeeType" required>
                   <option value="Worker">Worker</option>
                   <option value="Admin">Admin</option>
                 </select>

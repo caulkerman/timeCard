@@ -8,23 +8,23 @@ const ctrl = this;
 
 	var functionToGetEmployees = function() {
 		admin_employees_list_service.getEmployees().then(function(response) {
-			ctrl.employees = response.data;
-			console.log(ctrl.employees);
+			$scope.employees = response.data;
+			console.log($scope.employees);
 		});
 	};
 	functionToGetEmployees();
 
 	
 	
-	ctrl.createEmployee = function(fullName, userName, password, employeeType, isValid) {
-		console.log("the createEmployee function has fired", isValid);
-		ctrl.submitted = true;
+	$scope.createEmployee = function(fullName, userName, password, employeeType, isValid) {
+		$scope.submitted = true;
 		
 		var employee = {
 			fullName: fullName,
 			userName: userName,
 			password: password,
 			employeeType: employeeType,
+			// jobSitesWorkedOn: [],
 			job_site_hours_worked: []
 		};
 
@@ -38,25 +38,24 @@ const ctrl = this;
 
 		//The if conditional is here as a secondary measure to make sure the form is valid before submitting the new employee name to the database.  If I am using the angular way to do forms I might as well do this
 		if (isValid) {
-			console.log("the employee object, ", employee);
+			// console.log("the employee object, ", employee);
 			admin_employees_list_service.createEmployee(employee).then(function(response) {
 				functionToGetEmployees();
 			});
 		};
 
-		ctrl.submitted = false;
+		$scope.submitted = false;
 
-		ctrl.fullName = "";
-		ctrl.userName = "";
-		ctrl.password = "";
-		ctrl.employeeType = "";
+		$scope.fullName = "";
+		$scope.userName = "";
+		$scope.password = "";
+		$scope.employeeType = "";
 	};
 
 
 
-	ctrl.goToTheEmployee = function(index) {
-		console.log("the goToTheEmployee function has fired");
-		var id = ctrl.employees[index]._id;
+	$scope.goToTheEmployee = function(index) {
+		var id = $scope.employees[index]._id;
 		$state.go("the-employee", {id: id})
 	}
 

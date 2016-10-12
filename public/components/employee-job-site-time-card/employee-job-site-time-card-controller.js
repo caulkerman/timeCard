@@ -9,14 +9,14 @@ var ctrl = this;
 
 var jobSiteId = $stateParams.id;
 var dailyTCArray;
-$scope.needTime = [];
+ctrl.needTime = [];
 
 function getTheJobSiteFromDBbyId() {
 	employeeJobSiteTimeCardService.getTheJobSiteFromDBbyId(jobSiteId).then(function(response) {
-		$scope.jobsite = response.data;
-		dailyTCArray = $scope.jobsite.daily_time_cards;
+		ctrl.jobsite = response.data;
+		dailyTCArray = ctrl.jobsite.daily_time_cards;
 		addAllTheHours();
-		console.log("controller the jobsite object ", $scope.jobsite);
+		console.log("controller the jobsite object ", ctrl.jobsite);
 		// addTheNewDailyTimeCardToJobsiteObject();
 	});
 };
@@ -26,13 +26,13 @@ getTheJobSiteFromDBbyId();
 
 var functionToGetEmployees = function() {
 	admin_employees_list_service.getEmployees().then(function(response) {
-		$scope.employees = response.data;
-	    console.log("the employees object ", $scope.employees);
+		ctrl.employees = response.data;
+	    console.log("the employees object ", ctrl.employees);
 	});
 };
 functionToGetEmployees();
 
-$scope.theDate = employeeJobSiteTimeCardService.theDate();
+ctrl.theDate = employeeJobSiteTimeCardService.theDate();
 
 
 
@@ -56,74 +56,77 @@ ctrl.addTheNewDailyTimeCardToJobsiteObject = function(tAndm) {
 	var flag = false;
 	
 	function DailyTimeCard() {
-		this.theDate = $scope.theDate;
+		this.theDate = ctrl.theDate;
 		this.employees_worked = [];
 		this.materials_used = '';
 		this.notes = '';
 		this.TandM = tAndm;
 		this.late = false;
 	}
-	$scope.dailyTimeCard = new DailyTimeCard();
+	ctrl.dailyTimeCard = new DailyTimeCard();
 
 	if (dailyTCArray.length > 0) {
 
 		for (var i = 0; i < dailyTCArray.length; i++) {
-			if (dailyTCArray[i].theDate === $scope.dailyTimeCard.theDate) {
+			if (dailyTCArray[i].theDate === ctrl.dailyTimeCard.theDate) {
 				flag = true;
 				
-				if ($scope.dailyTimeCard.TandM === true) {
+				if (ctrl.dailyTimeCard.TandM === true) {
 					flag = false;
 				};
 
 				if (flag) {
-					$scope.timeCardAlreadyExists = true;
-					// ctrl.showtAndmOptions = false;
+					ctrl.timeCardAlreadyExists = true;
+					ctrl.showtAndmOptions = false;					
+					$timeout(function() {
+						ctrl.timeCardAlreadyExists = false;
+					}, 2500);
 				};
 			};
 		};
 
 		if (flag === false) {
-			dailyTCArray.unshift($scope.dailyTimeCard);
-			employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId(dailyTCArray, $scope.jobsite._id).then(function(response) {
-				$scope.timeCardCreated = true;
+			dailyTCArray.unshift(ctrl.dailyTimeCard);
+			employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId(dailyTCArray, ctrl.jobsite._id).then(function(response) {
+				ctrl.timeCardCreated = true;
 				ctrl.showtAndmOptions = false;
-				$scope.timeCardAlreadyExists = false;
+				ctrl.timeCardAlreadyExists = false;
 			});
 		};
 	};
 
 	if (dailyTCArray.length < 1) {
-			dailyTCArray.push($scope.dailyTimeCard);
-			employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId(dailyTCArray, $scope.jobsite._id);
-			$scope.timeCardCreated = true;
+			dailyTCArray.push(ctrl.dailyTimeCard);
+			employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId(dailyTCArray, ctrl.jobsite._id);
+			ctrl.timeCardCreated = true;
 	};
 
 };
 
 
 
-$scope.showNoteTextBox = function() {
-	$scope.noteShow = true;
+ctrl.showNoteTextBox = function() {
+	ctrl.noteShow = true;
 };
 
-$scope.hideNoteTextBox = function() {
-	$scope.noteShow = false;
+ctrl.hideNoteTextBox = function() {
+	ctrl.noteShow = false;
 };
 
-$scope.showTextArea = function() {
-	$scope.textAreaShow = true;
+ctrl.showTextArea = function() {
+	ctrl.textAreaShow = true;
 };
 
-$scope.hideTextBox = function() {
-	$scope.textAreaShow = false;
+ctrl.hideTextBox = function() {
+	ctrl.textAreaShow = false;
 };
 
-$scope.showJobDetails = function() {
-	$scope.jobDetails = true;
+ctrl.showJobDetails = function() {
+	ctrl.jobDetails = true;
 };
 
-$scope.hideJobDetails = function() {
-	$scope.jobDetails = false;
+ctrl.hideJobDetails = function() {
+	ctrl.jobDetails = false;
 };
 
 
@@ -131,13 +134,13 @@ $scope.hideJobDetails = function() {
 
 
 
-$scope.addNote = function(notes) {
+ctrl.addNote = function(notes) {
 	for (var i = 0; i < dailyTCArray.length; i++) {
 		
-		if (dailyTCArray[i].theDate === $scope.dailyTimeCard.theDate) {
+		if (dailyTCArray[i].theDate === ctrl.dailyTimeCard.theDate) {
 			dailyTCArray[i].notes = notes;
 			
-			employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId(dailyTCArray, $scope.jobsite._id).then(function(response) {
+			employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId(dailyTCArray, ctrl.jobsite._id).then(function(response) {
 				console.log("the notes update response ", response);
 				if (response.status === 200) {
 
@@ -147,7 +150,7 @@ $scope.addNote = function(notes) {
 	
 	//you may also have to make it so having materials is part of the form validation, so that the employee cannot enter unless materials has been entered.
 	
-	$scope.noteShow = false;
+	ctrl.noteShow = false;
 	};
 };
 
@@ -158,22 +161,22 @@ $scope.addNote = function(notes) {
 
 
 
-$scope.addMaterials = function(materials) {
+ctrl.addMaterials = function(materials) {
 	
 	for (var i = 0; i < dailyTCArray.length; i++) {
 		
-		if (dailyTCArray[i].theDate === $scope.dailyTimeCard.theDate) {
+		if (dailyTCArray[i].theDate === ctrl.dailyTimeCard.theDate) {
 			dailyTCArray[i].materials_used = materials;
 			
-			employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId(dailyTCArray, $scope.jobsite._id).then(function(response) {
+			employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId(dailyTCArray, ctrl.jobsite._id).then(function(response) {
 				console.log("the materials update response ", response);
-				$scope.needMaterials = false;
+				ctrl.needMaterials = false;
 			});
 		};
 	
 	//you may also have to make it so having materials is part of the form validation, so that the employee cannot enter unless materials has been entered.
 	
-	$scope.textAreaShow = false;
+	ctrl.textAreaShow = false;
 	};
 };
 
@@ -185,18 +188,18 @@ $scope.addMaterials = function(materials) {
 
 
 
-$scope.addEmployeeTime = function(employeeName, hours_worked, index) {
+ctrl.addEmployeeTime = function(employeeName, hours_worked, index) {
 
 	if (!hours_worked) {
-		$scope.needTime[index] = true;
+		ctrl.needTime[index] = true;
 		$timeout(function() {
-			$scope.needTime[index] = false;
+			ctrl.needTime[index] = false;
 		}, 2500);
 		return;
 	};
 
-	if (!$scope.jobsite.daily_time_cards[0].materials_used) {
-		$scope.needMaterials = true;
+	if (!ctrl.jobsite.daily_time_cards[0].materials_used) {
+		ctrl.needMaterials = true;
 		return;
 	}
 
@@ -205,7 +208,7 @@ $scope.addEmployeeTime = function(employeeName, hours_worked, index) {
 		this.hours_worked = h,
 		this.date_worked = d
 	};
-	var nameHoursDate = new NameHoursDate(employeeName, hours_worked, $scope.theDate);
+	var nameHoursDate = new NameHoursDate(employeeName, hours_worked, ctrl.theDate);
 
 	for (var i = 0; i < dailyTCArray.length; i++) {
 
@@ -215,7 +218,7 @@ $scope.addEmployeeTime = function(employeeName, hours_worked, index) {
 				dailyTCArray[i].employees_worked.push(nameHoursDate);
 				pushToJobSiteHoursWorked(hours_worked, index);
 				
-				employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId(dailyTCArray, $scope.jobsite._id).then(function(response) {
+				employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId(dailyTCArray, ctrl.jobsite._id).then(function(response) {
 				console.log("the nameHoursDate update response ", response.data);
 				});
 				return;
@@ -238,7 +241,7 @@ $scope.addEmployeeTime = function(employeeName, hours_worked, index) {
 			dailyTCArray[i].employees_worked.push(nameHoursDate);
 			pushToJobSiteHoursWorked(hours_worked, index);
 				
-			employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId(dailyTCArray, $scope.jobsite._id).then(function(response) {
+			employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId(dailyTCArray, ctrl.jobsite._id).then(function(response) {
 				// console.log("the nameHoursDate update response ", response.data);
 			});
 		};
@@ -253,18 +256,18 @@ $scope.addEmployeeTime = function(employeeName, hours_worked, index) {
 
 
 function pushToJobSiteHoursWorked(hours_worked, index) {
-	var id = $scope.employees[index]._id;
-	var employee = $scope.employees[index].job_site_hours_worked;
+	var id = ctrl.employees[index]._id;
+	var employee = ctrl.employees[index].job_site_hours_worked;
 
 	function EmployeeNameHoursJob(d, h, j) {
 		this.date_worked = d,
 		this.hours_worked = h,
 		this.job_site = j
 	}
-	var employeeNameHoursJob = new EmployeeNameHoursJob($scope.theDate, hours_worked, $scope.jobsite.name);
+	var employeeNameHoursJob = new EmployeeNameHoursJob(ctrl.theDate, hours_worked, ctrl.jobsite.name);
 	
-	$scope.employees[index].job_site_hours_worked.push(employeeNameHoursJob);
-	// console.log("the employeeNameHours object pushed ot job_site_hours_worked array ", $scope.employees[index].job_site_hours_worked);
+	ctrl.employees[index].job_site_hours_worked.push(employeeNameHoursJob);
+	// console.log("the employeeNameHours object pushed ot job_site_hours_worked array ", ctrl.employees[index].job_site_hours_worked);
 	employeeJobSiteTimeCardService.updateTheEmployeeInDBbyId(employee, id).then(function(response) {
 		// console.log("the response employee job_site_hours_worked ", response.data);
 	});
@@ -274,15 +277,15 @@ function pushToJobSiteHoursWorked(hours_worked, index) {
 
 
 function addAllTheHours() {
-	$scope.totalJobSiteHours = 0;
+	ctrl.totalJobSiteHours = 0;
 
 	for (var i = 0; i < dailyTCArray.length; i++) {
 		for (var j = 0; j < dailyTCArray[i].employees_worked.length; j++) {
 
-			$scope.totalJobSiteHours += dailyTCArray[i].employees_worked[j].hours_worked;
+			ctrl.totalJobSiteHours += dailyTCArray[i].employees_worked[j].hours_worked;
 		};	
 	};
-	console.log("total hours", $scope.totalJobSiteHours);
+	console.log("total hours", ctrl.totalJobSiteHours);
 };
 
 

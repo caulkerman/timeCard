@@ -14,11 +14,20 @@
     <button ng-click="showJobDetails()" ng-hide="jobDetails">Show Job Details</button>
     <button ng-click="hideJobDetails()" ng-show="jobDetails">Hide Job Details</button>
 
-    <button ng-click="addTheNewDailyTimeCardToJobsiteObject()" ng-hide="timeCardCreated">Create a New Time Card</button>
+    <button ng-click="ctrl.timeAndMaterialOptions()" ng-hide="timeCardCreated">Create a New Time Card</button>
 
-    <p ng-show="timeCardAlreadyExists" class="warning">Oops! A time card already exists for this day. A new time card will not be created.</p>
-                <!--This div may turn out to be very large depending on what I am putting into it.-->
-    <div class="jobDetails" ng-show="jobDetails">
+    <div class="tAndmOptions" ng-show="ctrl.showtAndmOptions">
+        <p>Is this a Time And Material Time Card?</p>
+        <button ng-click="ctrl.tAndmYes()">Yes</button>
+        <button ng-click="ctrl.tAndmNo()">No</button>
+    </div>
+
+    <div ng-show="timeCardAlreadyExists" class="warning">
+        <p>Oops! A regular time card already exists for this day. A new time card will not be created.</p>
+    </div>
+
+
+<div class="jobDetails" ng-show="jobDetails">
         <div>
             <label>Total Jobsite Man Hours Worked: </label><span> {{totalJobSiteHours}}
         <div>

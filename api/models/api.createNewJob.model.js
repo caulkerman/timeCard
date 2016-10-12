@@ -29,7 +29,8 @@ var newJobSchema = new Schema({
 			],
 			materials_used: String,
 			notes: String,
-			late: { type: Boolean, default: false }
+			late: { type: Boolean, default: false },
+			TandM: { type: Boolean, default: false }
 		}
 	]
 })

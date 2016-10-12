@@ -5,7 +5,7 @@ function employeeJobSiteTimeCardControllerCB($scope, $stateParams, employeeJobSi
 'use strict'
 
 /////////ADD JAVASCRIPT BELOW////////
-
+var ctrl = this;
 
 var jobSiteId = $stateParams.id;
 var dailyTCArray;
@@ -36,7 +36,23 @@ $scope.theDate = employeeJobSiteTimeCardService.theDate();
 
 
 
-$scope.addTheNewDailyTimeCardToJobsiteObject = function() {
+
+
+ctrl.timeAndMaterialOptions = function() {
+	ctrl.showtAndmOptions = true;
+}
+
+ctrl.tAndmYes = function() {
+	let tAndm = true;
+	ctrl.addTheNewDailyTimeCardToJobsiteObject(tAndm);
+}
+
+ctrl.tAndmNo = function() {
+	let tAndm = false;
+	ctrl.addTheNewDailyTimeCardToJobsiteObject(tAndm);
+}
+
+ctrl.addTheNewDailyTimeCardToJobsiteObject = function(tAndm) {
 	var flag = false;
 	
 	function DailyTimeCard() {
@@ -44,7 +60,7 @@ $scope.addTheNewDailyTimeCardToJobsiteObject = function() {
 		this.employees_worked = [];
 		this.materials_used = '';
 		this.notes = '';
-		//this.TandM = false; //if we do a t & M it will have to create a new dailyTimeCard object, but I am worrying about the view's curent state at the moment that it is created.  or something like this, boolean value will have to be brought from html through the funtion, will probably have to use a radio button or checkbox.
+		this.TandM = tAndm;
 		this.late = false;
 	}
 	$scope.dailyTimeCard = new DailyTimeCard();
@@ -54,8 +70,14 @@ $scope.addTheNewDailyTimeCardToJobsiteObject = function() {
 		for (var i = 0; i < dailyTCArray.length; i++) {
 			if (dailyTCArray[i].theDate === $scope.dailyTimeCard.theDate) {
 				flag = true;
+				
+				if ($scope.dailyTimeCard.TandM === true) {
+					flag = false;
+				};
+
 				if (flag) {
 					$scope.timeCardAlreadyExists = true;
+					// ctrl.showtAndmOptions = false;
 				};
 			};
 		};
@@ -64,6 +86,8 @@ $scope.addTheNewDailyTimeCardToJobsiteObject = function() {
 			dailyTCArray.unshift($scope.dailyTimeCard);
 			employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId(dailyTCArray, $scope.jobsite._id).then(function(response) {
 				$scope.timeCardCreated = true;
+				ctrl.showtAndmOptions = false;
+				$scope.timeCardAlreadyExists = false;
 			});
 		};
 	};

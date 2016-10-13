@@ -1,4 +1,4 @@
-var app = angular.module("timeCard", ["ui.router", "smart-table"])
+var app = angular.module("timeCard", ["ui.router", "smart-table", "ui.bootstrap", "ngAnimate"])
 	.config(function($stateProvider, $urlRouterProvider) {
 		
 		$urlRouterProvider.otherwise("/southern-utah-caulking");

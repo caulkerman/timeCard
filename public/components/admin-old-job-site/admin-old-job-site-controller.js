@@ -30,6 +30,7 @@ function getAllOldJobSites() {
 
 	adminOldJobSiteService.getAllOldJobSites().then(function(response) {
 		oldJobSites = response.data;
+		console.log("oldJobSites: ", oldJobSites);
 	})
 }
 getAllOldJobSites();
@@ -53,7 +54,8 @@ $scope.resurrectJob = function() {
 
 	for (var i = 0; i < oldJobSites.length; i++) {
 
-		if (oldJobSites[i]._id = oldJobSiteId) {
+		if (oldJobSites[i]._id === oldJobSiteId) {
+			
 
 			adminOldJobSiteService.recreateJob(oldJobSites[i]).then(function(response) {
 				
@@ -65,9 +67,9 @@ $scope.resurrectJob = function() {
 					getOldJobSiteFromDBbyId();
 				});
 			});
-		}
-	}
-}//this is the end of the resurrectJob function
+		};
+	};
+};
 
 
 

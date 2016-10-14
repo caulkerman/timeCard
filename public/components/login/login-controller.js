@@ -6,7 +6,6 @@
 
 'use strict'
 const ctrl = this;
-ctrl.test = "this is the test";
 		////////ADD JAVASCRIPT BELOW////////	
 
 
@@ -64,62 +63,62 @@ app.controller('ModalDemoCtrl', function ($uibModal, $log, $document) {
 
 
 
-  $ctrl.openComponentModal = function () {
-    var modalInstance = $uibModal.open({
-      animation: $ctrl.animationsEnabled,
-      component: 'modalComponent',
-      resolve: {
-        items: function () {
-          return $ctrl.items;
-        }
-      }
-    });
+  // $ctrl.openComponentModal = function () {
+  //   var modalInstance = $uibModal.open({
+  //     animation: $ctrl.animationsEnabled,
+  //     component: 'modalComponent',
+  //     resolve: {
+  //       items: function () {
+  //         return $ctrl.items;
+  //       }
+  //     }
+  //   });
 
-    modalInstance.result.then(function (selectedItem) {
-      $ctrl.selected = selectedItem;
-    }, function () {
-      $log.info('modal-component dismissed at: ' + new Date());
-    });
-  };
-
-
-
-
-
-
-  $ctrl.openMultipleModals = function () {
-    $uibModal.open({
-      animation: $ctrl.animationsEnabled,
-      ariaLabelledBy: 'modal-title-bottom',
-      ariaDescribedBy: 'modal-body-bottom',
-      templateUrl: 'stackedModal.html',
-      size: 'sm',
-      controller: function($scope) {
-        $scope.name = 'bottom';  
-      }
-    });
-
-    $uibModal.open({
-      animation: $ctrl.animationsEnabled,
-      ariaLabelledBy: 'modal-title-top',
-      ariaDescribedBy: 'modal-body-top',
-      templateUrl: 'stackedModal.html',
-      size: 'sm',
-      controller: function($scope) {
-        $scope.name = 'top';  
-      }
-    });
-  };
+  //   modalInstance.result.then(function (selectedItem) {
+  //     $ctrl.selected = selectedItem;
+  //   }, function () {
+  //     $log.info('modal-component dismissed at: ' + new Date());
+  //   });
+  // };
 
 
 
 
 
 
+//   $ctrl.openMultipleModals = function () {
+//     $uibModal.open({
+//       animation: $ctrl.animationsEnabled,
+//       ariaLabelledBy: 'modal-title-bottom',
+//       ariaDescribedBy: 'modal-body-bottom',
+//       templateUrl: 'stackedModal.html',
+//       size: 'sm',
+//       controller: function($scope) {
+//         $scope.name = 'bottom';  
+//       }
+//     });
 
-  $ctrl.toggleAnimation = function () {
-    $ctrl.animationsEnabled = !$ctrl.animationsEnabled;
-  };
+//     $uibModal.open({
+//       animation: $ctrl.animationsEnabled,
+//       ariaLabelledBy: 'modal-title-top',
+//       ariaDescribedBy: 'modal-body-top',
+//       templateUrl: 'stackedModal.html',
+//       size: 'sm',
+//       controller: function($scope) {
+//         $scope.name = 'top';  
+//       }
+//     });
+//   };
+
+
+
+
+
+
+
+  // $ctrl.toggleAnimation = function () {
+  //   $ctrl.animationsEnabled = !$ctrl.animationsEnabled;
+  // };
 });
 
 // Please note that $uibModalInstance represents a modal window (instance) dependency.

@@ -1,6 +1,6 @@
-Make it so the new job site form div has the appearance of a modal where it is in the middle and looks nice.
+Make it so the new job site form div has the new ui-bootstrap modal where it looks nice.
 
-Make the form have validation so the admin user will be able to know where any mistakes in the form are.
+Maybe make the form have validation so the admin user will be able to know where any mistakes in the form are, at least with the job name and contractor company.
 
 Make it so when admin user submits the form that something pops up saying that the new job site has been created or that the form has been submitted.
 

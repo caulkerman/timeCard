@@ -1,2 +1,5 @@
 make it so under the table header Hours This Week that the hours for this employee shows up for the week.
+
 you need to make it so the employee when terminated will be sent to a terminated or quit database.
+
+Make it so the current modal is replaced by the new ui-bootstrap modal.

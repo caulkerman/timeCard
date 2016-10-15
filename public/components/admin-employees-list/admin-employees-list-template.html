@@ -1,10 +1,34 @@
 <link rel="stylesheet" href="components/admin-employees-list/admin-employees-list.css">
 
 
+<div ng-controller="ModalDemoCtrl as $ctrl" class="modal-demo">
+	<script type="text/ng-template" id="myModalContent.html">
+        <div class="modal-header">
+            <h3 class="modal-title" id="modal-title">I'm a modal!</h3>
+        </div>
+
+          <!-- put your stuff in here-->
+
+
+        <div class="modal-footer">
+            <button class="btn btn-primary" type="button" ng-click="$ctrl.ok()">OK</button>
+            <button class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">Cancel</button>
+        </div>
+    </script>
+    <button type="button" class="btn btn-success" ng-click="$ctrl.open()">Create New Employee</button>
+    <div class="modal-parent">
+    </div>
+</div>
+
+
+
+
 <div class="admin-employee-container">
 	<h1>Employee List</h1>
 	<input type="text" placeholder="Filter Employee Names" ng-model="employee_filter"/>
-	<button class="btn btn-success" data-toggle="modal" data-target="#myModal">Create New Employee</button>
+	<!--<button class="btn btn-success" data-toggle="modal" data-target="#myModal">Create New Employee</button>-->
+      <!--<button type="button" class="btn btn-default" ng-click="$ctrl.open()">Open me!</button>-->
+
 </div>
 
 <table st-table="students" class="table table-striped">
@@ -27,7 +51,42 @@
 
                 <!-- /////to be honest, I think I may want to get rid of the modal and have something fade in or toggle up and then out again with the click of the "close" button.\\\\\\ -->
 
-<div class="modal" id="myModal">
+
+<div ng-controller="ModalDemoCtrl as $ctrl" class="modal-demo">
+	<script type="text/ng-template" id="myModalContent.html">
+        <div class="modal-header">
+            <h3 class="modal-title" id="modal-title">I'm a modal!</h3>
+        </div>
+        <!--<pre>Hello, this is within the pre tag. This is only here as a test to see what pre looks like.</pre>-->
+        <!--<input type="text" placeholder="put something in here" focus>-->
+        <!--<div class="modal-body" id="modal-body">
+            <ul>
+                <li ng-repeat="item in $ctrl.items">
+                    <a href="#" ng-click="$event.preventDefault(); $ctrl.selected.item = item">{{ item }}</a>
+                </li>
+            </ul>                    
+            Selected: <b>{{ $ctrl.selected.item }}</b>
+        </div>-->
+        <div class="modal-footer">
+            <button class="btn btn-primary" type="button" ng-click="$ctrl.ok()">OK</button>
+            <button class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">Cancel</button>
+        </div>
+    </script>
+    <button type="button" class="btn btn-default" ng-click="$ctrl.open()">Open me!</button>
+    <div class="modal-parent">
+    </div>
+</div>
+
+
+
+
+<!-- Modal code below is original bootstrap modal with jQuery-->
+
+
+
+
+
+<!--<div class="modal" id="myModal">
       
       <div class="modal-dialog">
         
@@ -76,7 +135,7 @@
             </div>
 
           </div>
-        </form>
+        </form>-->
         <!--make it so when the employee is clicked on that it takes the user to a new page where it is that emloyee and is put into tables, the tables being divided by dates and the data being the jobs worked on and hours for each job. -->
       </div>
       

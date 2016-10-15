@@ -269,7 +269,7 @@ function pushToJobSiteHoursWorked(hours_worked, index) {
 	ctrl.employees[index].job_site_hours_worked.push(employeeNameHoursJob);
 	// console.log("the employeeNameHours object pushed ot job_site_hours_worked array ", ctrl.employees[index].job_site_hours_worked);
 	employeeJobSiteTimeCardService.updateTheEmployeeInDBbyId(employee, id).then(function(response) {
-		// console.log("the response employee job_site_hours_worked ", response.data);
+		console.log("the response employee job_site_hours_worked ", response.data);
 	});
 };
 

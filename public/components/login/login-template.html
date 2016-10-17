@@ -18,7 +18,7 @@
 
 </div>
 
-
+<p ng-show="ctrl.test">hello world {{ ctrl.test }}</p>
 
 
 <!--///////////the modal\\\\\\\\\\\\\\\\\-->
@@ -29,8 +29,8 @@
         </div>
         
         <div class="modal-body" id="modal-body">
-            <button ng-click="$ctrl.makeFunctionFire()">Fire</button>
-            <input type="text" ng-model="$ctrl.theInputValue">
+            <button ng-click="makeFunctionFire()">Fire</button>
+            <input type="text" ng-model="theInputValue">
             <!--<ul>
                 <li ng-repeat="item in $ctrl.items">
                     <a href="#" ng-click="$event.preventDefault(); $ctrl.selected.item = item">{{ item }}</a>

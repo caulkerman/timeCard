@@ -3,6 +3,9 @@ var $inject = ["$scope", "$state"];
 function loginControllerCB($scope, $state) {
 'use strict'
 const ctrl = this;
+
+ctrl.test = "this is a test";
+
 		////////ADD JAVASCRIPT BELOW////////	
 }
 loginControllerCB.$inject = $inject;
@@ -28,8 +31,8 @@ app.controller('ModalDemoCtrl', function ($uibModal, $log, $document) {
     // var parentElem = parentSelector ? angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
     var modalInstance = $uibModal.open({
       animation: $ctrl.animationsEnabled,
-      ariaLabelledBy: 'modal-title',
-      ariaDescribedBy: 'modal-body',
+      // ariaLabelledBy: 'modal-title',
+      // ariaDescribedBy: 'modal-body',
       templateUrl: 'myModalContent.html',
       controller: 'ModalInstanceCtrl',
       controllerAs: '$ctrl',
@@ -56,21 +59,21 @@ app.controller('ModalDemoCtrl', function ($uibModal, $log, $document) {
 // Please note that $uibModalInstance represents a modal window (instance) dependency.
 // It is not the same as the $uibModal service used above.
 
-app.controller('ModalInstanceCtrl', function ($uibModalInstance/*, items*/) {
+app.controller('ModalInstanceCtrl', function ($uibModalInstance/*, items*/, $scope) {
   var $ctrl = this;
   // $ctrl.items = items;
   // $ctrl.selected = {
   //   item: $ctrl.items[0]
   // };
 
-  $ctrl.theInputValue;
+  $scope.theInputValue;
 
-  $ctrl.makeFunctionFire = function() {
-    console.log("this is the ModalInstanceCtrl controller. And this is the input value: ", $ctrl.theInputValue);
+  $scope.makeFunctionFire = function() {
+    console.log("this is the ModalInstanceCtrl controller. And this is the input value: ", $scope.theInputValue);
   }
 
   $ctrl.ok = function () {
-    $uibModalInstance.close(/*$ctrl.selected.item*/);
+    $uibModalInstance.close(/*$ctrl.selected.item*/$scope.makeFunctionFire());
   };
 
   $ctrl.cancel = function () {

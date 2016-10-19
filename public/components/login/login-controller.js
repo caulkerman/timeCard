@@ -13,7 +13,7 @@ ctrl.animationsEnabled = true;
     var modalInstance = $uibModal.open({
       animation: ctrl.animationsEnabled,
       templateUrl: 'myModalContent.html',
-      controller: 'ModalInstanceCtrl',
+      controller: 'ModalInstanceCtrl1',
       controllerAs: 'ctrl',
     });
   };
@@ -26,7 +26,7 @@ angular.module("timeCard").controller("loginController", loginControllerCB)
 
 
 
-app.controller('ModalInstanceCtrl', function ($uibModalInstance/*, items*/, $scope) {
+app.controller('ModalInstanceCtrl1', function ($uibModalInstance/*, items*/, $scope) {//make sure you change the name of your controller so as not to get controller conflicts
   var ctrl = this;
 
   ////////ADD YOUR JAVASCRIPT HERE\\\\\\\\

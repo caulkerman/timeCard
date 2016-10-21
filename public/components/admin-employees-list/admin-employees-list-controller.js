@@ -6,6 +6,8 @@ function adminEmployeesListControllerCB($scope, $log, admin_employees_list_servi
 const ctrl = this;
 		//////////    ADD YOUR CONTROLLER CODE BELOW   ///////////
 
+
+
 	var functionToGetEmployees = function() {
 		admin_employees_list_service.getEmployees().then(function(response) {
 			$scope.employees = response.data;
@@ -14,46 +16,9 @@ const ctrl = this;
 	};
 	functionToGetEmployees();
 
+
+
 	
-	
-	// $scope.createEmployee = function(fullName, userName, password, employeeType, isValid) {
-	// 	$scope.submitted = true;
-		
-	// 	var employee = {
-	// 		fullName: fullName,
-	// 		userName: userName,
-	// 		password: password,
-	// 		employeeType: employeeType,
-	// 		// jobSitesWorkedOn: [],
-	// 		job_site_hours_worked: []
-	// 	};
-
-	// 	//This for loop prevents the function from functioning any further if all the fields are not filled in.
-	// 	for (var prop in employee) {
-	// 		if (employee[prop] === undefined || employee[prop] === "") {
-	// 			$log.warn("All entries must be completed");
-	// 			return;
-	// 		}; 
-	// 	};
-
-	// 	//The if conditional is here as a secondary measure to make sure the form is valid before submitting the new employee name to the database.  If I am using the angular way to do forms I might as well do this
-	// 	if (isValid) {
-	// 		// console.log("the employee object, ", employee);
-	// 		admin_employees_list_service.createEmployee(employee).then(function(response) {
-	// 			functionToGetEmployees();
-	// 		});
-	// 	};
-
-	// 	$scope.submitted = false;
-
-	// 	$scope.fullName = "";
-	// 	$scope.userName = "";
-	// 	$scope.password = "";
-	// 	$scope.employeeType = "";
-	// };
-
-
-
 	$scope.goToTheEmployee = function(index) {
 		var id = $scope.employees[index]._id;
 		$state.go("the-employee", {id: id})
@@ -62,16 +27,11 @@ const ctrl = this;
 		
 
 		
-
-
-
-
-
-/////////THE MODAL\\\\\\\\\
+/////////THE MODAL\\\\\\\\\
 
 ctrl.animationsEnabled = false;
    
-  ctrl.open = function (parentSelector) {
+  ctrl.open = function () {
     var modalInstance = $uibModal.open({
       animation: ctrl.animationsEnabled,
       templateUrl: 'myModalContent.html',
@@ -99,13 +59,11 @@ angular.module("timeCard").controller("adminEmployeesListController", adminEmplo
 
 ///////////SECOND MODAL CONTROLLER\\\\\\\\
 
-app.controller('ModalInstanceCtrl2', function ($uibModalInstance, $scope, admin_employees_list_service, $log) {
+app.controller('ModalInstanceCtrl2', function ($uibModalInstance, $scope, admin_employees_list_service, $log, $state) {
   var ctrl = this;
-  // $scope.form = {};
 
   ////////ADD YOUR JAVASCRIPT HERE\\\\\\\\
 
-//   ctrl.theInputValue;
 
 	ctrl.employees = admin_employees_list_service.returnEmployeesArray();
 
@@ -128,7 +86,6 @@ console.log("the ctrl.employees array: ", ctrl.employees);
 			userName: userName,
 			password: password,
 			employeeType: employeeType,
-			// jobSitesWorkedOn: [],
 			job_site_hours_worked: []
 		};
 

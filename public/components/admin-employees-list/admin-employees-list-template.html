@@ -4,8 +4,8 @@
 <div class="admin-employee-container">
 	<h1>Employee List</h1>
 	<input type="text" placeholder="Filter Employee Names" ng-model="employee_filter"/>
-	<button class="btn btn-success" data-toggle="modal" data-target="#myModal">Create New Employee</button>
-    <button type="button" class="btn btn-default" ng-click="ctrl.open()">Create New Employee</button>
+	<!--<button class="btn btn-success" data-toggle="modal" data-target="#myModal">Create New Employee</button>-->
+    <button type="button" class="btn btn-success" ng-click="ctrl.open()">Create New Employee</button>
   
 </div>
 
@@ -25,11 +25,11 @@
 </table>
                
 
-                <!--//////////// THE MODAL ////////////-->
+                <!--//////////// THE JQUERY MODAL ////////////-->
 
                 <!-- /////to be honest, I think I may want to get rid of the modal and have something fade in or toggle up and then out again with the click of the "close" button.\\\\\\ -->
 
-<div class="modal" id="myModal">
+<!--<div class="modal" id="myModal">
       
       <div class="modal-dialog">
         
@@ -43,7 +43,7 @@
           <form name="employeeForm" ng-submit="createEmployee(fullName, userName, password, employeeType, employeeForm.$valid)" novalidate>
             <div class="modal-body">
 
-              <div ng-class="{ 'has-error' : employeeForm.fullName.$invalid && submitted }">
+              <div ng-class="{ 'has-error' : employeeForm.fullName.$invalid && submitted }">
                 <label for="fullName">Employee Full Name</label>
                 <p class="warning" ng-show="employeeForm.fullName.$invalid && submitted">You Must Enter An Employee's Full Name!</p>
                 <input type="text" name="fullName" class="form-control" ng-model="fullName"/ required autofocus>
@@ -65,7 +65,7 @@
                 <label for="type">Employee Type</label>
                 <p class="warning" ng-show="employeeForm.type.$invalid && submitted">You Must Enter the Type of Employee... Worker or Admin!</p>
                 
-                <select name="type" form="employeeForm" ng-model="employeeType" required>
+                <select name="type" form="employeeForm" ng-model="employeeType" class="form-control" required>
                   <option value="Worker">Worker</option>
                   <option value="Admin">Admin</option>
                 </select>
@@ -79,29 +79,17 @@
 
           </div>
         </form>
-        <!--make it so when the employee is clicked on that it takes the user to a new page where it is that emloyee and is put into tables, the tables being divided by dates and the data being the jobs worked on and hours for each job. -->
+        make it so when the employee is clicked on that it takes the user to a new page where it is that emloyee and is put into tables, the tables being divided by dates and the data being the jobs worked on and hours for each job.
       </div>
       
     </div>
-</div>
+</div>-->
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+<!--  //////////////THE UI-BOOTSTRAP MODAL \\\\\\\\\\\\\\\\\\-->
 
 
 
@@ -115,37 +103,36 @@
 
         <div class="modal-body" id="modal-body">
           
-        
-           <!--<form name="myForm" ng-submit="ctrl.makeFunctionFire(ctrl.theInputValue)"novalidate >   -->
-          <form name="employeeForm" ng-submit="ctrl.createEmployee(ctrl.fullName, ctrl.userName, ctrl.password, ctrl.employeeType)" novalidate>
+          <form name="employeeForm" ng-submit="createEmployee(fullName, userName, password, employeeType, employeeForm.$valid)" novalidate>
             
-          <!--<form name="myForm" ng-submit="ctrl.createEmployee(ctrl.fullName)" novalidate>-->
-            
-            <div id="fullName">
+            <div id="fullName" ng-class="{ 'has-error' : employeeForm.fullName.$invalid && submitted }">
               <label for="fullName">Full Employee Name: </label>
-              <input type="text" name="fullName" ng-model="ctrl.fullName" class="form-control">
+              <p class="warning" ng-show="employeeForm.fullName.$invalid && submitted">You Must Enter The Employee's Full Name!</p>              
+              <input type="text" name="fullName" ng-model="fullName" class="form-control" focus required>
             </div>
 
-            <div>
+            <div id="userName" ng-class="{ 'has-error' : employeeForm.userName.$invalid && submitted }">
               <label for="userName">User Name: </label>
-              <input type="text" name="userName" ng-model="ctrl.userName" class="form-control">
+              <p class="warning" ng-show="employeeForm.userName.$invalid && submitted">You Must Enter The Employee's User Name!</p>              
+              <input type="text" name="userName" ng-model="userName" class="form-control" required>
             </div>
 
-            <div>
+            <div id="password" ng-class="{ 'has-error' : employeeForm.password.$invalid && submitted }">
               <label for="password">Password: </label>
-              <input type="text" name="password" ng-model="ctrl.password" class="form-control">
+              <p class="warning" ng-show="employeeForm.password.$invalid && submitted">You Must Enter The Employee's Password!</p>              
+              <input type="text" name="password" ng-model="password" class="form-control" required>
             </div>
 
-            <div>
-              <label for="type">Employee Type: </label>
-              <select name="type" form="employeeForm" ng-model="ctrl.employeeType">
+            <div id="type" ng-class="{ 'has-error' : employeeForm.employeetType.$invalid && submitted }">
+              <label for="employeeType">Employee Type: </label>
+              <p class="warning" ng-show="employeeForm.employeeType.$invalid && submitted">You Must Enter The Employee's Employment Type!</p>              
+              <select name="employeeType" form="employeeForm" ng-model="employeeType" class="form-control" required>
                 <option value="Worker">Worker</option>
                 <option value="Admin">Admin</option>
               </select>
             </div>
               
-              <button type="submit">Save</button>
-              <!--<input type="text" ng-model="ctrl.fullName">-->
+              <button type="submit" class="btn btn-success" >Save New Employee</button>
           
           </form>
       

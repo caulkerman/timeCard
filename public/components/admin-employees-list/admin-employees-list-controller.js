@@ -16,41 +16,41 @@ const ctrl = this;
 
 	
 	
-	$scope.createEmployee = function(fullName, userName, password, employeeType, isValid) {
-		$scope.submitted = true;
+	// $scope.createEmployee = function(fullName, userName, password, employeeType, isValid) {
+	// 	$scope.submitted = true;
 		
-		var employee = {
-			fullName: fullName,
-			userName: userName,
-			password: password,
-			employeeType: employeeType,
-			// jobSitesWorkedOn: [],
-			job_site_hours_worked: []
-		};
+	// 	var employee = {
+	// 		fullName: fullName,
+	// 		userName: userName,
+	// 		password: password,
+	// 		employeeType: employeeType,
+	// 		// jobSitesWorkedOn: [],
+	// 		job_site_hours_worked: []
+	// 	};
 
-		//This for loop prevents the function from functioning any further if all the fields are not filled in.
-		for (var prop in employee) {
-			if (employee[prop] === undefined || employee[prop] === "") {
-				$log.warn("All entries must be completed");
-				return;
-			}; 
-		};
+	// 	//This for loop prevents the function from functioning any further if all the fields are not filled in.
+	// 	for (var prop in employee) {
+	// 		if (employee[prop] === undefined || employee[prop] === "") {
+	// 			$log.warn("All entries must be completed");
+	// 			return;
+	// 		}; 
+	// 	};
 
-		//The if conditional is here as a secondary measure to make sure the form is valid before submitting the new employee name to the database.  If I am using the angular way to do forms I might as well do this
-		if (isValid) {
-			// console.log("the employee object, ", employee);
-			admin_employees_list_service.createEmployee(employee).then(function(response) {
-				functionToGetEmployees();
-			});
-		};
+	// 	//The if conditional is here as a secondary measure to make sure the form is valid before submitting the new employee name to the database.  If I am using the angular way to do forms I might as well do this
+	// 	if (isValid) {
+	// 		// console.log("the employee object, ", employee);
+	// 		admin_employees_list_service.createEmployee(employee).then(function(response) {
+	// 			functionToGetEmployees();
+	// 		});
+	// 	};
 
-		$scope.submitted = false;
+	// 	$scope.submitted = false;
 
-		$scope.fullName = "";
-		$scope.userName = "";
-		$scope.password = "";
-		$scope.employeeType = "";
-	};
+	// 	$scope.fullName = "";
+	// 	$scope.userName = "";
+	// 	$scope.password = "";
+	// 	$scope.employeeType = "";
+	// };
 
 
 
@@ -99,68 +99,62 @@ angular.module("timeCard").controller("adminEmployeesListController", adminEmplo
 
 ///////////SECOND MODAL CONTROLLER\\\\\\\\
 
-app.controller('ModalInstanceCtrl2', function ($uibModalInstance/*, items*/, $scope, admin_employees_list_service) {
+app.controller('ModalInstanceCtrl2', function ($uibModalInstance, $scope, admin_employees_list_service, $log) {
   var ctrl = this;
-  $scope.form = {};
+  // $scope.form = {};
 
   ////////ADD YOUR JAVASCRIPT HERE\\\\\\\\
 
 //   ctrl.theInputValue;
-  
-  ctrl.makeFunctionFire = function(value) {
-    console.log("this is the ModalInstanceCtrl controller. And this is the input value: ", value);
-  }
 
-  ctrl.c = function() {
-	console.log("This function has fired");
-}
+	ctrl.employees = admin_employees_list_service.returnEmployeesArray();
+
+console.log("the ctrl.employees array: ", ctrl.employees);
 
   ctrl.ok = function () {
-    $uibModalInstance.close(/*$ctrl.selected.item*/ctrl.makeFunctionFire());//inside the close(parameters) you can put anything that needs to be executed and returned as the modal closes to be made available to the controller.
+    $uibModalInstance.close();   //inside the close(parameters) you can put anything that needs to be executed and returned as the modal closes to be made available to the controller.
   };
 
   ctrl.cancel = function () {
     $uibModalInstance.dismiss('cancel');
   };
 
+	$scope.createEmployee = function(fullName, userName, password, employeeType, isValid) {
 
-
-
-ctrl.createEmployee = function(fullName, userName, password, employeeType, isValid) {
-	console.log("the createEmployee function has fired", fullName, userName, password, employeeType);
-		// $scope.submitted = true;
+		$scope.submitted = true;
 		
-		// var employee = {
-		// 	fullName: fullName,
-		// 	userName: userName,
-		// 	password: password,
-		// 	employeeType: employeeType,
-		// 	// jobSitesWorkedOn: [],
-		// 	job_site_hours_worked: []
-		// };
+		var employee = {
+			fullName: fullName,
+			userName: userName,
+			password: password,
+			employeeType: employeeType,
+			// jobSitesWorkedOn: [],
+			job_site_hours_worked: []
+		};
 
-		// //This for loop prevents the function from functioning any further if all the fields are not filled in.
-		// for (var prop in employee) {
-		// 	if (employee[prop] === undefined || employee[prop] === "") {
-		// 		$log.warn("All entries must be completed");
-		// 		return;
-		// 	}; 
-		// };
+		//This for loop prevents the function from functioning any further if all the fields are not filled in.
+		for (var prop in employee) {
+			if (employee[prop] === undefined || employee[prop] === "") {
+				$log.warn("All entries must be completed");
+				return;
+			}; 
+		};
 
-		// //The if conditional is here as a secondary measure to make sure the form is valid before submitting the new employee name to the database.  If I am using the angular way to do forms I might as well do this
-		// if (isValid) {
-		// 	// console.log("the employee object, ", employee);
-		// 	admin_employees_list_service.createEmployee(employee).then(function(response) {
-		// 		functionToGetEmployees();
-		// 	});
-		// };
+		//The if conditional is here as a secondary measure to make sure the form is valid before submitting the new employee name to the database.  If I am using the angular way to do forms I might as well do this
+		if (isValid) {
+			console.log("the employee object, ", employee);
+			admin_employees_list_service.createEmployee(employee).then(function(response) {
+				// functionToGetEmployees();
+			});
+		};
 
-		// $scope.submitted = false;
+		$scope.submitted = false;
 
-		// $scope.fullName = "";
-		// $scope.userName = "";
-		// $scope.password = "";
-		// $scope.employeeType = "";
+		$scope.fullName = "";
+		$scope.userName = "";
+		$scope.password = "";
+		$scope.employeeType = "";
+
 		ctrl.ok();
 	};
 

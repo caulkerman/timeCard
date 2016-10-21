@@ -2,6 +2,8 @@ app.service("admin_employees_list_service", ["$q", "$http", function($q, $http) 
 
 	
 
+var employeesArray;   //will be assigned to an array later
+
 
 this.createEmployee = function(employee) {
 
@@ -11,7 +13,6 @@ this.createEmployee = function(employee) {
 		url: "/api/createEmployee",
 		data: employee
 	}).then(function(response) {
-		// console.log("response in employee service ", response);
 		deferred.resolve(response);
 	});
 	return deferred.promise;
@@ -24,10 +25,19 @@ this.getEmployees = function() {
 		method: "GET",
 		url: "/api/getEmployees",
 	}).then(function(response) {
+
+		employeesArray = response.data;
+
 		deferred.resolve(response);
 	});
 	return deferred.promise;
 };
+
+
+
+this.returnEmployeesArray = function() {
+	return employeesArray;
+}
 
 
 

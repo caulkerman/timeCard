@@ -6,7 +6,6 @@ function adminEmployeesListControllerCB($scope, $log, admin_employees_list_servi
 const ctrl = this;
 		//////////    ADD YOUR CONTROLLER CODE BELOW   ///////////
 
-
 
 	var functionToGetEmployees = function() {
 		admin_employees_list_service.getEmployees().then(function(response) {
@@ -21,13 +20,13 @@ const ctrl = this;
 	
 	$scope.goToTheEmployee = function(index) {
 		var id = $scope.employees[index]._id;
-		$state.go("the-employee", {id: id})
-	}
+		$state.go("the-employee", {id: id});
+	};
 
 		
 
 		
-/////////THE MODAL\\\\\\\\\
+/////////THE MODAL\\\\\\\\\
 
 ctrl.animationsEnabled = false;
    
@@ -37,6 +36,11 @@ ctrl.animationsEnabled = false;
       templateUrl: 'myModalContent.html',
       controller: 'ModalInstanceCtrl2',
       controllerAs: 'ctrl',
+			resolve: {
+				getEmployees: function() {
+				   admin_employees_list_service.getEmployees();
+				}
+			}
     });
   };
 
@@ -59,7 +63,7 @@ angular.module("timeCard").controller("adminEmployeesListController", adminEmplo
 
 ///////////SECOND MODAL CONTROLLER\\\\\\\\
 
-app.controller('ModalInstanceCtrl2', function ($uibModalInstance, $scope, admin_employees_list_service, $log, $state) {
+app.controller('ModalInstanceCtrl2', function ($uibModalInstance, $scope, admin_employees_list_service, $log, $state, getEmployees {
   var ctrl = this;
 
   ////////ADD YOUR JAVASCRIPT HERE\\\\\\\\
@@ -71,7 +75,8 @@ console.log("the ctrl.employees array: ", ctrl.employees);
 
   ctrl.ok = function () {
     $uibModalInstance.close();   //inside the close(parameters) you can put anything that needs to be executed and returned as the modal closes to be made available to the controller.
-  };
+		getEmployees();
+};
 
   ctrl.cancel = function () {
     $uibModalInstance.dismiss('cancel');

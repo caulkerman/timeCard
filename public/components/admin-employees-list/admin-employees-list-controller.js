@@ -1,11 +1,13 @@
 (function() {
-var $inject = ["$scope", "$log", "admin_employees_list_service", "$state", "$uibModal"];
-function adminEmployeesListControllerCB($scope, $log, admin_employees_list_service, $state, $uibModal) {
+var $inject = ["$scope", "$log", "admin_employees_list_service", "$state", "$uibModal", "$rootScope"];
+function adminEmployeesListControllerCB($scope, $log, admin_employees_list_service, $state, $uibModal, $rootScope) {
 
 'use strict'
 const ctrl = this;
 		//////////    ADD YOUR CONTROLLER CODE BELOW   ///////////
 
+	
+console.log("the $rootScope: ", $rootScope);
 
 	var functionToGetEmployees = function() {
 		admin_employees_list_service.getEmployees().then(function(response) {
@@ -17,7 +19,16 @@ const ctrl = this;
 
 
 
-	
+	//this function is called from another controller, is used to update the ng-repeated $scope.employees once the modal has closed.
+	$rootScope.updateNgRepeat = function() {
+		admin_employees_list_service.getEmployees().then(function(response) {
+				$scope.employees = response.data;
+			});
+		};
+
+
+
+
 	$scope.goToTheEmployee = function(index) {
 		var id = $scope.employees[index]._id;
 		$state.go("the-employee", {id: id});
@@ -35,12 +46,12 @@ ctrl.animationsEnabled = false;
       animation: ctrl.animationsEnabled,
       templateUrl: 'myModalContent.html',
       controller: 'ModalInstanceCtrl2',
-      controllerAs: 'ctrl',
-			resolve: {
-				getEmployees: function() {
-				   admin_employees_list_service.getEmployees();
-				}
-			}
+      controllerAs: 'ctrl'//,
+			// resolve: {
+			// 	getEmployees: function() {
+			// 	   admin_employees_list_service.getEmployees();
+			// 	}
+			// }
     });
   };
 
@@ -63,7 +74,7 @@ angular.module("timeCard").controller("adminEmployeesListController", adminEmplo
 
 ///////////SECOND MODAL CONTROLLER\\\\\\\\
 
-app.controller('ModalInstanceCtrl2', function ($uibModalInstance, $scope, admin_employees_list_service, $log, $state, getEmployees {
+app.controller('ModalInstanceCtrl2', function ($uibModalInstance, $scope, admin_employees_list_service, $log, $state, $rootScope) {
   var ctrl = this;
 
   ////////ADD YOUR JAVASCRIPT HERE\\\\\\\\
@@ -75,7 +86,7 @@ console.log("the ctrl.employees array: ", ctrl.employees);
 
   ctrl.ok = function () {
     $uibModalInstance.close();   //inside the close(parameters) you can put anything that needs to be executed and returned as the modal closes to be made available to the controller.
-		getEmployees();
+		$rootScope.updateNgRepeat();
 };
 
   ctrl.cancel = function () {

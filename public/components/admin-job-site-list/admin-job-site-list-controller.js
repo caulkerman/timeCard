@@ -1,6 +1,6 @@
 (function() {
-var $inject = ["$scope","adminJobSiteListService", "$state", "$uibModal"];
-function adminJobSiteListControllerCB($scope, adminJobSiteListService, $state, $uibModal) {
+var $inject = ["$scope","adminJobSiteListService", "$state", "$uibModal", "$rootScope"];
+function adminJobSiteListControllerCB($scope, adminJobSiteListService, $state, $uibModal, $rootScope) {
 
 'use strict'
 const ctrl = this;
@@ -16,6 +16,14 @@ const ctrl = this;
 		})
 	}
 	getListOfJobs();
+
+
+
+	$rootScope.updateJobList = function() {
+		adminJobSiteListService.getJobs().then(function(response) {
+			ctrl.job_sites = response.data;
+		})
+	}
 
 	
 	
@@ -42,7 +50,7 @@ ctrl.animationsEnabled = false;
     var modalInstance = $uibModal.open({
       animation: ctrl.animationsEnabled,
       templateUrl: 'myModalContent.html',
-      controller: 'ModalInstanceCtrl1',
+      controller: 'ModalInstanceCtrl3',
       controllerAs: 'ctrl',
     });
   };
@@ -64,37 +72,43 @@ angular.module("timeCard").controller("adminJobSiteListController", adminJobSite
 
 /////////MODAL CONTROLLER\\\\\\\\\
 
-app.controller('ModalInstanceCtrl3', function ($uibModalInstance, $scope, adminJobSiteListService) {
+app.controller('ModalInstanceCtrl3', function ($uibModalInstance, $scope, adminJobSiteListService, $rootScope) {
   var ctrl = this;
 
   ////////ADD YOUR JAVASCRIPT HERE\\\\\\\\
   
   
-  ctrl.addNewJobsSite = function(newJobName, contractorName, jobAddress, superName, superTelephone, jobDetails, materialsNeeded) {
-		
-		if (ctrl.newJobName === undefined || ctrl.newJobName === "" && ctrl.contractorName === undefined || ctrl.contractorName === "") {
+  $scope.addNewJobsSite = function(newJobName, contractorName, jobAddress, superName, superTelephone, jobDetails, materialsNeeded) {
+		console.log("the addNewJobsSite function has fired");
+		if ($scope.newJobName === undefined || $scope.newJobName === "" && $scope.contractorName === undefined || $scope.contractorName === "") {
 			console.log("you must enter a job name and contractor");
 		} else {
 		
 			adminJobSiteListService.addNewJob(newJobName, contractorName, jobAddress, superName, superTelephone, jobDetails, materialsNeeded).then(function(response) {
 			});
 		
-			getListOfJobs();
-			ctrl.newJobName = "";
-			ctrl.contractorName = "";
-			ctrl.jobAddress = "";
-			ctrl.superName = "";
-			ctrl.superTelephone = "";
-			ctrl.jobDetails = "";
-			ctrl.materialsNeeded = "";
+			// getListOfJobs(); this needs to be a property of $rootScope
+			$scope.newJobName = "";
+			$scope.contractorName = "";
+			$scope.jobAddress = "";
+			$scope.superName = "";
+			$scope.superTelephone = "";
+			$scope.jobDetails = "";
+			$scope.materialsNeeded = "";
 		};
-			ctrl.showJobSite = false;
+			$scope.showJobSite = false;
+			ctrl.ok();
 		
 	};
+
+	$scope.you = function() {
+		console.log("hello YOU");
+	}
   
 
   ctrl.ok = function () {
     $uibModalInstance.close();
+    $rootScope.updateJobList();
   };
 
   ctrl.cancel = function () {

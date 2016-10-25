@@ -1,6 +1,6 @@
 (function() {
-var $inject = ["$scope","adminJobSiteListService", "$state"];
-function adminJobSiteListControllerCB($scope, adminJobSiteListService, $state) {
+var $inject = ["$scope","adminJobSiteListService", "$state", "$uibModal"];
+function adminJobSiteListControllerCB($scope, adminJobSiteListService, $state, $uibModal) {
 
 'use strict'
 const ctrl = this;
@@ -16,30 +16,6 @@ const ctrl = this;
 		})
 	}
 	getListOfJobs();
-
-	
-	
-	ctrl.addNewJobsSite = function(newJobName, contractorName, jobAddress, superName, superTelephone, jobDetails, materialsNeeded) {
-		
-		if (ctrl.newJobName === undefined || ctrl.newJobName === "" && ctrl.contractorName === undefined || ctrl.contractorName === "") {
-			console.log("you must enter a job name and contractor");
-		} else {
-		
-			adminJobSiteListService.addNewJob(newJobName, contractorName, jobAddress, superName, superTelephone, jobDetails, materialsNeeded).then(function(response) {
-			});
-		
-			getListOfJobs();
-			ctrl.newJobName = "";
-			ctrl.contractorName = "";
-			ctrl.jobAddress = "";
-			ctrl.superName = "";
-			ctrl.superTelephone = "";
-			ctrl.jobDetails = "";
-			ctrl.materialsNeeded = "";
-		};
-			ctrl.showJobSite = false;
-		
-	};
 
 	
 	
@@ -60,7 +36,16 @@ const ctrl = this;
 
 
 
-
+ctrl.animationsEnabled = false;
+   
+  ctrl.open = function (parentSelector) {
+    var modalInstance = $uibModal.open({
+      animation: ctrl.animationsEnabled,
+      templateUrl: 'myModalContent.html',
+      controller: 'ModalInstanceCtrl1',
+      controllerAs: 'ctrl',
+    });
+  };
 
 
 
@@ -71,3 +56,50 @@ const ctrl = this;
 adminJobSiteListControllerCB.$inject = $inject;
 angular.module("timeCard").controller("adminJobSiteListController", adminJobSiteListControllerCB);
 })();
+
+
+
+
+
+
+/////////MODAL CONTROLLER\\\\\\\\\
+
+app.controller('ModalInstanceCtrl3', function ($uibModalInstance, $scope, adminJobSiteListService) {
+  var ctrl = this;
+
+  ////////ADD YOUR JAVASCRIPT HERE\\\\\\\\
+  
+  
+  ctrl.addNewJobsSite = function(newJobName, contractorName, jobAddress, superName, superTelephone, jobDetails, materialsNeeded) {
+		
+		if (ctrl.newJobName === undefined || ctrl.newJobName === "" && ctrl.contractorName === undefined || ctrl.contractorName === "") {
+			console.log("you must enter a job name and contractor");
+		} else {
+		
+			adminJobSiteListService.addNewJob(newJobName, contractorName, jobAddress, superName, superTelephone, jobDetails, materialsNeeded).then(function(response) {
+			});
+		
+			getListOfJobs();
+			ctrl.newJobName = "";
+			ctrl.contractorName = "";
+			ctrl.jobAddress = "";
+			ctrl.superName = "";
+			ctrl.superTelephone = "";
+			ctrl.jobDetails = "";
+			ctrl.materialsNeeded = "";
+		};
+			ctrl.showJobSite = false;
+		
+	};
+  
+
+  ctrl.ok = function () {
+    $uibModalInstance.close();
+  };
+
+  ctrl.cancel = function () {
+    $uibModalInstance.dismiss('cancel');
+  };
+});
+
+// Please note that the close and dismiss bindings are from $uibModalInstance.

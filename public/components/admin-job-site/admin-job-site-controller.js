@@ -223,17 +223,26 @@ $scope.createLateTimeCard = function(newDate) {
 
 
 //creates a late employee time entry, checks it against the list of employees and if there adds a new time event for that employee, if the name is not there nothing happens.
-$scope.lateEmployee = function(late_employee, late_hours, index, date) {
+$scope.lateEmployee = function(late_employee, late_hours, date, index) {
+	console.log("late_employee: ", late_employee, "late_hours: ", late_hours, "date: ", date, "index: ", index);
 
-	var empsArray = [], empArray = [], flag1 = false, flag2 = false;
+	var empsArray = [], empArray = [], flag1 = false, flag2 = false, x;
 	
 	for (var i = 0; i < $scope.employeesArray.length; i++) {
 		empArray.push($scope.employeesArray[i].fullName);
 	};
+
+	for (x = 0; x < $scope.dailyTCs.length; x++) {
+		// debugger;
+		console.log("the date: ", date);
+		console.log("the Date: ", $scope.dailyTCs[x].theDate);
+		if ($scope.dailyTCs[x].theDate === date) {
+			for (var i = 0; i < $scope.dailyTCs[x].employees_worked.length; i++) {
+				empsArray.push($scope.dailyTCs[x].employees_worked[i].employeeName);
+			};
+		}
+	}
 		
-	for (var i = 0; i < $scope.dailyTCs[index].employees_worked.length; i++) {
-		empsArray.push($scope.dailyTCs[index].employees_worked[i].employeeName);
-	};
 
 	for (var j = 0; j < empsArray.length; j++) {
 		if (late_employee === empsArray[j]) {
@@ -262,7 +271,9 @@ $scope.lateEmployee = function(late_employee, late_hours, index, date) {
 			};
 			var nameHoursDate = new NameHoursDate(late_employee, late_hours, date);
 
-			$scope.dailyTCs[index].employees_worked.unshift(nameHoursDate);
+			console.log("the x: ", x);
+
+			$scope.dailyTCs[x].employees_worked.unshift(nameHoursDate);
 
 			employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId($scope.dailyTCs, $scope.jobsite._id).then(function(response) {
 				sendLateToEmpArray(late_hours, date, late_employee);

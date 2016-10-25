@@ -12,12 +12,12 @@
 
 		<div class="jobNameDiv">
 			<label for="jobName">Job Name:</label>
-			<input type="text" ng-model="ctrl.newJobName" name="jobName" class="newJobForm">
+			<input type="text" ng-model="ctrl.newJobName" name="jobName" class="newJobForm" required>
 		</div>
 		
 		<div class="contractorNameDiv">
 			<label for="contractorName">Contractor Name:</label>
-			<input type="text"  ng-model="ctrl.contractorName" name="contractorName" class="newJobForm">
+			<input type="text"  ng-model="ctrl.contractorName" name="contractorName" class="newJobForm" required>
 		</div>
 
 		<div class="superName">
@@ -50,6 +50,76 @@
 	</form>
 
 </div>
+
+
+<!-- THE MODAL -->
+
+<div class="modal-demo">
+	<script type="text/ng-template" id="myModalContent.html">
+        <div class="modal-header">
+            <h3 class="modal-title" id="modal-title">Create new Job Site</h3>
+        </div>
+        
+        <!--  Add your modal html here -->
+		<form ng-submit="ctrl.addNewJobsSite(ctrl.newJobName, ctrl.contractorName, ctrl.jobAddress, ctrl.superName, ctrl.superTelephone, ctrl.jobDetails, ctrl.materialsNeeded)">
+
+		<div class="jobNameDiv">
+			<label for="jobName">Job Name:</label>
+			<input type="text" ng-model="ctrl.newJobName" name="jobName" class="newJobForm form-control" required>
+		</div>
+		
+		<div class="contractorNameDiv">
+			<label for="contractorName">Contractor Name:</label>
+			<input type="text"  ng-model="ctrl.contractorName" name="contractorName" class="newJobForm form-control" required>
+		</div>
+
+		<div class="superName">
+			<label for="superName">Superintendent Name:</label>
+			<input type="text" ng-model="ctrl.superName" name="superName" class="newJobForm form-control">
+		</div>
+
+		<div class="superTelephone">
+			<label for="superTelephone">Superintendent Telephone:</label>
+			<input type="number" ng-model="ctrl.superTelephone" name="superTelephone" class="newJobForm form-control">
+		</div>
+
+		<div class="jobAddress">
+			<label for="jobAddress">Job Address:</label>
+			<input type="text" ng-model="ctrl.jobAddress" name="jobAddress"  class="newJobForm form-control">
+		</div>
+
+		<div class="jobDetails">
+			<label for="jobDetails">Job Contract Details:</label>
+			<textarea name="jobDetails" ng-model="ctrl.jobDetails" class="newJobForm form-control" placeholder="such as how many feet of expansion joints:"></textarea>
+		</div>
+
+		<div class="materialsNeeded">
+			<label for="materialsNeeded">Materials Needed:</label>
+			<textarea name="materialsNeeded" ng-model="ctrl.materialsNeeded" class="newJobForm form-control" placeholder="such as whether to use ladders, silicone or urethane:"></textarea>
+		</div>
+		
+		<input class="submit" type="submit" value="Submit">
+	
+	</form>
+		
+        <div class="modal-footer">
+            <button class="btn btn-primary" type="button" ng-click="ctrl.ok()">OK</button><!-- make sure this button goes inside the form so it will work -->
+            <button class="btn btn-warning" type="button" ng-click="ctrl.cancel()">Cancel</button>
+        </div>
+    </script>
+
+    <button type="button" class="btn btn-default" ng-click="ctrl.open()">Open me!</button>
+    <div class="modal-parent">
+    </div>
+</div>
+
+
+
+
+
+
+
+
 <br />
 <br />
 <input type="text" placeholder="filter jobs" ng-model="ctrl.jobs">

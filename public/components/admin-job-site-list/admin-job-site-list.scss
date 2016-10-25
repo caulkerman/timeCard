@@ -1,5 +1,23 @@
-.newJobForm, label {
-    display: block;
-    width: 40%;
+// .newJobForm, label {
+//     display: block;
+//     width: 40%;
+//     margin-left: 15px;
+// }
+
+input.form-control {
+	margin: 0 0 15px 15px;
+    width: 90%;
+}
+
+textarea.form-control {
+    margin: 0 0 15px 15px;
+    width: 90%;
+}
+
+input.submit {
+    margin-left: 15px;
+}
+
+label {
     margin-left: 15px;
 }

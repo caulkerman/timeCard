@@ -76,12 +76,11 @@ ctrl.goToJobSite = function(jobName, index) {
 
 
 
-
+//deletes the employee from the employeesList array and sends it to DB
 ctrl.retireEmployee = function() {
 console.log("retireEmployee function has fired");
-    for (var i = 0; i < ctrl.employeesList.length; i++) {
+    for (let i = 0; i < ctrl.employeesList.length; i++) {
         if (ctrl.theEmployee._id === ctrl.employeesList[i]._id) {
-            console.log("Hello, ", ctrl.employeesList[i].fullName);
             theEmployeeService.createOldEmployee(ctrl.theEmployee)
             theEmployeeService.deleteEmployee(ctrl.theEmployee._id).then(function(response) {
                 console.log("the employee has been deleted");

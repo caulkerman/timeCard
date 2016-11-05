@@ -114,10 +114,12 @@ console.log("the ctrl.employees array: ", ctrl.employees);
 
 		//The "if" conditional is here as a secondary measure to make sure the form is valid before submitting the new employee name to the database.  If I am using the angular way to do forms I might as well do this
 		if (isValid) {
-			console.log("the employee object, ", employee);
-			admin_employees_list_service.createEmployee(employee).then(function(response) {
-				// functionToGetEmployees();
-			});
+			if (employee.employeeType === "Admin") {
+				alert("this is an admin");
+			} else {
+				console.log("the employee object, ", employee);
+				admin_employees_list_service.createEmployee(employee);
+			};
 		};
 
 		$scope.submitted = false;

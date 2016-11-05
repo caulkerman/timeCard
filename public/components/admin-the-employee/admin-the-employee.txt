@@ -1,5 +1,7 @@
-Make it so the employee can be sent to a "No longer an Employee" array or DB collection.  In other words, make it so you can delete the employee.
-
 Maybe make the employee details an ng-show or hide, think about it.
 
 Create a function that adds up all the employee's time (maybe for the year or something, perhaps buttons that can do it for week, weeks, month, year).
+
+Make it so when the employee has been deleted that the html page clears and there is a notice saying that it has been transferred to a different page.
+
+

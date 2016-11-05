@@ -1,4 +1,4 @@
-var oldEmployee = require("../models/api.oldEmployees.model");
+var OldEmployee = require("../models/api.oldEmployees.model");
 
 module.exports = {
 
@@ -12,6 +12,11 @@ module.exports = {
           else res.send(result);
       });
 	},
+
+
+
+
+	
 
 
 

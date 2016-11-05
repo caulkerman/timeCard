@@ -87,7 +87,7 @@ app.controller('ModalInstanceCtrl3', function ($uibModalInstance, $scope, adminJ
 			adminJobSiteListService.addNewJob(newJobName, contractorName, jobAddress, superName, superTelephone, jobDetails, materialsNeeded).then(function(response) {
 			});
 		
-			// getListOfJobs(); this needs to be a property of $rootScope
+			// getListOfJobs(); this needs to be a property of $rootScope
 			$scope.newJobName = "";
 			$scope.contractorName = "";
 			$scope.jobAddress = "";

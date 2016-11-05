@@ -30,7 +30,7 @@ app.post("/api/createEmployee", employeeCtrl.create);
 app.post("/api/addNewJob", newJobCtrl.create);
 app.post("/api/addOldJob", oldJobCtrl.create);
 app.post("/api/update_jobsite", newJobCtrl.create);
-app.post("/api//addOldEmployee", oldEmployeesCtrl.create);
+app.post("/api/addOldEmployee", oldEmployeesCtrl.create);
 
 app.get("/api/getEmployees", employeeCtrl.read);
 app.get("/api/getJobs", newJobCtrl.read);
@@ -45,6 +45,7 @@ app.put("/api/updateEmployee/:id", employeeCtrl.update);
 
 app.delete("/api/delete_job/:id", newJobCtrl.delete_job);
 app.delete("/api/delete_old_job:id", oldJobCtrl.delete);
+app.delete("/api/deleteEmployee/:id", employeeCtrl.delete);
 
 
 // Connections

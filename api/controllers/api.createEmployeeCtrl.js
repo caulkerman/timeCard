@@ -43,6 +43,15 @@ module.exports = {
         if (err) return res.status(500);
         else res.send(result);
     });
+  },
+
+
+
+ delete: function(req, res) {
+    NewEmployee.findByIdAndRemove(req.params.id, function(err, result) {
+      if (err) return res.status(500);
+      else res.send(result);
+    });
   }
 
 

@@ -30,6 +30,33 @@ app.service("theEmployeeService", ["$q", "$http", function($q, $http) {
 
 
 
+    this.deleteEmployee = function(id) {
+        var deferred = $q.defer();
+        $http({
+            method: "DELETE",
+            url: "/api/deleteEmployee/" + id
+        }).then(function(response) {
+            deferred.resolve(response);
+        });
+        return deferred.promise;
+    }
+
+
+
+    this.createOldEmployee = function(employee) {
+        var deferred = $q.defer();
+        $http({
+            method: "POST",
+            url: "/api/addOldEmployee/",
+            data: employee
+        }).then(function(response) {
+            deferred.resolve(response);
+        });
+        return deferred.promise;
+    };
+
+
+
 
 
 

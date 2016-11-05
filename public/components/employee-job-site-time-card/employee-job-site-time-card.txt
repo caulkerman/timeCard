@@ -1,1 +1,5 @@
 Styling: make it so when the user has submitted time that the submit button does something like turn green or disappear.
+
+Maybe make it so the first thing that comes to view when starting a new time card be the materials to be added, right now we have it so when time is added before materials an error shows up, not fun to have to do stuff twice or go backward.
+
+Make it so whoever is the forman signed in to make the time card that he has access to the timecard to make changes for the rest of the day, but no one else.

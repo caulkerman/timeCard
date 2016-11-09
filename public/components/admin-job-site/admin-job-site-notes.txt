@@ -16,4 +16,8 @@ Make it so when admin wants to change time that a modal type thingy pops up, we 
 
 The edits to the time are being pushed to the employee object so right now I have multiple entries for the same date under the same name.
 
+Make it so when admin deletes a daily time card that it will also delete that time entry on the employee's objects.
+
 Make it so admin has the ability to create T and M time cards
+
+Total job site hours worked not working, shows nothing.

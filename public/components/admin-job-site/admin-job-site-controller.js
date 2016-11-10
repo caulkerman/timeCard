@@ -460,9 +460,14 @@ $scope.deleteEmployeeFromTC = function(pIndex, index) {
 
 function deleteTimeFromEmployee(theOneBeingDeleted) {
 	//$scope.employeesArray
-	//if (theOneBeingDeleted.employeeName === something[index].fullName && theOneBeingDeleted.date_worked === something[index].date_worked) {
+	//looop through the the employeesArray
+	//for (var i = 0; i < $scope.employeesArray.length; i++) {
+		//if (theOneBeingDeleted.employeeName === something[index].fullName && theOneBeingDeleted.date_worked === something[index].date_worked) {
+			//$scope.employeesArray.splice($scope.employeesArray[index], 1);
+			//send it off to the service to update the DB;
+		//};
 
-	//}
+	//};
 }
 
 

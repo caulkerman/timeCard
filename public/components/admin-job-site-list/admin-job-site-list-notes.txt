@@ -4,3 +4,5 @@ Maybe make the form have validation so the admin user will be able to know where
 
 Make it so when admin user submits the form that something pops up saying that the new job site has been created or that the form has been submitted.
 
+Clean up the modal, it is full of stupid stuff
+

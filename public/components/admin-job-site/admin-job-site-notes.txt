@@ -20,4 +20,3 @@ Make it so when admin deletes a daily time card that it will also delete that ti
 
 Make it so admin has the ability to create T and M time cards
 
-Total job site hours worked not working, shows nothing.

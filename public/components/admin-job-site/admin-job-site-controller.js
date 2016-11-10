@@ -15,7 +15,7 @@ function getTheJobSiteFromDBbyId() {// we might want to have this function call 
 	employeeJobSiteTimeCardService.getTheJobSiteFromDBbyId(jobSiteId).then(function(response) {
 		$scope.jobsite = response.data;
 		$scope.dailyTCs = $scope.jobsite.daily_time_cards;
-		if ($scope.jobsite.daily_time_cards.length) {//If the job site has some length then call the function.  This avoids an error when the job site has been sent to the old job site pile.
+		if ($scope.jobsite.daily_time_cards.length > 0) {//If the job site has some length then call the function.  This avoids an error when the job site has been sent to the old job site pile.
 			addAllTheHours();
 		};
 		console.warn("$scope.jobsite ", $scope.jobsite);
@@ -393,7 +393,7 @@ function sendLateToEmpArray(late_hours, date, late_employee, index) {
 
 
 
-$scope.deleteTC = function(index) {
+$scope.deleteTC = function(index) {//need to make it so the time from this deleted time card gets deleted from the employee's time.
 
 	$scope.hideDeleteWarning(index);
 	
@@ -452,6 +452,17 @@ $scope.deleteEmployeeFromTC = function(pIndex, index) {
 		getTheJobSiteFromDBbyId();
 	});
 
+	deleteTimeFromEmployee(theOneBeingDeleted);
+
+}
+
+
+
+function deleteTimeFromEmployee(theOneBeingDeleted) {
+	//$scope.employeesArray
+	//if (theOneBeingDeleted.employeeName === something[index].fullName && theOneBeingDeleted.date_worked === something[index].date_worked) {
+
+	//}
 }
 
 

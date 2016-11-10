@@ -14,7 +14,7 @@ Maybe in the future make it so photos can be uploaded --- this is a wish list it
 
 Make it so when admin wants to change time that a modal type thingy pops up, we need to make sure that this can all fit on a phone.
 
-The edits to the time are being pushed to the employee object so right now I have multiple entries for the same date under the same name.
+not sure if this exists - The edits to the time are being pushed to the employee object so right now I have multiple entries for the same date under the same name.
 
 Make it so when admin deletes a daily time card that it will also delete that time entry on the employee's objects.
 

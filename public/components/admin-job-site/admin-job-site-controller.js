@@ -480,7 +480,7 @@ function deleteTimeFromEmployee(index) {
 					let hours_worked_array = $scope.employeesArray[i].job_site_hours_worked
 
 					hours_worked_array.splice([j], 1);
-					adminJobSiteService.updateEmployeesWorkedInDBbyId($scope.employeesArray[i]._id, hours_worked_array).then(function(response) {
+					adminJobSiteService.updateEmployeesWorkedInDBbyId(hours_worked_array, $scope.employeesArray[i]._id).then(function(response) {
 
 					});
 				};

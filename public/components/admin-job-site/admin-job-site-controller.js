@@ -235,7 +235,7 @@ $scope.lateEmployee = function(late_employee, late_hours, date, index) {
 
 
 
-	//why do the dates need to match up?
+	//why do the dates need to match up?  To make sure the time card for this date actually exists, I guess.
 	for (x = 0; x < $scope.dailyTCs.length; x++) {
 		// debugger;
 		console.log("the date: ", date);
@@ -245,7 +245,7 @@ $scope.lateEmployee = function(late_employee, late_hours, date, index) {
 				empsArray.push($scope.dailyTCs[x].employees_worked[i].employeeName);
 				console.log("the empsArray: ", empsArray);
 			};
-			return;
+			break;
 		};
 	};
 
@@ -404,14 +404,15 @@ function sendLateToEmpArray(late_hours, date, late_employee, index) {
 
 
 $scope.deleteTC = function(index) {//need to make it so the time from this deleted time card gets deleted from the employee's time.
-
+	
+	deleteTimeFromEmployee(index)
+	
 	$scope.hideDeleteWarning(index);
 	
 	$scope.dailyTCs.splice(index, 1);
 	
 	employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId($scope.dailyTCs, $scope.jobsite._id).then(function(response) {
 		getTheJobSiteFromDBbyId();
-		deleteTimeFromEmployee(index)
 		addAllTheHours();			
 	});
 };
@@ -467,11 +468,11 @@ $scope.deleteEmployeeFromTC = function(pIndex, index) {
 
 
 function deleteTimeFromEmployee(index) {
+	console.log("the deleteTimeFromEmployee function has fired and index: ", index);
 
 	for (var i = 0; i < $scope.employeesArray.length; i++) {
 		
 		for (var j = 0; j < $scope.employeesArray[i].job_site_hours_worked.length; j++) {
-			
 			for (var p = 0; p < $scope.dailyTCs[index].employees_worked.length; p++) {
 				
 				if ($scope.dailyTCs[index].employees_worked[p].employeeName === $scope.employeesArray[i].fullName && $scope.dailyTCs[index].theDate === $scope.employeesArray[i].job_site_hours_worked[j].date_worked) {

@@ -109,6 +109,13 @@ this.updateEmployeesWorkedInDBbyId = function (employees_worked, id) {
 
 
 
+this.updateEmployeesArray = function(empArray) {
+
+}
+
+
+
+
 ////////DELETE\\\\\\\\\
 this.delete_job = function(jobsite) {
 	var deferred = $q.defer();

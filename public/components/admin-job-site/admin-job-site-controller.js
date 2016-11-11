@@ -232,6 +232,10 @@ $scope.lateEmployee = function(late_employee, late_hours, date, index) {
 		empArray.push($scope.employeesArray[i].fullName);
 	};
 
+
+
+
+	//why do the dates need to match up?
 	for (x = 0; x < $scope.dailyTCs.length; x++) {
 		// debugger;
 		console.log("the date: ", date);
@@ -239,9 +243,14 @@ $scope.lateEmployee = function(late_employee, late_hours, date, index) {
 		if ($scope.dailyTCs[x].theDate === date) {
 			for (var i = 0; i < $scope.dailyTCs[x].employees_worked.length; i++) {
 				empsArray.push($scope.dailyTCs[x].employees_worked[i].employeeName);
+				console.log("the empsArray: ", empsArray);
 			};
-		}
-	}
+			return;
+		};
+	};
+
+
+
 		
 
 	for (var j = 0; j < empsArray.length; j++) {
@@ -272,6 +281,7 @@ $scope.lateEmployee = function(late_employee, late_hours, date, index) {
 			var nameHoursDate = new NameHoursDate(late_employee, late_hours, date);
 
 			console.log("the x: ", x);
+			console.log("the length: ", $scope.dailyTCs.length);
 
 			$scope.dailyTCs[x].employees_worked.unshift(nameHoursDate);
 
@@ -401,6 +411,7 @@ $scope.deleteTC = function(index) {//need to make it so the time from this delet
 	
 	employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId($scope.dailyTCs, $scope.jobsite._id).then(function(response) {
 		getTheJobSiteFromDBbyId();
+		deleteTimeFromEmployee(index)
 		addAllTheHours();			
 	});
 };
@@ -451,24 +462,31 @@ $scope.deleteEmployeeFromTC = function(pIndex, index) {
 	employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId($scope.dailyTCs, $scope.jobsite._id).then(function(response) {
 		getTheJobSiteFromDBbyId();
 	});
-
-	deleteTimeFromEmployee(theOneBeingDeleted);
-
-}
+};
 
 
 
-function deleteTimeFromEmployee(theOneBeingDeleted) {
-	//$scope.employeesArray
-	//looop through the the employeesArray
-	//for (var i = 0; i < $scope.employeesArray.length; i++) {
-		//if (theOneBeingDeleted.employeeName === something[index].fullName && theOneBeingDeleted.date_worked === something[index].date_worked) {
-			//$scope.employeesArray.splice($scope.employeesArray[index], 1);
-			//send it off to the service to update the DB;
-		//};
+function deleteTimeFromEmployee(index) {
 
-	//};
-}
+	for (var i = 0; i < $scope.employeesArray.length; i++) {
+		
+		for (var j = 0; j < $scope.employeesArray[i].job_site_hours_worked.length; j++) {
+			
+			for (var p = 0; p < $scope.dailyTCs[index].employees_worked.length; p++) {
+				
+				if ($scope.dailyTCs[index].employees_worked[p].employeeName === $scope.employeesArray[i].fullName && $scope.dailyTCs[index].theDate === $scope.employeesArray[i].job_site_hours_worked[j].date_worked) {
+					
+					let hours_worked_array = $scope.employeesArray[i].job_site_hours_worked
+
+					hours_worked_array.splice([j], 1);
+					adminJobSiteService.updateEmployeesWorkedInDBbyId($scope.employeesArray[i]._id, hours_worked_array).then(function(response) {
+
+					});
+				};
+			};
+		};
+	};
+};
 
 
 

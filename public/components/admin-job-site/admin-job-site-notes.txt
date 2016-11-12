@@ -5,16 +5,14 @@ Styling Modal - Make it so the late time event hides and shows with a button and
     
 Styling Modal - Make it (MAYBE) so the hidden-daily-time-card div looks like a modal with the date in its original position, the X to hide can be in the upper right corner like normal.
     Use the new ui-bootstrap modal.
+
+Styling Modal - Make it so when admin wants to change time that a modal type thingy pops up, we need to make sure that this can all fit on a phone.
     
 Styling Highlight the "LATE" in red.
 
 Styling deleteWarning div needs to look nice.
 
 Maybe in the future make it so photos can be uploaded --- this is a wish list item right now, if I am feeling jiggy then I can go ahead and do it.
-
-Make it so when admin wants to change time that a modal type thingy pops up, we need to make sure that this can all fit on a phone.
-
-not sure if this exists - The edits to the time are being pushed to the employee object so right now I have multiple entries for the same date under the same name.
 
 Make it so admin has the ability to create T and M time cards
 

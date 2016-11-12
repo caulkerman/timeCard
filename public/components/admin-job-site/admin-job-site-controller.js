@@ -1,8 +1,9 @@
 (function() {
-var $inject = ["$scope", "$stateParams", "employeeJobSiteTimeCardService", "adminJobSiteService", "$timeout"];
-function adminJobSiteControllerCB($scope, $stateParams, employeeJobSiteTimeCardService, adminJobSiteService, $timeout) {
+var $inject = ["$scope", "$stateParams", "employeeJobSiteTimeCardService", "adminJobSiteService", "$timeout", "$uibModal", "$rootScope"];
+function adminJobSiteControllerCB($scope, $stateParams, employeeJobSiteTimeCardService, adminJobSiteService, $timeout, $uibModal, $rootScope) {
 
 'use strict'
+const ctrl = this;
 
         ////////ENTER YOUR ANGULAR CODE BELOW\\\\\\\\
 
@@ -179,44 +180,47 @@ $scope.updateTheJobSite = function(contractor, jobAddress, jobDetails, materials
 
 $scope.theDate = employeeJobSiteTimeCardService.theDate();
 
-$scope.createLateTimeCard = function(newDate) {
-	hideLateTCdiv();
-	
-	var flag = false;
 
-	if (newDate) {
-	
-		function DailyTimeCard() {
-			this.theDate = newDate;
-			this.employees_worked = [];
-			this.materials_used = '';
-			this.notes = '';
-			this.TandM = false; //if we do a t & M it will have to create a new dailyTimeCard object, but I am worrying about the view's curent state at the moment that it is created.  or something like this, boolean value will have to be brought from html through the funtion, will probably have to use a radio button or checkbox.
-			this.late = true;
-		};
-		$scope.dailyTimeCard = new DailyTimeCard();
+$rootScope.createLateTimeCard = function(TandM, newDate) {
+	(function() {
+		// hideLateTCdiv();
+		
+		var flag = false;
 
-		for (var i = 0; i < $scope.dailyTCs.length; i++) {
-			if ($scope.dailyTCs[i].theDate === $scope.dailyTimeCard.theDate) {
-				flag = true;
-				console.log("addTheNewDailyTimeCardToJobsiteObject flag", flag);
-				alert("A time card for this job site on this day already exists.")
+		if (newDate) {
+		
+			function DailyTimeCard() {
+				this.theDate = newDate;
+				this.employees_worked = [];
+				this.materials_used = '';
+				this.notes = '';
+				this.TandM = TandM; //if we do a t & M it will have to create a new dailyTimeCard object, but I am worrying about the view's curent state at the moment that it is created.  or something like this, boolean value will have to be brought from html through the funtion, will probably have to use a radio button or checkbox.
+				this.late = true;
+			};
+			$scope.dailyTimeCard = new DailyTimeCard();
+
+			for (var i = 0; i < $scope.dailyTCs.length; i++) {
+				if ($scope.dailyTCs[i].theDate === $scope.dailyTimeCard.theDate && $scope.dailyTCs[i].TandM ===$scope.dailyTimeCard.TandM) {
+					flag = true;
+					// console.log("addTheNewDailyTimeCardToJobsiteObject flag", flag);
+					alert("A time card for this job site on this day already exists.")
+						
+				};
+			};
+
+			if (flag === false) {
+				$scope.dailyTCs.push($scope.dailyTimeCard);
 					
+				employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId($scope.dailyTCs, $scope.jobsite._id).then(function(response) {
+				getTheJobSiteFromDBbyId();
+				});
 			};
 		};
 
-		if (flag === false) {
-			$scope.dailyTCs.push($scope.dailyTimeCard);
-				
-			employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId($scope.dailyTCs, $scope.jobsite._id).then(function(response) {
-			getTheJobSiteFromDBbyId();
-			});
+		if (!newDate) {
+			console.error("Nothing Saved, box closed");
 		};
-	};
-
-	if (!newDate) {
-		console.error("Nothing Saved, box closed");
-	};
+	})();
 };
 
 
@@ -532,9 +536,54 @@ $scope.completedJob = function() {
 
 
 
+ctrl.animationsEnabled = true;
+   
+  ctrl.open = function (parentSelector) {
+    var modalInstance = $uibModal.open({
+      animation: ctrl.animationsEnabled,
+      templateUrl: 'myModalContent.html',
+      controller: 'AddLateTimeCardCtrl',
+      controllerAs: 'ctrl',
+    });
+  };
+
+
+
+
 
 
 }
 adminJobSiteControllerCB.$inject = $inject;
 angular.module("timeCard").controller("adminJobSiteController", adminJobSiteControllerCB);
 })();
+
+
+
+
+
+app.controller('AddLateTimeCardCtrl', function ($uibModalInstance, $scope, $rootScope) {//make sure you change the name of your controller so as not to get controller conflicts
+  var ctrl = this;
+
+  ////////ADD YOUR JAVASCRIPT HERE\\\\\\\\
+
+  var TandM;
+
+  ctrl.isTandM = function() {
+  	TandM = true;
+  	console.log(TandM);
+  }
+
+  ctrl.isNotTandM = function() {
+  	TandM = false;
+  	console.log(TandM);
+  }
+  
+
+  ctrl.ok = function (newDate) {
+    $uibModalInstance.close($rootScope.createLateTimeCard(TandM, newDate));//inside the close(parameters) you can put anything that needs to be executed and returned as the modal closes to be made available to the controller.
+  };
+
+  ctrl.cancel = function () {
+    $uibModalInstance.dismiss('cancel');
+  };
+});

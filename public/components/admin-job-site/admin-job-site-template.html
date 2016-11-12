@@ -3,7 +3,7 @@
 <p><span id="jobSiteNameBold">{{jobsite.name}}<span></p>
 
 
-<button ng-click="showLateTCdiv()">Create Late Time Card</button>
+<button ng-click="ctrl.open()">Create Late Time Card</button>
 <button ng-click="completedJob()">Completed</button>
 <button ng-click="showUpdateForm()" ng-hide="showUpdateJobSite">Show Jobsite Details</button>
 <button ng-click="hideUpdateForm()" ng-show="showUpdateJobSite">Hide Jobsite Details</button>
@@ -57,6 +57,38 @@
 
     <input type="submit" class="updateJobSite" value="Update Jobsite">
 </form>
+
+
+<!-- This is Create a Late Time Card Modal-->
+
+<div class="modal-demo">
+    <script type="text/ng-template" id="myModalContent.html">
+        <div class="modal-header">
+            <h3 class="modal-title" id="modal-title">Create A Late Time Card</h3>
+        </div>
+        
+        <div class="modal-body" id="modal-body">
+            <div>
+                <p>Is this late time card Time and Material?</p>
+                <button ng-click="ctrl.isTandM()">Yes</button>
+                <button ng-click="ctrl.isNotTandM()">No</button>
+            </div>
+            <div>
+                <p>Please Enter The Late Date</p>
+                <input type="text" ng-model="ctrl.newDate" placeholder="Example: May 2, 2016: Monday">
+                <!-- <button ng-click="ctrl.createLateTimeCard(newDate)">Submit New Date</button> -->
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" type="button" ng-click="ctrl.ok(ctrl.newDate)">OK</button>
+            <button class="btn btn-warning" type="button" ng-click="ctrl.cancel()">Cancel</button>
+        </div>
+    </script>
+
+    <!-- <button type="button" class="btn btn-default" ng-click="ctrl.open()">Open me!</button>
+    <div class="modal-parent">
+    </div> -->
+</div>
 
 <div class="late-time-card-date" ng-show="showLateTC">
     <input type="text" placeholder="Example: May 2, 2016: Monday" ng-model="newDate">

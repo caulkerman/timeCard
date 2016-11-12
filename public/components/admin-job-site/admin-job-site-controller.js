@@ -101,14 +101,14 @@ $scope.hideUpdateForm = function() {
 	$scope.showUpdateJobSite = false;
 };
 
-$scope.showLateTCdiv = function() {
-	$scope.showLateTC = true;
-};
+// $scope.showLateTCdiv = function() {
+// 	$scope.showLateTC = true;
+// };
 
-function hideLateTCdiv() {
-	$scope.showLateTC = false;
-	$scope.newDate = "";
-};
+// function hideLateTCdiv() {
+// 	$scope.showLateTC = false;
+// 	$scope.newDate = "";
+// };
 
 $scope.deleteWarning = [];
 $scope.showDeleteWarning = function(index) {
@@ -183,7 +183,6 @@ $scope.theDate = employeeJobSiteTimeCardService.theDate();
 
 $rootScope.createLateTimeCard = function(TandM, newDate) {
 	(function() {
-		// hideLateTCdiv();
 		
 		var flag = false;
 
@@ -194,7 +193,7 @@ $rootScope.createLateTimeCard = function(TandM, newDate) {
 				this.employees_worked = [];
 				this.materials_used = '';
 				this.notes = '';
-				this.TandM = TandM; //if we do a t & M it will have to create a new dailyTimeCard object, but I am worrying about the view's curent state at the moment that it is created.  or something like this, boolean value will have to be brought from html through the funtion, will probably have to use a radio button or checkbox.
+				this.TandM = TandM;
 				this.late = true;
 			};
 			$scope.dailyTimeCard = new DailyTimeCard();
@@ -536,7 +535,7 @@ $scope.completedJob = function() {
 
 
 
-ctrl.animationsEnabled = true;
+ctrl.animationsEnabled = false;
    
   ctrl.open = function (parentSelector) {
     var modalInstance = $uibModal.open({

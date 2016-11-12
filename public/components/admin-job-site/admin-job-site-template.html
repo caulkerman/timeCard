@@ -69,7 +69,7 @@
         
         <div class="modal-body" id="modal-body">
             <div>
-                <p>Is this late time card Time and Material?</p>
+                <p>Is this Time and Material?</p>
                 <button ng-click="ctrl.isTandM()">Yes</button>
                 <button ng-click="ctrl.isNotTandM()">No</button>
             </div>
@@ -80,7 +80,7 @@
             </div>
         </div>
         <div class="modal-footer">
-            <button class="btn btn-primary" type="button" ng-click="ctrl.ok(ctrl.newDate)">OK</button>
+            <button class="btn btn-primary" type="button" ng-click="ctrl.ok(ctrl.newDate)">Submit</button>
             <button class="btn btn-warning" type="button" ng-click="ctrl.cancel()">Cancel</button>
         </div>
     </script>
@@ -90,10 +90,10 @@
     </div> -->
 </div>
 
-<div class="late-time-card-date" ng-show="showLateTC">
+<!-- <div class="late-time-card-date" ng-show="showLateTC">
     <input type="text" placeholder="Example: May 2, 2016: Monday" ng-model="newDate">
     <button ng-click="createLateTimeCard(newDate)">Submit New Date</button>
-</div>
+</div> -->
 
 
     <!--  You need to set up a spot to show whether the job time is T&M, maybe use hide/show if it is.-->

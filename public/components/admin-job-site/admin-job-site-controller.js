@@ -227,8 +227,8 @@ $rootScope.createLateTimeCard = function(TandM, newDate) {
 
 
 //creates a late employee time entry, checks it against the list of employees and if there adds a new time event for that employee, if the name is not there nothing happens.
-$scope.lateEmployee = function(late_employee, late_hours, date, index) {
-	console.log("late_employee: ", late_employee, "late_hours: ", late_hours, "date: ", date, "index: ", index);
+$scope.lateEmployee = function(late_employee, late_hours, date, index, timeAndMaterial, lateTC) {
+	// console.log("late_employee: ", late_employee, "late_hours: ", late_hours, "date: ", date, "index: ", index);
 
 	var empsArray = [], empArray = [], flag1 = false, flag2 = false, x;
 	
@@ -236,26 +236,21 @@ $scope.lateEmployee = function(late_employee, late_hours, date, index) {
 		empArray.push($scope.employeesArray[i].fullName);
 	};
 
-
-
-
 	//why do the dates need to match up?  To make sure the time card for this date actually exists, I guess.
 	for (x = 0; x < $scope.dailyTCs.length; x++) {
 		// debugger;
-		console.log("the date: ", date);
-		console.log("the Date: ", $scope.dailyTCs[x].theDate);
-		if ($scope.dailyTCs[x].theDate === date) {
+		// console.log("the date: ", date);
+		// console.log("the Date: ", $scope.dailyTCs[x].theDate);
+		if ($scope.dailyTCs[x].theDate === date && $scope.dailyTCs[x].TandM === timeAndMaterial && $scope.dailyTCs[x].late === lateTC) {
 			for (var i = 0; i < $scope.dailyTCs[x].employees_worked.length; i++) {
 				empsArray.push($scope.dailyTCs[x].employees_worked[i].employeeName);
 				console.log("the empsArray: ", empsArray);
 			};
 			break;
+			// console.log("the new empsArray: ", empsArray);
 		};
 	};
 
-
-
-		
 
 	for (var j = 0; j < empsArray.length; j++) {
 		if (late_employee === empsArray[j]) {
@@ -269,10 +264,10 @@ $scope.lateEmployee = function(late_employee, late_hours, date, index) {
 		};
 	};
 
-	console.log("the flag1: ", flag1, 'the flag2: ', flag2);
+	// console.log("the flag1: ", flag1, 'the flag2: ', flag2);
 	
 	for (var i = 0; i < empArray.length; i++) {
-		var empArrayEmp = empArray[i];
+		// var empArrayEmp = empArray[i];
 		// console.warn(empArrayEmp);
 	
 		if (late_employee === empArray[i] && late_hours && flag1 === false){
@@ -285,7 +280,7 @@ $scope.lateEmployee = function(late_employee, late_hours, date, index) {
 			var nameHoursDate = new NameHoursDate(late_employee, late_hours, date);
 
 			console.log("the x: ", x);
-			console.log("the length: ", $scope.dailyTCs.length);
+			console.log("the dailyTCs length: ", $scope.dailyTCs.length);
 
 			$scope.dailyTCs[x].employees_worked.unshift(nameHoursDate);
 
@@ -296,6 +291,9 @@ $scope.lateEmployee = function(late_employee, late_hours, date, index) {
 			});
 			
 			break;
+
+		
+
 
 		} else {
 

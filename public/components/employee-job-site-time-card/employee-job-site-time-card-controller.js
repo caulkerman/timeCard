@@ -40,6 +40,7 @@ ctrl.theDate = employeeJobSiteTimeCardService.theDate();
 
 ctrl.timeAndMaterialOptions = function() {
 	ctrl.showtAndmOptions = true;
+	ctrl.jobDetails = false;
 }
 
 ctrl.tAndmYes = function() {

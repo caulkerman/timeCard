@@ -76,7 +76,6 @@
             <div>
                 <p>Please Enter The Late Date</p>
                 <input type="text" ng-model="ctrl.newDate" placeholder="Example: May 2, 2016: Monday">
-                <!-- <button ng-click="ctrl.createLateTimeCard(newDate)">Submit New Date</button> -->
             </div>
         </div>
         <div class="modal-footer">
@@ -85,15 +84,9 @@
         </div>
     </script>
 
-    <!-- <button type="button" class="btn btn-default" ng-click="ctrl.open()">Open me!</button>
-    <div class="modal-parent">
-    </div> -->
+   
 </div>
 
-<!-- <div class="late-time-card-date" ng-show="showLateTC">
-    <input type="text" placeholder="Example: May 2, 2016: Monday" ng-model="newDate">
-    <button ng-click="createLateTimeCard(newDate)">Submit New Date</button>
-</div> -->
 
 
     <!--  You need to set up a spot to show whether the job time is T&M, maybe use hide/show if it is.-->
@@ -102,6 +95,14 @@
 <input type="text" placeholder="Filter the Dates" ng-model="filter_date"> 
     
 <br />
+
+
+
+
+
+
+
+
 <div ng-repeat="timecard in dailyTCs | filter: {theDate:filter_date} track by $index">  
     <hr> 
     <div>
@@ -151,8 +152,12 @@
                         <td ng-hide="hide_late_hours_td[$index]"><input type="number" min=".25" max="24" ng-model="late_hours" placeholder="Hours"></td>
                         <td></td>
                         <td></td>
-                        <td><button ng-click="lateEmployee(late_employee, late_hours, timecard.theDate, $index)" >Submit</button></td>
+                        <td><button ng-click="lateEmployee(late_employee, late_hours, timecard.theDate, $index, timecard.TandM, timecard.late)" >Submit</button></td>
                      </tr>
+
+                    
+
+
 
                     <tr ng-repeat="employees in timecard.employees_worked track by $index" > <!--make sure to ng-repeat this -->
                         <td>{{employees.employeeName}}</td>
@@ -168,6 +173,8 @@
                         <td ng-show="editHours[$parent.$index][$index]"><button ng-click="editEmployee(newHours, employees._id, $parent.$index, $index)">submit</button>
                         <td><button ng-click="deleteEmployeeFromTC($parent.$index, $index)" class="glyphicon glyphicon-trash"></button>
                     </tr>
+                
+
                 </tbody>
             </table>
         </div>

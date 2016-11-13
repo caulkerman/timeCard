@@ -455,9 +455,9 @@ function addAllTheHours() {
 
 
 
-$scope.deleteEmployeeFromTC = function(pIndex, index) {
+$scope.deleteEmployeeFromTC = function(pIndex, index) {//this doesn't work correctly when the filter is being used
 
-	var theOneBeingDeleted = $scope.dailyTCs[pIndex].employees_worked[index];
+	var theOneBeingDeleted = $scope.dailyTCs[pIndex].employees_worked[index];//theOneBeingDeleted needs to be dirived from some other means than by pIndex and index
 	deleteEmployeeFromEmployees(theOneBeingDeleted);
 
 	$scope.dailyTCs[pIndex].employees_worked.splice([index], 1);

@@ -45,11 +45,13 @@ ctrl.timeAndMaterialOptions = function() {
 ctrl.tAndmYes = function() {
 	let tAndm = true;
 	ctrl.addTheNewDailyTimeCardToJobsiteObject(tAndm);
+	ctrl.showtAndmOptions = false;
 }
 
 ctrl.tAndmNo = function() {
 	let tAndm = false;
 	ctrl.addTheNewDailyTimeCardToJobsiteObject(tAndm);
+	ctrl.showtAndmOptions = false;
 }
 
 ctrl.addTheNewDailyTimeCardToJobsiteObject = function(tAndm) {
@@ -68,16 +70,12 @@ ctrl.addTheNewDailyTimeCardToJobsiteObject = function(tAndm) {
 	if (dailyTCArray.length > 0) {
 
 		for (var i = 0; i < dailyTCArray.length; i++) {
-			if (dailyTCArray[i].theDate === ctrl.dailyTimeCard.theDate) {
+			if (dailyTCArray[i].theDate === ctrl.dailyTimeCard.theDate && dailyTCArray[i].TandM === ctrl.dailyTimeCard.TandM) {
 				flag = true;
 				
-				if (ctrl.dailyTimeCard.TandM === true) {
-					flag = false;
-				};
-
 				if (flag) {
 					ctrl.timeCardAlreadyExists = true;
-					ctrl.showtAndmOptions = false;					
+					// ctrl.showtAndmOptions = false;					
 					$timeout(function() {
 						ctrl.timeCardAlreadyExists = false;
 					}, 2500);
@@ -96,9 +94,9 @@ ctrl.addTheNewDailyTimeCardToJobsiteObject = function(tAndm) {
 	};
 
 	if (dailyTCArray.length < 1) {
-			dailyTCArray.push(ctrl.dailyTimeCard);
-			employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId(dailyTCArray, ctrl.jobsite._id);
-			ctrl.timeCardCreated = true;
+		dailyTCArray.push(ctrl.dailyTimeCard);
+		employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId(dailyTCArray, ctrl.jobsite._id);
+		ctrl.timeCardCreated = true;
 	};
 
 };

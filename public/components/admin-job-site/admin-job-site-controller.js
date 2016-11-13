@@ -183,10 +183,11 @@ $scope.theDate = employeeJobSiteTimeCardService.theDate();
 
 $rootScope.createLateTimeCard = function(TandM, newDate) {
 	(function() {
+		console.log("the TandM: ", TandM);
 		
 		var flag = false;
 
-		if (newDate) {
+		if (newDate && TandM !== undefined) {
 		
 			function DailyTimeCard() {
 				this.theDate = newDate;
@@ -216,7 +217,7 @@ $rootScope.createLateTimeCard = function(TandM, newDate) {
 			};
 		};
 
-		if (!newDate) {
+		if (!newDate || !TandM) {
 			console.error("Nothing Saved, box closed");
 		};
 	})();

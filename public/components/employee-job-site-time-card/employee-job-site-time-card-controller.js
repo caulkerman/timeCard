@@ -253,7 +253,7 @@ ctrl.addEmployeeTime = function(employeeName, hours_worked, index) {
 
 
 
-
+//This function creates the daily time for the job site and pushes it to the employee object.
 function pushToJobSiteHoursWorked(hours_worked, index) {
 	var id = ctrl.employees[index]._id;
 	var employee = ctrl.employees[index].job_site_hours_worked;

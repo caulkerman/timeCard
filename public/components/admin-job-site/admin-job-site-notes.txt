@@ -13,6 +13,4 @@ Styling - In the Create Late Time Card modal make it so when the admin choses wh
 
 Maybe in the future make it so photos can be uploaded --- this is a wish list item right now, if I am feeling jiggy then I can go ahead and do it.
 
-When deleting an employee from a time card when using the filter, the filter messes up the $index of the ng-repeat so that when you delete the employee, some other employee from some other time card is deleted rather than the one you want to delete.
-
-Make it so the employee has TandM on his/her object so when deleting time cards it will delete the one chosen and not all that share the same date.  I deleted an employee from a time card, this time card shared the same date as another time card and when I reviewed the delete in the employee's hours and job sites, both were gone because they shared the same date.
+Make it so the employee has TandM on his/her object so when deleting time cards it will delete the one chosen and not all that share the same date.  I deleted an employee from a time card, this time card shared the same date as another time card and when I reviewed the delete in the employee's hours and job sites, both were gone because they shared the same date.  Maybe make a function that creates a rondomly generated id for each time card or employee or something or other.  Using an individual id for each time entry will solve a lot of problems and shorten if statements.

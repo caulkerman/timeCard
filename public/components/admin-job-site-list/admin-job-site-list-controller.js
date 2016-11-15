@@ -100,10 +100,6 @@ app.controller('ModalInstanceCtrl3', function ($uibModalInstance, $scope, adminJ
 			ctrl.ok();
 		
 	};
-
-	$scope.you = function() {
-		console.log("hello YOU");
-	}
   
 
   ctrl.ok = function () {

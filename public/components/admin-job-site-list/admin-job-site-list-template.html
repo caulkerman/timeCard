@@ -1,55 +1,7 @@
 <link rel="stylesheet" href="components/admin-job-site-list/admin-job-site-list.css">
 
 <h1>Job Site List</h1>
-<!--make sure you add angular for validation-->
-<!--<button id="addNewJobSite" ng-click="ctrl.showJobSiteForm()" ng-hide="ctrl.showJobSite">Add New Job Site</button>
-<button ng-click="ctrl.hideJobSiteForm()" ng-show="ctrl.showJobSite">Close Form</button>
 
-
-<div ng-show="ctrl.showJobSite" class="form-div">
-
-<form ng-submit="ctrl.addNewJobsSite(ctrl.newJobName, ctrl.contractorName, ctrl.jobAddress, ctrl.superName, ctrl.superTelephone, ctrl.jobDetails, ctrl.materialsNeeded)">
-
-		<div class="jobNameDiv">
-			<label for="jobName">Job Name:</label>
-			<input type="text" ng-model="ctrl.newJobName" name="jobName" class="newJobForm" required>
-		</div>
-		
-		<div class="contractorNameDiv">
-			<label for="contractorName">Contractor Name:</label>
-			<input type="text"  ng-model="ctrl.contractorName" name="contractorName" class="newJobForm" required>
-		</div>
-
-		<div class="superName">
-			<label for="superName">Superintendent Name:</label>
-			<input type="text" ng-model="ctrl.superName" name="superName" class="newJobForm">
-		</div>
-
-		<div class="superTelephone">
-			<label for="superTelephone">Superintendent Telephone:</label>
-			<input type="number" ng-model="ctrl.superTelephone" name="superTelephone" class="newJobForm">
-		</div>
-
-		<div class="jobAddress">
-			<label for="jobAddress">Job Address:</label>
-			<input type="text" ng-model="ctrl.jobAddress" name="jobAddress"  class="newJobForm">
-		</div>
-
-		<div class="jobDetails">
-			<label for="jobDetails">Job Contract Details:</label>
-			<textarea name="jobDetails" ng-model="ctrl.jobDetails" class="newJobForm" placeholder="such as how many feet of expansion joints:"></textarea>
-		</div>
-
-		<div class="materialsNeeded">
-			<label for="materialsNeeded">Materials Needed:</label>
-			<textarea name="materialsNeeded" ng-model="ctrl.materialsNeeded" class="newJobForm" placeholder="such as whether to use ladders, silicone or urethane:"></textarea>
-		</div>
-		
-		<input type="submit" value="Submit">
-	
-	</form>
-
-</div>-->
 
 
 <!-- THE MODAL -->
@@ -63,52 +15,50 @@
         <!--  Add your modal html here -->
 		<form ng-submit="addNewJobsSite(newJobName, contractorName, jobAddress, superName, superTelephone, jobDetails, materialsNeeded)">
 
-		<div class="jobNameDiv">
-			<label for="jobName">Job Name:</label>
-			<input type="text" ng-model="newJobName" name="jobName" class="newJobForm form-control" required>
-		</div>
+			<div class="jobNameDiv">
+				<label for="jobName">Job Name:</label>
+				<input type="text" ng-model="newJobName" name="jobName" class="newJobForm form-control" required>
+			</div>
+			
+			<div class="contractorNameDiv">
+				<label for="contractorName">Contractor Name:</label>
+				<input type="text"  ng-model="contractorName" name="contractorName" class="newJobForm form-control" required>
+			</div>
+
+			<div class="superName">
+				<label for="superName">Superintendent Name:</label>
+				<input type="text" ng-model="superName" name="superName" class="newJobForm form-control">
+			</div>
+
+			<div class="superTelephone">
+				<label for="superTelephone">Superintendent Telephone:</label>
+				<input type="number" ng-model="superTelephone" name="superTelephone" class="newJobForm form-control">
+			</div>
+
+			<div class="jobAddress">
+				<label for="jobAddress">Job Address:</label>
+				<input type="text" ng-model="jobAddress" name="jobAddress"  class="newJobForm form-control">
+			</div>
+
+			<div class="jobDetails">
+				<label for="jobDetails">Job Contract Details:</label>
+				<textarea name="jobDetails" ng-model="jobDetails" class="newJobForm form-control" placeholder="such as how many feet of expansion joints:"></textarea>
+			</div>
+
+			<div class="materialsNeeded">
+				<label for="materialsNeeded">Materials Needed:</label>
+				<textarea name="materialsNeeded" ng-model="materialsNeeded" class="newJobForm form-control" placeholder="such as whether to use ladders, silicone or urethane:"></textarea>
+			</div>
+			
+			<input class="submit btn btn-success" type="submit" value="Submit">
+	        <button class="btn btn-danger" type="button" ng-click="ctrl.cancel()">Cancel</button>
+		</form>
 		
-		<div class="contractorNameDiv">
-			<label for="contractorName">Contractor Name:</label>
-			<input type="text"  ng-model="contractorName" name="contractorName" class="newJobForm form-control" required>
-		</div>
-
-		<div class="superName">
-			<label for="superName">Superintendent Name:</label>
-			<input type="text" ng-model="superName" name="superName" class="newJobForm form-control">
-		</div>
-
-		<div class="superTelephone">
-			<label for="superTelephone">Superintendent Telephone:</label>
-			<input type="number" ng-model="superTelephone" name="superTelephone" class="newJobForm form-control">
-		</div>
-
-		<div class="jobAddress">
-			<label for="jobAddress">Job Address:</label>
-			<input type="text" ng-model="jobAddress" name="jobAddress"  class="newJobForm form-control">
-		</div>
-
-		<div class="jobDetails">
-			<label for="jobDetails">Job Contract Details:</label>
-			<textarea name="jobDetails" ng-model="jobDetails" class="newJobForm form-control" placeholder="such as how many feet of expansion joints:"></textarea>
-		</div>
-
-		<div class="materialsNeeded">
-			<label for="materialsNeeded">Materials Needed:</label>
-			<textarea name="materialsNeeded" ng-model="materialsNeeded" class="newJobForm form-control" placeholder="such as whether to use ladders, silicone or urethane:"></textarea>
-		</div>
-		
-		<input class="submit" type="submit" value="Submit">
-		<button ng-click="you()">click you</button>
-	
-	</form>
-		
-        <div class="modal-footer">
-            <button class="btn btn-warning" type="button" ng-click="ctrl.cancel()">Cancel</button>
-        </div>
     </script>
 
-    <button type="button" class="btn btn-default" ng-click="ctrl.open()">Open me!</button>
+    <!--//////	END OF MODAL  \\\\\\\\-->
+
+    <button type="button" class="btn btn-success" ng-click="ctrl.open()">Create New Job Site</button>
     <div class="modal-parent">
     </div>
 </div>
@@ -120,7 +70,6 @@
 
 
 
-<br />
 <br />
 <input type="text" placeholder="filter jobs" ng-model="ctrl.jobs">
 

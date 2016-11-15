@@ -171,7 +171,7 @@
                         </td>
                         <!--<td><button ng-click="editEmployee(employees.hours_worked, employees._id)">Edit</button></td>-->
                         <td ng-show="editHours[$parent.$index][$index]"><button ng-click="editEmployee(newHours, employees._id, $parent.$index, $index)">submit</button>
-                        <td><button ng-click="deleteEmployeeFromTC($parent.$index, $index)" class="glyphicon glyphicon-trash"></button>
+                        <td><button ng-click="deleteEmployeeFromTC(employees.employeeName, employees.hours_worked)" class="glyphicon glyphicon-trash"></button>
                     </tr>
                 
 

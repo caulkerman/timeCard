@@ -23,67 +23,6 @@
     </tr>
   </tbody>
 </table>
-               
-
-                <!--//////////// THE JQUERY MODAL ////////////-->
-
-                <!-- /////to be honest, I think I may want to get rid of the modal and have something fade in or toggle up and then out again with the click of the "close" button.\\\\\\ -->
-
-<!--<div class="modal" id="myModal">
-      
-      <div class="modal-dialog">
-        
-        <div class="modal-content">
-          <div class="modal-header">
-            <button class="close" data-dismiss="modal">x</button>
-            <h3 class="modal-title">Create New Employee</h3> <span id="fldsRqd">*All Fields Required*</span>
-          </div>
-        
-              
-          <form name="employeeForm" ng-submit="createEmployee(fullName, userName, password, employeeType, employeeForm.$valid)" novalidate>
-            <div class="modal-body">
-
-              <div ng-class="{ 'has-error' : employeeForm.fullName.$invalid && submitted }">
-                <label for="fullName">Employee Full Name</label>
-                <p class="warning" ng-show="employeeForm.fullName.$invalid && submitted">You Must Enter An Employee's Full Name!</p>
-                <input type="text" name="fullName" class="form-control" ng-model="fullName"/ required autofocus>
-              </div>
-
-              <div ng-class="{ 'has-error' : employeeForm.userName.$invalid && submitted }">
-                <label for="userName">Employee Username</label>
-                <p class="warning" ng-show="employeeForm.userName.$invalid && submitted ">You Must Enter An Employee's Username!</p>
-                <input type="text" name="userName" class="form-control" ng-model="userName" required>
-              </div>
-
-              <div ng-class="{ 'has-error' : employeeForm.password.$invalid && submitted }">
-                <label for="password">Employee Password</label>
-                <p class="warning" ng-show="employeeForm.password.$invalid && submitted">You Must Enter An Employee's Password!</p>
-                <input type="text" name="password" class="form-control" ng-model="password" required>
-              </div>
-
-              <div ng-class="{ 'has-error' : employeeForm.type.$invalid && submitted }">
-                <label for="type">Employee Type</label>
-                <p class="warning" ng-show="employeeForm.type.$invalid && submitted">You Must Enter the Type of Employee... Worker or Admin!</p>
-                
-                <select name="type" form="employeeForm" ng-model="employeeType" class="form-control" required>
-                  <option value="Worker">Worker</option>
-                  <option value="Admin">Admin</option>
-                </select>
-              
-              </div>
-              
-            <div class="modal-footer">
-              <button class="btn btn-default" data-dismiss="modal">Close</button>
-              <input type="submit" class="btn btn-success" value="Save New Employee" />
-            </div>
-
-          </div>
-        </form>
-        make it so when the employee is clicked on that it takes the user to a new page where it is that emloyee and is put into tables, the tables being divided by dates and the data being the jobs worked on and hours for each job.
-      </div>
-      
-    </div>
-</div>-->
 
 
 
@@ -93,7 +32,7 @@
 
 
 
-<div class="modal-demo">
+<div class="modal-demo">
 	<script type="text/ng-template" id="myModalContent.html">
         
 
@@ -134,14 +73,11 @@
               <br />
             <div>
               <button type="submit" class="btn btn-success" >Save New Employee</button>
+              <button class="btn btn-danger" type="button" ng-click="ctrl.cancel()">Cancel</button>
+
             </div>
 
           </form>
-      
-        <div class="modal-footer">
-            <!--<button class="btn btn-success" type="button" ng-click="ctrl.makeFunctionFire(ctrl.theInputValue)">OK</button>-->
-            <button class="btn btn-danger" type="button" ng-click="ctrl.cancel()">Cancel</button>
-        </div>
     </script>
 
     <!--<button type="button" class="btn btn-default" ng-click="ctrl.open()">Open me!</button>-->

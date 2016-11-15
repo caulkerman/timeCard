@@ -455,16 +455,40 @@ function addAllTheHours() {
 
 
 
-$scope.deleteEmployeeFromTC = function(pIndex, index) {//this doesn't work correctly when the filter is being used
+$scope.deleteEmployeeFromTC = function(employee_Name, hoursWorked) {//this doesn't work correctly when the filter is being used
+	console.info("the employee_Name: ", employee_Name, "the hoursWorked: ", hoursWorked);
+	var i, j;
 
-	var theOneBeingDeleted = $scope.dailyTCs[pIndex].employees_worked[index];//theOneBeingDeleted needs to be dirived from some other means than by pIndex and index
-	deleteEmployeeFromEmployees(theOneBeingDeleted);
+	for (i = 0; i < $scope.dailyTCs.length; i++) {
+		console.warn("i: ", i);
+		for (j = 0; j < $scope.dailyTCs[i].employees_worked.length; j++) {
+			console.log("j: ", j);
+			if (employee_Name === $scope.dailyTCs[i].employees_worked[j].employeeName && hoursWorked === $scope.dailyTCs[i].employees_worked[j].hours_worked) {
+				
+				var theOneBeingDeleted = $scope.dailyTCs[i].employees_worked[j];
+				console.log("theOneBeingDeleted indexes: ", i, j);
+				
+				console.log("the one being deleted: ", theOneBeingDeleted);
+				deleteEmployeeFromEmployees(theOneBeingDeleted);
 
-	$scope.dailyTCs[pIndex].employees_worked.splice([index], 1);
+				$scope.dailyTCs[i].employees_worked.splice([j], 1);
 
-	employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId($scope.dailyTCs, $scope.jobsite._id).then(function(response) {
-		getTheJobSiteFromDBbyId();
-	});
+				employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId($scope.dailyTCs, $scope.jobsite._id).then(function(response) {
+					getTheJobSiteFromDBbyId();
+				});
+
+			};
+			// break;
+		};
+		// break;
+	};
+
+	// console.log("the dailyTCs before splice; ", $scope.dailyTCs[i].employees_worked[j]);
+	
+
+	// console.log("the dailyTCs after splice: ", $scope.dailyTCs[i].employees_worked[j]);
+
+	
 };
 
 

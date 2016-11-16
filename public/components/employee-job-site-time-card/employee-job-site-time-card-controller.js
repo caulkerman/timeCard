@@ -1,4 +1,4 @@
-(function() {
+(function() {
 var $inject = ["$scope", "$stateParams", "employeeJobSiteTimeCardService", "admin_employees_list_service", "$timeout"];
 function employeeJobSiteTimeCardControllerCB($scope, $stateParams, employeeJobSiteTimeCardService, admin_employees_list_service, $timeout) {
 
@@ -54,6 +54,7 @@ ctrl.tAndmNo = function() {
 	ctrl.addTheNewDailyTimeCardToJobsiteObject(tAndm);
 	ctrl.showtAndmOptions = false;
 }
+
 
 ctrl.addTheNewDailyTimeCardToJobsiteObject = function(tAndm) {
 	var flag = false;
@@ -189,6 +190,8 @@ ctrl.addMaterials = function(materials) {
 
 ctrl.addEmployeeTime = function(employeeName, hours_worked, index) {
 
+	var flag = false;
+
 	if (!hours_worked) {
 		ctrl.needTime[index] = true;
 		$timeout(function() {
@@ -209,9 +212,10 @@ ctrl.addEmployeeTime = function(employeeName, hours_worked, index) {
 		this.employeeTimeId = createCustomId()
 	};
 	var nameHoursDate = new NameHoursDate(employeeName, hours_worked, ctrl.theDate);
-	console.warn("the new nameHoursDate.employeeTimeId: ", nameHoursDate.employeeTimeId);
+	// console.warn("the new nameHoursDate.employeeTimeId: ", nameHoursDate.employeeTimeId);
 	for (var i = 0; i < dailyTCArray.length; i++) {
 
+		//the if statement below is allowing ALL time cards of this date to pass regardless of whether or not it is TandM and allows both of them to update.  NOT ALLOWED!!!!!
 		if (dailyTCArray[i].theDate === nameHoursDate.date_worked) { //this makes sure that the new nameHoursDate object gets pushed to the correct dailyTimeCard based on the date
 	
 			if (dailyTCArray[i].employees_worked.length < 1) {
@@ -225,7 +229,6 @@ ctrl.addEmployeeTime = function(employeeName, hours_worked, index) {
 				return;
 			};
 			
-			var flag = false;
 			for (var j = 0; j < dailyTCArray[i].employees_worked.length; j++) {				
 
 				if (nameHoursDate.employeeName === dailyTCArray[i].employees_worked[j].employeeName) {

@@ -205,20 +205,22 @@ ctrl.addEmployeeTime = function(employeeName, hours_worked, index) {
 	function NameHoursDate(e, h, d) {
 		this.employeeName = e,
 		this.hours_worked = h,
-		this.date_worked = d
+		this.date_worked = d,
+		this.employeeTimeId = createCustomId()
 	};
 	var nameHoursDate = new NameHoursDate(employeeName, hours_worked, ctrl.theDate);
-
+	console.warn("the new nameHoursDate.employeeTimeId: ", nameHoursDate.employeeTimeId);
 	for (var i = 0; i < dailyTCArray.length; i++) {
 
 		if (dailyTCArray[i].theDate === nameHoursDate.date_worked) { //this makes sure that the new nameHoursDate object gets pushed to the correct dailyTimeCard based on the date
 	
 			if (dailyTCArray[i].employees_worked.length < 1) {
 				dailyTCArray[i].employees_worked.push(nameHoursDate);
-				pushToJobSiteHoursWorked(hours_worked, index);
 				
 				employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId(dailyTCArray, ctrl.jobsite._id).then(function(response) {
 				console.log("the nameHoursDate update response ", response.data);
+				pushToJobSiteHoursWorked(hours_worked, index, nameHoursDate.employeeTimeId);
+
 				});
 				return;
 			};
@@ -238,11 +240,13 @@ ctrl.addEmployeeTime = function(employeeName, hours_worked, index) {
 		
 		if (flag === false && dailyTCArray[i].theDate === nameHoursDate.date_worked) {
 			dailyTCArray[i].employees_worked.push(nameHoursDate);
-			pushToJobSiteHoursWorked(hours_worked, index);
 				
 			employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId(dailyTCArray, ctrl.jobsite._id).then(function(response) {
 				// console.log("the nameHoursDate update response ", response.data);
+			pushToJobSiteHoursWorked(hours_worked, index, nameHoursDate.employeeTimeId);
+
 			});
+
 		};
 	};
 };
@@ -254,22 +258,48 @@ ctrl.addEmployeeTime = function(employeeName, hours_worked, index) {
 
 
 //This function creates the daily time for the job site and pushes it to the employee object.
-function pushToJobSiteHoursWorked(hours_worked, index) {
+function pushToJobSiteHoursWorked(hours_worked, index, employeeTimeId) {
+
+	console.log("in the pushToJobSiteHoursWorked function the employeeTimeId is: ", employeeTimeId);
+
 	var id = ctrl.employees[index]._id;
 	var employee = ctrl.employees[index].job_site_hours_worked;
 
 	function EmployeeNameHoursJob(d, h, j) {
 		this.date_worked = d,
 		this.hours_worked = h,
-		this.job_site = j
+		this.job_site = j,
+		this.employeeTimeId = employeeTimeId
 	}
 	var employeeNameHoursJob = new EmployeeNameHoursJob(ctrl.theDate, hours_worked, ctrl.jobsite.name);
-	
+	// console.error("the new employeeNameHoursJob: ", employeeNameHoursJob);
 	ctrl.employees[index].job_site_hours_worked.push(employeeNameHoursJob);
 	// console.log("the employeeNameHours object pushed ot job_site_hours_worked array ", ctrl.employees[index].job_site_hours_worked);
 	employeeJobSiteTimeCardService.updateTheEmployeeInDBbyId(employee, id).then(function(response) {
 		console.log("the response employee job_site_hours_worked ", response.data);
 	});
+};
+
+
+
+
+
+function createCustomId() {
+
+	var customId = "E";
+	var lettersArray = ["A", "a", "B", "b", "C", "d", "E", "e", "F", "f", "G", "g", "H", "h", "I", "i", "J", "j", "K", "k", "L", "l", "M", "m", "N", "n", "O", "o", "P", "p", "Q", "q", "R", "r", "S", "s", "T", "t", "U", "u", "V", "v", "W", "w", "X", "x", "Y", "y", "Z", "z"];
+	var numbersArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
+	for(var i = 0; i < 12; i++) {
+		var letter = Math.floor(Math.random() * lettersArray.length);
+		var customIdLetter = lettersArray[letter];
+
+		var number = Math.floor(Math.random() * numbersArray.length);
+		var customIdNumber = numbersArray[number];
+
+		customId = customId + customIdLetter + customIdNumber;
+	}
+	console.log("the new custom id: ", customId);
+	return customId;
 };
 
 

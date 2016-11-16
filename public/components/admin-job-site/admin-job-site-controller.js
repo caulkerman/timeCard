@@ -276,6 +276,7 @@ $scope.lateEmployee = function(late_employee, late_hours, date, index, timeAndMa
 				this.employeeName = e,
 				this.hours_worked = h,
 				this.date_worked = d
+				this.employeeTimeId = createCustomId();
 			};
 			var nameHoursDate = new NameHoursDate(late_employee, late_hours, date);
 
@@ -285,7 +286,7 @@ $scope.lateEmployee = function(late_employee, late_hours, date, index, timeAndMa
 			$scope.dailyTCs[x].employees_worked.unshift(nameHoursDate);
 
 			employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId($scope.dailyTCs, $scope.jobsite._id).then(function(response) {
-				sendLateToEmpArray(late_hours, date, late_employee);
+				sendLateToEmpArray(late_hours, date, late_employee, nameHoursDate.employeeTimeId);
 				getTheJobSiteFromDBbyId();
 				addAllTheHours();				
 			});
@@ -379,19 +380,20 @@ $scope.lateEmployee = function(late_employee, late_hours, date, index, timeAndMa
 
 
 
-function sendLateToEmpArray(late_hours, date, late_employee, index) {
+function sendLateToEmpArray(late_hours, date, late_employee, employeeTimeId) {
 
 	function LateEmployeeToEmpArray() {
 		this.date_worked = date;
 		this.hours_worked = late_hours;
 		this.job_site = $scope.jobsite.name
+		this.employeeTimeId = employeeTimeId;
 	};
 	var lateEmployeeToEmpArray = new LateEmployeeToEmpArray(late_hours, date);
 
 	for (var i = 0; i < $scope.employeesArray.length; i++) {
 
 		if ($scope.employeesArray[i].fullName === late_employee) {
-			$scope.employeesArray[i].job_site_hours_worked.push(lateEmployeeToEmpArray );
+			$scope.employeesArray[i].job_site_hours_worked.push(lateEmployeeToEmpArray);
 			
 			adminJobSiteService.updateEmployeesWorkedInDBbyId($scope.employeesArray[i].job_site_hours_worked, $scope.employeesArray[i]._id).then(function(response) {
 				console.log("this is the employeesArray updated response ", response.data);
@@ -455,40 +457,26 @@ function addAllTheHours() {
 
 
 
-$scope.deleteEmployeeFromTC = function(employee_Name, hoursWorked) {//this doesn't work correctly when the filter is being used
+$scope.deleteEmployeeFromTC = function(employee_Name, hoursWorked, id) {//this doesn't work correctly when the filter is being used
 	console.info("the employee_Name: ", employee_Name, "the hoursWorked: ", hoursWorked);
 	var i, j;
 
 	for (i = 0; i < $scope.dailyTCs.length; i++) {
-		console.warn("i: ", i);
 		for (j = 0; j < $scope.dailyTCs[i].employees_worked.length; j++) {
-			console.log("j: ", j);
 			if (employee_Name === $scope.dailyTCs[i].employees_worked[j].employeeName && hoursWorked === $scope.dailyTCs[i].employees_worked[j].hours_worked) {
 				
 				var theOneBeingDeleted = $scope.dailyTCs[i].employees_worked[j];
-				console.log("theOneBeingDeleted indexes: ", i, j);
 				
-				console.log("the one being deleted: ", theOneBeingDeleted);
-				deleteEmployeeFromEmployees(theOneBeingDeleted);
+				deleteEmployeeFromEmployees(theOneBeingDeleted, id);
 
 				$scope.dailyTCs[i].employees_worked.splice([j], 1);
 
 				employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId($scope.dailyTCs, $scope.jobsite._id).then(function(response) {
 					getTheJobSiteFromDBbyId();
 				});
-
 			};
-			// break;
 		};
-		// break;
-	};
-
-	// console.log("the dailyTCs before splice; ", $scope.dailyTCs[i].employees_worked[j]);
-	
-
-	// console.log("the dailyTCs after splice: ", $scope.dailyTCs[i].employees_worked[j]);
-
-	
+	};	
 };
 
 
@@ -518,17 +506,17 @@ function deleteTimeFromEmployee(index) {
 
 
 
-function deleteEmployeeFromEmployees(theOne) {
+function deleteEmployeeFromEmployees(theOne, id) {
 
-	var emps, emp;
+	console.log("deleteEmployeeFromEmployees function has fired: ");
+
 	for (var i = 0; i < $scope.employeesArray.length; i++) {
-		emps = $scope.employeesArray[i];
 
 		for (var j = 0; j < $scope.employeesArray[i].job_site_hours_worked.length; j++) {
-			emp = emps.job_site_hours_worked[j];
-
-			if (emps.fullName === theOne.employeeName && emp.date_worked === theOne.date_worked && emp.job_site === $scope.jobsite.name) {
-				emps.job_site_hours_worked.splice([j], 1);
+			console.warn("delete the employee!!!!!: ", $scope.employeesArray[i].job_site_hours_worked[j]._id);
+			
+			if ($scope.employeesArray[i].job_site_hours_worked[j]._id === id) {
+				$scope.employeesArray[i].job_site_hours_worked.splice([j], 1);
 				
 				adminJobSiteService.updateEmployeesWorkedInDBbyId(emps.job_site_hours_worked, emps._id).then(function(response) {
 					getEmployees();
@@ -554,6 +542,33 @@ $scope.completedJob = function() {
 		});
 	});
 };
+
+
+
+
+
+
+function createCustomId() {
+
+	var customId = "E";
+	var lettersArray = ["A", "a", "B", "b", "C", "d", "E", "e", "F", "f", "G", "g", "H", "h", "I", "i", "J", "j", "K", "k", "L", "l", "M", "m", "N", "n", "O", "o", "P", "p", "Q", "q", "R", "r", "S", "s", "T", "t", "U", "u", "V", "v", "W", "w", "X", "x", "Y", "y", "Z", "z"];
+	var numbersArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
+	for(var i = 0; i < 12; i++) {
+		var letter = Math.floor(Math.random() * lettersArray.length);
+		var customIdLetter = lettersArray[letter];
+
+		var number = Math.floor(Math.random() * numbersArray.length);
+		var customIdNumber = numbersArray[number];
+
+		customId = customId + customIdLetter + customIdNumber;
+	}
+	console.log("the new custom id: ", customId);
+	return customId;
+};
+
+
+
+
 
 
 

@@ -24,7 +24,8 @@ var newJobSchema = new Schema({
 					hours_worked: Number,
 					edited_hours: Number,
 					edited_hours_flag: { type: Boolean, default: false },
-					date_worked: String
+					date_worked: String,
+					employeeTimeId: String
 				}
 			],
 			materials_used: String,

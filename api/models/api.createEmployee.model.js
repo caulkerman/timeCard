@@ -10,13 +10,7 @@ var employeesSchema = new Schema({
 	employeeType: { type: String, required: true },
 	// jobsites: { type: Array },
 	// job_site_hours_worked: { type: Array}//consider setting the objects that will go into this array like what you have in the createEmployee model.
-	job_site_hours_worked: [
-		{
-			date_worked: { type: String },
-			hours_worked: { type: Number },
-			job_site: { type: String }
-		}
-	]
+	job_site_hours_worked: { type: Array }
 
 
 });

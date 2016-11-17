@@ -4,4 +4,4 @@ Maybe make it so the first thing that comes to view when starting a new time car
 
 Make it so whoever is the forman signed in to make the time card that he has access to the timecard to make changes for the rest of the day, but no one else.
 
-When there is both a TandM time card and a regular time card, if I enter time for more than the first entry, the next entries are added to the other time card.  Don't know why yet.
+When there is both a TandM time card and a regular time card, if I enter time for more than the first entry, the next entries are added to the other time card.  The conditional that checks for the date in case of duplicate time cards is allowing all both regular and TandM time cards to be updated because they both share the same date.  Need to make it to it looks for whether it is TandM or not.

@@ -1,4 +1,4 @@
-(function() {
+(function() {
 var $inject = ["$scope", "$stateParams", "employeeJobSiteTimeCardService", "admin_employees_list_service", "$timeout"];
 function employeeJobSiteTimeCardControllerCB($scope, $stateParams, employeeJobSiteTimeCardService, admin_employees_list_service, $timeout) {
 
@@ -68,6 +68,7 @@ ctrl.addTheNewDailyTimeCardToJobsiteObject = function(tAndm) {
 		this.late = false;
 	}
 	ctrl.dailyTimeCard = new DailyTimeCard();
+	console.log("the new dailyTimeCard: ", ctrl.dailyTimeCard);
 
 	if (dailyTCArray.length > 0) {
 
@@ -135,10 +136,9 @@ ctrl.hideJobDetails = function() {
 
 
 ctrl.addNote = function(notes) {
-	for (var i = 0; i < dailyTCArray.length; i++) {
 		
-		if (dailyTCArray[i].theDate === ctrl.dailyTimeCard.theDate) {
-			dailyTCArray[i].notes = notes;
+		if (ctrl.dailyTimeCard.theDate === ctrl.dailyTimeCard.theDate) {
+			ctrl.dailyTimeCard.notes = notes;
 			
 			employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId(dailyTCArray, ctrl.jobsite._id).then(function(response) {
 				console.log("the notes update response ", response);
@@ -148,10 +148,7 @@ ctrl.addNote = function(notes) {
 			});
 		};
 	
-	//you may also have to make it so having materials is part of the form validation, so that the employee cannot enter unless materials has been entered.
-	
 	ctrl.noteShow = false;
-	};
 };
 
 
@@ -163,10 +160,8 @@ ctrl.addNote = function(notes) {
 
 ctrl.addMaterials = function(materials) {
 	
-	for (var i = 0; i < dailyTCArray.length; i++) {
-		
-		if (dailyTCArray[i].theDate === ctrl.dailyTimeCard.theDate) {
-			dailyTCArray[i].materials_used = materials;
+		if (ctrl.dailyTimeCard.theDate === ctrl.dailyTimeCard.theDate) {
+			ctrl.dailyTimeCard.materials_used = materials;
 			
 			employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId(dailyTCArray, ctrl.jobsite._id).then(function(response) {
 				console.log("the materials update response ", response);
@@ -174,10 +169,7 @@ ctrl.addMaterials = function(materials) {
 			});
 		};
 	
-	//you may also have to make it so having materials is part of the form validation, so that the employee cannot enter unless materials has been entered.
-	
 	ctrl.textAreaShow = false;
-	};
 };
 
 
@@ -189,7 +181,7 @@ ctrl.addMaterials = function(materials) {
 
 
 ctrl.addEmployeeTime = function(employeeName, hours_worked, index) {
-
+console.log("the name and hours from html ", employeeName, hours_worked);
 	var flag = false;
 
 	if (!hours_worked) {
@@ -212,45 +204,34 @@ ctrl.addEmployeeTime = function(employeeName, hours_worked, index) {
 		this.employeeTimeId = createCustomId()
 	};
 	var nameHoursDate = new NameHoursDate(employeeName, hours_worked, ctrl.theDate);
-	// console.warn("the new nameHoursDate.employeeTimeId: ", nameHoursDate.employeeTimeId);
-	for (var i = 0; i < dailyTCArray.length; i++) {
-
-		//the if statement below is allowing ALL time cards of this date to pass regardless of whether or not it is TandM and allows both of them to update.  NOT ALLOWED!!!!!
-		if (dailyTCArray[i].theDate === nameHoursDate.date_worked) { //this makes sure that the new nameHoursDate object gets pushed to the correct dailyTimeCard based on the date
 	
-			if (dailyTCArray[i].employees_worked.length < 1) {
-				dailyTCArray[i].employees_worked.push(nameHoursDate);
-				
-				employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId(dailyTCArray, ctrl.jobsite._id).then(function(response) {
-				console.log("the nameHoursDate update response ", response.data);
-				pushToJobSiteHoursWorked(hours_worked, index, nameHoursDate.employeeTimeId);
-
-				});
-				return;
-			};
+	if (ctrl.dailyTimeCard.employees_worked.length < 1) {
+		ctrl.dailyTimeCard.employees_worked.push(nameHoursDate);
 			
-			for (var j = 0; j < dailyTCArray[i].employees_worked.length; j++) {				
+		employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId(dailyTCArray, ctrl.jobsite._id).then(function(response) {
+			console.log("the nameHoursDate update response ", response.data);
+			pushToJobSiteHoursWorked(hours_worked, index, nameHoursDate.employeeTimeId);
+		});
+		return;
+	};
+			
+	for (var j = 0; j < ctrl.dailyTimeCard.employees_worked.length; j++) {				
 
-				if (nameHoursDate.employeeName === dailyTCArray[i].employees_worked[j].employeeName) {
-					flag = true;
+		if (nameHoursDate.employeeName === ctrl.dailyTimeCard.employees_worked[j].employeeName) {
+			flag = true;
 					
-					if (flag) {
-						alert("you may want to make it so that a <p> shows saying that time has already been entered for this employee for this day.  If changes are needed to be made talk to an administrator. Maybe see if you can do it by index so it shows up right there at where the name is.");
-					};
-				};
+			if (flag) {
+				alert("you may want to make it so that a <p> shows saying that time has already been entered for this employee for this day.  If changes are needed to be made talk to an administrator. Maybe see if you can do it by index so it shows up right there at where the name is.");
 			};
 		};
+	};
 		
-		if (flag === false && dailyTCArray[i].theDate === nameHoursDate.date_worked) {
-			dailyTCArray[i].employees_worked.push(nameHoursDate);
+	if (flag === false && ctrl.dailyTimeCard.theDate === nameHoursDate.date_worked) {
+		ctrl.dailyTimeCard.employees_worked.push(nameHoursDate);
 				
-			employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId(dailyTCArray, ctrl.jobsite._id).then(function(response) {
-				// console.log("the nameHoursDate update response ", response.data);
+		employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId(dailyTCArray, ctrl.jobsite._id).then(function(response) {
 			pushToJobSiteHoursWorked(hours_worked, index, nameHoursDate.employeeTimeId);
-
-			});
-
-		};
+		});
 	};
 };
 
@@ -275,9 +256,9 @@ function pushToJobSiteHoursWorked(hours_worked, index, employeeTimeId) {
 		this.employeeTimeId = employeeTimeId
 	}
 	var employeeNameHoursJob = new EmployeeNameHoursJob(ctrl.theDate, hours_worked, ctrl.jobsite.name);
-	// console.error("the new employeeNameHoursJob: ", employeeNameHoursJob);
+
 	ctrl.employees[index].job_site_hours_worked.push(employeeNameHoursJob);
-	// console.log("the employeeNameHours object pushed ot job_site_hours_worked array ", ctrl.employees[index].job_site_hours_worked);
+
 	employeeJobSiteTimeCardService.updateTheEmployeeInDBbyId(employee, id).then(function(response) {
 		console.log("the response employee job_site_hours_worked ", response.data);
 	});

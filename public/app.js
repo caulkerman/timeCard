@@ -97,8 +97,15 @@ var app = angular.module("timeCard", ["ui.router", "smart-table", "ui.bootstrap"
 
 		.state("admin-old-employees", {
 			url: "/admin-old-employees/",
-			templateUrl: "components/admin-old-employees/admin-old-employees.html",
-			controller: "adminOldEmployees",
+			templateUrl: "components/admin-old-employees-list/admin-old-employees-list.html",
+			controller: "adminOldEmployeesList",
+			controllerAs: "ctrl"
+		})
+
+		.state("admin-the-old-employee", {
+			url: "/admin-the-old-employee/:id",
+			templateUrl: "components/admin-the-old-employee/admin-the-old-employee.html",
+			controller: "adminTheOldEmployee",
 			controllerAs: "ctrl"
 		})
 

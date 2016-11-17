@@ -38,6 +38,7 @@ app.get("/api/getJobs/:id", newJobCtrl.findById);
 app.get("/api/getEmployee/:id", employeeCtrl.findById);
 app.get("/api/getOldJobSites", oldJobCtrl.read);
 app.get("/api/getOldJob/:id", oldJobCtrl.findById);
+app.get("/api/getOldEmployees", oldEmployeesCtrl.read);
 
 app.put("/api/update_daily_time_cards/:id", newJobCtrl.update_daily_time_cards);
 app.put("/api/update_employees_worked/:id", newJobCtrl.update_employees_worked);

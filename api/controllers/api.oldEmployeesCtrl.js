@@ -14,6 +14,14 @@ module.exports = {
 	},
 
 
+    read: function(req, res) {
+        OldEmployee.find(req.query)
+        .exec(function(err, result) {
+            if (err) return res.status(500).send(err);
+            else res.send(result);
+        });
+    }
+
 
 
 	

@@ -25,9 +25,7 @@ this.getEmployees = function() {
 		method: "GET",
 		url: "/api/getEmployees",
 	}).then(function(response) {
-
 		employeesArray = response.data;
-
 		deferred.resolve(response);
 	});
 	return deferred.promise;

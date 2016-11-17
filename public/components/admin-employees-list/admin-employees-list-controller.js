@@ -57,6 +57,13 @@ ctrl.animationsEnabled = false;
 
 
 
+	ctrl.oldEmployees = function() {
+		$state.go("admin-old-employees");
+	}
+
+
+
+
 /////////END OF CODE\\\\\\\\
 };
 

@@ -18,11 +18,9 @@ getOldEmployees();
 
 
 ctrl.goToTheOldEmployee = function(name) {
-    console.log(name);
     for (var i = 0; i < ctrl.oldEmployees.length; i++) {
         if (name === ctrl.oldEmployees[i].fullName) {
             let id = ctrl.oldEmployees[i]._id;
-            console.log(id);
             $state.go("admin-the-old-employee", {id: id});
         };
     };

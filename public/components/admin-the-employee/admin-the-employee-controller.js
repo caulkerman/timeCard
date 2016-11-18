@@ -19,7 +19,9 @@ const getTheEmployeeFromDBbyId = function() {
     theEmployeeService.getEmployeeById(theEmployeeId).then(function(response) {
         console.log("the employee from controller ", response.data);
         ctrl.theEmployee = response.data;
-        ctrl.hours_worked = ctrl.theEmployee.job_site_hours_worked.reverse();
+        if (response) {
+            ctrl.hours_worked = ctrl.theEmployee.job_site_hours_worked;
+        };
     });
 };
 getTheEmployeeFromDBbyId(); 
@@ -79,15 +81,22 @@ ctrl.goToJobSite = function(jobName, index) {
 //deletes the employee from the employeesList array and sends it to DB
 ctrl.retireEmployee = function() {
 console.log("retireEmployee function has fired");
+    
     for (let i = 0; i < ctrl.employeesList.length; i++) {
+        
         if (ctrl.theEmployee._id === ctrl.employeesList[i]._id) {
-            theEmployeeService.createOldEmployee(ctrl.theEmployee)
-            theEmployeeService.deleteEmployee(ctrl.theEmployee._id).then(function(response) {
-                console.log("the employee has been deleted");
+            
+            theEmployeeService.createOldEmployee(ctrl.theEmployee).then(function(response) {
+                
+                theEmployeeService.deleteEmployee(ctrl.theEmployee._id).then(function(response) {
+                    console.log("the employee has been deleted");
+                    console.log("the employee _id ", theEmployeeId);
+                    getTheEmployeeFromDBbyId();
+                });
             });
-        }
-    }
-}
+        };   
+    };
+};
 
 
 

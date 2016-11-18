@@ -45,14 +45,14 @@ app.service("employeeJobSiteTimeCardService", ["$q", "$http", "$timeout", functi
 
 
 	this.updateTheJobSiteInDBbyId = function(daily_time_card, id) {
-		console.log("Service the jobsite before it goes to DB ", daily_time_card);
+		// console.log("Service the jobsite before it goes to DB ", daily_time_card);
 		var deferred = $q.defer();
 		$http({
 			method: "PUT",
 			url:"/api/update_daily_time_cards/" + id,
 			data: daily_time_card
 		}).then(function(response) {
-			console.log("Service the jobsite after it comes from DB ", response.data);
+			// console.log("Service the jobsite after it comes from DB ", response.data);
 		deferred.resolve(response);
 		});
 		return deferred.promise;

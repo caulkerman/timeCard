@@ -31,7 +31,7 @@
             <tr ng-repeat="hours in ctrl.hours_worked | filter: {date_worked:dateFilter} track by $index">
                 <td>{{hours.date_worked}}</td>
                 <td>{{hours.hours_worked}}</td>
-                <td ng-hide="ctrl.noJobSite[$index]"><a href="" ng-click="ctrl.goToJobSite(hours.job_site, $index)">{{hours.job_site}}</a></td>
+                <td ng-hide="ctrl.noJobSite[$index]"><a href="" ng-click="ctrl.goToJobSite(hours.job_site, $index)">{{hours.job_site}}</a><span ng-show="hours.TandM">  T &amp M</span></td>
                 <td ng-show="ctrl.noJobSite[$index]" class="rw-warning">Oops! This job site has been completed and is now inactive.</td>
             </tr>
         </tbody>

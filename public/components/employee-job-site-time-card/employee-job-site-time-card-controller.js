@@ -253,11 +253,12 @@ function pushToJobSiteHoursWorked(hours_worked, index, employeeTimeId) {
 		this.date_worked = d,
 		this.hours_worked = h,
 		this.job_site = j,
-		this.employeeTimeId = employeeTimeId
+		this.employeeTimeId = employeeTimeId,
+		this.TandM = ctrl.dailyTimeCard.TandM
 	}
 	var employeeNameHoursJob = new EmployeeNameHoursJob(ctrl.theDate, hours_worked, ctrl.jobsite.name);
 
-	ctrl.employees[index].job_site_hours_worked.push(employeeNameHoursJob);
+	ctrl.employees[index].job_site_hours_worked.unshift(employeeNameHoursJob);
 
 	employeeJobSiteTimeCardService.updateTheEmployeeInDBbyId(employee, id).then(function(response) {
 		console.log("the response employee job_site_hours_worked ", response.data);

@@ -39,6 +39,7 @@ app.get("/api/getEmployee/:id", employeeCtrl.findById);
 app.get("/api/getOldJobSites", oldJobCtrl.read);
 app.get("/api/getOldJob/:id", oldJobCtrl.findById);
 app.get("/api/getOldEmployees", oldEmployeesCtrl.read);
+app.get("/api/getOldEmployee/:id", oldEmployeesCtrl.findById);
 
 app.put("/api/update_daily_time_cards/:id", newJobCtrl.update_daily_time_cards);
 app.put("/api/update_employees_worked/:id", newJobCtrl.update_employees_worked);
@@ -47,6 +48,7 @@ app.put("/api/updateEmployee/:id", employeeCtrl.update);
 app.delete("/api/delete_job/:id", newJobCtrl.delete_job);
 app.delete("/api/delete_old_job:id", oldJobCtrl.delete);
 app.delete("/api/deleteEmployee/:id", employeeCtrl.delete);
+app.delete("/api/deleteOldEmployee/:id", oldEmployeesCtrl.delete);
 
 
 // Connections

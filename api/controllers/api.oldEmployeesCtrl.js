@@ -20,12 +20,27 @@ module.exports = {
             if (err) return res.status(500).send(err);
             else res.send(result);
         });
-    }
+    },
+
+
+
+    findById: function(req, res) {
+        OldEmployee.findOne({ _id: req.params.id })
+        .exec(function(err, result) {
+            if (err) return res.status(500).send(err);
+            else res.send(result);
+         });
+     },
 
 
 
 	
-
+     delete: function(req, res) {
+        OldEmployee.findByIdAndRemove(req.params.id, function(err, result) {
+            if (err) return res.status(500);
+            else res.send(result);
+        });
+    }
 
 
 };

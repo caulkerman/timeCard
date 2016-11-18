@@ -4,8 +4,6 @@ Create a function that adds up all the employee's time (maybe for the year or so
 
 Make it so when the employee has been deleted/quit/fired/retired (made "old") that the html page clears and there is a notice saying that it has been transferred to a different page.
 
-Make it so TandM shows up in the table so as not to confuse the admin to think there are duplicate time cards.
-
 Make it so you don't delete all hours, dates, and jobsites that share the same date when attempting to delete one.  Fix this by adding the above TandM.
 
 

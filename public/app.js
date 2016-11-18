@@ -74,8 +74,8 @@ var app = angular.module("timeCard", ["ui.router", "smart-table", "ui.bootstrap"
 			controllerAs: "ctrl"
 		})
 
-		.state("the-employee", {
-			url: "/the-employee/:id",
+		.state("admin-the-employee", {
+			url: "/admin-the-employee/:id",
 			templateUrl: "components/admin-the-employee/admin-the-employee-template.html",
 			controller: "adminTheEmployee",
 			controllerAs: "ctrl"

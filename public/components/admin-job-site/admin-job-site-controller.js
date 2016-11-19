@@ -397,7 +397,6 @@ function sendLateToEmpArray(late_hours, date, late_employee, employeeTimeId) {
 			
 			adminJobSiteService.updateEmployeesWorkedInDBbyId($scope.employeesArray[i].job_site_hours_worked, $scope.employeesArray[i]._id).then(function(response) {
 				console.log("this is the employeesArray updated response ", response.data);
-					
 			});
 		};
 	};
@@ -457,23 +456,24 @@ function addAllTheHours() {
 
 
 
-$scope.deleteEmployeeFromTC = function(employee_Name, hoursWorked, id) {//this doesn't work correctly when the filter is being used
-	console.info("the employee_Name: ", employee_Name, "the hoursWorked: ", hoursWorked);
+$scope.deleteEmployeeFromTC = function(id) {//this doesn't work correctly when the filter is being used
+	console.info("the id" ,id);
 	var i, j;
 
 	for (i = 0; i < $scope.dailyTCs.length; i++) {
 		for (j = 0; j < $scope.dailyTCs[i].employees_worked.length; j++) {
-			if (employee_Name === $scope.dailyTCs[i].employees_worked[j].employeeName && hoursWorked === $scope.dailyTCs[i].employees_worked[j].hours_worked) {
+			if (id === $scope.dailyTCs[i].employees_worked[j].employeeTimeId) {
 				
-				var theOneBeingDeleted = $scope.dailyTCs[i].employees_worked[j];
-				
-				deleteEmployeeFromEmployees(theOneBeingDeleted, id);
+				let theOneBeingDeleted = $scope.dailyTCs[i].employees_worked[j];
+				console.log("the one being deleted: ", theOneBeingDeleted);
+				deleteEmployeeFromEmployees(theOneBeingDeleted);
 
 				$scope.dailyTCs[i].employees_worked.splice([j], 1);
 
 				employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId($scope.dailyTCs, $scope.jobsite._id).then(function(response) {
 					getTheJobSiteFromDBbyId();
 				});
+				break;
 			};
 		};
 	};	
@@ -506,22 +506,25 @@ function deleteTimeFromEmployee(index) {
 
 
 
-function deleteEmployeeFromEmployees(theOne, id) {
+function deleteEmployeeFromEmployees(theOne) {
 
-	console.log("deleteEmployeeFromEmployees function has fired: ");
+	console.log("deleteEmployeeFromEmployees function has fired: ", theOne);
 
 	for (var i = 0; i < $scope.employeesArray.length; i++) {
 
 		for (var j = 0; j < $scope.employeesArray[i].job_site_hours_worked.length; j++) {
-			console.warn("delete the employee!!!!!: ", $scope.employeesArray[i].job_site_hours_worked[j]._id);
 			
-			if ($scope.employeesArray[i].job_site_hours_worked[j]._id === id) {
+			if ($scope.employeesArray[i].job_site_hours_worked[j].employeeTimeId === theOne.employeeTimeId) {
+
+				console.warn("delete the employee!!!!!: ", $scope.employeesArray[i].job_site_hours_worked[j].employeeTimeId);
+
 				$scope.employeesArray[i].job_site_hours_worked.splice([j], 1);
 				
-				adminJobSiteService.updateEmployeesWorkedInDBbyId(emps.job_site_hours_worked, emps._id).then(function(response) {
+				adminJobSiteService.updateEmployeesWorkedInDBbyId($scope.employeesArray[i].job_site_hours_worked, $scope.employeesArray[i]._id).then(function(response) {
 					getEmployees();
 					console.log("this is the employeesArray updated response ", response.data);
 				});
+				break;
 			};
 		};
 	};

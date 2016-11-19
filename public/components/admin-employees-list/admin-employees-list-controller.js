@@ -33,7 +33,7 @@ const ctrl = this;
 		for (var i = 0; i < $scope.employees.length; i++) {
 			if (name === $scope.employees[i].fullName) {
 				var id = $scope.employees[i]._id;
-					$state.go("the-employee", {id: id});
+					$state.go("admin-the-employee", {id: id});
 			}
 		}
 	};

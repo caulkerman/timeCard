@@ -484,10 +484,10 @@ $scope.deleteEmployeeFromTC = function(id) {//this doesn't work correctly when t
 function deleteTimeFromEmployee(index) {
 	console.log("the deleteTimeFromEmployee function has fired and index: ", index);
 
-	for (var i = 0; i < $scope.employeesArray.length; i++) {
+	for (let i = 0; i < $scope.employeesArray.length; i++) {
 		
-		for (var j = 0; j < $scope.employeesArray[i].job_site_hours_worked.length; j++) {
-			for (var p = 0; p < $scope.dailyTCs[index].employees_worked.length; p++) {
+		for (let j = 0; j < $scope.employeesArray[i].job_site_hours_worked.length; j++) {
+			for (let p = 0; p < $scope.dailyTCs[index].employees_worked.length; p++) {
 				
 				if ($scope.dailyTCs[index].employees_worked[p].employeeName === $scope.employeesArray[i].fullName && $scope.dailyTCs[index].theDate === $scope.employeesArray[i].job_site_hours_worked[j].date_worked) {
 					
@@ -508,8 +508,6 @@ function deleteTimeFromEmployee(index) {
 
 function deleteEmployeeFromEmployees(theOne) {
 
-	console.log("deleteEmployeeFromEmployees function has fired: ", theOne);
-
 	for (var i = 0; i < $scope.employeesArray.length; i++) {
 
 		for (var j = 0; j < $scope.employeesArray[i].job_site_hours_worked.length; j++) {
@@ -522,7 +520,6 @@ function deleteEmployeeFromEmployees(theOne) {
 				
 				adminJobSiteService.updateEmployeesWorkedInDBbyId($scope.employeesArray[i].job_site_hours_worked, $scope.employeesArray[i]._id).then(function(response) {
 					getEmployees();
-					console.log("this is the employeesArray updated response ", response.data);
 				});
 				break;
 			};

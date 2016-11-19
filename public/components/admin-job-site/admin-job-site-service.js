@@ -92,8 +92,6 @@ this.updateTheEmployeeInDBbyId = function(employee, id) {
 
 
 this.updateEmployeesWorkedInDBbyId = function (employees_worked, id) {
-	console.log("in the service the employees_worked: ", employees_worked);
-	console.log("in the service the id: ", id);
 	var deferred = $q.defer();
 	$http({
 		method: "PUT",

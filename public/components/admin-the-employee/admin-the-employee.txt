@@ -1,6 +1,8 @@
-Maybe make the employee details an ng-show or hide, think about it.
+Maybe make the employee details an ng-show or hide.
 
 Create a function that adds up all the employee's time (maybe for the year or something, perhaps buttons that can do it for week, weeks, month, year).
+
+In addition to making it so the hours add up, make it so it shows time noticably for the work week, like put a line in it or something.
 
 Make it so when the employee has been deleted/quit/fired/retired (made "old") that the html page clears and there is a notice saying that it has been transferred to a different page.
 

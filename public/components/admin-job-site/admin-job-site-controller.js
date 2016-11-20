@@ -406,18 +406,27 @@ function sendLateToEmpArray(late_hours, date, late_employee, employeeTimeId) {
 
 
 
-$scope.deleteTC = function(index) {//need to make it so the time from this deleted time card gets deleted from the employee's time.
+$scope.deleteTC = function(id, index) {//need to make it so the time from this deleted time card gets deleted from the employee's time.
+	console.log("the id: ", id, "and the index from html: ,", index)
+	for (var i = 0; i < $scope.dailyTCs.length; i++) {
+		
+		if (id === $scope.dailyTCs[i]._id) {
+			
+			var TCindex = [i];
+			console.log("the Tindex: ", TCindex);
+			deleteTimeFromEmployee(TCindex)
 	
-	deleteTimeFromEmployee(index)
+			$scope.hideDeleteWarning(index);
 	
-	$scope.hideDeleteWarning(index);
+			$scope.dailyTCs.splice(TCindex, 1);
 	
-	$scope.dailyTCs.splice(index, 1);
-	
-	employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId($scope.dailyTCs, $scope.jobsite._id).then(function(response) {
-		getTheJobSiteFromDBbyId();
-		addAllTheHours();			
-	});
+			employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId($scope.dailyTCs, $scope.jobsite._id).then(function(response) {
+				getTheJobSiteFromDBbyId();
+				addAllTheHours();			
+			});
+			break;
+		};
+	};
 };
 
 

@@ -59,18 +59,18 @@ app.service("employeeJobSiteTimeCardService", ["$q", "$http", "$timeout", functi
 	}
 
 
-	//this function updates the whole jobsite
-	this.updateJobsiteNotes = function(notes, id) {
-	var deferred = $q.defer();
-	$http({
-		method: "PUT",
-		url: "/api/updateJobSiteNotes/" + id,
-		data: notes
-	}).then(function(response) {
-		deferred.resolve(response);
-	});
-	return deferred.promise;
-}
+// 	//this function updates the whole jobsite
+// 	this.updateJobsiteNotes = function(notes, id) {
+// 	var deferred = $q.defer();
+// 	$http({
+// 		method: "PUT",
+// 		url: "/api/updateJobSiteNotes/" + id,
+// 		data: notes
+// 	}).then(function(response) {
+// 		deferred.resolve(response);
+// 	});
+// 	return deferred.promise;
+// }
 
 
 

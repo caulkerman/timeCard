@@ -163,21 +163,6 @@ ctrl.addNote = function(notes) {
 			});
 		});
 
-		// employeeJobSiteTimeCardService.updateJobsiteNotes(ctrl.jobsite.jobSiteNotes, ctrl.jobsite._id).then(function(response) {
-		// console.log("the updateTheJobSite function response from db: ", response);
-		// addAllTheHours();
-		
-		// });
-		// if (ctrl.dailyTimeCard.theDate === ctrl.dailyTimeCard.theDate) {
-		// 	ctrl.dailyTimeCard.notes = notes;
-			
-		// 	employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId(dailyTCArray, ctrl.jobsite._id).then(function(response) {
-		// 		console.log("the notes update response ", response);
-		// 		if (response.status === 200) {
-
-		// 		};
-		// 	});
-		// };
 	ctrl.noteShow = false;
 };
 

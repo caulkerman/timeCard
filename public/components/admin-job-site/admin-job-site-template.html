@@ -109,7 +109,7 @@
         <div ng-show="deleteWarning[$index]">
             <p class="warn">Are you sure you want to delete this day's time dard?  Clicking yes will delete the whole time card for this day including all time, materials, employees, etc... You WILL NOT be able to get this day back</p>
             <button ng-click="hideDeleteWarning($index)">NO</button>
-            <button ng-click="deleteTC($index)">YES</button>
+            <button ng-click="deleteTC(timecard._id, $index)">YES</button>
         </div>
                 
         <a ng-hide="showDTCs[$index]" href="" ng-click="showDailyTCs($index)" >{{timecard.theDate}}</a>

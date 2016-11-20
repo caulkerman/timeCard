@@ -63,20 +63,27 @@
 
 <!--<button class="addPhotos">Add Photos</button>-->
 
+
+<div class="materials" ng-show="ctrl.showMaterialsDiv">
+    <!-- <button ng-click="ctrl.hideTextBox()" ng-show="ctrl.textAreaShow">Close</button> -->
+     <!-- <button ng-click="ctrl.showTextArea()" ng-hide="ctrl.textAreaShow" >Materials Used</button> -->
+     <!-- <br /> -->
+
+    <!-- <div id="textArea" ng-show="ctrl.textAreaShow"> -->
+    <div id="textArea">
+    <p>Enter the materials used for this day</p>
+        <textarea ng-model="ctrl.materials"></textarea>
+        <button ng-click="ctrl.addMaterials(ctrl.materials)">Add</button>
+    </div>
+</div>
+
+
+
 <div name="employeesDiv" ng-show="ctrl.timeCardCreated">
 
     <p ng-show="ctrl.needMaterials" class="warning">Oops! You must enter the materials used for today before submitting time for employees</p>
 
-    <div class="notesAndMaterials">
-        <button ng-click="ctrl.hideTextBox()" ng-show="ctrl.textAreaShow">Close</button>
-        <button ng-click="ctrl.showTextArea()" ng-hide="ctrl.textAreaShow" >Materials Used</button>
-        <br />
-
-        <div id="textArea" ng-show="ctrl.textAreaShow">
-            <textarea ng-model="ctrl.materials"></textarea>
-            <button ng-click="ctrl.addMaterials(ctrl.materials)">Add</button>
-        </div>
-    </div>
+    
     <br />
 
     <div class="notesAndMaterials">
@@ -89,6 +96,7 @@
         </div>
     </div>
     <br />
+
 
     <label for="employeeFilter">Filter Employee: </label>
 

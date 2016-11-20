@@ -44,6 +44,7 @@ app.get("/api/getOldEmployee/:id", oldEmployeesCtrl.findById);
 app.put("/api/update_daily_time_cards/:id", newJobCtrl.update_daily_time_cards);
 app.put("/api/update_employees_worked/:id", newJobCtrl.update_employees_worked);
 app.put("/api/updateEmployee/:id", employeeCtrl.update);
+// app.put("/api/updateJobSiteNotes/:id", newJobCtrl.update_jobsite_notes);
 
 app.delete("/api/delete_job/:id", newJobCtrl.delete_job);
 app.delete("/api/delete_old_job:id", oldJobCtrl.delete);

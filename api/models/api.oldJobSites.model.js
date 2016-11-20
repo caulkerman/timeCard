@@ -13,6 +13,7 @@ var oldJobSchema = new Schema({
 	materials_needed: { type: String },
 	completed: { type: Boolean, default: false },
 	timeAndMaterial: { type: Boolean, default: false },
+	jobSiteNotes: { type: Array },
 	daily_time_cards: [
 		{
 			theDate: {type: String },
@@ -22,12 +23,15 @@ var oldJobSchema = new Schema({
 					date: { type: Date, default: Date.now },
 					employeeName: String,
 					hours_worked: Number,
-					date_worked: String
+					edited_hours: Number,
+					edited_hours_flag: { type: Boolean, default: false },
+					date_worked: String,
+					employeeTimeId: String
 				}
 			],
 			materials_used: String,
-			notes: String,
-			late: { type: Boolean, default: false }
+			late: { type: Boolean, default: false },
+			TandM: { type: Boolean, default: false }
 		}
 	]
 })

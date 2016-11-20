@@ -1,6 +1,6 @@
 (function() {
-var $inject = ["$scope", "$stateParams", "employeeJobSiteTimeCardService", "admin_employees_list_service", "$timeout"];
-function employeeJobSiteTimeCardControllerCB($scope, $stateParams, employeeJobSiteTimeCardService, admin_employees_list_service, $timeout) {
+var $inject = ["$scope", "$stateParams", "employeeJobSiteTimeCardService", "admin_employees_list_service", "$timeout", "adminJobSiteService"];
+function employeeJobSiteTimeCardControllerCB($scope, $stateParams, employeeJobSiteTimeCardService, admin_employees_list_service, $timeout, adminJobSiteService) {
 
 'use strict'
 
@@ -47,23 +47,28 @@ ctrl.tAndmYes = function() {
 	let tAndm = true;
 	ctrl.addTheNewDailyTimeCardToJobsiteObject(tAndm);
 	ctrl.showtAndmOptions = false;
+	ctrl.showMaterialsDiv = true;
+
 }
 
 ctrl.tAndmNo = function() {
 	let tAndm = false;
 	ctrl.addTheNewDailyTimeCardToJobsiteObject(tAndm);
 	ctrl.showtAndmOptions = false;
+	ctrl.showMaterialsDiv = true;
+
 }
 
 
 ctrl.addTheNewDailyTimeCardToJobsiteObject = function(tAndm) {
+
 	var flag = false;
 	
 	function DailyTimeCard() {
 		this.theDate = ctrl.theDate;
 		this.employees_worked = [];
 		this.materials_used = '';
-		this.notes = '';
+		// this.notes = '';
 		this.TandM = tAndm;
 		this.late = false;
 	}
@@ -89,7 +94,7 @@ ctrl.addTheNewDailyTimeCardToJobsiteObject = function(tAndm) {
 		if (flag === false) {
 			dailyTCArray.unshift(ctrl.dailyTimeCard);
 			employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId(dailyTCArray, ctrl.jobsite._id).then(function(response) {
-				ctrl.timeCardCreated = true;
+				// ctrl.timeCardCreated = true;
 				ctrl.showtAndmOptions = false;
 				ctrl.timeCardAlreadyExists = false;
 			});
@@ -99,7 +104,7 @@ ctrl.addTheNewDailyTimeCardToJobsiteObject = function(tAndm) {
 	if (dailyTCArray.length < 1) {
 		dailyTCArray.push(ctrl.dailyTimeCard);
 		employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId(dailyTCArray, ctrl.jobsite._id);
-		ctrl.timeCardCreated = true;
+		// ctrl.timeCardCreated = true;
 	};
 
 };
@@ -114,13 +119,13 @@ ctrl.hideNoteTextBox = function() {
 	ctrl.noteShow = false;
 };
 
-ctrl.showTextArea = function() {
-	ctrl.textAreaShow = true;
-};
+// ctrl.showTextArea = function() {
+// 	ctrl.textAreaShow = true;
+// };
 
-ctrl.hideTextBox = function() {
-	ctrl.textAreaShow = false;
-};
+// ctrl.hideTextBox = function() {
+// 	ctrl.textAreaShow = false;
+// };
 
 ctrl.showJobDetails = function() {
 	ctrl.jobDetails = true;
@@ -137,17 +142,27 @@ ctrl.hideJobDetails = function() {
 
 ctrl.addNote = function(notes) {
 		
-		if (ctrl.dailyTimeCard.theDate === ctrl.dailyTimeCard.theDate) {
-			ctrl.dailyTimeCard.notes = notes;
-			
-			employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId(dailyTCArray, ctrl.jobsite._id).then(function(response) {
-				console.log("the notes update response ", response);
-				if (response.status === 200) {
+		function NewNote() {
+			this.date = ctrl.theDate,
+			// this.noteMaker = ,
+			this.theNote = notes
+		}
 
-				};
+		var newNote = new NewNote()
+
+		ctrl.jobsite.jobSiteNotes.unshift(newNote);
+		console.log("the job site in controller ", ctrl.jobsite);
+
+		adminJobSiteService.delete_job(ctrl.jobsite).then(function(response) {
+
+			console.error("The job site has been deleted!!!!!!!  but it will be back in just a second")
+
+			adminJobSiteService.updateJobsite(ctrl.jobsite, ctrl.jobsite._id).then(function(response) {
+				console.log("the updateJobsite response from DB", response.data);
+				addAllTheHours();
 			});
-		};
-	
+		});
+
 	ctrl.noteShow = false;
 };
 
@@ -168,8 +183,9 @@ ctrl.addMaterials = function(materials) {
 				ctrl.needMaterials = false;
 			});
 		};
-	
-	ctrl.textAreaShow = false;
+	ctrl.showMaterialsDiv = false;
+	ctrl.timeCardCreated = true;
+	// ctrl.textAreaShow = false;
 };
 
 

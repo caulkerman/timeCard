@@ -17,16 +17,16 @@ app.service("employeeJobSiteTimeCardService", ["$q", "$http", "$timeout", functi
 	//in order to filter days weeks and months to review timecard hours worked I will problably need to use the dayIndex and monthIndex to filter.
 	
 	this.theDate = function() {
-		// return thisMonth + " " + dayOfMonth + ", " + year + ": " + thisDay;
+		return thisMonth + " " + dayOfMonth + ", " + year + ": " + thisDay;
 
-		function TheDateObject() {
-			this.thisMonth = thisMonth,
-			this.dayOfMonth = dayOfMonth,
-			this.year = year,
-			this.thisDay = thisDay
-		}
-		var theDateObject = new TheDateObject();
-		return theDateObject;
+		// function TheDateObject() {
+		// 	this.thisMonth = thisMonth,
+		// 	this.dayOfMonth = dayOfMonth,
+		// 	this.year = year,
+		// 	this.thisDay = thisDay
+		// }
+		// var theDateObject = new TheDateObject();
+		// return theDateObject;
 	}
 
 	
@@ -53,14 +53,14 @@ app.service("employeeJobSiteTimeCardService", ["$q", "$http", "$timeout", functi
 
 	//This function updates the job site, but only updates the array called daily_time_cards.
 	this.updateTheJobSiteInDBbyId = function(daily_time_card, id) {
-		// console.log("Service the jobsite before it goes to DB ", daily_time_card);
+		console.log("Service the jobsite before it goes to DB ", daily_time_card);
 		var deferred = $q.defer();
 		$http({
 			method: "PUT",
 			url:"/api/update_daily_time_cards/" + id,
 			data: daily_time_card
 		}).then(function(response) {
-			// console.log("Service the jobsite after it comes from DB ", response.data);
+			console.log("Service the jobsite after it comes from DB ", response.data);
 		deferred.resolve(response);
 		});
 		return deferred.promise;

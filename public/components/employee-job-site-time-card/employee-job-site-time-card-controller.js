@@ -68,7 +68,6 @@ ctrl.addTheNewDailyTimeCardToJobsiteObject = function(tAndm) {
 		this.theDate = ctrl.theDate;
 		this.employees_worked = [];
 		this.materials_used = '';
-		// this.notes = '';
 		this.TandM = tAndm;
 		this.late = false;
 	}
@@ -103,7 +102,11 @@ ctrl.addTheNewDailyTimeCardToJobsiteObject = function(tAndm) {
 
 	if (dailyTCArray.length < 1) {
 		dailyTCArray.push(ctrl.dailyTimeCard);
-		employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId(dailyTCArray, ctrl.jobsite._id);
+		employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId(dailyTCArray, ctrl.jobsite._id).then(function(response) {
+			if (response.status !== 200) {
+				console.error("It didn't work!!")
+			};
+		});
 		// ctrl.timeCardCreated = true;
 	};
 

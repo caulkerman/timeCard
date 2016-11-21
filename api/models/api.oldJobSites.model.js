@@ -26,7 +26,8 @@ var oldJobSchema = new Schema({
 					edited_hours: Number,
 					edited_hours_flag: { type: Boolean, default: false },
 					date_worked: String,
-					employeeTimeId: String
+					employeeTimeId: String,
+
 				}
 			],
 			materials_used: String,
@@ -35,11 +36,6 @@ var oldJobSchema = new Schema({
 		}
 	]
 })
-
-
-
-
-
 
 
 var collectionName = "oldJobs";

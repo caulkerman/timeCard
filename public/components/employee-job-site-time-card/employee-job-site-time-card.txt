@@ -1,3 +1,5 @@
 Styling: make it so when the user has submitted time that the submit button does something like turn green or disappear.
 
 Make it so whoever is the forman signed in to make the time card that he has access to the timecard to make changes for the rest of the day, but no one else.
+
+Make it so the notes array shows up in the job site details and not just when a daily time card is created.

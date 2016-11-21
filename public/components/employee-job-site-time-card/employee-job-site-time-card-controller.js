@@ -33,7 +33,7 @@ var functionToGetEmployees = function() {
 functionToGetEmployees();
 
 ctrl.theDate = employeeJobSiteTimeCardService.theDate();
-
+console.log("the new theDate object: ", ctrl.theDate);
 
 
 
@@ -169,13 +169,9 @@ ctrl.addNote = function(notes) {
 
 
 
-
-
-
-
 ctrl.addMaterials = function(materials) {
 	
-		if (ctrl.dailyTimeCard.theDate === ctrl.dailyTimeCard.theDate) {
+		if (ctrl.dailyTimeCard.theDate === ctrl.dailyTimeCard.theDate) {///WHAT IN THE WORLD IS THIS LINE?????? Think about it, it probably doesn't need to be here and I can't remember why I did it
 			ctrl.dailyTimeCard.materials_used = materials;
 			
 			employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId(dailyTCArray, ctrl.jobsite._id).then(function(response) {

@@ -60,6 +60,15 @@ ctrl.tAndmNo = function() {
 }
 
 
+
+
+
+function numbetTheTimeCard() {};
+
+
+
+
+
 ctrl.addTheNewDailyTimeCardToJobsiteObject = function(tAndm) {
 
 	var flag = false;

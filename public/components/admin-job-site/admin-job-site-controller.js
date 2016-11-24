@@ -1,6 +1,6 @@
 (function() {
-var $inject = ["$scope", "$stateParams", "employeeJobSiteTimeCardService", "adminJobSiteService", "$timeout", "$uibModal", "$rootScope"];
-function adminJobSiteControllerCB($scope, $stateParams, employeeJobSiteTimeCardService, adminJobSiteService, $timeout, $uibModal, $rootScope) {
+var $inject = ["$scope", "$stateParams", "employeeJobSiteTimeCardService", "adminJobSiteService", "$timeout", "$uibModal", "$rootScope", "$state"];
+function adminJobSiteControllerCB($scope, $stateParams, employeeJobSiteTimeCardService, adminJobSiteService, $timeout, $uibModal, $rootScope, $state) {
 
 'use strict'
 const ctrl = this;
@@ -544,10 +544,12 @@ $scope.completedJob = function() {
 
 		adminJobSiteService.delete_job($scope.jobsite).then(function(response) {
 
-			console.error("The Job Site Has Been DELETED!!!!!!!!")
+			// console.error("The Job Site Has Been DELETED!!!!!!!!")
 			$scope.finalFarewell = true;
-						
-			getTheJobSiteFromDBbyId();
+
+			$timeout(function() {
+				$state.go("admin-job-site-list");
+			}, 1500);			
 		});
 	});
 };

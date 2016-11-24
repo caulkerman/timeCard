@@ -1,9 +1,11 @@
 (function() {
 
-var $inject = ["$scope", "$stateParams", "adminOldJobSiteService", "adminJobSiteListService"];
+var $inject = ["$scope", "$stateParams", "adminOldJobSiteService", "adminJobSiteListService", "$timeout", "$state"];
 
-adminOldJobSiteControllerCB = function($scope, $stateParams, adminOldJobSiteService, adminJobSiteListService) {
+adminOldJobSiteControllerCB = function($scope, $stateParams, adminOldJobSiteService, adminJobSiteListService, $timeout, $state) {
 
+"use strict"
+const ctrl = this;
 /////////ADD JAVASCRIPT BELOW\\\\\\\\\\
 
 const oldJobSiteId = $stateParams.id;
@@ -15,10 +17,10 @@ var oldJobSites;
 function getOldJobSiteFromDBbyId() {
 	
 	adminOldJobSiteService.getOldJobSiteFromDBbyId(oldJobSiteId).then(function(response) {
-		$scope.oldJobSite = response.data;
-        $scope.oldDTCs = $scope.oldJobSite.daily_time_cards;
+		ctrl.oldJobSite = response.data;
+        ctrl.oldDTCs = ctrl.oldJobSite.daily_time_cards;
 		
-		console.warn("$scope.oldJobsite ", $scope.oldJobSite);
+		console.warn("ctrl.oldJobsite ", ctrl.oldJobSite);
 	});
 };
 getOldJobSiteFromDBbyId();
@@ -40,8 +42,8 @@ getAllOldJobSites();
 ///////This function gets all current/live jobs
 // function getListOfJobs() {
 // 	adminJobSiteListService.getJobs().then(function(response) {
-// 		$scope.job_sites = response.data;
-// 		console.log("getListOfJobs function in jobsite controller ", $scope.job_sites);
+// 		ctrl.job_sites = response.data;
+// 		console.log("getListOfJobs function in jobsite controller ", ctrl.job_sites);
 // 	})
 // }
 // getListOfJobs();
@@ -50,7 +52,9 @@ getAllOldJobSites();
 
 
 ////////This function pushes this job site back into the current/live jobs and deletes it from the old jobs
-$scope.resurrectJob = function() {
+ctrl.resurrectJob = function() {
+
+	ctrl.finalFarewell = true;
 
 	for (var i = 0; i < oldJobSites.length; i++) {
 
@@ -61,10 +65,13 @@ $scope.resurrectJob = function() {
 				
 				adminOldJobSiteService.deleteTheJobById(oldJobSiteId).then(function(response) {
 					
-					$scope.showTheDetails = false;
-					$scope.finalFarewell = true;					
+					ctrl.finalFarewellResurrected = true;
+
+					$timeout(function() {
+						$state.go("admin-job-site-list")
+					}, 1500);				
 					
-					getOldJobSiteFromDBbyId();
+					// getOldJobSiteFromDBbyId();
 				});
 			});
 		};
@@ -74,23 +81,51 @@ $scope.resurrectJob = function() {
 
 
 
+ctrl.deleteJob = function() {
+	console.log("deleteJob function has fired");
+	ctrl.deleteWarning = true;
+	ctrl.finalFarewell = true;
+	console.log("deleteWarning value: ", ctrl.deleteWarning);
+};
+
+ctrl.deleteNo = function() {
+	console.log("the NO function has fired");
+	ctrl.deleteWarning = false;
+	ctrl.finalFarewell = false;
+};
+
+ctrl.deleteYes = function() {
+	adminOldJobSiteService.deleteTheJobById(oldJobSiteId).then(function(response) {
+					
+		ctrl.finalFarewellDeleted = true;
+		ctrl.deleteWarning = false;
+
+			$timeout(function() {
+				$state.go("admin-job-site-list")
+			}, 1500);				
+	});
+};
+
+
+
+
 ////////NG-HIDES AND NG-SHOWS\\\\\\\
 
-$scope.showTheTC = [];
-$scope.showTC = function(index) {
-	$scope.showTheTC[index] = true;
+ctrl.showTheTC = [];
+ctrl.showTC = function(index) {
+	ctrl.showTheTC[index] = true;
 }
 
-$scope.hideTC = function(index) {
-	$scope.showTheTC[index] = false;
+ctrl.hideTC = function(index) {
+	ctrl.showTheTC[index] = false;
 }
 
-$scope.showDetails = function() {
-	$scope.showTheDetails = true;
+ctrl.showDetails = function() {
+	ctrl.showTheDetails = true;
 }
 
-$scope.hideDetails = function() {
-	$scope.showTheDetails = false;
+ctrl.hideDetails = function() {
+	ctrl.showTheDetails = false;
 }
 
 

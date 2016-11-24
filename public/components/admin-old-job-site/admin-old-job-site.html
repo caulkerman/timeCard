@@ -1,52 +1,62 @@
-<h1>{{oldJobSite.name}}</h1>
+  <div class="admin-old-job-site-container-div" ng-hide="ctrl.finalFarewell">  
+    <h1>{{ctrl.oldJobSite.name}}</h1>
 
-<button ng-click="showDetails()" ng-hide="showTheDetails">Show Job Details</button>
-<button ng-click="hideDetails()" ng-show="showTheDetails">Hide Job Details</button>
-<button ng-click="resurrectJob()">Resurrect Job Site</button>
+    <button ng-click="ctrl.showDetails()" ng-hide="ctrl.showTheDetails">Show Job Details</button>
+    <button ng-click="ctrl.hideDetails()" ng-show="ctrl.showTheDetails">Hide Job Details</button>
+    <button ng-click="ctrl.resurrectJob()">Resurrect Job Site</button>
+    <button ng-click="ctrl.deleteJob()">Delete Job Site</button>
 
-<div ng-show="showTheDetails">
-    <p><label for="contractor">Contractor: </label> {{oldJobSite.contractor}}</p>
-    <p><label for="job_address">Job Site Address: </label> {{oldJobSite.job_address}}</p>    
-    <p><label for="superintendent_name">Superintendent: </label> {{oldJobSite.superintendent_name}}</p>
-    <p><label for="superintendent_telephone">Superintendent Telephone: </label> {{oldJobSite.superintendent_telephone}}</p>
-    <p><label for="job_details">Job Work Details: </label> {{oldJobSite.job_details}}</p>
-    <p><label for="materials_needed">Job Materials Needed: </label> {{oldJobSite.materials_needed}}</p>
-</div>
-
-<h3>The Dates</h3>
-
-<div ng-repeat="oldDTC in oldDTCs track by $index">
-
-    <hr />    
-    
-    <a href="" ng-click="showTC($index)" ng-hide="showTheTC[$index]">{{oldDTC.theDate}}</a>
-    <a href="" ng-click="hideTC($index)" ng-show="showTheTC[$index]">{{oldDTC.theDate}}</a>
-
-    <div ng-show="showTheTC[$index]">
-
-        <label for="materials">Materials Used: </label><p name="materials">{{oldDTC.materials_used}}</p>
-        <label for="notes">Notes: </label><p name="notes">{{oldDTC.notes}}</p>
-
-        <table st-table="students" class="table table-striped">
-             <thead>
-                <tr>
-                    <td>Employee Name</td>
-                    <td>Daily Time</td>
-                </tr>
-            </thead>
-
-            <tbody>
-                 <tr ng-repeat="employees in oldDTC.employees_worked track by $index">
-                    <td>{{employees.employeeName}}</td>
-                    <td>{{employees.hours_worked}}</td>
-                </tr>
-            </tbody>
-        </table>
-        <hr />
-
+    <div ng-show="ctrl.showTheDetails">
+        <p><label for="contractor">Contractor: </label> {{ctrl.oldJobSite.contractor}}</p>
+        <p><label for="job_address">Job Site Address: </label> {{ctrl.oldJobSite.job_address}}</p>    
+        <p><label for="superintendent_name">Superintendent: </label> {{ctrl.oldJobSite.superintendent_name}}</p>
+        <p><label for="superintendent_telephone">Superintendent Telephone: </label> {{ctrl.oldJobSite.superintendent_telephone}}</p>
+        <p><label for="job_details">Job Work Details: </label> {{ctrl.oldJobSite.job_details}}</p>
+        <p><label for="materials_needed">Job Materials Needed: </label> {{ctrl.oldJobSite.materials_needed}}</p>
     </div>
 
-</div>   
+    <h3>The Dates</h3>
 
-<p ng-show="finalFarewell">This job site has been moved to the admin-job-site-list page</p>
+    <div ng-repeat="oldDTC in ctrl.oldDTCs track by $index">
+
+        <hr />    
+        
+        <a href="" ng-click="ctrl.showTC($index)" ng-hide="ctrl.showTheTC[$index]">{{oldDTC.theDate}}</a>
+        <a href="" ng-click="ctrl.hideTC($index)" ng-show="ctrl.showTheTC[$index]">{{oldDTC.theDate}}</a>
+
+        <div ng-show="ctrl.showTheTC[$index]">
+
+            <label for="materials">Materials Used: </label><p name="materials">{{oldDTC.materials_used}}</p>
+            <label for="notes">Notes: </label><p name="notes">{{oldDTC.notes}}</p>
+
+            <table st-table="students" class="table table-striped">
+                 <thead>
+                    <tr>
+                        <td>Employee Name</td>
+                        <td>Daily Time</td>
+                    </tr>
+                </thead>
+
+                <tbody>
+                     <tr ng-repeat="employees in oldDTC.employees_worked track by $index">
+                        <td>{{employees.employeeName}}</td>
+                        <td>{{employees.hours_worked}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <hr />
+
+        </div>
+
+    </div> 
+</div>  
+
+<div ng-show="ctrl.deleteWarning">
+    <p>Are you sure you want to delete the {{ctrl.oldJobSite.name}} job site?  You will NEVER, EVER, be able to get it back!</p>
+    <button ng-click="ctrl.deleteNo()">NO</button>
+    <button ng-click="ctrl.deleteYes()">YES</button>
+</div>
+
+<p ng-show="ctrl.finalFarewellResurrected">The {{ctrl.oldJobSite.name}} job site has been moved to the admin-job-site-list page</p>
+<p ng-show="ctrl.finalFarewellDeleted">The {{ctrl.oldJobSite.name}} job site has been deleted!</p>
 

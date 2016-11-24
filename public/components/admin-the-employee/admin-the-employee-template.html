@@ -1,41 +1,46 @@
 <h2>{{ctrl.theEmployee.fullName}}</h2>
 
-<div>
-    <p>The Employee's User Name: <span>{{ctrl.theEmployee.userName}}{{ctrl.theEmployee.email}}</span></p> 
- <!--make sure you take off the in-line styling-->
-    <p>The Employee's Current Password: <span>{{ctrl.theEmployee.password}}</span></p>
-    <p>The Employee's Type: <span>{{ctrl.theEmployee.employeeType}}</span></p>
-</div>
+<div class="the-employee-container-div" ng-hide="ctrl.finalFarewell">
+    <div>
+        <p>The Employee's User Name: <span>{{ctrl.theEmployee.userName}}{{ctrl.theEmployee.email}}</span></p> 
+     <!--make sure you take off the in-line styling-->
+        <p>The Employee's Current Password: <span>{{ctrl.theEmployee.password}}</span></p>
+        <p>The Employee's Type: <span>{{ctrl.theEmployee.employeeType}}</span></p>
+    </div>
 
-<div>
-    <input type="text" ng-model="dateFilter" placeholder="Search For Dates">
-</div>
+    <div>
+        <input type="text" ng-model="dateFilter" placeholder="Search For Dates">
+    </div>
 
-<div>
-    <button ng-click="ctrl.retireEmployee()">Retire the Employee</button>
-</div>
+    <div>
+        <button ng-click="ctrl.retireEmployee()">Retire the Employee</button>
+    </div>
 
-<div>
+    <div>
 
-    <table st-table="students" class="table table-striped">
-        
-        <thead>
-            <tr>
-                <td>Date</td>
-                <td>Hours</td>
-                <td>Job Site</td>
-            </tr>
-        </thead>
+        <table st-table="students" class="table table-striped">
+            
+            <thead>
+                <tr>
+                    <td>Date</td>
+                    <td>Hours</td>
+                    <td>Job Site</td>
+                </tr>
+            </thead>
 
-        <tbody>
-            <tr ng-repeat="hours in ctrl.hours_worked | filter: {date_worked:dateFilter} track by $index">
-                <td>{{hours.date_worked}}</td>
-                <td>{{hours.hours_worked}}</td>
-                <td ng-hide="ctrl.noJobSite[$index]"><a href="" ng-click="ctrl.goToJobSite(hours.job_site, $index)">{{hours.job_site}}</a><span ng-show="hours.TandM">  T &amp M</span></td>
-                <td ng-show="ctrl.noJobSite[$index]" class="rw-warning">Oops! This job site has been completed and is now inactive.</td>
-            </tr>
-        </tbody>
+            <tbody>
+                <tr ng-repeat="hours in ctrl.hours_worked | filter: {date_worked:dateFilter} track by $index">
+                    <td>{{hours.date_worked}}</td>
+                    <td>{{hours.hours_worked}}</td>
+                    <td ng-hide="ctrl.noJobSite[$index]"><a href="" ng-click="ctrl.goToJobSite(hours.job_site, $index)">{{hours.job_site}}</a><span ng-show="hours.TandM">  T &amp M</span></td>
+                    <td ng-show="ctrl.noJobSite[$index]" class="rw-warning">Oops! This job site has been completed and is now inactive.</td>
+                </tr>
+            </tbody>
 
-    </table>
+        </table>
 
-</div>
+    </div>
+</div>
+{{ctrl.date}}
+
+<p ng-show="ctrl.finalFarewell">This employee has been retired and has been moved to the old employees page</p>

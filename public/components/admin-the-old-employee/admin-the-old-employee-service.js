@@ -58,12 +58,14 @@ this.resurrectOldEmployee = function(employee) {
 
 
 
-this.deleteTheOldEmployee = function(id) {
+this.deleteTheOldEmployee = function(employee) {
+	console.log("delete employee in service: ", employee);
 	var deferred = $q.defer();
 	$http({
 		method: "DELETE",
-		url: "/api/deleteOldEmployee/" + id
+		url: "/api/deleteOldEmployee/" + employee._id
 	}).then(function(response) {
+		console.log("the delete employee response from server: ", response.data);
 		deferred.resolve(response);
 	});
 	return deferred.promise;

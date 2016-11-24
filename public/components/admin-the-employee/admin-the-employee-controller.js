@@ -12,6 +12,8 @@ const theEmployeeId = $stateParams.id;
 console.log("the employee _id ", theEmployeeId);
 
 ctrl.noJobSite = []; //this is for the ng-hide/show within the ng-repeat.
+ctrl.date = new Date();
+console.log("new Date return", ctrl.date);
 
 
 //this function gets the chosen employee object from DB
@@ -80,7 +82,7 @@ ctrl.goToJobSite = function(jobName, index) {
 
 //deletes the employee from the employeesList array and sends it to DB
 ctrl.retireEmployee = function() {
-console.log("retireEmployee function has fired");
+// console.log("retireEmployee function has fired");
     
     for (let i = 0; i < ctrl.employeesList.length; i++) {
         
@@ -92,6 +94,7 @@ console.log("retireEmployee function has fired");
                     console.log("the employee has been deleted");
                     console.log("the employee _id ", theEmployeeId);
                     getTheEmployeeFromDBbyId();
+                    ctrl.finalFarewell = true;
                 });
             });
         };   

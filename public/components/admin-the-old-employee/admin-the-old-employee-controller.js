@@ -63,6 +63,26 @@ ctrl.resurrectOldEmployee = function() {
 };
 
 
+
+
+ctrl.deleteEmployee = function() {
+	ctrl.deleteWarning = true;
+};
+
+ctrl.deleteNo = function() {
+	ctrl.deleteWarning = false;
+};
+
+ctrl.deleteYes = function() {
+	console.log("the deleteEmployee function has fired")
+	adminTheOldEmployeeService.deleteTheOldEmployee(ctrl.theOldEmployee).then(function(response) {
+		ctrl.finalFarewell = true;
+	});
+};
+
+
+
+
 }
 adminTheOldEmployeeCB.$inject = $inject;
 angular.module("timeCard").controller("adminTheOldEmployee", adminTheOldEmployeeCB)

@@ -21,6 +21,7 @@ const getTheEmployeeFromDBbyId = function() {
     theEmployeeService.getEmployeeById(theEmployeeId).then(function(response) {
         console.log("the employee from controller ", response.data);
         ctrl.theEmployee = response.data;
+        ctrl.employeeName = ctrl.theEmployee.fullName;
         if (response) {
             ctrl.hours_worked = ctrl.theEmployee.job_site_hours_worked;
         };
@@ -82,7 +83,7 @@ ctrl.goToJobSite = function(jobName, index) {
 
 //deletes the employee from the employeesList array and sends it to DB
 ctrl.retireEmployee = function() {
-// console.log("retireEmployee function has fired");
+    ctrl.finalFarewell = true;
     
     for (let i = 0; i < ctrl.employeesList.length; i++) {
         
@@ -93,8 +94,11 @@ ctrl.retireEmployee = function() {
                 theEmployeeService.deleteEmployee(ctrl.theEmployee._id).then(function(response) {
                     console.log("the employee has been deleted");
                     console.log("the employee _id ", theEmployeeId);
-                    getTheEmployeeFromDBbyId();
-                    ctrl.finalFarewell = true;
+
+                    $timeout(function() {
+                        $state.go("admin-employees-list");
+                    }, 1500);
+
                 });
             });
         };   

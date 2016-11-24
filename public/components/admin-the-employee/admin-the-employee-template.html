@@ -1,6 +1,9 @@
-<h2>{{ctrl.theEmployee.fullName}}</h2>
+<link rel="stylesheet" href="components/admin-the-employee/admin-the-employee.css">
 
 <div class="the-employee-container-div" ng-hide="ctrl.finalFarewell">
+
+<h2>{{ctrl.employeeName}}</h2>
+
     <div>
         <p>The Employee's User Name: <span>{{ctrl.theEmployee.userName}}{{ctrl.theEmployee.email}}</span></p> 
      <!--make sure you take off the in-line styling-->
@@ -40,7 +43,9 @@
         </table>
 
     </div>
-</div>
-{{ctrl.date}}
+</div>
 
-<p ng-show="ctrl.finalFarewell">This employee has been retired and has been moved to the old employees page</p>
+<div ng-show="ctrl.finalFarewell">
+    <p>The {{ctrl.employeeName}} employee has just been retired.</p>
+    <!-- <p>{{ctrl.employeeName}} has been retired to the Old Employees page.</p> -->
+</div>

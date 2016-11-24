@@ -1,7 +1,7 @@
 (function() {
 
-var $inject = ["$scope", "$stateParams", "adminTheOldEmployeeService"];
-function adminTheOldEmployeeCB($scope, $stateParams, adminTheOldEmployeeService) {
+var $inject = ["$scope", "$stateParams", "adminTheOldEmployeeService", "$timeout", "$state"];
+function adminTheOldEmployeeCB($scope, $stateParams, adminTheOldEmployeeService, $timeout, $state) {
 "use strict"
 const ctrl = this;
 
@@ -55,8 +55,14 @@ ctrl.resurrectOldEmployee = function() {
 			
 			if (ctrl.oldEmployeesArray[i]._id === ctrl.theOldEmployee._id) {
 				ctrl.oldEmployeesArray.splice([i], 1)
-				adminTheOldEmployeeService.deleteTheOldEmployee(ctrl.theOldEmployee._id);
-				getTheOldEmployeeFromDB();
+				adminTheOldEmployeeService.deleteTheOldEmployee(ctrl.theOldEmployee).then(function(response) {
+					ctrl.finalFarewellResurrected = true;
+					ctrl.finalFarewell = true;
+					$timeout(function() {
+						$state.go("admin-employees-list");
+					}, 1500);
+				});
+				// getTheOldEmployeeFromDB();
 			};
 		};
 	});
@@ -76,7 +82,12 @@ ctrl.deleteNo = function() {
 ctrl.deleteYes = function() {
 	console.log("the deleteEmployee function has fired")
 	adminTheOldEmployeeService.deleteTheOldEmployee(ctrl.theOldEmployee).then(function(response) {
+		ctrl.deleteWarning = false;
 		ctrl.finalFarewell = true;
+		ctrl.finalFarewellDeleted = true;
+		$timeout(function() {
+			$state.go("admin-employees-list");
+		}, 1500);
 	});
 };
 

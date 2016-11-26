@@ -101,14 +101,13 @@ $scope.hideUpdateForm = function() {
 	$scope.showUpdateJobSite = false;
 };
 
-// $scope.showLateTCdiv = function() {
-// 	$scope.showLateTC = true;
-// };
+$scope.viewNotes = function() {
+	$scope.seeNotes = true;
+}
 
-// function hideLateTCdiv() {
-// 	$scope.showLateTC = false;
-// 	$scope.newDate = "";
-// };
+$scope.hideNotes = function() {
+	$scope.seeNotes = false;
+}
 
 $scope.deleteWarning = [];
 $scope.showDeleteWarning = function(index) {
@@ -151,9 +150,15 @@ adminJobSiteService.getJobs().then(function(response) {
 
 
 //Takes in new data from the form and updates the job site with that new data
-$scope.updateTheJobSite = function(contractor, jobAddress, jobDetails, materialsNeeded, name, superintendent, superintendentTelephone) {
+$scope.updateTheJobSite = function(contractor, jobAddress, jobDetails, materialsNeeded, name, superintendent, superintendentTelephone, notes) {
 	
+
 	var j = $scope.jobsite;
+
+	function AddToNotesArray() {
+		this.noteDate = $scope.theDate;
+		this.theNote = notes;
+	};
 	
 	j.contractor = contractor;
 	j.job_address = jobAddress;
@@ -162,6 +167,14 @@ $scope.updateTheJobSite = function(contractor, jobAddress, jobDetails, materials
 	j.name = name;
 	j.superintendent_name = superintendent;
 	j.superintendent_telephone = superintendentTelephone;
+	// j.jobSiteNotes = new AddToNotesArray();
+
+		var jobNotes = new AddToNotesArray();
+		
+		if (notes) {
+			$scope.jobsite.jobSiteNotes.push(jobNotes);
+		};
+
 	
 	adminJobSiteService.delete_job($scope.jobsite).then(function(response) {
 
@@ -170,7 +183,7 @@ $scope.updateTheJobSite = function(contractor, jobAddress, jobDetails, materials
 		adminJobSiteService.updateJobsite($scope.jobsite, $scope.jobsite._id).then(function(response) {
 		console.log("the updateTheJobSite function response from db: ", response);
 		addAllTheHours();
-		
+		getTheJobSiteFromDBbyId();
 		});
 	});	
 };
@@ -432,17 +445,31 @@ $scope.deleteTC = function(id, index) {//need to make it so the time from this d
 
 
 
-$scope.addMaterialsAndNotes = function(notes, materials, index) {
+$scope.addMaterialsAndNotes = function(notes, materials, index, noteDate) {
 	
 	if (notes || materials) {
 		$scope.updating[index] = true;
 
-		$scope.dailyTCs[index].materials_used = materials;
-		$scope.dailyTCs[index].notes = notes;
+		function AddToNotesArray() {
+			this.noteDate = noteDate;
+			this.theNote = notes;
+		};
 
-		employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId($scope.dailyTCs, $scope.jobsite._id).then(function(response) {
-			getTheJobSiteFromDBbyId();
-			$scope.updating[index] = false;
+		var jobNotes = new AddToNotesArray();
+
+		$scope.dailyTCs[index].materials_used = materials;
+		
+		if (jobNotes.theNote){
+			$scope.jobsite.jobSiteNotes.push(jobNotes);
+		};
+
+		adminJobSiteService.delete_job($scope.jobsite).then(function(response) {
+			adminJobSiteService.updateJobsite($scope.jobsite, $scope.jobsite._id).then(function(response) {
+				console.log("the updateTheJobSite function response from db: ", response);
+				addAllTheHours();
+				getTheJobSiteFromDBbyId();
+				$scope.updating[index] = false;
+			});
 		});
 	};
 };

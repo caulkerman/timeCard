@@ -10,54 +10,69 @@
     <button ng-click="hideUpdateForm()" ng-show="showUpdateJobSite">Hide Jobsite Details</button>
 
 
-    <form ng-show="showUpdateJobSite" ng-submit="updateTheJobSite(jobsite.contractor, jobsite.job_address, jobsite.job_details, jobsite.materials_needed, jobsite.name, jobsite.superintendent_name, jobsite.superintendent_telephone)">
-        
-        <p>You can edit and change the job site details</p>
+    <div class="formDiv">
+        <form ng-show="showUpdateJobSite" ng-submit="updateTheJobSite(jobsite.contractor, jobsite.job_address, jobsite.job_details, jobsite.materials_needed, jobsite.name, jobsite.superintendent_name, jobsite.superintendent_telephone, jobsite.notes)">
+            
+            <p>You can edit and change the job site details</p>
 
-        <p>Total Job Site Hours Worked: {{totalJobSiteHours}}</p>
+            <p>Total Job Site Hours Worked: {{totalJobSiteHours}}</p>
 
 
-        <div>
-            <label for="name">Job Name: </label>
-            <input type="text" class="updateJobSite" ng-model="jobsite.name" name="name">
-        </div>
+            <div>
+                <label for="name">Job Name: </label>
+                <input type="text" class="updateJobSite" ng-model="jobsite.name" name="name">
+            </div>
 
-        <div >
-            <label for="contractor">Contractor: </label>
-            <input type="text" class="updateJobSite" ng-model="jobsite.contractor" name="contractor">
-        </div>
+            <div >
+                <label for="contractor">Contractor: </label>
+                <input type="text" class="updateJobSite" ng-model="jobsite.contractor" name="contractor">
+            </div>
 
-        <div>
-            <label for="superintendent_name">Superintendent Name: </label>
-            <input type="text" class="updateJobSite" ng-model="jobsite.superintendent_name" name="superintendent_name">
-        </div>
+            <div>
+                <label for="superintendent_name">Superintendent Name: </label>
+                <input type="text" class="updateJobSite" ng-model="jobsite.superintendent_name" name="superintendent_name">
+            </div>
 
-        <div>
-            <label for="superintendent_telephone">Superintendant Telephone: </label>
-            <input type="number" class="updateJobSite" ng-model="jobsite.superintendent_telephone" name="superintendent_telephone">
-        </div>
+            <div>
+                <label for="superintendent_telephone">Superintendant Telephone: </label>
+                <input type="number" class="updateJobSite" ng-model="jobsite.superintendent_telephone" name="superintendent_telephone">
+            </div>
 
-        <div>
-            <label for="job_address">Job Address: </label>
-            <input type="text" class="updateJobSite" ng-model="jobsite.job_address" name="job_address">
-        </div>
+            <div>
+                <label for="job_address">Job Address: </label>
+                <input type="text" class="updateJobSite" ng-model="jobsite.job_address" name="job_address">
+            </div>
 
-        <div>
-            <label for="job_details">Job Details: </label>
-            <textarea class="updateJobSite" ng-model="jobsite.job_details" name="job_details"></textarea>
-        </div>
+            <div>
+                <label for="job_details">Job Details: </label>
+                <textarea class="updateJobSite" ng-model="jobsite.job_details" name="job_details"></textarea>
+            </div>
 
-        <div>
-            <label for="materials_needed">Materials Needed: </label>
-            <textarea class="updateJobSite" ng-model="jobsite.materials_needed" name="materials_needed"></textarea>
-        </div>
+            <div>
+                <label for="materials_needed">Materials Needed: </label>
+                <textarea class="updateJobSite" ng-model="jobsite.materials_needed" name="materials_needed"></textarea>
+            </div>
 
-        
+            <div>
+                <div>
+                    <label for="notes">Notes: </label>
+                    <textarea class="updateJobSite" ng-model="jobsite.notes" name="notes"></textarea>
+                </div>
 
-        
 
-        <input type="submit" class="updateJobSite" value="Update Jobsite">
-    </form>
+                <div ng-repeat="notes in jobsite.jobSiteNotes" class="notes-div" ng-show="seeNotes">
+                    <label>{{notes.noteDate}}:</label>
+                    <p>{{notes.theNote}}</p>
+                </div>
+            </div>
+
+            <input type="submit" class="updateJobSite" value="Update Jobsite">
+        </form>
+            <!-- YOU SHOULD DO SOMETHING WITH THE WAY THESE BUTTONS ARE PLACED -->
+        <button ng-click="viewNotes()" ng-hide="seeNotes">View Notes</button>
+        <button ng-click="hideNotes()" ng-show="seeNotes">Hide Notes</button>
+
+    </div>
 
 
     <!-- This is Create a Late Time Card Modal-->
@@ -130,7 +145,7 @@
                     <textarea name="notes" ng-model="timecard.notes"></textarea>
                     <p ng-show="updating[$index]">UPDATING!</p>
 
-                    <button ng-click="addMaterialsAndNotes(timecard.notes, timecard.materials_used, $index)">Submit Materials and Notes</button>
+                    <button ng-click="addMaterialsAndNotes(timecard.notes, timecard.materials_used, $index, timecard.theDate)">Submit Materials and Notes</button>
                 </div>
                         <!-- THE TABLE -->
                 <table st-table="students" class="table table-striped">

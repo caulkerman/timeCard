@@ -2,7 +2,7 @@ Maybe make the employee details an ng-show or hide.
 
 Create a function that adds up all the employee's time (maybe for the year or something, perhaps buttons that can do it for week, weeks, month, year).
 
-In addition to making it so the hours add up, make it so it shows time noticably for the work week, like put a line in it or something.
+In addition to making it so the hours add up, make it so it shows time noticably for the work week/pay period, like put a line in it or something.
 
 
 

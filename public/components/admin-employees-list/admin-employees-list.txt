@@ -4,4 +4,4 @@ STyling - Get rid of the red Cancel button and add a small X at the top right co
 
 make it so under the table header Hours This Week that the hours for this employee shows up for the week.
 
-Need to split the employees by whether they be workers or admin so that when foreman is filliing out time card he/she doesn't have access to the admin.
+Need to split the employees by whether they be workers or admin so that when foreman is filliing out time card he/she doesn't have access to the admin.  I think that I need to consider and plan how I want to separate the admins from the employees.

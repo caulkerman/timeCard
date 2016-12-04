@@ -1,1 +1,5 @@
-******** IMPORTANT ******** retiring the employee does not delete if from the collection in DB.
+******** IMPORTANT ******** retiring the employee does not delete it from the collection in DB. Not sure what this means.
+
+Go back and look at hy I was not able to get the "late" value to show up on the view if the time card was late.
+
+Make it so if a daily time card that is not TandM but is either late or not has an employee's time that is deleted, that it deletes the time card entry for that employee.  What has happened is that the employee filled out a time card and put hours for Randy Williams, then Admin came along and gave time for Randy Williams but in a late time card for the same day.  If I delete one, the double time for that day is not deleted from the employee's list of time.

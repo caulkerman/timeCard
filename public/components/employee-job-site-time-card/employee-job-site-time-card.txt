@@ -2,8 +2,12 @@ Styling: make it so when the user has submitted time that the submit button does
 
 Make it so whoever is the forman signed in to make the time card that he has access to the timecard to make changes for the rest of the day, but no one else.
 
-********* IMPORTANT*********   Make it so the notes array shows up in the job site details and not just when a daily time card is created.
-
 *********IMPORTANT**********   Find out why even though there is a time card for that day that the program allows the user to continue on with materials and employee time is saved to the employee object.  This function isn't recording a new time card for the job site object but it is sending through and saving to the employee object.  Make it so the materials text area doesn't even show up.
 
-******** IMPORTANT ********* In the job site details button when it shows the details of the job site, there is no view of the notes.  Need to make it so employee can see the notes.
+******** IMPORTANT ********* In the job site details button when it shows the details of the job site, there is no view of the notes.  Need to make it so employee can see the notes.  Make it so the notes array shows up in the job site details and not just when a daily time card is created.
+
+******** IMPORTANT ******* Notes didn't submit the date stamp
+
+ideas from Miguel for the timecard appp
+
+*Being able to group the people into jobs, having

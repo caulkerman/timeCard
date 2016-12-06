@@ -1,0 +1,4 @@
+Trying to make the pages printable.
+
+	Maybe make it so there is a printable pages folder/directory and have the different types of printable pages there such as "employee's hours worked"- pay period, month, year.....  Jobs site time cards worked on today, this week, month, year.  Perhaps make a page printable that will just be the details of the job site and its notes.  Lots of things to think about.
+

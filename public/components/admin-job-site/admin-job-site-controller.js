@@ -172,7 +172,7 @@ $scope.updateTheJobSite = function(contractor, jobAddress, jobDetails, materials
 		var jobNotes = new AddToNotesArray();
 		
 		if (notes) {
-			$scope.jobsite.jobSiteNotes.push(jobNotes);
+			$scope.jobsite.jobSiteNotes.unshift(jobNotes);
 		};
 
 	
@@ -460,7 +460,7 @@ $scope.addMaterialsAndNotes = function(notes, materials, index, noteDate) {
 		$scope.dailyTCs[index].materials_used = materials;
 		
 		if (jobNotes.theNote){
-			$scope.jobsite.jobSiteNotes.push(jobNotes);
+			$scope.jobsite.jobSiteNotes.unshift(jobNotes);
 		};
 
 		adminJobSiteService.delete_job($scope.jobsite).then(function(response) {

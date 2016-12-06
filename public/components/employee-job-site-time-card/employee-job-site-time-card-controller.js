@@ -1,6 +1,6 @@
 (function() {
-var $inject = ["$scope", "$stateParams", "employeeJobSiteTimeCardService", "admin_employees_list_service", "$timeout", "adminJobSiteService"];
-function employeeJobSiteTimeCardControllerCB($scope, $stateParams, employeeJobSiteTimeCardService, admin_employees_list_service, $timeout, adminJobSiteService) {
+var $inject = ["$scope", "$stateParams", "employeeJobSiteTimeCardService", "admin_employees_list_service", "$timeout", "adminJobSiteService", "$log"];
+function employeeJobSiteTimeCardControllerCB($scope, $stateParams, employeeJobSiteTimeCardService, admin_employees_list_service, $timeout, adminJobSiteService, $log) {
 
 'use strict'
 
@@ -47,23 +47,25 @@ ctrl.tAndmYes = function() {
 	let tAndm = true;
 	ctrl.addTheNewDailyTimeCardToJobsiteObject(tAndm);
 	ctrl.showtAndmOptions = false;
-	ctrl.showMaterialsDiv = true;
-
+	// ctrl.showMaterialsDiv = true;
 }
 
 ctrl.tAndmNo = function() {
 	let tAndm = false;
 	ctrl.addTheNewDailyTimeCardToJobsiteObject(tAndm);
 	ctrl.showtAndmOptions = false;
-	ctrl.showMaterialsDiv = true;
-
+	// ctrl.showMaterialsDiv = true;
 }
 
+// function hideMaterialsDiv() {
+// 	ctrl.showMaterialsDiv = false;
+// }
 
 
 
 
-function numbetTheTimeCard() {};
+
+// function numberTheTimeCard() {};  This is doing nothing right now and will probably do nothing.
 
 
 
@@ -90,6 +92,7 @@ ctrl.addTheNewDailyTimeCardToJobsiteObject = function(tAndm) {
 				flag = true;
 				
 				if (flag) {
+					// ctrl.showMaterialsDiv = false;
 					ctrl.timeCardAlreadyExists = true;
 					// ctrl.showtAndmOptions = false;					
 					$timeout(function() {
@@ -102,6 +105,10 @@ ctrl.addTheNewDailyTimeCardToJobsiteObject = function(tAndm) {
 		if (flag === false) {
 			dailyTCArray.unshift(ctrl.dailyTimeCard);
 			employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId(dailyTCArray, ctrl.jobsite._id).then(function(response) {
+				if (response.status === 200) {
+					ctrl.showMaterialsDiv = true;
+					console.log("showMaterialsDiv value: ", ctrl.showMaterialsDiv);
+				};
 				// ctrl.timeCardCreated = true;
 				ctrl.showtAndmOptions = false;
 				ctrl.timeCardAlreadyExists = false;
@@ -115,6 +122,7 @@ ctrl.addTheNewDailyTimeCardToJobsiteObject = function(tAndm) {
 			if (response.status !== 200) {
 				console.error("It didn't work!!")
 			};
+			ctrl.showMaterialsDiv = true;
 		});
 		// ctrl.timeCardCreated = true;
 	};
@@ -155,7 +163,7 @@ ctrl.hideJobDetails = function() {
 ctrl.addNote = function(notes) {
 		
 		function NewNote() {
-			this.date = ctrl.theDate,
+			this.noteDate = ctrl.theDate,
 			// this.noteMaker = ,
 			this.theNote = notes
 		}
@@ -171,7 +179,7 @@ ctrl.addNote = function(notes) {
 
 			adminJobSiteService.updateJobsite(ctrl.jobsite, ctrl.jobsite._id).then(function(response) {
 				console.log("the updateJobsite response from DB", response.data);
-				addAllTheHours();
+				getTheJobSiteFromDBbyId()
 			});
 		});
 

@@ -30,6 +30,8 @@
 <div class="jobDetails" ng-show="ctrl.jobDetails">
         <div>
             <label>Total Jobsite Man Hours Worked: </label><span> {{ctrl.totalJobSiteHours}}
+        </div>
+
         <div>
             <label>Job Name: </label><span> {{ctrl.jobsite. name}}</span>
         </div>
@@ -57,7 +59,14 @@
         <div>
             <label>Materials Needed: </label><span> {{ctrl.jobsite.materials_needed}}</span>
         </div>
-    </div>
+
+        <div>
+            <label>Notes: </label>
+            <div ng-repeat="note in ctrl.jobsite.jobSiteNotes">
+                <b id="notesDate">{{note.noteDate}}</b>
+                <p>{{note.theNote}}</p>
+            </div>
+        </div>
 </div>
 <br />
 

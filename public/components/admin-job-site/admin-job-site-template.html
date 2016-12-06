@@ -61,16 +61,20 @@
 
 
                 <div ng-repeat="notes in jobsite.jobSiteNotes" class="notes-div" ng-show="seeNotes">
-                    <label>{{notes.noteDate}}:</label>
-                    <p>{{notes.theNote}}</p>
+                    <ul>
+                        <label>{{notes.noteDate}}:</label>
+                        <p>{{notes.theNote}}</p>
+                    </ul>
                 </div>
             </div>
 
             <input type="submit" class="updateJobSite" value="Update Jobsite">
         </form>
-            <!-- YOU SHOULD DO SOMETHING WITH THE WAY THESE BUTTONS ARE PLACED -->
-        <button ng-click="viewNotes()" ng-hide="seeNotes">View Notes</button>
-        <button ng-click="hideNotes()" ng-show="seeNotes">Hide Notes</button>
+            <!-- YOU SHOULD DO SOMETHING WITH THE WAY THESE BUTTONS ARE PLACED. cant put button inside the form because it will call the submit function-->
+        <div ng-show="showNotesDiv">
+            <button ng-click="viewNotes()" ng-hide="seeNotes">View Notes</button>
+            <button ng-click="hideNotes()" ng-show="seeNotes">Hide Notes</button>
+        </div>
 
     </div>
 

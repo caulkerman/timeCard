@@ -94,10 +94,12 @@ $scope.hideDailyTCs = function(index) {
 
 
 $scope.showUpdateForm = function() {
+	$scope.showNotesDiv = true;
 	$scope.showUpdateJobSite = true;
 };
 
 $scope.hideUpdateForm = function() {
+	$scope.showNotesDiv = false;
 	$scope.showUpdateJobSite = false;
 };
 

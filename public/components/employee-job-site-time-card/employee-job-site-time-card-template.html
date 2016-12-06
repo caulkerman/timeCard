@@ -63,9 +63,11 @@
         <div>
             <label>Notes: </label>
             <div ng-repeat="note in ctrl.jobsite.jobSiteNotes">
-                <b id="notesDate">{{note.noteDate}}</b>
-                <p>{{note.theNote}}</p>
-            </div>
+                <ul>
+                    <b id="notesDate">{{note.noteDate}}</b>
+                    <p>{{note.theNote}}</p>
+                </ul>
+            </div>
         </div>
 </div>
 <br />

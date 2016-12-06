@@ -179,7 +179,7 @@ ctrl.addNote = function(notes) {
 
 			adminJobSiteService.updateJobsite(ctrl.jobsite, ctrl.jobsite._id).then(function(response) {
 				console.log("the updateJobsite response from DB", response.data);
-				getTheJobSiteFromDBbyId()
+				getTheJobSiteFromDBbyId();
 			});
 		});
 

@@ -20,6 +20,7 @@ const ctrl = this;
 
 	//this function is called from another controller, is used to update the ng-repeated $scope.employees once the modal has closed.
 	$rootScope.updateNgRepeat = function() {
+		console.log("The rootScope function has fired");
 		admin_employees_list_service.getEmployees().then(function(response) {
 				$scope.employees = response.data;
 			});
@@ -121,7 +122,7 @@ console.log("the ctrl.employees array: ", ctrl.employees);
 
 		//The "if" conditional is here as a secondary measure to make sure the form is valid before submitting the new employee name to the database.  If I am using the angular way to do forms I might as well do this
 		if (isValid) {
-			if (employee.employeeType === "Admin") {//NOT SURE WHY I AM DOING THIS
+			if (employee.employeeType === "Admin") {//NOT SURE WHY I AM DOING THIS ----probably so I can seperate the admins from the workers and send them to their own arrays, or something.
 				alert("this is an admin");
 			} else {
 				console.log("the employee object, ", employee);

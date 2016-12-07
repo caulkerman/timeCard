@@ -447,23 +447,23 @@ $scope.deleteTC = function(id, index) {//need to make it so the time from this d
 
 
 
-$scope.addMaterialsAndNotes = function(notes, materials, index, noteDate) {
+$scope.addMaterials = function(materials, index, noteDate) {
 	
-	if (notes || materials) {
+	if (materials) {
 		$scope.updating[index] = true;
 
-		function AddToNotesArray() {
-			this.noteDate = noteDate;
-			this.theNote = notes;
-		};
+		// function AddToNotesArray() {
+		// 	this.noteDate = noteDate;
+		// 	this.theNote = notes;
+		// };
 
-		var jobNotes = new AddToNotesArray();
+		// var jobNotes = new AddToNotesArray();
 
-		$scope.dailyTCs[index].materials_used = materials;
+		$scope.dailyTCs[index].materials_used = materials;//you might find that using the $index here may cause errors if you are using the filter.  The filter messes up the index of the ng-repeat array order.
 		
-		if (jobNotes.theNote){
-			$scope.jobsite.jobSiteNotes.unshift(jobNotes);
-		};
+		// if (jobNotes.theNote){
+		// 	$scope.jobsite.jobSiteNotes.unshift(jobNotes);
+		// };
 
 		adminJobSiteService.delete_job($scope.jobsite).then(function(response) {
 			adminJobSiteService.updateJobsite($scope.jobsite, $scope.jobsite._id).then(function(response) {

@@ -142,14 +142,20 @@
                         
                         <!--MAKE SURE TO MAKE THESE STYLED AS display: block -->
                 <div>
-                    <label for="materials">Materials Used: </label>
-                    <textarea name="materials" ng-model="timecard.materials_used"></textarea></p>
+                    <p for="materials"><b>Materials Used: </b></p>
+                    <textarea name="materials" ng-model="timecard.materials_used">
+                        
+                    </textarea></p>
+                </div>
 
-                    <label for="notes">Notes: </label>
-                    <textarea name="notes" ng-model="timecard.notes"></textarea>
+                <div>
+                    <!-- <label for="notes">Notes: </label>
+                    <textarea name="notes">
+                        
+                    </textarea> -->
                     <p ng-show="updating[$index]">UPDATING!</p>
 
-                    <button ng-click="addMaterialsAndNotes(timecard.notes, timecard.materials_used, $index, timecard.theDate)">Submit Materials and Notes</button>
+                    <button ng-click="addMaterials(timecard.materials_used, $index, timecard.theDate)">Submit Materials</button>
                 </div>
                         <!-- THE TABLE -->
                 <table st-table="students" class="table table-striped">

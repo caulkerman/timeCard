@@ -2,3 +2,5 @@ Trying to make the pages printable.
 
 	Maybe make it so there is a printable pages folder/directory and have the different types of printable pages there such as "employee's hours worked"- pay period, month, year.....  Jobs site time cards worked on today, this week, month, year.  Perhaps make a page printable that will just be the details of the job site and its notes.  Lots of things to think about.
 
+	Need to make a way that the admin can see a list of jobs and how recently they were worked on.  The idea is if we have worked on a job yesterday that it will show up at the top.  Probably will have to have a property on the daily_time_card object that tells whether it has been looked at by the admin, that way it can be checked off automatically when they go to it.
+

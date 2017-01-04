@@ -117,17 +117,11 @@
     <br />
 
 
-
-
-
-
-
-
     <div ng-repeat="timecard in dailyTCs | filter: {theDate:filter_date} track by $index">  
         <hr> 
         <div>
             <div ng-show="deleteWarning[$index]">
-                <p class="warn">Are you sure you want to delete this day's time dard?  Clicking yes will delete the whole time card for this day including all time, materials, employees, etc... You WILL NOT be able to get this day back</p>
+                <p class="warn">Are you sure you want to delete this day's time card?  Clicking yes will delete the whole time card for this day including all time, materials, employees, etc... You WILL NOT be able to get this day back</p>
                 <button ng-click="hideDeleteWarning($index)">NO</button>
                 <button ng-click="deleteTC(timecard._id, $index)">YES</button>
             </div>
@@ -143,16 +137,10 @@
                         <!--MAKE SURE TO MAKE THESE STYLED AS display: block -->
                 <div>
                     <p for="materials"><b>Materials Used: </b></p>
-                    <textarea name="materials" ng-model="timecard.materials_used">
-                        
-                    </textarea></p>
+                    <textarea name="materials" ng-model="timecard.materials_used"></textarea>
                 </div>
 
                 <div>
-                    <!-- <label for="notes">Notes: </label>
-                    <textarea name="notes">
-                        
-                    </textarea> -->
                     <p ng-show="updating[$index]">UPDATING!</p>
 
                     <button ng-click="addMaterials(timecard.materials_used, $index, timecard.theDate)">Submit Materials</button>

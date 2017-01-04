@@ -308,9 +308,6 @@ $scope.lateEmployee = function(late_employee, late_hours, date, index, timeAndMa
 			
 			break;
 
-		
-
-
 		} else {
 
 			if (!late_hours && !late_employee) {

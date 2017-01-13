@@ -10,6 +10,7 @@ var ctrl = this;
 var jobSiteId = $stateParams.id;
 var dailyTCArray;
 ctrl.needTime = [];
+ctrl.employees = [];
 
 function getTheJobSiteFromDBbyId() {
 	employeeJobSiteTimeCardService.getTheJobSiteFromDBbyId(jobSiteId).then(function(response) {
@@ -24,13 +25,17 @@ getTheJobSiteFromDBbyId();
 
 
 
-var functionToGetEmployees = function() {
+(function() {
 	admin_employees_list_service.getEmployees().then(function(response) {
-		ctrl.employees = response.data;
+		for (let i = 0; i < response.data.length; i++) {
+			if (response.data[i].employeeType === "Worker") {
+				ctrl.employees.push(response.data[i]);
+			};
+		};
 	    console.log("the employees object ", ctrl.employees);
+	    console.log("the response.data: ", response.data);
 	});
-};
-functionToGetEmployees();
+})();
 
 ctrl.theDate = employeeJobSiteTimeCardService.theDate();
 console.log("the new theDate object: ", ctrl.theDate);

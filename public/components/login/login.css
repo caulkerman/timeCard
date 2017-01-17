@@ -1,19 +1,15 @@
-body {
-  height: 500px; }
-
 .page-container {
   overflow: auto;
-  background-color: gray;
-  height: 500px; }
+  height: 700px; }
 
 .login-container {
   background-color: white;
-  height: 300px;
   width: 40%;
   margin-left: auto;
   margin-right: auto;
   margin-top: 30px;
-  border: solid #cccccc 1px; }
+  border: solid #cccccc 1px;
+  padding-top: 40px; }
   .login-container .login-input {
     color: #747c8b;
     width: 90%;
@@ -21,15 +17,13 @@ body {
     border-top: none;
     border-left: none;
     border-right: none;
-    border-color: #747c8b; }
-  .login-container h1 {
-    color: #747c8b;
-    text-align: center; }
+    border-bottom-width: 1px;
+    border-bottom-color: #747c8b; }
   .login-container .login-button {
     border: none;
-    margin: 10px 0 10px 20px;
-    height: 30px;
-    background-color: #3366ff;
+    margin: 10px 0 30px 20px;
+    height: 45px;
+    background-color: #0073e6;
     color: #FFFFFF;
     width: 90%; }
 

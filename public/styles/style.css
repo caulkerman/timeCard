@@ -14,7 +14,7 @@ nav ul li a {
   color: inherit;
   text-decoration: none; }
 
-#h1 {
+h1 {
   text-align: center;
   color: #aaaaaa;
   /*font-family: sans-serif;*/ }
@@ -50,6 +50,20 @@ thead tr td {
   font-weight: bold; }
 
 .rw-warning {
-  color: red; }
+  color: #0073e6; }
+
+::-webkit-input-placeholder {
+  color: #0073e6; }
+
+:-moz-placeholder {
+  /* Firefox 18- */
+  color: #0073e6; }
+
+::-moz-placeholder {
+  /* Firefox 19+ */
+  color: #0073e6; }
+
+:-ms-input-placeholder {
+  color: #0073e6; }
 
 /*# sourceMappingURL=style.css.map */

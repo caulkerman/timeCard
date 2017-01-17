@@ -12,6 +12,7 @@
   padding-top: 40px; }
   .login-container .login-input {
     color: #747c8b;
+    height: 40px;
     width: 90%;
     margin: 10px 0 10px 20px;
     border-top: none;
@@ -26,17 +27,18 @@
     background-color: #0073e6;
     color: #FFFFFF;
     width: 90%; }
+  .login-container .login-button:active {
+    background-color: #004080; }
 
 /*SMARTPHONE SIZE SCREENS*/
 @media only screen and (min-width: 15em) and (max-width: 30em) {
   .login-container {
-    width: 90%; }
+    width: 90%;
+    padding-top: 0; }
 
   .login-input {
-    height: 20px; }
-
-  .login-button {
-    width: 90%; } }
+    height: 20px;
+    margin: 10px 0 10px 0; } }
 /*TABLET SIZE SCREENS*/
 
 /*# sourceMappingURL=login.css.map */

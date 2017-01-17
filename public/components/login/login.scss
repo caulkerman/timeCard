@@ -19,6 +19,7 @@
 
 	.login-input {
 		color: #747c8b;
+		height: 40px;
 		width: 90%;
 		margin: 10px 0 10px 20px;
 		border-top: none;
@@ -37,6 +38,10 @@
 	  	width: 90%;
 	}
 
+	.login-button:active {
+		background-color: #004080;
+	}
+
 }
 
 				/*SMARTPHONE SIZE SCREENS*/
@@ -44,16 +49,16 @@
 
 	.login-container {
 		width: 90%;
+		padding-top: 0;
 	}
 
 	.login-input {
 		height: 20px;
-	}
-
-	.login-button {
-		width: 90%;
+		margin: 10px 0 10px 0;
 
 	}
+
+
 
 }
 

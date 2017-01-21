@@ -6,7 +6,6 @@ function adminEmployeesListControllerCB($scope, $log, admin_employees_list_servi
 const ctrl = this;
 		//////////    ADD YOUR CONTROLLER CODE BELOW   ///////////
 
-	
 	//This function automatically calls to get all the employees from the DB when the page loads
 	var functionToGetEmployees = function() {
 		admin_employees_list_service.getEmployees().then(function(response) {
@@ -22,9 +21,9 @@ const ctrl = this;
 	$rootScope.updateNgRepeat = function() {
 		console.log("The rootScope function has fired");
 		admin_employees_list_service.getEmployees().then(function(response) {
-				$scope.employees = response.data;
-			});
-		};
+			$scope.employees = response.data;
+		});
+	};
 
 
 

@@ -27,7 +27,7 @@ getTheJobSiteFromDBbyId();
 
 (function() {
 	admin_employees_list_service.getEmployees().then(function(response) {
-		for (let i = 0; i < response.data.length; i++) {
+		for (var i = 0; i < response.data.length; i++) {
 			if (response.data[i].employeeType === "Worker") {
 				ctrl.employees.push(response.data[i]);
 			};

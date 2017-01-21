@@ -1,0 +1,1 @@
+Make sure the background image is centered.  Make sure the image is not strethed to weird proportions.  Right now there is too much sky and it is making the ligin box contrast look funny.  Use a background image that is darker in tones to give a softer feel. Also, make sure to use the media query to make the image size correctly with smaller displays.

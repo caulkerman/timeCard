@@ -1,19 +1,33 @@
-header {
-	
+html, body {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    background: transparent;
+	font-family: sans-serif;
 }
 
 .rw-button {
 	margin-left: 10px;
-		margin-right: 30px;
-		height: 30px;
-		border-radius: 4px;
+	margin-right: 30px;
+	height: 30px;
+	border-radius: 4px;
 }
 
-html body {
-	width: 100%;
-	margin: 0;
-	padding: 0;
-	font-family: sans-serif;
+body {
+	margin-top: -20px;
+}
+
+header {
+
+}
+
+h1 {
+	text-align: center;
+	color: #aaaaaa;
+	/*font-family: sans-serif;*/
 }
 
 nav ul li a {
@@ -21,19 +35,13 @@ nav ul li a {
 	text-decoration: none;
 }
 
-#h1 {
-	text-align: center;
-	color: #aaaaaa;
-	/*font-family: sans-serif;*/
-}
-
-nav {
+.nav-bar {
 	height: 50px;
-	/*background-color: blue;*/
+	/*background-color: tan;*/
 	border-bottom: solid 1px #bbbbbb;
 }
 
-nav ul {
+.nav-bar ul {
 	width: 90%;
 }
 
@@ -43,7 +51,6 @@ nav ul li {
 	float: right;
 	padding-top: 15px;
 	margin: 0 0 0 25px;
-	/*background-color: tan;*/
 }
 
 li#nav-left {
@@ -64,5 +71,21 @@ thead tr td  {
 }
 
 .rw-warning {
-	color: red;
+	color: #0073e6;
+}
+
+::-webkit-input-placeholder {
+   color: #0073e6;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+   color: #0073e6;  
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+   color: #0073e6;  
+}
+
+:-ms-input-placeholder {  
+   color: #0073e6;  
 }

@@ -3,6 +3,7 @@ var $inject = ["$scope", "$state", "$uibModal", "$log", "$document"];
 function loginControllerCB($scope, $state, $uibModal, $log, $document) {
 'use strict'
 const ctrl = this;
+// ctrl.loginClick = function() {alert("this button clicks")};
 
 		////////ADD JAVASCRIPT BELOW////////	
 

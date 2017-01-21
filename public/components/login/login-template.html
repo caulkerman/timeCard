@@ -1,43 +1,49 @@
 <link rel="stylesheet" href="components/login/login.css">
 
-<div class="login-container">
-	<h1>Login</h1>
-	<hr>
-	<div class="input-div">
-		<input type="text" class="login-input" placeholder="Enter Your Username" />
-	</div>
-	<div class="input-div">
-		<input type="password" class="login-input" placeholder="Enter Your Password" />
-	</div>
-	<div class="button-div">
-		<button class="login-button">Login</button>
-	</div>
-<hr>
-<button ui-sref="admin" class="input-div">admin</button>
-<button ui-sref="employee" class="input-div">employee</button>
-
-</div>
-
-
-
-<!--///////////the modal\\\\\\\\\\\\\\\\\-->
-<div class="modal-demo">
-	<script type="text/ng-template" id="myModalContent.html">
-        <div class="modal-header">
-            <h3 class="modal-title" id="modal-title">I'm a modal!</h3>
+<div class="page-container">
+    <img src="../../assets/images/Photo0130.jpg" id="login-background-img">
+    <div class="login-container">
+        <!-- <div id="header-div">
+    	   <h1>Login</h1>
         </div>
-        
-        <div class="modal-body" id="modal-body">
-            <button ng-click="ctrl.makeFunctionFire()">Fire</button>
-            <input type="text" ng-model="ctrl.theInputValue">
-        </div>
-        <div class="modal-footer">
-            <button class="btn btn-primary" type="button" ng-click="ctrl.ok()">OK</button>
-            <button class="btn btn-warning" type="button" ng-click="ctrl.cancel()">Cancel</button>
-        </div>
-    </script>
+    	<hr> -->
+    	<div class="input-div">
+    		<input type="text" class="login-input" placeholder="Username:" />
+    	</div>
+    	<div class="input-div">
+    		<input type="password" class="login-input" placeholder="Password:" />
+    	</div>
+    <hr>
 
-    <button type="button" class="btn btn-default" ng-click="ctrl.open()">Open me!</button>
-    <div class="modal-parent">
+    	<div class="button-div">
+    		<button class="login-button" ng-click="ctrl.loginClick()">Login</button>
+    	</div>
     </div>
+
+    <button ui-sref="admin" class="input-div">admin</button>
+    <button ui-sref="employee" class="input-div">employee</button>
+
+
+
+    <!--///////////the modal\\\\\\\\\\\\\\\\\-->
+    <div class="modal-demo">
+    	<script type="text/ng-template" id="myModalContent.html">
+            <div class="modal-header">
+                <h3 class="modal-title" id="modal-title">I'm a modal!</h3>
+            </div>
+            
+            <div class="modal-body" id="modal-body">
+                <button ng-click="ctrl.makeFunctionFire()">Fire</button>
+                <input type="text" ng-model="ctrl.theInputValue">
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" type="button" ng-click="ctrl.ok()">OK</button>
+                <button class="btn btn-warning" type="button" ng-click="ctrl.cancel()">Cancel</button>
+            </div>
+        </script>
+
+        <button type="button" class="btn btn-default" ng-click="ctrl.open()">Open me!</button>
+        <div class="modal-parent">
+        </div>
 </div>
+    </div>

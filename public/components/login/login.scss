@@ -1,38 +1,104 @@
-.login-container {
-	height: 100%;
-	width: 50%;
-	margin: auto;
-	border-radius: 10px;
-	border: solid #cccccc 1px;
-	
-	h1 {
+.page-container {
+	overflow: auto;
+	height: 700px;
+}
 
-	}
+#login-background-img {
+	position: absolute;
+	background-size: cover;
+	-webkit-filter: blur(6px);
+  	filter: blur(6px);
+  	z-index: -9999;
+  	height: 700px;
+  	width: 100%;
+}
+
+.login-container {
+	z-index: 9999;
+	background-color: white;
+	width: 40%;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 30px;
+	border: solid #cccccc 1px;
+	padding-top: 40px;
+	
 
 	.input-div {
-		margin: 20px 10px;
+
 	}
 
 	.login-input {
-		height: 30px;
+		color: #464a53;
+		font-size: 1.5em;
+		font-weight: bold;
+		height: 40px;
 		width: 90%;
-		border-radius: 4px;
+		margin: 10px 0 10px 20px;
+		border-top: none;
+		border-left: none;
+		border-right: none;
+		border-bottom-width: 1px;
+		border-bottom-color: #747c8b;
 	}
 
-	h1 {
-		margin-left: 10px;
+	::-webkit-input-placeholder {
+		font-weight: normal;
+		font-size: 16px;
+	}
+
+	:-moz-placeholder { /* Firefox 18- */
+   		font-weight: normal;  
+   		font-size: 16px;
+	}
+
+	::-moz-placeholder {  /* Firefox 19+ */
+   		font-weight: normal;  
+   		font-size: 16px;
+	}
+
+	:-ms-input-placeholder {  
+   		font-weight: normal;
+   		font-size: 16px;
 	}
 
 	.login-button {
-	  margin-left: 10px;
-	  margin-right: 30px;
-	  height: 30px;
-	  width: 86.5%;
-	  background-color: #5bc0de;
-	  border: solid 1px #428bca;
-	  border-radius: 4px;
-	  color: #FFFFFF;
+	  	border: none;
+		margin: 10px 0 30px 20px;
+		height: 45px;
+	  	background-color: #0073e6;
+	  	color: #FFFFFF;
+	  	width: 90%;
+	}
+
+	.login-button:active {
+		background-color: #004080;
+	}
+
+}
+
+				/*SMARTPHONE SIZE SCREENS*/
+@media only screen and (min-width: 15em) and (max-width: 30em) {
+
+	.login-container {
+		width: 90%;
+		padding-top: 0;
+		margin-top: 20%;
+	}
+
+	.login-input {
+		height: 20px;
+		margin: 10px 0 10px 0;
+
 	}
 
 
+
+}
+
+				/*TABLET SIZE SCREENS*/
+@media only screen and (min-width: 30em) and (max-width: 50em) {
+	.login-container {
+	width: 60%;
+	}
 }

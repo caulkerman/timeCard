@@ -1,3 +1,14 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    background: transparent;
+	font-family: sans-serif;
+}
+
 .rw-button {
 	margin-left: 10px;
 	margin-right: 30px;
@@ -5,15 +16,12 @@
 	border-radius: 4px;
 }
 
-html body {
-	width: 100%;
-	margin: 0;
-	padding: 0;
-	font-family: sans-serif;
+body {
+	margin-top: -20px;
 }
 
 header {
-	background-color: tan;
+
 }
 
 h1 {

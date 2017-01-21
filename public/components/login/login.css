@@ -5,8 +5,8 @@
 #login-background-img {
   position: absolute;
   background-size: cover;
-  -webkit-filter: blur(5px);
-  filter: blur(5px);
+  -webkit-filter: blur(6px);
+  filter: blur(6px);
   z-index: -9999;
   height: 700px;
   width: 100%; }
@@ -67,5 +67,8 @@
     height: 20px;
     margin: 10px 0 10px 0; } }
 /*TABLET SIZE SCREENS*/
+@media only screen and (min-width: 30em) and (max-width: 50em) {
+  .login-container {
+    width: 60%; } }
 
 /*# sourceMappingURL=login.css.map */

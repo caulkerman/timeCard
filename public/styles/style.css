@@ -8,12 +8,6 @@ html, body {
   background: transparent;
   font-family: sans-serif; }
 
-.rw-button {
-  margin-left: 10px;
-  margin-right: 30px;
-  height: 30px;
-  border-radius: 4px; }
-
 body {
   margin-top: -20px; }
 
@@ -51,7 +45,7 @@ li#nav-left {
   display: inline-block;
   float: left;
   padding-top: 15px;
-  margin: 0; }
+  margin-left: 0; }
 
 nav ul li:hover {
   color: red; }
@@ -80,6 +74,9 @@ thead tr td {
 /*SMARTPHONE SIZE SCREENS*/
 @media only screen and (min-width: 15em) and (max-width: 30em) {
   h1 {
-    padding-top: 10px; } }
+    padding-top: 10px; }
+
+  li#nav-left {
+    margin-left: -15px; } }
 
 /*# sourceMappingURL=style.css.map */

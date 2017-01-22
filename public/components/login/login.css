@@ -5,14 +5,14 @@
 #login-background-img {
   position: absolute;
   background-size: cover;
-  -webkit-filter: blur(6px);
-  filter: blur(6px);
-  z-index: -9999;
+  -webkit-filter: blur(4px);
+  filter: blur(4px);
+  z-index: -999;
   height: 700px;
   width: 100%; }
 
 .login-container {
-  z-index: 9999;
+  z-index: 999;
   background-color: white;
   width: 40%;
   margin-left: auto;

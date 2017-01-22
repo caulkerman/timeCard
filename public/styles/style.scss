@@ -21,13 +21,15 @@ body {
 }
 
 header {
+	position: relative;
+	height: 135px;
 
 }
 
 h1 {
 	text-align: center;
 	color: #aaaaaa;
-	/*font-family: sans-serif;*/
+	padding-top: 35px;
 }
 
 nav ul li a {
@@ -36,9 +38,10 @@ nav ul li a {
 }
 
 .nav-bar {
+	position: absolute;
+	bottom: 0;
 	height: 50px;
-	/*background-color: tan;*/
-	border-bottom: solid 1px #bbbbbb;
+	width: 100%;
 }
 
 .nav-bar ul {

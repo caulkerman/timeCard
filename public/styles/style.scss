@@ -92,3 +92,11 @@ thead tr td  {
 :-ms-input-placeholder {  
    color: #0073e6;  
 }
+
+
+				/*SMARTPHONE SIZE SCREENS*/
+@media only screen and (min-width: 15em) and (max-width: 30em) {
+	h1 {
+		padding-top: 10px;
+	}
+}

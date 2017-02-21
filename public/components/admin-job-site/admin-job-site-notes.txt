@@ -15,4 +15,4 @@ Styling - Make the notes div look nicer as it looks pretty bad right now.
 
 Maybe in the future make it so photos can be uploaded --- this is a wish list item right now, if I am feeling jiggy then I can go ahead and do it.
 
-
+I want it so when admin clicks on a date to open the day's timecard that instead of the timecard dropping down below, it opens a modal, maybe.  Just thought that maybe it might make things difficult when admin needs to print the page.  Maybe instead have a new page or a new html template open up, like a directive.

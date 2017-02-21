@@ -405,7 +405,7 @@ function sendLateToEmpArray(late_hours, date, late_employee, employeeTimeId) {
 	for (var i = 0; i < $scope.employeesArray.length; i++) {
 
 		if ($scope.employeesArray[i].fullName === late_employee) {
-			$scope.employeesArray[i].job_site_hours_worked.push(lateEmployeeToEmpArray);
+			$scope.employeesArray[i].job_site_hours_worked.unshift(lateEmployeeToEmpArray);
 			
 			adminJobSiteService.updateEmployeesWorkedInDBbyId($scope.employeesArray[i].job_site_hours_worked, $scope.employeesArray[i]._id).then(function(response) {
 				console.log("this is the employeesArray updated response ", response.data);

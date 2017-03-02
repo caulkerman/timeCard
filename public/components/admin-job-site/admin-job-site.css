@@ -12,6 +12,12 @@ p.warn {
   width: 40%; }
 
 .formDiv {
-  border: solid 2px blue; }
+  width: 50%;
+  z-index: 300;
+  position: absolute;
+  left: 200px;
+  top: 400px;
+  border: solid 2px blue;
+  background-color: white; }
 
 /*# sourceMappingURL=admin-job-site.css.map */

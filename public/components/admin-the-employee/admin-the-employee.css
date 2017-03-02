@@ -1,3 +1,8 @@
+@media print {
+  a:after {
+    content: ''; }
 
+  a[href]:after {
+    content: none !important; } }
 
 /*# sourceMappingURL=admin-the-employee.css.map */

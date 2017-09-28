@@ -1,7 +1,7 @@
 {
 "version": 3,
-"mappings": "AAEC,mBAAG;EACF,WAAW,EAAE,IAAI",
-"sources": ["rw-admin.scss"],
+"mappings": "AAAA,mBAAoB;EAClB,WAAW,EAAE,IAAI;;AAEnB,qCAAqC;AAErC,sCAAsC",
+"sources": ["admin.scss"],
 "names": [],
 "file": "admin.css"
 }

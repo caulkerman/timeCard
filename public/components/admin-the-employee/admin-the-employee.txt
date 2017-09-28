@@ -4,5 +4,5 @@ Create a function that adds up all the employee's time (maybe for the year or so
 
 In addition to making it so the hours add up, make it so it shows time noticably for the work week/pay period, like put a line in it or something.
 
-
+Need to make it so admin can delete employee time from this page, maybe not.
 

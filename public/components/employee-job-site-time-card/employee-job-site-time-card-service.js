@@ -53,17 +53,21 @@ app.service("employeeJobSiteTimeCardService", ["$q", "$http", "$timeout", functi
 
 	//This function updates the job site, but only updates the array called daily_time_cards.
 	this.updateTheJobSiteInDBbyId = function(daily_time_card, id) {
-		console.log("Service the jobsite before it goes to DB ", daily_time_card);
-		var deferred = $q.defer();
-		$http({
-			method: "PUT",
-			url:"/api/update_daily_time_cards/" + id,
-			data: daily_time_card
-		}).then(function(response) {
-			console.log("Service the jobsite after it comes from DB ", response.data);
-		deferred.resolve(response);
-		});
-		return deferred.promise;
+		if(daily_time_card) {
+			console.log("Service the jobsite before it goes to DB ", daily_time_card);
+			var deferred = $q.defer();
+			$http({
+				method: "PUT",
+				url:"/api/update_daily_time_cards/" + id,
+				data: daily_time_card
+			}).then(function(response) {
+				console.log("Service the jobsite after it comes from DB ", response.data);
+			deferred.resolve(response);
+			});
+			return deferred.promise;
+		} else {
+			console.log("Service, employee time didn't go through");
+		}
 	}
 
 

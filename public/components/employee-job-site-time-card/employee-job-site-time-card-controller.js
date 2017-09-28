@@ -212,11 +212,6 @@ ctrl.addMaterials = function(materials) {
 
 
 
-
-
-
-
-
 ctrl.addEmployeeTime = function(employeeName, hours_worked, index) {
 console.log("the name and hours from html ", employeeName, hours_worked);
 	var flag = false;

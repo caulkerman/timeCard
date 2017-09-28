@@ -605,11 +605,6 @@ function createCustomId() {
 
 
 
-
-
-
-
-
 ctrl.animationsEnabled = false;
    
   ctrl.open = function (parentSelector) {
@@ -624,7 +619,7 @@ ctrl.animationsEnabled = false;
 
 
 
-
+////	END OF CONTROLLER   \\\\
 
 }
 adminJobSiteControllerCB.$inject = $inject;

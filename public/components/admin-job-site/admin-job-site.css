@@ -11,6 +11,9 @@ p.warn {
 .notes-div {
   width: 40%; }
 
+.admin-job-site-container-div {
+  position: relative; }
+
 .formDiv {
   width: 50%;
   z-index: 300;

@@ -9,7 +9,7 @@ var ctrl = this;
 
 var jobSiteId = $stateParams.id;
 var dailyTCArray;
-ctrl.needTime = [];
+ctrl.needTime = []; //ctrl.needTime array is there to capture the $index in an ng-repeat. Functionality is so if employee is submitted for time but no time was entered into the input box.
 ctrl.employees = [];
 
 function getTheJobSiteFromDBbyId() {

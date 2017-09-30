@@ -96,11 +96,15 @@ $scope.hideDailyTCs = function(index) {
 $scope.showUpdateForm = function() {
 	$scope.showNotesDiv = true;
 	$scope.showUpdateJobSite = true;
+	console.log("showUpdateForm", $scope.showNotesDiv, $scope.showUpdateJobSite)
+
 };
 
 $scope.hideUpdateForm = function() {
 	$scope.showNotesDiv = false;
 	$scope.showUpdateJobSite = false;
+	console.log("hideUpdateForm", $scope.showNotesDiv, $scope.showUpdateJobSite)
+	
 };
 
 $scope.viewNotes = function() {

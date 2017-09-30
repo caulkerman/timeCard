@@ -19,7 +19,7 @@ p.warn {
   z-index: 300;
   position: absolute;
   left: 200px;
-  top: 400px;
+  top: 200px;
   /*border: solid 2px blue;*/
   background-color: white; }
 

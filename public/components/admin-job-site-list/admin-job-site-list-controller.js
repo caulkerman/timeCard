@@ -20,8 +20,10 @@ const ctrl = this;
 
 
 	$rootScope.updateJobList = function() {
+		console.log("$roootScope function has fired")
 		adminJobSiteListService.getJobs().then(function(response) {
 			ctrl.job_sites = response.data;
+			console.log("The response from $rootScope")
 		})
 	}
 

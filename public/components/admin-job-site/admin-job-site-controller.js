@@ -301,7 +301,7 @@ $scope.lateEmployee = function(late_employee, late_hours, date, index, timeAndMa
 			$scope.dailyTCs[x].employees_worked.unshift(nameHoursDate);
 
 			employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId($scope.dailyTCs, $scope.jobsite._id).then(function(response) {
-				sendLateToEmpArray(late_hours, date, late_employee, nameHoursDate.employeeTimeId);
+				sendLateToEmpArray(late_hours, date, late_employee, nameHoursDate.employeeTimeId, timeAndMaterial);
 				getTheJobSiteFromDBbyId();
 				addAllTheHours();				
 			});
@@ -392,13 +392,14 @@ $scope.lateEmployee = function(late_employee, late_hours, date, index, timeAndMa
 
 
 
-function sendLateToEmpArray(late_hours, date, late_employee, employeeTimeId) {
+function sendLateToEmpArray(late_hours, date, late_employee, employeeTimeId, TandM) {
 
 	function LateEmployeeToEmpArray() {
 		this.date_worked = date;
 		this.hours_worked = late_hours;
 		this.job_site = $scope.jobsite.name
 		this.employeeTimeId = employeeTimeId;
+		this.TandM = TandM;
 	};
 	var lateEmployeeToEmpArray = new LateEmployeeToEmpArray(late_hours, date);
 
@@ -426,7 +427,7 @@ $scope.deleteTC = function(id, index) {//need to make it so the time from this d
 			
 			var TCindex = [i];
 			console.log("the Tindex: ", TCindex);
-			deleteTimeFromEmployee(TCindex)
+			deleteTimeFromEmployee(TCindex, $scope.jobsite.name)
 	
 			$scope.hideDeleteWarning(index);
 	
@@ -516,7 +517,7 @@ $scope.deleteEmployeeFromTC = function(id) {//this doesn't work correctly when t
 
 
 
-function deleteTimeFromEmployee(index) {
+function deleteTimeFromEmployee(index, jobsiteName) {
 	console.log("the deleteTimeFromEmployee function has fired and index: ", index);
 
 	for (let i = 0; i < $scope.employeesArray.length; i++) {
@@ -524,7 +525,7 @@ function deleteTimeFromEmployee(index) {
 		for (let j = 0; j < $scope.employeesArray[i].job_site_hours_worked.length; j++) {
 			for (let p = 0; p < $scope.dailyTCs[index].employees_worked.length; p++) {
 				
-				if ($scope.dailyTCs[index].employees_worked[p].employeeName === $scope.employeesArray[i].fullName && $scope.dailyTCs[index].theDate === $scope.employeesArray[i].job_site_hours_worked[j].date_worked) {
+				if ($scope.dailyTCs[index].employees_worked[p].employeeName === $scope.employeesArray[i].fullName && $scope.dailyTCs[index].theDate === $scope.employeesArray[i].job_site_hours_worked[j].date_worked && $scope.employeesArray[i].job_site_hours_worked[j].job_site === $scope.jobsite.name) {
 					
 					let hours_worked_array = $scope.employeesArray[i].job_site_hours_worked
 

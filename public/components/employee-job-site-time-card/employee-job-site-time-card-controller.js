@@ -281,7 +281,10 @@ function pushToJobSiteHoursWorked(hours_worked, index, employeeTimeId) {
 	var id = ctrl.employees[index]._id;
 	var employee = ctrl.employees[index].job_site_hours_worked;
 
+	let jsDate = new Date();
+
 	function EmployeeNameHoursJob(d, h, j) {
+		this.date = jsDate;
 		this.date_worked = d,
 		this.hours_worked = h,
 		this.job_site = j,

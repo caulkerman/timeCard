@@ -1,100 +1,79 @@
 html, body {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    outline: 0;
-    font-size: 100%;
-    vertical-align: baseline;
-    background: transparent;
-	font-family: sans-serif;
-}
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  background: transparent;
+  font-family: sans-serif; }
 
 body {
-	margin-top: -20px;
-}
+  margin-top: -20px; }
 
 header {
-	position: relative;
-	height: 185px;
-
-}
+  position: relative;
+  height: 100%; }
 
 h1 {
-	text-align: center;
-	color: #aaaaaa;
-	padding-top: 35px;
+  text-align: left;
+  color: #193E4E;
+  padding: 10px; }
+
+nav {
+    display: block;
+    height: 35px;
+    width: 100%;
+    background-color: #193E4E;
+    color: white;
+}
+nav ul li {
+  height: 35px;
+  display: inline-block;
+  padding: 9px; }
+
+nav ul li:hover {
+  background-color: #8EB843;
 }
 
-nav ul li a {
-	color: inherit;
-	text-decoration: none;
+nav a:hover, nav a:active, nav a:visited, nav a:focus {
+    color: white;
+    text-decoration: none;
 }
 
-.nav-bar {
-	position: absolute;
-	bottom: 0;
-	height: 50px;
-	width: 100%;
+table {
+    margin-top: 10px;
+}
+thead tr td {
+  font-size: 1.5em;
+  font-weight: bold; }
+.logo {
+    margin-top: 20px;
+    margin-left: 20px;
+}
+.margin-10 {
+    margin: 10px;
+}
+
+.md-img {
+    height: 400px;
+    max-width: 100%;
 }
 
 .nav-bar ul {
-	width: 90%;
-}
+  width: 90%; }
 
-nav ul li {
-	height: 35px;
-	display: inline-block;
-	float: right;
-	padding-top: 15px;
-	margin: 0 0 0 25px;
-}
-
-li#nav-left {
-	height: 35px;
-	display: inline-block;
-	float: left;
-	padding-top: 15px;
-	margin-left: 0;
-}
-
-nav ul li:hover {
-	color: red;
-}
-
-thead tr td  {
-	font-size: 1.5em;
-	font-weight: bold;
+.template-container {
+    margin: 30px;
 }
 
 .rw-warning {
-	color: #0073e6;
-}
+  color: #0073e6; }
 
-::-webkit-input-placeholder {
-   color: #0073e6;
-}
-
-:-moz-placeholder { /* Firefox 18- */
-   color: #0073e6;  
-}
-
-::-moz-placeholder {  /* Firefox 19+ */
-   color: #0073e6;  
-}
-
-:-ms-input-placeholder {  
-   color: #0073e6;  
-}
-
-
-				/*SMARTPHONE SIZE SCREENS*/
+/*SMARTPHONE SIZE SCREENS*/
 @media only screen and (min-width: 15em) and (max-width: 30em) {
-	h1 {
-		padding-top: 10px;
-	}
+  h1 {
+    padding-top: 10px; }
 
-	li#nav-left {
-		margin-left: -15px;
-	}
-
-}
+  li#nav-left {
+    margin-left: -15px; } }

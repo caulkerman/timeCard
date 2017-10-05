@@ -1,4 +1,6 @@
-.employee-container h1 {
-  margin-left: 10px; }
+.employee-container {
+  margin: 20px; }
+  .employee-container h1 {
+    margin-left: 10px; }
 
 /*# sourceMappingURL=employee.css.map */

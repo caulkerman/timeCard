@@ -1,5 +1,7 @@
-.admin-container h1 {
-  margin-left: 10px; }
+.admin-container {
+  margin: 20px; }
+  .admin-container h1 {
+    margin-left: 10px; }
 
 /*# sourceMappingURL=admin.css.map */
 /*# sourceMappingURL=admin.scss.map */

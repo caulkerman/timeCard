@@ -100,7 +100,7 @@ $scope.showUpdateForm = function() {
 
 $scope.hideUpdateForm = function() {
 	$scope.showNotesDiv = false;
-	$scope.showUpdateJobSite = false;	
+	$scope.showUpdateJobSite = false;
 };
 
 $scope.viewNotes = function() {
@@ -186,6 +186,7 @@ $scope.updateTheJobSite = function(contractor, jobAddress, jobDetails, materials
 		console.log("the updateTheJobSite function response from db: ", response);
 		addAllTheHours();
 		getTheJobSiteFromDBbyId();
+        $scope.hideUpdateForm();
 		});
 	});	
 };
@@ -301,7 +302,7 @@ $scope.lateEmployee = function(late_employee, late_hours, date, index, timeAndMa
 			$scope.dailyTCs[x].employees_worked.unshift(nameHoursDate);
 
 			employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId($scope.dailyTCs, $scope.jobsite._id).then(function(response) {
-				sendLateToEmpArray(late_hours, date, late_employee, nameHoursDate.employeeTimeId, timeAndMaterial);
+				sendLateToEmpArray(late_hours, date, late_employee, nameHoursDate.employeeTimeId);
 				getTheJobSiteFromDBbyId();
 				addAllTheHours();				
 			});
@@ -392,14 +393,13 @@ $scope.lateEmployee = function(late_employee, late_hours, date, index, timeAndMa
 
 
 
-function sendLateToEmpArray(late_hours, date, late_employee, employeeTimeId, TandM) {
+function sendLateToEmpArray(late_hours, date, late_employee, employeeTimeId) {
 
 	function LateEmployeeToEmpArray() {
 		this.date_worked = date;
 		this.hours_worked = late_hours;
 		this.job_site = $scope.jobsite.name
 		this.employeeTimeId = employeeTimeId;
-		this.TandM = TandM;
 	};
 	var lateEmployeeToEmpArray = new LateEmployeeToEmpArray(late_hours, date);
 
@@ -427,7 +427,7 @@ $scope.deleteTC = function(id, index) {//need to make it so the time from this d
 			
 			var TCindex = [i];
 			console.log("the Tindex: ", TCindex);
-			deleteTimeFromEmployee(TCindex, $scope.jobsite.name)
+			deleteTimeFromEmployee(TCindex)
 	
 			$scope.hideDeleteWarning(index);
 	
@@ -517,7 +517,7 @@ $scope.deleteEmployeeFromTC = function(id) {//this doesn't work correctly when t
 
 
 
-function deleteTimeFromEmployee(index, jobsiteName) {
+function deleteTimeFromEmployee(index) {
 	console.log("the deleteTimeFromEmployee function has fired and index: ", index);
 
 	for (let i = 0; i < $scope.employeesArray.length; i++) {
@@ -525,7 +525,7 @@ function deleteTimeFromEmployee(index, jobsiteName) {
 		for (let j = 0; j < $scope.employeesArray[i].job_site_hours_worked.length; j++) {
 			for (let p = 0; p < $scope.dailyTCs[index].employees_worked.length; p++) {
 				
-				if ($scope.dailyTCs[index].employees_worked[p].employeeName === $scope.employeesArray[i].fullName && $scope.dailyTCs[index].theDate === $scope.employeesArray[i].job_site_hours_worked[j].date_worked && $scope.employeesArray[i].job_site_hours_worked[j].job_site === $scope.jobsite.name) {
+				if ($scope.dailyTCs[index].employees_worked[p].employeeName === $scope.employeesArray[i].fullName && $scope.dailyTCs[index].theDate === $scope.employeesArray[i].job_site_hours_worked[j].date_worked) {
 					
 					let hours_worked_array = $scope.employeesArray[i].job_site_hours_worked
 
@@ -606,6 +606,11 @@ function createCustomId() {
 
 
 
+
+
+
+
+
 ctrl.animationsEnabled = false;
    
   ctrl.open = function (parentSelector) {
@@ -620,7 +625,7 @@ ctrl.animationsEnabled = false;
 
 
 
-////	END OF CONTROLLER   \\\\
+
 
 }
 adminJobSiteControllerCB.$inject = $inject;

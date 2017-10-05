@@ -1,4 +1,6 @@
-  <div class="admin-old-job-site-container-div" ng-hide="ctrl.finalFarewell">  
+  <link rel="stylesheet" href="components/admin-old-job-site/admin-old-job-site.css">
+
+  <div class="admin-old-job-site-div" ng-hide="ctrl.finalFarewell">  
     <h1>{{ctrl.oldJobSite.name}}</h1>
 
     <button ng-click="ctrl.showDetails()" ng-hide="ctrl.showTheDetails">Show Job Details</button>
@@ -49,7 +51,7 @@
         </div>
 
     </div> 
-</div>  
+ 
 
 <div ng-show="ctrl.deleteWarning">
     <p>Are you sure you want to delete the {{ctrl.oldJobSite.name}} job site?  You will NEVER, EVER, be able to get it back!</p>
@@ -59,4 +61,4 @@
 
 <p ng-show="ctrl.finalFarewellResurrected">The {{ctrl.oldJobSite.name}} job site has been moved to the admin-job-site-list page</p>
 <p ng-show="ctrl.finalFarewellDeleted">The {{ctrl.oldJobSite.name}} job site has been deleted!</p>
-
+</div>

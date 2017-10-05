@@ -1,5 +1,9 @@
-<h1>Old Employees List</h1>
+<link rel="stylesheet" href="components/admin-old-empoyees-list/admin-old-empoyees-list.css">
 
-<ul>
-    <li ng-repeat="oldEmployee in ctrl.oldEmployees track by $index"><a href="" ng-click="ctrl.goToTheOldEmployee(oldEmployee.fullName)">{{oldEmployee.fullName}}</a></li>
-</ul>
+<div class="admin-old-employees-list">
+    <h1>Old Employees List</h1>
+
+    <ul>
+        <li ng-repeat="oldEmployee in ctrl.oldEmployees track by $index"><a href="" ng-click="ctrl.goToTheOldEmployee(oldEmployee.fullName)">{{oldEmployee.fullName}}</a></li>
+    </ul>
+</div>

@@ -1,11 +1,14 @@
-<h1>Job Site List</h1>
-{{test}}
+ <link rel="stylesheet" href="components/employee-job-site-list/employee-job-site-list.css">
 
-<label for="jobSiteFilter">Filter Job Name:</label>
-<input name="jobSiteFilter" type="text" placeholder="Filter Job Names" ng-model="filterJob" autofocus>
+ <div class="employee-job-site-list-div">
+    <h1>Job Site List</h1>
 
-<ul ng-repeat="jobs in jobSiteList | filter: {name:filterJob} track by $index">
-	<li>
-		<a href="" ng-click="gotoSelectedJobsite($index, jobs._id)">{{jobs.name}}</a>
-	</li>
-</ul>
+    <label for="jobSiteFilter">Filter Job Name:</label>
+    <input name="jobSiteFilter" type="text" placeholder="Filter Job Names" ng-model="filterJob" autofocus>
+
+    <ul ng-repeat="jobs in jobSiteList | filter: {name:filterJob} track by $index">
+        <li>
+            <a href="" ng-click="gotoSelectedJobsite($index, jobs._id)">{{jobs.name}}</a>
+        </li>
+    </ul>
+</div>

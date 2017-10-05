@@ -4,5 +4,7 @@
 
   a[href]:after {
     content: none !important; } }
+.the-employee-container-div {
+  margin: 20px; }
 
 /*# sourceMappingURL=admin-the-employee.css.map */

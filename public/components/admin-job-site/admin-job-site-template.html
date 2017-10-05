@@ -1,5 +1,6 @@
 <link rel="stylesheet" href="components/admin-job-site/admin-job-site.css">
 
+<div class="overlay" ng-if="showNotesDiv"></div>
 <div class="admin-job-site-container-div" ng-hide="finalFarewell">
     <p><span id="jobSiteNameBold">{{jobsite.name}}<span></p>
 
@@ -7,13 +8,12 @@
     <button ng-click="ctrl.open()">Create Late Time Card</button>
     <button ng-click="completedJob()">Completed</button>
     <button ng-click="showUpdateForm()" ng-hide="showUpdateJobSite">Show Jobsite Details</button>
-    <button ng-click="hideUpdateForm()" ng-show="showUpdateJobSite">Hide Jobsite Details</button>
 
 
     <div class="formDiv">
         <form ng-show="showUpdateJobSite" ng-submit="updateTheJobSite(jobsite.contractor, jobsite.job_address, jobsite.job_details, jobsite.materials_needed, jobsite.name, jobsite.superintendent_name, jobsite.superintendent_telephone, jobsite.notes)">
-            
-            <p>You can edit and change the job site details</p>
+            <div class="close-button" ng-click="hideUpdateForm()">X</div>
+            <h2>Update Job Site</h2>
 
             <p>Total Job Site Hours Worked: {{totalJobSiteHours}}</p>
 
@@ -58,10 +58,14 @@
                     <label for="notes">Notes: </label>
                     <textarea class="updateJobSite" ng-model="jobsite.notes" name="notes"></textarea>
                 </div>
-
+<div ng-show="showNotesDiv">
+            <button type="button" ng-click="viewNotes()" ng-hide="seeNotes">View Notes</button>
+            <button type="button" ng-click="hideNotes()" ng-show="seeNotes">Hide Notes</button>
+        </div>
 
                 <div ng-repeat="notes in jobsite.jobSiteNotes" class="notes-div" ng-show="seeNotes">
                     <ul>
+                       <h2>Notes:</h2>
                         <label>{{notes.noteDate}}:</label>
                         <p>{{notes.theNote}}</p>
                     </ul>
@@ -71,10 +75,6 @@
             <input type="submit" class="updateJobSite" value="Update Jobsite">
         </form>
             <!-- YOU SHOULD DO SOMETHING WITH THE WAY THESE BUTTONS ARE PLACED. cant put button inside the form because it will call the submit function-->
-        <div ng-show="showNotesDiv">
-            <button ng-click="viewNotes()" ng-hide="seeNotes">View Notes</button>
-            <button ng-click="hideNotes()" ng-show="seeNotes">Hide Notes</button>
-        </div>
 
     </div>
 
@@ -204,10 +204,9 @@
         </div>
         <hr>
     </div>
-</div>
 
     <p ng-show="finalFarewell">This job site has been moved to the admin-old-job-sites page</p>
-    
+</div>
 
 
 

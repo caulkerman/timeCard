@@ -3,59 +3,69 @@
   height: 700px; }
 
 #login-background-img {
-  position: absolute;
+  display: block;
   background-size: cover;
-  -webkit-filter: blur(4px);
-  filter: blur(4px);
-  z-index: -999;
   height: 700px;
-  width: 100%; }
+  width: 100%;
+  opacity: .7; }
+
+.button-div {
+  margin-left: 20px;
+  padding: 20px 20px 10px 0; }
 
 .login-container {
+  position: absolute;
   z-index: 999;
   background-color: white;
   width: 40%;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 30px;
+  left: 28%;
+  top: 35%;
   border: solid #cccccc 1px;
-  padding-top: 40px; }
-  .login-container .login-input {
-    color: #464a53;
-    font-size: 1.5em;
-    font-weight: bold;
-    height: 40px;
-    width: 90%;
-    margin: 10px 0 10px 20px;
-    border-top: none;
-    border-left: none;
-    border-right: none;
-    border-bottom-width: 1px;
-    border-bottom-color: #747c8b; }
-  .login-container ::-webkit-input-placeholder {
-    font-weight: normal;
-    font-size: 16px; }
-  .login-container :-moz-placeholder {
-    /* Firefox 18- */
-    font-weight: normal;
-    font-size: 16px; }
-  .login-container ::-moz-placeholder {
-    /* Firefox 19+ */
-    font-weight: normal;
-    font-size: 16px; }
-  .login-container :-ms-input-placeholder {
-    font-weight: normal;
-    font-size: 16px; }
-  .login-container .login-button {
-    border: none;
-    margin: 10px 0 30px 20px;
-    padding-left: 0;
-    height: 45px;
-    background-color: #0073e6;
-    color: #FFFFFF;
-    width: 90%; }
-  .login-container .login-button:active {
-    background-color: #004080; }
+  padding-top: 25px;
+  border-radius: 4px; }
+
+.login-container .login-input {
+  color: #464a53;
+  font-size: 1.5em;
+  font-weight: bold;
+  height: 40px;
+  width: 90%;
+  margin: 10px 0 10px 20px;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom-width: 1px;
+  border-bottom-color: #747c8b; }
+
+.login-container ::-webkit-input-placeholder {
+  font-weight: normal;
+  font-size: 16px; }
+
+.login-container :-moz-placeholder {
+  /* Firefox 18- */
+  font-weight: normal;
+  font-size: 16px; }
+
+.login-container ::-moz-placeholder {
+  /* Firefox 19+ */
+  font-weight: normal;
+  font-size: 16px; }
+
+.login-container :-ms-input-placeholder {
+  font-weight: normal;
+  font-size: 16px; }
+
+.login-container .login-button {
+  border: none;
+  margin: 10px 0;
+  padding-left: 0;
+  height: 45px;
+  background-color: #193E4E;
+  color: #FFFFFF;
+  width: 97%; }
+
+.login-container .login-button:active, .login-container .login-button:hover {
+  background-color: #8EB843; }
 
 /*SMARTPHONE SIZE SCREENS*/
 @media only screen and (min-width: 15em) and (max-width: 30em) {

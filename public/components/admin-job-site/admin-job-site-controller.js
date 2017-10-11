@@ -289,6 +289,7 @@ $scope.lateEmployee = function(late_employee, late_hours, date, index, timeAndMa
 		if (late_employee === empArray[i] && late_hours && flag1 === false){
 			
 			function NameHoursDate(e, h, d) {
+				this.dayIndex = new Date().getDay();
 				this.employeeName = e,
 				this.hours_worked = h,
 				this.date_worked = d
@@ -635,7 +636,11 @@ app.controller('AddLateTimeCardCtrl', function ($uibModalInstance, $scope, $root
 
   ////////ADD YOUR JAVASCRIPT HERE\\\\\\\\
 
-  var TandM;
+  ctrl.year = new Date().getFullYear();
+  ctrl.day;
+
+
+  let TandM;
   ctrl.showTandMYes;
   ctrl.showContractYes;
 

@@ -90,20 +90,50 @@
             <div class="modal-body" id="modal-body">
                 <div>
                     <p>Is this Time and Material?</p>
-                    <button ng-click="ctrl.isTandM()">Yes</button>
-                    <button ng-click="ctrl.isNotTandM()">No</button>
+                    <button ng-click="ctrl.isTandM()" class="btn btn-primary">Yes</button>
+                    <button ng-click="ctrl.isNotTandM()" class="btn btn-warning">No</button>
                     <span ng-show="ctrl.showTandMYes"> T and M</span>
                     <span ng-show="ctrl.showContractYes"> Contract</span>
                 </div>
                 <div>
+                    <!-- May want to put a <br /> here or else style it because there is no space here and it looks funney-->
                     <p>Please Enter The Late Date</p>
-                    <input type="text" ng-model="ctrl.newDate" placeholder="Example: May 2, 2016: Monday">
+                    <!-- <input type="text" ng-model="ctrl.newDate" placeholder="Example: May 2, 2016: Monday"> -->
+
+
+                    
+                <form ng-sumbit="ctrl.ok(ctrl.year, ctrl.month, ctrl.day, ctrl.weekDay)">
+                    <div id="year" class="modalInputDiv">
+                        <label for="year">Year:</label>
+                        <input ng-model="ctrl.year" name="year" class="form-control" type="number">
+                    </div>
+                    <div id="month" class="modalInputDiv">
+                        <label for="month">Month:</label>
+                        <input type="text" ng-model="ctrl.month" placeholder="Month" name="month" class="form-control" focus required>
+                    </div>
+                    <div id="day" class="modalInputDiv">
+                        <label for="day">Day</label>
+                        <input type="number" ng-model="ctrl.day" placeholder="Day" name="day" class="form-control" required>
+                    </div>
+                    <div id="weekDay" class="modalInputDiv">
+                        <label for="weekDay">Week Day</label>
+                        <input type="text" ng-model="ctrl.weekDay" placeholder="Day of Week" name="weekDay" class="form-control" required>
+                    </div>
+                    <br/>
+                    <div>
+                        <button class="btn btn-success" type="submit" ng-click="ctrl.ok(ctrl.newDate)">Submit</button>
+                        <button class="btn btn-danger" type="button" ng-click="ctrl.cancel()">Cancel</button>
+                    </div>
+                </form>
+                   
+
+
                 </div>
             </div>
-            <div class="modal-footer">
-                <button class="btn btn-primary" type="button" ng-click="ctrl.ok(ctrl.newDate)">Submit</button>
-                <button class="btn btn-warning" type="button" ng-click="ctrl.cancel()">Cancel</button>
-            </div>
+            <!-- <div class="modal-footer"> -->
+                <!-- <button class="btn btn-primary" type="submit" ng-click="ctrl.ok(ctrl.newDate)">Submit</button> -->
+                <!-- <button class="btn btn-warning" type="button" ng-click="ctrl.cancel()">Cancel</button> -->
+            <!-- </div> -->
         </script>
 
        

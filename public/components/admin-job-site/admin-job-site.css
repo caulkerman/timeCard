@@ -43,4 +43,11 @@ p.warn {
   z-index: 30;
   top: 0; }
 
+.modalInputDiv {
+  margin-bottom: 15px;
+  margin-top: 0; }
+
+#bootstrap-overrides label {
+  margin-bottom: 0px; }
+
 /*# sourceMappingURL=admin-job-site.css.map */

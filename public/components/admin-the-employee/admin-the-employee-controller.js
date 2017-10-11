@@ -98,7 +98,6 @@ ctrl.retireEmployee = function() {
                     $timeout(function() {
                         $state.go("admin-employees-list");
                     }, 1500);
-
                 });
             });
         };   

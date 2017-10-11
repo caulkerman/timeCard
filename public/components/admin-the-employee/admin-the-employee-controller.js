@@ -24,8 +24,6 @@ const getTheEmployeeFromDBbyId = function() {
         ctrl.employeeName = ctrl.theEmployee.fullName;
         if (response) {
             ctrl.hours_worked = ctrl.theEmployee.job_site_hours_worked;
-            // var hoursWorked = ctrl.theEmployee.job_site_hours_worked;
-            // ctrl.hours_worked = hoursWorked.sort(hoursWorked.date_worked);
         };
     });
 };

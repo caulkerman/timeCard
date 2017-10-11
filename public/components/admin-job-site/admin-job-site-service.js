@@ -1,6 +1,7 @@
 app.service("adminJobSiteService", ["$q", "$http", function($q, $http) {
 
 
+// let modalResponse;
 
 
 //////CREATE\\\\\\\\
@@ -55,9 +56,18 @@ this.getJobs = function() {
 		url: "/api/getJobs"
 	}).then(function(response) {
 		deferred.resolve(response);
+		// modal(response);
 	});
 	return deferred.promise;
 };
+
+// let modal = function(response) {
+// 	modalResponse = response;
+// }
+
+// this.getModalResponse = function() {
+// 	return modalResponse;
+// }
 
 
 
@@ -103,12 +113,6 @@ this.updateEmployeesWorkedInDBbyId = function (employees_worked, id) {
 	return deferred.promise;
 }
 
-
-
-
-this.updateEmployeesArray = function(empArray) {
-
-}
 
 
 

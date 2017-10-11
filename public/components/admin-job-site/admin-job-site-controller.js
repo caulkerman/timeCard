@@ -621,13 +621,7 @@ ctrl.animationsEnabled = false;
       controllerAs: 'ctrl',
     });
   };
-
-
-
-
-
-
-}
+};
 adminJobSiteControllerCB.$inject = $inject;
 angular.module("timeCard").controller("adminJobSiteController", adminJobSiteControllerCB);
 })();
@@ -635,24 +629,34 @@ angular.module("timeCard").controller("adminJobSiteController", adminJobSiteCont
 
 
 
-
-app.controller('AddLateTimeCardCtrl', function ($uibModalInstance, $scope, $rootScope) {//make sure you change the name of your controller so as not to get controller conflicts
+///////MODAL CONTROLLER\\\\\
+app.controller('AddLateTimeCardCtrl', function ($uibModalInstance, $scope, $rootScope, employeeJobSiteTimeCardService) {//make sure you change the name of your controller so as not to get controller conflicts
   var ctrl = this;
 
   ////////ADD YOUR JAVASCRIPT HERE\\\\\\\\
 
   var TandM;
+  ctrl.showTandMYes;
+  ctrl.showContractYes;
+
 
   ctrl.isTandM = function() {
   	TandM = true;
+  	ctrl.showTandMYes = true;
+  	 if (ctrl.showContractYes) {
+  	 	ctrl.showContractYes = false;
+  	 }
   	console.log(TandM);
   }
 
   ctrl.isNotTandM = function() {
   	TandM = false;
+  	ctrl.showContractYes = true;
+  	if (ctrl.showTandMYes) {
+  		ctrl.showTandMYes = false;
+  	}
   	console.log(TandM);
   }
-  
 
   ctrl.ok = function (newDate) {
     $uibModalInstance.close($rootScope.createLateTimeCard(TandM, newDate));//inside the close(parameters) you can put anything that needs to be executed and returned as the modal closes to be made available to the controller.

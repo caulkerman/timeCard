@@ -92,6 +92,8 @@
                     <p>Is this Time and Material?</p>
                     <button ng-click="ctrl.isTandM()">Yes</button>
                     <button ng-click="ctrl.isNotTandM()">No</button>
+                    <span ng-show="ctrl.showTandMYes"> T and M</span>
+                    <span ng-show="ctrl.showContractYes"> Contract</span>
                 </div>
                 <div>
                     <p>Please Enter The Late Date</p>
@@ -141,9 +143,8 @@
                 </div>
 
                 <div>
-                    <p ng-show="updating[$index]">UPDATING!</p>
-
                     <button ng-click="addMaterials(timecard.materials_used, $index, timecard.theDate)">Submit Materials</button>
+                    <span ng-show="updating[$index]">UPDATING!</span>
                 </div>
                         <!-- THE TABLE -->
                 <table st-table="students" class="table table-striped">

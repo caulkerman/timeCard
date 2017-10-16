@@ -84,21 +84,20 @@ ctrl.resurrectJob = function() {
 ctrl.deleteJob = function() {
 	console.log("deleteJob function has fired");
 	ctrl.deleteWarning = true;
-	ctrl.finalFarewell = true;
 	console.log("deleteWarning value: ", ctrl.deleteWarning);
-	console.log(ctrl)
-
 };
 
 ctrl.deleteNo = function() {
 	console.log("the NO function has fired");
 	ctrl.deleteWarning = false;
 	ctrl.finalFarewell = false;
+	console.log("delete No function has fired: ", ctrl.deleteWarning, ctrl.finalFarewell)
 };
 
 ctrl.deleteYes = function() {
 	adminOldJobSiteService.deleteTheJobById(oldJobSiteId).then(function(response) {
 					
+		// ctrl.finalFarewell = true;
 		ctrl.finalFarewellDeleted = true;
 		ctrl.deleteWarning = false;
 

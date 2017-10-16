@@ -1,6 +1,6 @@
   <link rel="stylesheet" href="components/admin-old-job-site/admin-old-job-site.css">
 
-  <div class="admin-old-job-site-div" ng-hide="ctrl.finalFarewell">  
+  <div class="admin-old-job-site-div">  
     <h1>{{ctrl.oldJobSite.name}}</h1>
 
     <button ng-click="ctrl.showDetails()" ng-hide="ctrl.showTheDetails">Show Job Details</button>
@@ -17,9 +17,9 @@
         <p><label for="materials_needed">Job Materials Needed: </label> {{ctrl.oldJobSite.materials_needed}}</p>
     </div>
 
-    <h3>The Dates</h3>
+    <h3 ng-hide="ctrl.deleteWarning">The Dates</h3>
 
-    <div ng-repeat="oldDTC in ctrl.oldDTCs track by $index">
+    <div ng-repeat="oldDTC in ctrl.oldDTCs track by $index" ng-hide="ctrl.deleteWarning">
 
         <hr />    
         
@@ -52,13 +52,15 @@
 
     </div> 
  
+    <!-- <div ng-show="ctrl.">
+        <h1>MY NAME IS BOB!</h1>
+    </div> -->
+    <div ng-show="ctrl.deleteWarning">
 
-<div ng-show="ctrl.deleteWarning">
-
-    <p>Are you sure you want to delete the {{ctrl.oldJobSite.name}} job site?  You will NEVER, EVER, be able to get it back!</p>
-    <button ng-click="ctrl.deleteNo()">NO</button>
-    <button ng-click="ctrl.deleteYes()">YES</button>
-</div>
+        <p>Are you sure you want to delete the {{ctrl.oldJobSite.name}} job site?  You will NEVER, EVER, be able to get it back!</p>
+        <button ng-click="ctrl.deleteNo()">NO</button>
+        <button ng-click="ctrl.deleteYes()">YES</button>
+    </div>
 
 <p ng-show="ctrl.finalFarewellResurrected">The {{ctrl.oldJobSite.name}} job site has been moved to the admin-job-site-list page</p>
 <p ng-show="ctrl.finalFarewellDeleted">The {{ctrl.oldJobSite.name}} job site has been deleted!</p>

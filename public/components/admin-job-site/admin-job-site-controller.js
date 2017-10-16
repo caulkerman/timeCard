@@ -637,7 +637,9 @@ app.controller('AddLateTimeCardCtrl', function ($uibModalInstance, $scope, $root
   ////////ADD YOUR JAVASCRIPT HERE\\\\\\\\
 
   ctrl.year = new Date().getFullYear();
-  ctrl.day;
+  ctrl.day = new Date().getDate();
+  ctrl.month = employeeJobSiteTimeCardService.theMonth();
+  ctrl.weekDay = employeeJobSiteTimeCardService.theDay();
 
 
   let TandM;
@@ -663,7 +665,10 @@ app.controller('AddLateTimeCardCtrl', function ($uibModalInstance, $scope, $root
   	console.log(TandM);
   }
 
-  ctrl.ok = function (newDate) {
+  $scope.ok = function (a, b, c, d) {
+  	console.log("ok function has fired", a, b, c, d);
+  	let newDate = ctrl.month + " " + ctrl.day + " " + ctrl.year + ": " + ctrl.weekDay
+  	console.log(newDate);
     $uibModalInstance.close($rootScope.createLateTimeCard(TandM, newDate));//inside the close(parameters) you can put anything that needs to be executed and returned as the modal closes to be made available to the controller.
   };
 

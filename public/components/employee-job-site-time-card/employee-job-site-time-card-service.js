@@ -18,15 +18,14 @@ app.service("employeeJobSiteTimeCardService", ["$q", "$http", "$timeout", functi
 	
 	this.theDate = function() {
 		return thisMonth + " " + dayOfMonth + ", " + year + ": " + thisDay;
+	}
 
-		// function TheDateObject() {
-		// 	this.thisMonth = thisMonth,
-		// 	this.dayOfMonth = dayOfMonth,
-		// 	this.year = year,
-		// 	this.thisDay = thisDay
-		// }
-		// var theDateObject = new TheDateObject();
-		// return theDateObject;
+	this.theMonth = function() {
+		return thisMonth;
+	}
+
+	this.theDay = function() {
+		return thisDay;
 	}
 
 	

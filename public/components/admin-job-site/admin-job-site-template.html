@@ -96,53 +96,35 @@
                     <span ng-show="ctrl.showContractYes"> Contract</span>
                 </div>
                 <div>
-                    <!-- May want to put a <br /> here or else style it because there is no space here and it looks funney-->
                     <p>Please Enter The Late Date</p>
-                    <!-- <input type="text" ng-model="ctrl.newDate" placeholder="Example: May 2, 2016: Monday"> -->
-
-
-                    
-                <form ng-sumbit="ctrl.ok(ctrl.year, ctrl.month, ctrl.day, ctrl.weekDay)">
-                    <div id="year" class="modalInputDiv">
-                        <label for="year">Year:</label>
-                        <input ng-model="ctrl.year" name="year" class="form-control" type="number">
-                    </div>
-                    <div id="month" class="modalInputDiv">
-                        <label for="month">Month:</label>
-                        <input type="text" ng-model="ctrl.month" placeholder="Month" name="month" class="form-control" focus required>
-                    </div>
-                    <div id="day" class="modalInputDiv">
-                        <label for="day">Day</label>
-                        <input type="number" ng-model="ctrl.day" placeholder="Day" name="day" class="form-control" required>
-                    </div>
-                    <div id="weekDay" class="modalInputDiv">
-                        <label for="weekDay">Week Day</label>
-                        <input type="text" ng-model="ctrl.weekDay" placeholder="Day of Week" name="weekDay" class="form-control" required>
-                    </div>
-                    <br/>
-                    <div>
-                        <button class="btn btn-success" type="submit" ng-click="ctrl.ok(ctrl.newDate)">Submit</button>
-                        <button class="btn btn-danger" type="button" ng-click="ctrl.cancel()">Cancel</button>
-                    </div>
-                </form>
-                   
-
-
+                    <form>
+                        <div id="year" class="modalInputDiv">
+                            <label for="year">Year:</label>
+                            <input ng-model="ctrl.year" name="year" class="form-control" type="number">
+                        </div>
+                        <div id="month" class="modalInputDiv">
+                            <label for="month">Month:</label>
+                            <input type="text" ng-model="ctrl.month" placeholder="Month" name="month" class="form-control" focus required>
+                        </div>
+                        <div id="day" class="modalInputDiv">
+                            <label for="day">Day</label>
+                            <input type="number" ng-model="ctrl.day" placeholder="Day" name="day" class="form-control" required>
+                        </div>
+                        <div id="weekDay" class="modalInputDiv">
+                            <label for="weekDay">Week Day</label>
+                            <input type="text" ng-model="ctrl.weekDay" placeholder="Day of Week" name="weekDay" class="form-control" required>
+                        </div>
+                        <br/>
+                        <div>
+                            <button ng-click="ok(ctrl.year, ctrl.month, ctrl.day, ctrl.weekDay)" class="btn btn-success">Submit</button>
+                            <button class="btn btn-danger" type="button" ng-click="ctrl.cancel()">Cancel</button>
+                        </div>
+                    </form>
                 </div>
             </div>
-            <!-- <div class="modal-footer"> -->
-                <!-- <button class="btn btn-primary" type="submit" ng-click="ctrl.ok(ctrl.newDate)">Submit</button> -->
-                <!-- <button class="btn btn-warning" type="button" ng-click="ctrl.cancel()">Cancel</button> -->
-            <!-- </div> -->
         </script>
-
-       
     </div>
-
-
-
-        <!--  You need to set up a spot to show whether the job time is T&M, maybe use hide/show if it is.-->
-           
+          <!-- End of modal  -->
         <br />
     <input type="text" placeholder="Filter the Dates" ng-model="filter_date"> 
         

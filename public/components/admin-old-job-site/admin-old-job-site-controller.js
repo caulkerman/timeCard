@@ -5,7 +5,7 @@ var $inject = ["$scope", "$stateParams", "adminOldJobSiteService", "adminJobSite
 adminOldJobSiteControllerCB = function($scope, $stateParams, adminOldJobSiteService, adminJobSiteListService, $timeout, $state) {
 
 "use strict"
-const ctrl = this;
+let ctrl = this;
 /////////ADD JAVASCRIPT BELOW\\\\\\\\\\
 
 const oldJobSiteId = $stateParams.id;
@@ -86,6 +86,8 @@ ctrl.deleteJob = function() {
 	ctrl.deleteWarning = true;
 	ctrl.finalFarewell = true;
 	console.log("deleteWarning value: ", ctrl.deleteWarning);
+	console.log(ctrl)
+
 };
 
 ctrl.deleteNo = function() {

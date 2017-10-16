@@ -92,11 +92,11 @@
                     <p>Is this Time and Material?</p>
                     <button ng-click="ctrl.isTandM()" class="btn btn-primary">Yes</button>
                     <button ng-click="ctrl.isNotTandM()" class="btn btn-warning">No</button>
-                    <span ng-show="ctrl.showTandMYes"> T and M</span>
+                    <span ng-show="ctrl.TandMUndefined" class="warn">You Must Choose Whether Time and Material or Not.</span>
+                    <span ng-show="ctrl.showTandMYes"> Time and Material</span>
                     <span ng-show="ctrl.showContractYes"> Contract</span>
                 </div>
                 <div>
-                    <p>Please Enter The Late Date</p>
                     <form>
                         <div id="year" class="modalInputDiv">
                             <label for="year">Year:</label>

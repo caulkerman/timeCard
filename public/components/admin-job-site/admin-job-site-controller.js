@@ -199,7 +199,7 @@ $scope.theDate = employeeJobSiteTimeCardService.theDate();
 
 $rootScope.createLateTimeCard = function(TandM, newDate) {
 	(function() {
-		console.log("the TandM: ", TandM);
+		console.log("the TandM: ", TandM, "newDate: ", newDate);
 		
 		var flag = false;
 
@@ -225,16 +225,15 @@ $rootScope.createLateTimeCard = function(TandM, newDate) {
 			};
 
 			if (flag === false) {
-				$scope.dailyTCs.push($scope.dailyTimeCard);
+				$scope.dailyTCs.unshift($scope.dailyTimeCard);
 					
 				employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId($scope.dailyTCs, $scope.jobsite._id).then(function(response) {
 				getTheJobSiteFromDBbyId();
 				});
 			};
-		};
-
-		if (!newDate || !TandM) {
-			console.error("Nothing Saved, box closed");
+		} else {
+			//do an ng-show to show a warning that the TandM button was not clicked.
+			//do an ng-show to show a warning that the date input fields were missing a value.
 		};
 	})();
 };
@@ -631,7 +630,7 @@ angular.module("timeCard").controller("adminJobSiteController", adminJobSiteCont
 
 
 ///////MODAL CONTROLLER\\\\\
-app.controller('AddLateTimeCardCtrl', function ($uibModalInstance, $scope, $rootScope, employeeJobSiteTimeCardService) {//make sure you change the name of your controller so as not to get controller conflicts
+app.controller('AddLateTimeCardCtrl', function ($uibModalInstance, $scope, $rootScope, employeeJobSiteTimeCardService, $timeout) {//make sure you change the name of your controller so as not to get controller conflicts
   var ctrl = this;
 
   ////////ADD YOUR JAVASCRIPT HERE\\\\\\\\
@@ -645,9 +644,11 @@ app.controller('AddLateTimeCardCtrl', function ($uibModalInstance, $scope, $root
   let TandM;
   ctrl.showTandMYes;
   ctrl.showContractYes;
+  ctrl.TandMUndefined;
 
 
   ctrl.isTandM = function() {
+  	ctrl.TandMUndefined = false;
   	TandM = true;
   	ctrl.showTandMYes = true;
   	 if (ctrl.showContractYes) {
@@ -657,6 +658,7 @@ app.controller('AddLateTimeCardCtrl', function ($uibModalInstance, $scope, $root
   }
 
   ctrl.isNotTandM = function() {
+  	ctrl.TandMUndefined = false;
   	TandM = false;
   	ctrl.showContractYes = true;
   	if (ctrl.showTandMYes) {
@@ -666,10 +668,14 @@ app.controller('AddLateTimeCardCtrl', function ($uibModalInstance, $scope, $root
   }
 
   $scope.ok = function (a, b, c, d) {
-  	console.log("ok function has fired", a, b, c, d);
-  	let newDate = ctrl.month + " " + ctrl.day + " " + ctrl.year + ": " + ctrl.weekDay
-  	console.log(newDate);
-    $uibModalInstance.close($rootScope.createLateTimeCard(TandM, newDate));//inside the close(parameters) you can put anything that needs to be executed and returned as the modal closes to be made available to the controller.
+  	if (TandM === undefined) {
+  		ctrl.TandMUndefined = true;
+  		return;
+  	} else {
+  		let newDate = ctrl.month + " " + ctrl.day + " " + ctrl.year + ": " + ctrl.weekDay
+  		console.log("is T and M: ", TandM);
+    	$uibModalInstance.close($rootScope.createLateTimeCard(TandM, newDate));//inside the close(parameters) you can put anything that needs to be executed and returned as the modal closes to be made available to the controller.
+  	};
   };
 
   ctrl.cancel = function () {

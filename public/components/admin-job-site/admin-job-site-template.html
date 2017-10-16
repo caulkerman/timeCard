@@ -10,8 +10,8 @@
     <button ng-click="showUpdateForm()" ng-hide="showUpdateJobSite">Show Jobsite Details</button>
 
 
-    <div class="formDiv">
-        <form ng-show="showUpdateJobSite" ng-submit="updateTheJobSite(jobsite.contractor, jobsite.job_address, jobsite.job_details, jobsite.materials_needed, jobsite.name, jobsite.superintendent_name, jobsite.superintendent_telephone, jobsite.notes)">
+    <div class="formDiv" ng-show="showUpdateJobSite">
+        <form ng-submit="updateTheJobSite(jobsite.contractor, jobsite.job_address, jobsite.job_details, jobsite.materials_needed, jobsite.name, jobsite.superintendent_name, jobsite.superintendent_telephone, jobsite.notes)">
             <div class="close-button" ng-click="hideUpdateForm()">X</div>
             <h2>Update Job Site</h2>
 
@@ -20,43 +20,43 @@
 
             <div>
                 <label for="name">Job Name: </label>
-                <input type="text" class="updateJobSite" ng-model="jobsite.name" name="name">
+                <input type="text" class="updateJobSite form-control" ng-model="jobsite.name" name="name">
             </div>
 
             <div >
                 <label for="contractor">Contractor: </label>
-                <input type="text" class="updateJobSite" ng-model="jobsite.contractor" name="contractor">
+                <input type="text" class="updateJobSite form-control" ng-model="jobsite.contractor" name="contractor">
             </div>
 
             <div>
                 <label for="superintendent_name">Superintendent Name: </label>
-                <input type="text" class="updateJobSite" ng-model="jobsite.superintendent_name" name="superintendent_name">
+                <input type="text" class="updateJobSite form-control" ng-model="jobsite.superintendent_name" name="superintendent_name">
             </div>
 
             <div>
                 <label for="superintendent_telephone">Superintendant Telephone: </label>
-                <input type="number" class="updateJobSite" ng-model="jobsite.superintendent_telephone" name="superintendent_telephone">
+                <input type="number" class="updateJobSite form-control" ng-model="jobsite.superintendent_telephone" name="superintendent_telephone">
             </div>
 
             <div>
                 <label for="job_address">Job Address: </label>
-                <input type="text" class="updateJobSite" ng-model="jobsite.job_address" name="job_address">
+                <input type="text" class="updateJobSite form-control" ng-model="jobsite.job_address" name="job_address">
             </div>
 
             <div>
                 <label for="job_details">Job Details: </label>
-                <textarea class="updateJobSite" ng-model="jobsite.job_details" name="job_details"></textarea>
+                <textarea class="updateJobSite form-control" ng-model="jobsite.job_details" name="job_details"></textarea>
             </div>
 
             <div>
                 <label for="materials_needed">Materials Needed: </label>
-                <textarea class="updateJobSite" ng-model="jobsite.materials_needed" name="materials_needed"></textarea>
+                <textarea class="updateJobSite form-control" ng-model="jobsite.materials_needed" name="materials_needed"></textarea>
             </div>
 
             <div>
                 <div>
                     <label for="notes">Notes: </label>
-                    <textarea class="updateJobSite" ng-model="jobsite.notes" name="notes"></textarea>
+                    <textarea class="updateJobSite form-control" ng-model="jobsite.notes" name="notes"></textarea>
                 </div>
 <div ng-show="showNotesDiv">
             <button type="button" ng-click="viewNotes()" ng-hide="seeNotes">View Notes</button>
@@ -92,7 +92,7 @@
                     <p>Is this Time and Material?</p>
                     <button ng-click="ctrl.isTandM()" class="btn btn-primary">Yes</button>
                     <button ng-click="ctrl.isNotTandM()" class="btn btn-warning">No</button>
-                    <span ng-show="ctrl.TandMUndefined" class="warn">You Must Choose Whether Time and Material or Not.</span>
+                    <span ng-show="ctrl.TandMUndefined" class="warn">You Must Choose Whether Time and Material or Contract.</span>
                     <span ng-show="ctrl.showTandMYes"> Time and Material</span>
                     <span ng-show="ctrl.showContractYes"> Contract</span>
                 </div>

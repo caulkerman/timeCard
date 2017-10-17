@@ -70,6 +70,16 @@ thead tr td {
 .rw-warning {
   color: #0073e6; }
 
+button {
+  height: 35px;
+  border-radius: 5px;
+}
+
+input {
+  height: 35px;
+  border-radius: 5px;
+}
+
 /*SMARTPHONE SIZE SCREENS*/
 @media only screen and (min-width: 15em) and (max-width: 30em) {
   h1 {

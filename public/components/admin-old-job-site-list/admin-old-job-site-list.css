@@ -1,4 +1,10 @@
 p.test {
   color: darkblue; }
 
-/*# sourceMappingURL=admin-old-job-sites.css.map */
+.admin-old-job-site-list-div {
+  margin-left: 20px; }
+
+input {
+  width: 20%; }
+
+/*# sourceMappingURL=admin-old-job-site-list.css.map */

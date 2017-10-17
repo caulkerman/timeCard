@@ -1,7 +1,7 @@
 {
 "version": 3,
-"mappings": "AAAA,MAAO;EACH,KAAK,EAAE,QAAQ",
-"sources": ["admin-old-job-sites.scss"],
+"mappings": "AAAA,MAAO;EACH,KAAK,EAAE,QAAQ;;AAEnB,4BAA6B;EACzB,WAAW,EAAE,IAAI;;AAGrB,KAAM;EACL,KAAK,EAAE,GAAG",
+"sources": ["admin-old-job-site-list.scss"],
 "names": [],
-"file": "admin-old-job-sites.css"
+"file": "admin-old-job-site-list.css"
 }

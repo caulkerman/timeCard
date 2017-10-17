@@ -27,17 +27,18 @@
   border-radius: 4px;
 }
 .login-container .login-input {
-    color: #464a53;
-    font-size: 1.5em;
-    font-weight: bold;
-    height: 40px;
-    width: 90%;
-    margin: 10px 0 10px 20px;
-    border-top: none;
-    border-left: none;
-    border-right: none;
-    border-bottom-width: 1px;
-    border-bottom-color: #747c8b; 
+  color: #464a53;
+  font-size: 1.5em;
+  font-weight: bold;
+  height: 35px;
+  width: 90%;
+  margin: 10px 0 10px 20px;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom-width: 1px;
+  border-bottom-color: #747c8b; 
+  border-radius: 0px;
 }
   .login-container ::-webkit-input-placeholder {
     font-weight: normal;

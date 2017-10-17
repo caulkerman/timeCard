@@ -231,10 +231,10 @@ $rootScope.createLateTimeCard = function(TandM, newDate) {
 				getTheJobSiteFromDBbyId();
 				});
 			};
-		} else {
-			//do an ng-show to show a warning that the TandM button was not clicked.
-			//do an ng-show to show a warning that the date input fields were missing a value.
-		};
+		} //else {
+		// 	//do an ng-show to show a warning that the TandM button was not clicked.
+		// 	//do an ng-show to show a warning that the date input fields were missing a value.
+		// };
 	})();
 };
 
@@ -253,19 +253,14 @@ $scope.lateEmployee = function(late_employee, late_hours, date, index, timeAndMa
 
 	//why do the dates need to match up?  To make sure the time card for this date actually exists, I guess.
 	for (x = 0; x < $scope.dailyTCs.length; x++) {
-		// debugger;
-		// console.log("the date: ", date);
-		// console.log("the Date: ", $scope.dailyTCs[x].theDate);
 		if ($scope.dailyTCs[x].theDate === date && $scope.dailyTCs[x].TandM === timeAndMaterial && $scope.dailyTCs[x].late === lateTC) {
 			for (var i = 0; i < $scope.dailyTCs[x].employees_worked.length; i++) {
 				empsArray.push($scope.dailyTCs[x].employees_worked[i].employeeName);
 				console.log("the empsArray: ", empsArray);
 			};
 			break;
-			// console.log("the new empsArray: ", empsArray);
 		};
 	};
-
 
 	for (var j = 0; j < empsArray.length; j++) {
 		if (late_employee === empsArray[j]) {
@@ -278,12 +273,8 @@ $scope.lateEmployee = function(late_employee, late_hours, date, index, timeAndMa
 			flag2 = true;
 		};
 	};
-
-	// console.log("the flag1: ", flag1, 'the flag2: ', flag2);
 	
 	for (var i = 0; i < empArray.length; i++) {
-		// var empArrayEmp = empArray[i];
-		// console.warn(empArrayEmp);
 	
 		if (late_employee === empArray[i] && late_hours && flag1 === false){
 			
@@ -396,6 +387,8 @@ $scope.lateEmployee = function(late_employee, late_hours, date, index, timeAndMa
 function sendLateToEmpArray(late_hours, date, late_employee, employeeTimeId) {
 
 	function LateEmployeeToEmpArray() {
+		this.dayIndex = new Date().getDay();
+		this.date = new Date();
 		this.date_worked = date;
 		this.hours_worked = late_hours;
 		this.job_site = $scope.jobsite.name

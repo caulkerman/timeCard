@@ -9,6 +9,8 @@ const ctrl = this;
 
 
 const jobSiteId = $stateParams.id;
+$scope.alteredDate;
+$scope.dayIndex1;
 
 
 function getTheJobSiteFromDBbyId() {// we might want to have this function call for the job site using its own service rather than sending to another
@@ -197,15 +199,19 @@ $scope.updateTheJobSite = function(contractor, jobAddress, jobDetails, materials
 $scope.theDate = employeeJobSiteTimeCardService.theDate();
 
 
-$rootScope.createLateTimeCard = function(TandM, newDate) {
+$rootScope.createLateTimeCard = function(TandM, newDate, dayIndex1, dateString) {
+	adminJobSiteService.dayIndex(dayIndex1);
+	$scope.alteredDate = dateString;
+	console.log("the $scope.alteredDate; ", $scope.alteredDate);
 	(function() {
-		console.log("the TandM: ", TandM, "newDate: ", newDate);
-		
+		// console.log("the TandM: ", TandM, "newDate: ", newDate);
 		var flag = false;
 
 		if (newDate && TandM !== undefined) {
-		
+		console.warn("the dayIndex stuff: ", dayIndex1, "and the Index1 from Service: ", adminJobSiteService.dayIndex1());
 			function DailyTimeCard() {
+				this.dateStamp = dateString;
+				this.dayIndex = adminJobSiteService.dayIndex1();
 				this.theDate = newDate;
 				this.employees_worked = [];
 				this.materials_used = '';
@@ -254,6 +260,8 @@ $scope.lateEmployee = function(late_employee, late_hours, date, index, timeAndMa
 	//why do the dates need to match up?  To make sure the time card for this date actually exists, I guess.
 	for (x = 0; x < $scope.dailyTCs.length; x++) {
 		if ($scope.dailyTCs[x].theDate === date && $scope.dailyTCs[x].TandM === timeAndMaterial && $scope.dailyTCs[x].late === lateTC) {
+			$scope.dayIndex1 = $scope.dailyTCs[x].dayIndex;
+			console.error("dayIndex from the dailyTC: ", adminJobSiteService.dayIndex1());
 			for (var i = 0; i < $scope.dailyTCs[x].employees_worked.length; i++) {
 				empsArray.push($scope.dailyTCs[x].employees_worked[i].employeeName);
 				console.log("the empsArray: ", empsArray);
@@ -277,18 +285,19 @@ $scope.lateEmployee = function(late_employee, late_hours, date, index, timeAndMa
 	for (var i = 0; i < empArray.length; i++) {
 	
 		if (late_employee === empArray[i] && late_hours && flag1 === false){
-			
+			console.error("the dayIndex1: ", $scope.dayIndex1);
 			function NameHoursDate(e, h, d) {
-				this.dayIndex = new Date().getDay();
-				this.employeeName = e,
-				this.hours_worked = h,
-				this.date_worked = d
+				// this.dayIndex = adminJobSiteService.dayIndex1();
+				// this.dayIndex = $scope.dayIndex1;
+				this.employeeName = e;
+				this.hours_worked = h;
+				this.date_worked = $scope.alteredDate;
 				this.employeeTimeId = createCustomId();
 			};
 			var nameHoursDate = new NameHoursDate(late_employee, late_hours, date);
 
-			console.log("the x: ", x);
-			console.log("the dailyTCs length: ", $scope.dailyTCs.length);
+			// console.log("the x: ", x);
+			// console.log("the dailyTCs length: ", $scope.dailyTCs.length);
 
 			$scope.dailyTCs[x].employees_worked.unshift(nameHoursDate);
 
@@ -387,11 +396,13 @@ $scope.lateEmployee = function(late_employee, late_hours, date, index, timeAndMa
 function sendLateToEmpArray(late_hours, date, late_employee, employeeTimeId) {
 
 	function LateEmployeeToEmpArray() {
-		this.dayIndex = new Date().getDay();
-		this.date = new Date();
+		console.warn("the dayIndex1 again: ", $scope.dayIndex1);
+		// this.dayIndex = adminJobSiteService.dayIndex1();
+		this.dayIndex = $scope.dayIndex1;
+		this.date = $scope.alteredDate;
 		this.date_worked = date;
 		this.hours_worked = late_hours;
-		this.job_site = $scope.jobsite.name
+		this.job_site = $scope.jobsite.name;
 		this.employeeTimeId = employeeTimeId;
 	};
 	var lateEmployeeToEmpArray = new LateEmployeeToEmpArray(late_hours, date);
@@ -665,9 +676,12 @@ app.controller('AddLateTimeCardCtrl', function ($uibModalInstance, $scope, $root
   		ctrl.TandMUndefined = true;
   		return;
   	} else {
-  		let newDate = ctrl.month + " " + ctrl.day + " " + ctrl.year + ": " + ctrl.weekDay
+  		let newDate = ctrl.month + " " + ctrl.day + " " + ctrl.year + ": " + ctrl.weekDay;
+  		let dateMinusWeekday = new Date(ctrl.month + " " + ctrl.day + " " + ctrl.year); 
+  		let dayIndex1 = new Date(ctrl.month + " " + ctrl.day + " " + ctrl.year).getDay();
+  		console.log(" the new dayIndex1: ", dayIndex1);
   		console.log("is T and M: ", TandM);
-    	$uibModalInstance.close($rootScope.createLateTimeCard(TandM, newDate));//inside the close(parameters) you can put anything that needs to be executed and returned as the modal closes to be made available to the controller.
+    	$uibModalInstance.close($rootScope.createLateTimeCard(TandM, newDate, dayIndex1, dateMinusWeekday));//inside the close(parameters) you can put anything that needs to be executed and returned as the modal closes to be made available to the controller.
   	};
   };
 

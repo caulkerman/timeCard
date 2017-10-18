@@ -3,6 +3,7 @@ app.service("adminJobSiteService", ["$q", "$http", function($q, $http) {
 
 // let modalResponse;
 
+let dayIndex;
 
 //////CREATE\\\\\\\\
 this.updateJobsite = function(jobsite, id) {
@@ -127,6 +128,17 @@ this.delete_job = function(jobsite) {
         deferred.resolve(res);
     });
     return deferred.promise;
+}
+
+
+this.dayIndex = function(index) {
+	console.log("index from Service: ", index)
+	dayIndex = index;
+	console.log(dayIndex);
+}
+this.dayIndex1 = function() {
+	console.error("index from return function before going out: ", dayIndex);
+	return dayIndex;
 }
 
 

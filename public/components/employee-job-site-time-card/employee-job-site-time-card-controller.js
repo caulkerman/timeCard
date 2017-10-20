@@ -11,6 +11,8 @@ var jobSiteId = $stateParams.id;
 var dailyTCArray;
 ctrl.needTime = []; //ctrl.needTime array is there to capture the $index in an ng-repeat. Functionality is so if employee is submitted for time but no time was entered into the input box.
 ctrl.employees = [];
+ctrl.theDate = employeeJobSiteTimeCardService.theDate();
+
 
 function getTheJobSiteFromDBbyId() {
 	employeeJobSiteTimeCardService.getTheJobSiteFromDBbyId(jobSiteId).then(function(response) {
@@ -37,7 +39,6 @@ getTheJobSiteFromDBbyId();
 	});
 })();
 
-ctrl.theDate = employeeJobSiteTimeCardService.theDate();
 console.log("the new theDate object: ", ctrl.theDate);
 
 
@@ -81,6 +82,8 @@ ctrl.addTheNewDailyTimeCardToJobsiteObject = function(tAndm) {
 	var flag = false;
 	
 	function DailyTimeCard() {
+		this.dayIndex = new Date().getDay();
+		this.dateStamp = new Date();
 		this.theDate = ctrl.theDate;
 		this.employees_worked = [];
 		this.materials_used = '';

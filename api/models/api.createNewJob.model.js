@@ -16,13 +16,13 @@ var newJobSchema = new Schema({
 	jobSiteNotes: { type: Array },
 	daily_time_cards: [
 		{
-			dayIndex: { type: String },
+			dayIndex: { type: Number },
 			theDate: { type: String },
 			dateStamp: { type: String },
 			employees_worked: [
 				{
 					// dayIndex: { type: Number },
-					late: { type: Boolean, default: false },
+					// late: { type: Boolean, default: false },
 					// date: { type: Date, default: Date.now },
 					employeeName: String,
 					hours_worked: Number,

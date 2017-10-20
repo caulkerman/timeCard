@@ -200,19 +200,18 @@ $scope.theDate = employeeJobSiteTimeCardService.theDate();
 
 
 $rootScope.createLateTimeCard = function(TandM, newDate, dayIndex1, dateString) {
+	$scope.TandM = TandM;
 	adminJobSiteService.dayIndex(dayIndex1);
 	$scope.alteredDate = dateString;
-	console.log("the $scope.alteredDate; ", $scope.alteredDate);
 	(function() {
-		// console.log("the TandM: ", TandM, "newDate: ", newDate);
 		var flag = false;
 
 		if (newDate && TandM !== undefined) {
-		console.warn("the dayIndex stuff: ", dayIndex1, "and the Index1 from Service: ", adminJobSiteService.dayIndex1());
+			
 			function DailyTimeCard() {
 				this.dateStamp = dateString;
 				this.dayIndex = adminJobSiteService.dayIndex1();
-				this.theDate = newDate;
+				this.theDate = newDate.toString();
 				this.employees_worked = [];
 				this.materials_used = '';
 				this.notes = '';
@@ -222,15 +221,16 @@ $rootScope.createLateTimeCard = function(TandM, newDate, dayIndex1, dateString) 
 			$scope.dailyTimeCard = new DailyTimeCard();
 
 			for (var i = 0; i < $scope.dailyTCs.length; i++) {
-				if ($scope.dailyTCs[i].theDate === $scope.dailyTimeCard.theDate && $scope.dailyTCs[i].TandM ===$scope.dailyTimeCard.TandM) {
+				
+				if ($scope.dailyTCs[i].theDate == $scope.dailyTimeCard.theDate && $scope.dailyTCs[i].TandM == $scope.dailyTimeCard.TandM) {
 					flag = true;
-					// console.log("addTheNewDailyTimeCardToJobsiteObject flag", flag);
-					alert("A time card for this job site on this day already exists.")
-						
+					console.log("addTheNewDailyTimeCardToJobsiteObject flag", flag);
+					alert("A time card for this job site on this day already exists.");
 				};
 			};
 
 			if (flag === false) {
+				console.log("the flag in the else: ", flag);
 				$scope.dailyTCs.unshift($scope.dailyTimeCard);
 					
 				employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId($scope.dailyTCs, $scope.jobsite._id).then(function(response) {
@@ -644,7 +644,6 @@ app.controller('AddLateTimeCardCtrl', function ($uibModalInstance, $scope, $root
   ctrl.month = employeeJobSiteTimeCardService.theMonth();
   ctrl.weekDay = employeeJobSiteTimeCardService.theDay();
 
-
   let TandM;
   ctrl.showTandMYes;
   ctrl.showContractYes;
@@ -676,7 +675,7 @@ app.controller('AddLateTimeCardCtrl', function ($uibModalInstance, $scope, $root
   		ctrl.TandMUndefined = true;
   		return;
   	} else {
-  		let newDate = ctrl.month + " " + ctrl.day + " " + ctrl.year + ": " + ctrl.weekDay;
+  		let newDate = ctrl.month + " " + ctrl.day + "," + " " + ctrl.year + ": " + ctrl.weekDay;
   		let dateMinusWeekday = new Date(ctrl.month + " " + ctrl.day + " " + ctrl.year); 
   		let dayIndex1 = new Date(ctrl.month + " " + ctrl.day + " " + ctrl.year).getDay();
   		console.log(" the new dayIndex1: ", dayIndex1);

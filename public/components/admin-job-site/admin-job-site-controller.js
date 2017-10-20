@@ -17,7 +17,15 @@ function getTheJobSiteFromDBbyId() {// we might want to have this function call 
 	
 	employeeJobSiteTimeCardService.getTheJobSiteFromDBbyId(jobSiteId).then(function(response) {
 		$scope.jobsite = response.data;
-		$scope.dailyTCs = $scope.jobsite.daily_time_cards;
+		let dailyTCs = $scope.jobsite.daily_time_cards;
+		$scope.dailyTCs = dailyTCs.sort(function(a, b) {
+			console.error("I am in the sort function", a.dateStamp, b.dateStamp)
+			let dateA = new Date(a.dateStamp).getTime();
+			let dateB = new Date(b.dateStamp).getTime();
+			return dateA < dateB ? 1 : -1;
+			// return dateA + dateB;
+		});
+		// $scope.dailyTCs = $scope.jobsite.daily_time_cards;
 		if ($scope.jobsite.daily_time_cards.length > 0) {//If the job site has some length then call the function.  This avoids an error when the job site has been sent to the old job site pile.
 			addAllTheHours();
 		};

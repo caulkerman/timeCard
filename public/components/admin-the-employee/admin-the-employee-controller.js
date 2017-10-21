@@ -19,11 +19,18 @@ console.log("new Date return", ctrl.date);
 //this function gets the chosen employee object from DB
 const getTheEmployeeFromDBbyId = function() {
     theEmployeeService.getEmployeeById(theEmployeeId).then(function(response) {
-        console.log("the employee from controller ", response.data);
-        ctrl.theEmployee = response.data;
-        ctrl.employeeName = ctrl.theEmployee.fullName;
+        console.log("the employee from controller ", response.data);      
         if (response) {
-            ctrl.hours_worked = ctrl.theEmployee.job_site_hours_worked;
+            ctrl.theEmployee = response.data;
+            ctrl.employeeName = ctrl.theEmployee.fullName;
+            let hours_worked = ctrl.theEmployee.job_site_hours_worked;
+            
+             ctrl.hours_worked = hours_worked.sort(function(a, b) {
+                // console.log("sort function is firing ", a.date, b.date)
+                let dateA = new Date(a.date).getTime();
+                let dateB = new Date(b.date).getTime();
+                return dateA < dateB ? 1 : -1;
+            });
         };
     });
 };

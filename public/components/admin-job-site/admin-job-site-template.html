@@ -150,8 +150,8 @@
                         
                         <!--MAKE SURE TO MAKE THESE STYLED AS display: block -->
                 <div>
-                    <p for="materials"><b>Materials Used: </b></p>
-                    <textarea name="materials" ng-model="timecard.materials_used"></textarea>
+                    <label for="materials">Materials Used:</label>
+                    <textarea name="materials" ng-model="timecard.materials_used" class="form-control text-area"></textarea>
                 </div>
 
                 <div>
@@ -180,7 +180,7 @@
                             <td></td>
                             <td></td>
                             <td>
-                                <button ng-click="lateEmployee(late_employee, late_hours, timecard.theDate, $index, timecard.TandM, timecard.late)" >Submit</button>
+                                <button ng-click="lateEmployee(late_employee, late_hours, timecard.theDate, timecard.dateStamp, $index, timecard.TandM, timecard.late)" >Submit</button>
                             </td>
                          </tr>
 

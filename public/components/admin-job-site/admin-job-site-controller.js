@@ -18,14 +18,14 @@ function getTheJobSiteFromDBbyId() {// we might want to have this function call 
 	employeeJobSiteTimeCardService.getTheJobSiteFromDBbyId(jobSiteId).then(function(response) {
 		$scope.jobsite = response.data;
 		let dailyTCs = $scope.jobsite.daily_time_cards;
+		
 		$scope.dailyTCs = dailyTCs.sort(function(a, b) {
-			console.error("I am in the sort function", a.dateStamp, b.dateStamp)
+			// console.error("I am in the sort function", a.dateStamp, b.dateStamp)
 			let dateA = new Date(a.dateStamp).getTime();
 			let dateB = new Date(b.dateStamp).getTime();
 			return dateA < dateB ? 1 : -1;
-			// return dateA + dateB;
 		});
-		// $scope.dailyTCs = $scope.jobsite.daily_time_cards;
+		
 		if ($scope.jobsite.daily_time_cards.length > 0) {//If the job site has some length then call the function.  This avoids an error when the job site has been sent to the old job site pile.
 			addAllTheHours();
 		};
@@ -256,7 +256,7 @@ $rootScope.createLateTimeCard = function(TandM, newDate, dayIndex1, dateString) 
 
 
 //creates a late employee time entry, checks it against the list of employees and if there adds a new time event for that employee, if the name is not there nothing happens.
-$scope.lateEmployee = function(late_employee, late_hours, date, index, timeAndMaterial, lateTC) {
+$scope.lateEmployee = function(late_employee, late_hours, date, dateStamp, index, timeAndMaterial, lateTC) {
 	// console.log("late_employee: ", late_employee, "late_hours: ", late_hours, "date: ", date, "index: ", index);
 
 	var empsArray = [], empArray = [], flag1 = false, flag2 = false, x;
@@ -310,7 +310,7 @@ $scope.lateEmployee = function(late_employee, late_hours, date, index, timeAndMa
 			$scope.dailyTCs[x].employees_worked.unshift(nameHoursDate);
 
 			employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId($scope.dailyTCs, $scope.jobsite._id).then(function(response) {
-				sendLateToEmpArray(late_hours, date, late_employee, nameHoursDate.employeeTimeId);
+				sendLateToEmpArray(late_hours, date, dateStamp, late_employee, nameHoursDate.employeeTimeId);
 				getTheJobSiteFromDBbyId();
 				addAllTheHours();				
 			});
@@ -401,13 +401,13 @@ $scope.lateEmployee = function(late_employee, late_hours, date, index, timeAndMa
 
 
 
-function sendLateToEmpArray(late_hours, date, late_employee, employeeTimeId) {
-
+function sendLateToEmpArray(late_hours, date, dateStamp, late_employee, employeeTimeId) { //this function is not receiving the correrct date from its function caller.  Need to get the date from somewhere else.
+console.error("sendLateToEmpArray function has fired ", dateStamp)
 	function LateEmployeeToEmpArray() {
 		console.warn("the dayIndex1 again: ", $scope.dayIndex1);
 		// this.dayIndex = adminJobSiteService.dayIndex1();
 		this.dayIndex = $scope.dayIndex1;
-		this.date = $scope.alteredDate;
+		this.date = dateStamp;
 		this.date_worked = date;
 		this.hours_worked = late_hours;
 		this.job_site = $scope.jobsite.name;

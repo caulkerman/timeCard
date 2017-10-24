@@ -4,7 +4,7 @@
 <div class="admin-employee-container">
     <div>
         <h1>Employee List</h1>
-        <input type="text" placeholder="Filter Employee Names" ng-model="employee_filter"/>
+        <input type="text" placeholder="Filter Last Names" ng-model="employee_filter"/>
         <!--<button class="btn btn-success" data-toggle="modal" data-target="#myModal">Create New Employee</button>-->
         <button type="button" class="btn btn-success" ng-click="ctrl.open()">Create New Employee</button>
 
@@ -18,8 +18,8 @@
         </tr>
       </thead>
       <tbody>
-        <tr ng-repeat="employee in employees | filter: {fullName:employee_filter} track by $index">
-          <td><a href="" ng-click="goToTheEmployee(employee.fullName)">{{employee.fullName}}</a></td>
+        <tr ng-repeat="employee in employees | filter: {lastName:employee_filter} track by $index">
+          <td><a href="" ng-click="goToTheEmployee(employee.fullName)">{{employee.firstName}} {{employee.lastName}}</a></td>
           <td><!--you need to make it so weekly hours for this employee shows up --></td>
         </tr>
       </tbody>
@@ -45,12 +45,18 @@
 
             <div class="modal-body" id="modal-body">
 
-              <form name="employeeForm" ng-submit="createEmployee(fullName, userName, password, employeeType, employeeForm.$valid)" novalidate>
+              <form name="employeeForm" ng-submit="createEmployee(firstName, lastName, userName, password, employeeType, employeeForm.$valid)" novalidate>
 
-                <div id="fullName" ng-class="{ 'has-error' : employeeForm.fullName.$invalid && submitted }">
-                  <label for="fullName">Full Employee Name: </label>
-                  <p class="warning" ng-show="employeeForm.fullName.$invalid && submitted">You Must Enter The Employee's Full Name!</p>              
-                  <input type="text" name="fullName" ng-model="fullName" class="form-control" focus required>
+                <div id="firstName" ng-class="{ 'has-error' : employeeForm.firstName.$invalid && submitted }">
+                  <label for="firstName">First Name: </label>
+                  <p class="warning" ng-show="employeeForm.firstName.$invalid && submitted">You Must Enter The Employee's First Name!</p>              
+                  <input type="text" name="firstName" ng-model="firstName" class="form-control" focus required>
+                </div>
+
+                <div id="lastName" ng-class="{ 'has-error' : employeeForm.lastName.$invalid && submitted }">
+                  <label for="lastName">Last Name: </label>
+                  <p class="warning" ng-show="employeeForm.lastName.$invalid && submitted">You Must Enter The Employee's Last Name!</p>
+                  <input type="test" name="lastName" ng-model="lastName" class="form-control" required>
                 </div>
 
                 <div id="userName" ng-class="{ 'has-error' : employeeForm.userName.$invalid && submitted }">

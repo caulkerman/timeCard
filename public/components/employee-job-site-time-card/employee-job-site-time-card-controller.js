@@ -29,11 +29,24 @@ getTheJobSiteFromDBbyId();
 
 (function() {
 	admin_employees_list_service.getEmployees().then(function(response) {
+		let tempEmpArray = [];
 		for (var i = 0; i < response.data.length; i++) {
 			if (response.data[i].employeeType === "Worker") {
-				ctrl.employees.push(response.data[i]);
+				tempEmpArray.push(response.data[i]);
 			};
 		};
+		ctrl.employees = tempEmpArray.sort(function(a, b) {
+			let nameA = a.lastName;
+  				let nameB = b.lastName;
+  				if(nameA < nameB) {
+    				return -1;
+  				};
+  				if (nameA > nameB) {
+   					return 1;
+  				};
+  				return 0;
+		});
+
 	    console.log("the employees object ", ctrl.employees);
 	    console.log("the response.data: ", response.data);
 	});
@@ -215,8 +228,8 @@ ctrl.addMaterials = function(materials) {
 
 
 
-ctrl.addEmployeeTime = function(employeeName, hours_worked, index) {
-console.log("the name and hours from html ", employeeName, hours_worked);
+ctrl.addEmployeeTime = function(firstName, lastName, hours_worked, index) {
+console.log("the name and hours from html ", firstName + " " + lastName, hours_worked);
 	var flag = false;
 
 	if (!hours_worked) {
@@ -232,13 +245,14 @@ console.log("the name and hours from html ", employeeName, hours_worked);
 		return;
 	}
 
-	function NameHoursDate(e, h, d) {
-		this.employeeName = e,
+	function NameHoursDate(f, l, h, d) {
+		this.firstName = f,
+		this.lastName = l,
 		this.hours_worked = h,
 		this.date_worked = d,
 		this.employeeTimeId = createCustomId()
 	};
-	var nameHoursDate = new NameHoursDate(employeeName, hours_worked, ctrl.theDate);
+	var nameHoursDate = new NameHoursDate(firstName, lastName, hours_worked, ctrl.theDate);
 	
 	if (ctrl.dailyTimeCard.employees_worked.length < 1) {
 		ctrl.dailyTimeCard.employees_worked.push(nameHoursDate);
@@ -252,7 +266,7 @@ console.log("the name and hours from html ", employeeName, hours_worked);
 			
 	for (var j = 0; j < ctrl.dailyTimeCard.employees_worked.length; j++) {				
 
-		if (nameHoursDate.employeeName === ctrl.dailyTimeCard.employees_worked[j].employeeName) {
+		if (nameHoursDate.firstName === ctrl.dailyTimeCard.employees_worked[j].firstName && nameHoursDate.lastName === ctrl.dailyTimeCard.employees_worked[j].lastName) {
 			flag = true;
 					
 			if (flag) {

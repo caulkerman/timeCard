@@ -123,17 +123,17 @@
                 </thead>
                 <br />
                 <tbody>       
-                    <tr ng-repeat="employee in ctrl.employees | filter: {fullName:ctrl.employee_filter} track by $index">
+                    <tr ng-repeat="employee in ctrl.employees | filter: {lastName:ctrl.employee_filter} track by $index">
 
                         <td >
-                            {{employee.fullName}}
+                            {{employee.firstName}} {{employee.lastName}}
                         </td>
                         <td>
                             <input type="number" ng-model="hoursWorked" min=".25" max="24" ng-hide="ctrl.needTime[$index]">
                             <p class="warning" ng-show="ctrl.needTime[$index]">Oops! You forgot to add time!</p>
                         </td>
                         <td>
-                            <button ng-click="ctrl.addEmployeeTime(employee.fullName, hoursWorked, $index)">SUBMIT TIME</button>
+                            <button ng-click="ctrl.addEmployeeTime(employee.firstName, employee.lastName, hoursWorked, $index)">SUBMIT TIME</button>
                             <!-- Maybe the submit button will change color when the person has been submitted. But I think this should be linked to the success of the update, so... if (response.status === 200) { turn the button green};-->
                         </td>
                     </tr>

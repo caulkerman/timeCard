@@ -1,3 +1,7 @@
+I changed the employee object and now it won't render on the page the way it is supposed to do.
+
+Make it so employees list alphabetically by last name.  Use sort() method.
+
 Styling: make it so when the user has submitted time that the submit button does something like turn green or disappear.
 
 Make it so whoever is the forman signed in to make the time card that he has access to the timecard to make changes for the rest of the day, but no one else.

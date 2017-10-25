@@ -1,4 +1,4 @@
-I changed the employee object by creating a firstName and lastName properties.  I need to make it so when adding a late time card employee that it validates correctly, need to change the new employee object, need to make it so when deleting the employee object that the if statement comparables match up.
+I changed the employee object by creating a firstName and lastName properties.  I need to make it so when adding a late time card employee that it validates correctly, need to change the new employee object, need to make it so when deleting the employee object that the if statement comparables match up.  fullName is no longer used.
 
 Styling Modal - Make it so the ng-hide and ng-show divs have the styling of a modal.
 

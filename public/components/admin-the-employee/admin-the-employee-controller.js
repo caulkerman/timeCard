@@ -22,11 +22,11 @@ const getTheEmployeeFromDBbyId = function() {
         console.log("the employee from controller ", response.data);      
         if (response) {
             ctrl.theEmployee = response.data;
-            ctrl.employeeName = ctrl.theEmployee.fullName;
+            ctrl.employeeName = ctrl.theEmployee.firstName + " " + ctrl.theEmployee.lastName;
             let hours_worked = ctrl.theEmployee.job_site_hours_worked;
             
              ctrl.hours_worked = hours_worked.sort(function(a, b) {
-                // console.log("sort function is firing ", a.date, b.date)
+                console.log("sort function is firing ", a.date, b.date)
                 let dateA = new Date(a.date).getTime();
                 let dateB = new Date(b.date).getTime();
                 return dateA < dateB ? 1 : -1;

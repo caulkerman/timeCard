@@ -174,13 +174,16 @@
                             <td ng-show="badName[$index]" class="warn">Oops! There is something wrong with the employee's name</td>
                             <td ng-show="noName[$index]" class="warn">Oops!  You forgot the Employee Name</td> 
                             <td ng-show="name_already_exists[$index]" class="warn">Oops! This employee already has time for this day</td>                                
-                            <td ng-hide="hide_late_employee_td[$index]"><input type="text" ng-model="late_employee" placeholder="Add Missing Employee"></td>
+                            <td ng-hide="hide_late_employee_td[$index]">
+                                <input type="text" ng-model="firstName" placeholder="First Name">
+                                <input type="test" ng-model="lastName" placeholder="Last Name">
+                            </td>
                             <td ng-show="noTime[$index]" class="warn">Oops!  There is something wrong with the hours</td>                                
                             <td ng-hide="hide_late_hours_td[$index]"><input type="number" min=".25" max="24" ng-model="late_hours" placeholder="Hours"></td>
                             <td></td>
                             <td></td>
                             <td>
-                                <button ng-click="lateEmployee(late_employee, late_hours, timecard.theDate, timecard.dateStamp, $index, timecard.TandM, timecard.late)" >Submit</button>
+                                <button ng-click="lateEmployee(firstName, lastName, late_hours, timecard.theDate, timecard.dateStamp, $index, timecard.TandM, timecard.late)" >Submit</button>
                             </td>
                          </tr>
 
@@ -189,7 +192,7 @@
 
 
                         <tr ng-repeat="employees in timecard.employees_worked track by $index" > <!--make sure to ng-repeat this -->
-                            <td>{{employees.employeeName}}</td>
+                            <td>{{employees.firstName}} {{employees.lastName}}</td>
                             <td>{{employees.hours_worked}}</td>
                             <td>
                                 <button ng-click="showTheEditHours($parent.$index, $index)" ng-hide="editHours[$parent.$index][$index]">Edit Hours</button>

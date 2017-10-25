@@ -35,11 +35,12 @@ const ctrl = this;
 
 
 	//This function takes the name clicked on, compares it to the array of employee names, finds it, and then uses its ._id to send to the admin-the-employee page
-	$scope.goToTheEmployee = function(name) {
+	$scope.goToTheEmployee = function(firstName, lastName) {
 		console.log(name);
 		for (var i = 0; i < $scope.employees.length; i++) {
-			if (name === $scope.employees[i].fullName) {
+			if (firstName === $scope.employees[i].firstName && lastName === $scope.employees[i].lastName) {
 				var id = $scope.employees[i]._id;
+
 					$state.go("admin-the-employee", {id: id});
 			}
 		}

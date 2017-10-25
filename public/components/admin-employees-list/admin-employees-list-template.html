@@ -19,7 +19,7 @@
       </thead>
       <tbody>
         <tr ng-repeat="employee in employees | filter: {lastName:employee_filter} track by $index">
-          <td><a href="" ng-click="goToTheEmployee(employee.fullName)">{{employee.firstName}} {{employee.lastName}}</a></td>
+          <td><a href="" ng-click="goToTheEmployee(employee.firstName, employee.lastName)">{{employee.firstName}} {{employee.lastName}}</a></td>
           <td><!--you need to make it so weekly hours for this employee shows up --></td>
         </tr>
       </tbody>

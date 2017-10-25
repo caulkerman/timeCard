@@ -196,7 +196,7 @@ ctrl.addNote = function(notes) {
 
 		adminJobSiteService.delete_job(ctrl.jobsite).then(function(response) {
 
-			console.error("The job site has been deleted!!!!!!!  but it will be back in just a second")
+			// console.error("The job site has been deleted!!!!!!!  but it will be back in just a second")
 
 			adminJobSiteService.updateJobsite(ctrl.jobsite, ctrl.jobsite._id).then(function(response) {
 				console.log("the updateJobsite response from DB", response.data);

@@ -269,7 +269,6 @@ $scope.lateEmployee = function(firstName, lastName, late_hours, date, dateStamp,
 			firstName: $scope.employeesArray[i].firstName,
 			lastName: $scope.employeesArray[i].lastName
 		};
-		console.log("test to see if tempEmpEmployee object is created: ", tempEmpEmployee)
 		empArray.push(tempEmpEmployee);
 	};
 
@@ -277,7 +276,6 @@ $scope.lateEmployee = function(firstName, lastName, late_hours, date, dateStamp,
 	for (x = 0; x < $scope.dailyTCs.length; x++) {
 		if ($scope.dailyTCs[x].theDate === date && $scope.dailyTCs[x].TandM === timeAndMaterial && $scope.dailyTCs[x].late === lateTC) {
 			$scope.dayIndex1 = $scope.dailyTCs[x].dayIndex;
-			// console.error("dayIndex from the dailyTC: ", adminJobSiteService.dayIndex1());
 			for (var i = 0; i < $scope.dailyTCs[x].employees_worked.length; i++) {
 				//inside this for loop we are sending the names of the employees
 				//from the time cards to the temporary array to compare it to the
@@ -309,6 +307,9 @@ $scope.lateEmployee = function(firstName, lastName, late_hours, date, dateStamp,
 	
 		if (firstName === empArray[i].firstName && lastName === empArray[i].lastName && late_hours && flag1 === false){
 			console.error("the dayIndex1: ", $scope.dayIndex1);
+
+
+
 			function NameHoursDate(f, l, h, d) {
 				// this.dayIndex = adminJobSiteService.dayIndex1();
 				// this.dayIndex = $scope.dayIndex1;
@@ -425,6 +426,7 @@ console.error("sendLateToEmpArray function has fired ", dateStamp)
 		this.dayIndex = $scope.dayIndex1;
 		this.date = dateStamp;
 		this.date_worked = date;
+		this.week = timeFunc(dateStamp);
 		this.hours_worked = late_hours;
 		this.job_site = $scope.jobsite.name;
 		this.employeeTimeId = employeeTimeId;
@@ -630,6 +632,17 @@ function createCustomId() {
 	}
 	console.log("the new custom id: ", customId);
 	return customId;
+};
+
+
+let timeFunc = (date) => {
+
+	let startDate = new Date("Jan 1, 2017").getTime();
+	let now = new Date(date).getTime();
+	let diff = now - startDate;
+	let weekNum = Math.floor((diff / (60 * 60 * 24 * 1000) / 7));
+	console.log("timeFunc function has fired: ", weekNum);
+	return weekNum;
 };
 
 

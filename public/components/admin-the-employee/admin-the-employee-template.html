@@ -18,6 +18,7 @@
 
         <div>
             <button ng-click="ctrl.retireEmployee()">Retire the Employee</button>
+            <span>Hours Worked This Week: {{ctrl.hrs_this_week}}</span>
         </div>
 
         <div>
@@ -33,7 +34,7 @@
                 </thead>
 
                 <tbody>
-                    <tr ng-repeat="hours in ctrl.hours_worked | filter: {date_worked:dateFilter} track by $index">
+                    <tr ng-repeat="hours in ctrl.daily_hours_worked | filter: {date_worked:dateFilter} track by $index">
                         <td>{{hours.date_worked}}</td>
                         <td>{{hours.hours_worked}}</td>
                         <td ng-hide="ctrl.noJobSite[$index]"><a href="" ng-click="ctrl.goToJobSite(hours.job_site, $index)">{{hours.job_site}}</a><span ng-show="hours.TandM">  T &amp M</span></td>

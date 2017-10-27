@@ -421,8 +421,6 @@ $scope.lateEmployee = function(firstName, lastName, late_hours, date, dateStamp,
 function sendLateToEmpArray(late_hours, date, dateStamp, firstName, lastName, employeeTimeId) { //this function is not receiving the correrct date from its function caller.  Need to get the date from somewhere else.
 console.error("sendLateToEmpArray function has fired ", dateStamp)
 	function LateEmployeeToEmpArray() {
-		console.warn("the dayIndex1 again: ", $scope.dayIndex1);
-		// this.dayIndex = adminJobSiteService.dayIndex1();
 		this.dayIndex = $scope.dayIndex1;
 		this.date = dateStamp;
 		this.date_worked = date;
@@ -636,12 +634,10 @@ function createCustomId() {
 
 
 let timeFunc = (date) => {
-
 	let startDate = new Date("Jan 1, 2017").getTime();
 	let now = new Date(date).getTime();
 	let diff = now - startDate;
 	let weekNum = Math.floor((diff / (60 * 60 * 24 * 1000) / 7));
-	console.log("timeFunc function has fired: ", weekNum);
 	return weekNum;
 };
 
@@ -651,7 +647,7 @@ let timeFunc = (date) => {
 
 
 
-
+///below is to open the late time card modal\\\\
 ctrl.animationsEnabled = false;
    
   ctrl.open = function (parentSelector) {
@@ -663,6 +659,7 @@ ctrl.animationsEnabled = false;
     });
   };
 };
+
 adminJobSiteControllerCB.$inject = $inject;
 angular.module("timeCard").controller("adminJobSiteController", adminJobSiteControllerCB);
 })();

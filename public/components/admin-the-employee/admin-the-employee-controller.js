@@ -13,8 +13,7 @@ console.log("the employee _id ", theEmployeeId);
 
 ctrl.noJobSite = []; //this is for the ng-hide/show within the ng-repeat.
 ctrl.date = new Date();
-console.log("new Date return", ctrl.date);
-
+ctrl.tempTimeArray = [];
 
 //this function gets the chosen employee object from DB
 const getTheEmployeeFromDBbyId = function() {
@@ -23,18 +22,33 @@ const getTheEmployeeFromDBbyId = function() {
         if (response) {
             ctrl.theEmployee = response.data;
             ctrl.employeeName = ctrl.theEmployee.firstName + " " + ctrl.theEmployee.lastName;
-            let hours_worked = ctrl.theEmployee.job_site_hours_worked;
+            let daily_hours_worked = ctrl.theEmployee.job_site_hours_worked;
             
-             ctrl.hours_worked = hours_worked.sort(function(a, b) {
+             ctrl.daily_hours_worked = daily_hours_worked.sort(function(a, b) {
                 console.log("sort function is firing ", a.date, b.date)
                 let dateA = new Date(a.date).getTime();
                 let dateB = new Date(b.date).getTime();
                 return dateA < dateB ? 1 : -1;
             });
         };
+        (function() {
+            let weekNumber = theEmployeeService.weekNumber();
+            for (let i = 0; i < ctrl.theEmployee.job_site_hours_worked.length; i++) {
+                if (ctrl.theEmployee.job_site_hours_worked[i].week === weekNumber) {
+                    ctrl.tempTimeArray.push(ctrl.theEmployee.job_site_hours_worked[i].hours_worked);
+                };
+            };
+            ctrl.hrs_this_week = 0;
+            // debugger;
+            ctrl.tempTimeArray.forEach(function(hours) {
+                ctrl.hrs_this_week += hours;
+            });
+        })();
     });
 };
 getTheEmployeeFromDBbyId(); 
+
+
 
 
 
@@ -49,8 +63,6 @@ const getTheJobSitesFromDB = function() {
 getTheJobSitesFromDB();
 
 
-
-
 //this function gets the array of employee objects from DB
 const getEmployeesList = function() {
     admin_employees_list_service.getEmployees().then(function(response) {
@@ -59,8 +71,6 @@ const getEmployeesList = function() {
     })
 }
 getEmployeesList();
-
-
 
 
 ctrl.goToJobSite = function(jobName, index) {
@@ -85,7 +95,6 @@ ctrl.goToJobSite = function(jobName, index) {
         }, 2500);
     };
 };
-
 
 
 //deletes the employee from the employeesList array and sends it to DB

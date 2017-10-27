@@ -81,15 +81,9 @@ ctrl.tAndmNo = function() {
 // }
 
 
-
-
-
-// function numberTheTimeCard() {};  This is doing nothing right now and will probably do nothing.
-
-
-
-
-
+//This function creates a new daily time card for this job on this day.  It checks to
+//see if a time card already exists for this day depending on whether it is time 
+//and material
 ctrl.addTheNewDailyTimeCardToJobsiteObject = function(tAndm) {
 
 	var flag = false;
@@ -212,26 +206,31 @@ ctrl.addNote = function(notes) {
 
 ctrl.addMaterials = function(materials) {
 	
-		if (ctrl.dailyTimeCard.theDate === ctrl.dailyTimeCard.theDate) {///WHAT IN THE WORLD IS THIS LINE?????? Think about it, it probably doesn't need to be here and I can't remember why I did it
+	if (materials) {
 			ctrl.dailyTimeCard.materials_used = materials;
-			
 			employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId(dailyTCArray, ctrl.jobsite._id).then(function(response) {
 				console.log("the materials update response ", response);
 				ctrl.needMaterials = false;
 			});
-		};
+		} else {
+			alert("You need to add some materials");
+			return;
+		}
 	ctrl.showMaterialsDiv = false;
 	ctrl.timeCardCreated = true;
 	// ctrl.textAreaShow = false;
+	 
 };
 
 
 
-
+//This function creates and adds an employee and time and adds it to the daily time 
+//card object and the employee.job_site_hours_worked array.  It has to see if the employee already has time for this job on this day
+//depending on whether it is time and material.
 ctrl.addEmployeeTime = function(firstName, lastName, hours_worked, index) {
 console.log("the name and hours from html ", firstName + " " + lastName, hours_worked);
 	var flag = false;
-
+	// debugger;
 	if (!hours_worked) {
 		ctrl.needTime[index] = true;
 		$timeout(function() {
@@ -242,6 +241,7 @@ console.log("the name and hours from html ", firstName + " " + lastName, hours_w
 
 	if (!ctrl.jobsite.daily_time_cards[0].materials_used) {
 		ctrl.needMaterials = true;
+		// alert("You need to add materials")
 		return;
 	}
 
@@ -250,7 +250,7 @@ console.log("the name and hours from html ", firstName + " " + lastName, hours_w
 		this.lastName = l,
 		this.hours_worked = h,
 		this.date_worked = d,
-		this.employeeTimeId = createCustomId()
+		this.employeeTimeId = createCustomId();
 	};
 	var nameHoursDate = new NameHoursDate(firstName, lastName, hours_worked, ctrl.theDate);
 	
@@ -290,7 +290,8 @@ console.log("the name and hours from html ", firstName + " " + lastName, hours_w
 
 
 
-//This function creates the daily time for the job site and pushes it to the employee object.
+//This function creates the daily time for the job site and pushes it to the employee 
+//object.
 function pushToJobSiteHoursWorked(hours_worked, index, employeeTimeId) {
 
 	console.log("in the pushToJobSiteHoursWorked function the employeeTimeId is: ", employeeTimeId);
@@ -303,11 +304,12 @@ function pushToJobSiteHoursWorked(hours_worked, index, employeeTimeId) {
 	function EmployeeNameHoursJob(d, h, j) {
 		this.dayIndex = new Date().getDay();
 		this.date = jsDate;
-		this.date_worked = d,
-		this.hours_worked = h,
-		this.job_site = j,
-		this.employeeTimeId = employeeTimeId,
-		this.TandM = ctrl.dailyTimeCard.TandM
+		this.date_worked = d;
+		this.hours_worked = h;
+		this.job_site = j;
+		this.employeeTimeId = employeeTimeId;
+		this.TandM = ctrl.dailyTimeCard.TandM;
+		this.week = timeFunc();
 	}
 	var employeeNameHoursJob = new EmployeeNameHoursJob(ctrl.theDate, hours_worked, ctrl.jobsite.name);
 
@@ -318,10 +320,20 @@ function pushToJobSiteHoursWorked(hours_worked, index, employeeTimeId) {
 	});
 };
 
+//The below function takes today's date object and compares it to the predefined 
+//date to define a week number so users can see and filter how many hours have been worked.
+let timeFunc = (date) => {
+	let startDate = new Date("Jan 1, 2017").getTime();
+	let now = new Date().getTime();
+	let diff = now - startDate;
+	let weekNum = Math.floor((diff / (60 * 60 * 24 * 1000) / 7));
+	return weekNum;
+};
 
 
-
-
+//This function creates a unique id for the employee that is created for both employee
+//and job site objects so the objects can be compared to each other for updating and 
+//deleting purposes.
 function createCustomId() {
 
 	var customId = "E";
@@ -343,7 +355,7 @@ function createCustomId() {
 
 
 
-
+//This function adds up all the hours worked for the job site.
 function addAllTheHours() {
 
 	ctrl.totalJobSiteHours = 0;
@@ -359,17 +371,7 @@ function addAllTheHours() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
+				////END OF CONTROLLER\\\\
 }
 employeeJobSiteTimeCardControllerCB.$inject = $inject;
 angular.module("timeCard").controller("employeeJobSiteTimeCardController", employeeJobSiteTimeCardControllerCB);

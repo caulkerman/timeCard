@@ -7,4 +7,8 @@
 .the-employee-container-div {
   margin: 20px; }
 
+  td {
+  	width: 33%;
+  }
+
 /*# sourceMappingURL=admin-the-employee.css.map */

@@ -13,7 +13,8 @@ console.log("the employee _id ", theEmployeeId);
 
 ctrl.noJobSite = []; //this is for the ng-hide/show within the ng-repeat.
 ctrl.date = new Date();
-ctrl.tempTimeArray = [];
+ctrl.add_this_week_hrs = [];
+ctrl.other_hours = []
 
 //this function gets the chosen employee object from DB
 const getTheEmployeeFromDBbyId = function() {
@@ -25,7 +26,6 @@ const getTheEmployeeFromDBbyId = function() {
             let daily_hours_worked = ctrl.theEmployee.job_site_hours_worked;
             
              ctrl.daily_hours_worked = daily_hours_worked.sort(function(a, b) {
-                console.log("sort function is firing ", a.date, b.date)
                 let dateA = new Date(a.date).getTime();
                 let dateB = new Date(b.date).getTime();
                 return dateA < dateB ? 1 : -1;
@@ -35,13 +35,14 @@ const getTheEmployeeFromDBbyId = function() {
             let weekNumber = theEmployeeService.weekNumber();
             for (let i = 0; i < ctrl.theEmployee.job_site_hours_worked.length; i++) {
                 if (ctrl.theEmployee.job_site_hours_worked[i].week === weekNumber) {
-                    ctrl.tempTimeArray.push(ctrl.theEmployee.job_site_hours_worked[i].hours_worked);
+                    ctrl.add_this_week_hrs.push(ctrl.theEmployee.job_site_hours_worked[i]);
+                } else {
+                    ctrl.other_hours.push(ctrl.theEmployee.job_site_hours_worked[i]);
                 };
             };
             ctrl.hrs_this_week = 0;
-            // debugger;
-            ctrl.tempTimeArray.forEach(function(hours) {
-                ctrl.hrs_this_week += hours;
+            ctrl.add_this_week_hrs.forEach(function(obj) {
+                ctrl.hrs_this_week += obj.hours_worked;
             });
         })();
     });

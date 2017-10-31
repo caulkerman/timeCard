@@ -239,7 +239,7 @@ console.log("the name and hours from html ", firstName + " " + lastName, hours_w
 		return;
 	};
 
-	if (!ctrl.jobsite.daily_time_cards[0].materials_used) {
+	if (!dailyTCArray[0].materials_used) {
 		ctrl.needMaterials = true;
 		// alert("You need to add materials")
 		return;
@@ -254,8 +254,8 @@ console.log("the name and hours from html ", firstName + " " + lastName, hours_w
 	};
 	var nameHoursDate = new NameHoursDate(firstName, lastName, hours_worked, ctrl.theDate);
 	
-	if (ctrl.dailyTimeCard.employees_worked.length < 1) {
-		ctrl.dailyTimeCard.employees_worked.push(nameHoursDate);
+	if (dailyTCArray[0].employees_worked.length < 1) {
+		dailyTCArray[0].employees_worked.push(nameHoursDate);
 			
 		employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId(dailyTCArray, ctrl.jobsite._id).then(function(response) {
 			console.log("the nameHoursDate update response ", response.data);
@@ -264,9 +264,9 @@ console.log("the name and hours from html ", firstName + " " + lastName, hours_w
 		return;
 	};
 			
-	for (var j = 0; j < ctrl.dailyTimeCard.employees_worked.length; j++) {				
+	for (var j = 0; j < dailyTCArray[0].employees_worked.length; j++) {				
 
-		if (nameHoursDate.firstName === ctrl.dailyTimeCard.employees_worked[j].firstName && nameHoursDate.lastName === ctrl.dailyTimeCard.employees_worked[j].lastName) {
+		if (nameHoursDate.firstName === dailyTCArray[0].employees_worked[j].firstName && nameHoursDate.lastName === dailyTCArray[0].employees_worked[j].lastName) {
 			flag = true;
 					
 			if (flag) {
@@ -275,13 +275,14 @@ console.log("the name and hours from html ", firstName + " " + lastName, hours_w
 		};
 	};
 		
-	if (flag === false && ctrl.dailyTimeCard.theDate === nameHoursDate.date_worked) {
-		ctrl.dailyTimeCard.employees_worked.push(nameHoursDate);
+	if (flag === false && dailyTCArray[0].theDate === nameHoursDate.date_worked) {
+		dailyTCArray[0].employees_worked.push(nameHoursDate);
 				
 		employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId(dailyTCArray, ctrl.jobsite._id).then(function(response) {
 			pushToJobSiteHoursWorked(hours_worked, index, nameHoursDate.employeeTimeId);
 		});
 	};
+	addAllTheHours();
 };
 
 

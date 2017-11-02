@@ -58,7 +58,7 @@ function firstWeek() {
 
 $scope.filterWeek = function(num) {
     console.error("filterWeek parameter for num: ", num);
-    if (num === 0 || num === undefined || num === null) {
+    if (!num) {
         ctrl.filtered = false;
     } else {
         ctrl.add_more_week_hrs = [];
@@ -67,7 +67,6 @@ $scope.filterWeek = function(num) {
         let diff = weekNumber - num;
         ctrl.theEmployee.job_site_hours_worked.forEach(function(obj) {
             if (obj.week >= diff && obj.week < weekNumber) {
-                // ctrl.other_hours = [];
                 ctrl.add_more_week_hrs.push(obj);
             } else if (obj.week < diff) {
                 ctrl.other_hours.push(obj);

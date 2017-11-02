@@ -14,6 +14,7 @@ console.log("the employee _id ", theEmployeeId);
 ctrl.noJobSite = []; //this is for the ng-hide/show within the ng-repeat.
 ctrl.date = new Date();
 ctrl.add_this_week_hrs = [];
+ctrl.add_more_week_hrs = [];
 ctrl.other_hours = []
 
 //this function gets the chosen employee object from DB
@@ -31,26 +32,59 @@ const getTheEmployeeFromDBbyId = function() {
                 return dateA < dateB ? 1 : -1;
             });
         };
-        (function() {
-            let weekNumber = theEmployeeService.weekNumber();
-            for (let i = 0; i < ctrl.theEmployee.job_site_hours_worked.length; i++) {
-                if (ctrl.theEmployee.job_site_hours_worked[i].week === weekNumber) {
-                    ctrl.add_this_week_hrs.push(ctrl.theEmployee.job_site_hours_worked[i]);
-                } else {
-                    ctrl.other_hours.push(ctrl.theEmployee.job_site_hours_worked[i]);
-                };
-            };
-            ctrl.hrs_this_week = 0;
-            ctrl.add_this_week_hrs.forEach(function(obj) {
-                ctrl.hrs_this_week += obj.hours_worked;
-            });
-        })();
+        firstWeek();
     });
 };
 getTheEmployeeFromDBbyId(); 
 
 
 
+function firstWeek() {
+    console.warn("firstWeek function has fired");
+    let weekNumber = theEmployeeService.weekNumber();
+    for (let i = 0; i < ctrl.theEmployee.job_site_hours_worked.length; i++) {
+        if (ctrl.theEmployee.job_site_hours_worked[i].week === weekNumber) {
+            ctrl.add_this_week_hrs.push(ctrl.theEmployee.job_site_hours_worked[i]);
+        } else {
+             ctrl.other_hours.push(ctrl.theEmployee.job_site_hours_worked[i]);
+         };
+    };
+    ctrl.hrs_this_week = 0;
+    ctrl.add_this_week_hrs.forEach(function(obj) {
+        ctrl.hrs_this_week += obj.hours_worked;
+    });
+};
+
+
+$scope.filterWeek = function(num) {
+    console.error("filterWeek parameter for num: ", num);
+    if (num === 0 || num === undefined || num === null) {
+        // ctrl.add_this_week_hrs = [];//clearing out array and refilling it because if 0 
+        //is entered and function is returned then it will not give back the original values
+        // firstWeek();
+        // ctrl.not_week = false;
+        ctrl.filtered = false;
+    } else {
+        ctrl.add_more_week_hrs = [];
+        ctrl.other_hours = [];
+        let weekNumber = theEmployeeService.weekNumber();
+        let diff = weekNumber - num;
+        ctrl.theEmployee.job_site_hours_worked.forEach(function(obj) {
+            if (obj.week >= diff && obj.week < weekNumber) {
+                // ctrl.other_hours = [];
+                ctrl.add_more_week_hrs.push(obj);
+            } else if (obj.week < diff) {
+                ctrl.other_hours.push(obj);
+            }
+        });
+        ctrl.hrs_this_period = 0;
+        ctrl.add_more_week_hrs.forEach(function(obj) {
+            ctrl.hrs_this_period += obj.hours_worked;
+        });
+        ctrl.filtered = true;
+        ctrl.weeksNumber = "";
+    };
+};
 
 
 

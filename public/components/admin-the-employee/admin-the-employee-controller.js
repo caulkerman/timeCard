@@ -59,10 +59,6 @@ function firstWeek() {
 $scope.filterWeek = function(num) {
     console.error("filterWeek parameter for num: ", num);
     if (num === 0 || num === undefined || num === null) {
-        // ctrl.add_this_week_hrs = [];//clearing out array and refilling it because if 0 
-        //is entered and function is returned then it will not give back the original values
-        // firstWeek();
-        // ctrl.not_week = false;
         ctrl.filtered = false;
     } else {
         ctrl.add_more_week_hrs = [];
@@ -82,7 +78,7 @@ $scope.filterWeek = function(num) {
             ctrl.hrs_this_period += obj.hours_worked;
         });
         ctrl.filtered = true;
-        ctrl.weeksNumber = "";
+        ctrl.weeksNumber = undefined;
     };
 };
 

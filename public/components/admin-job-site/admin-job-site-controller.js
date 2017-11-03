@@ -224,7 +224,7 @@ $rootScope.createLateTimeCard = function(TandM, newDate, dayIndex1, dateString) 
 				this.materials_used = '';
 				this.notes = '';
 				this.TandM = TandM;
-				this.late = true;
+				// this.late = true;
 			};
 			$scope.dailyTimeCard = new DailyTimeCard();
 

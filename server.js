@@ -4,6 +4,7 @@ var bodyParser = require("body-parser");
 var mongoose = require("mongoose");
 
 
+
 //express
 var app = express();
 
@@ -58,6 +59,7 @@ var port = 9333;
 var mLabsPassword = require("./api/mLabsPassword/mLabsPassword")
 var mongoUri = mLabsPassword.password;
 mongoose.set('debug', true);
+mongoose.Promise = require("bluebird");
 mongoose.connect(mongoUri, {
 	useMongoClient: true
 });

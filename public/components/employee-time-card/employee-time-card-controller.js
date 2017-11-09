@@ -1,7 +1,7 @@
 (function() {
-	var $inject = ["$scope", "admin_employees_list_service", "employeeJobSiteTimeCardService"];
+	var $inject = ["$scope", "admin_employees_list_service", "employeeJobSiteTimeCardService", "adminJobSiteListService"];
 
-	function employeeTimeCardControllerCB($scope, admin_employees_list_service, employeeJobSiteTimeCardService) {
+	function employeeTimeCardControllerCB($scope, admin_employees_list_service, employeeJobSiteTimeCardService, adminJobSiteListService) {
 
 'use strict'
 var ctrl = this;
@@ -18,13 +18,23 @@ $scope.test = "this is from employeeTimeCardController";
 				ctrl.employees.push(response.data[i]);
 			};
 		};
-	    console.log("the employees object ", ctrl.employees);
-	    console.log("the response.data: ", response.data);
+		// console.log("the whole response :", response);
+	    console.log("the employees object, no admins ", ctrl.employees);
+	    console.log("the response.data, with admins: ", response.data);
 	});
 })();
 
 ctrl.theDate = employeeJobSiteTimeCardService.theDate();
 console.log("the new theDate object: ", ctrl.theDate);
+
+
+function getListOfJobs() {
+		adminJobSiteListService.getJobs().then(function(response) {
+			ctrl.job_sites = response.data;
+			console.log("getListOfJobs function in employee-time-card controller ", ctrl.job_sites);
+		})
+	}
+	getListOfJobs();
 
 
 

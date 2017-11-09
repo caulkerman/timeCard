@@ -1,7 +1,9 @@
 app.service("adminJobSiteService", ["$q", "$http", function($q, $http) {
 
 
+// let modalResponse;
 
+let dayIndex;
 
 //////CREATE\\\\\\\\
 this.updateJobsite = function(jobsite, id) {
@@ -55,9 +57,18 @@ this.getJobs = function() {
 		url: "/api/getJobs"
 	}).then(function(response) {
 		deferred.resolve(response);
+		// modal(response);
 	});
 	return deferred.promise;
 };
+
+// let modal = function(response) {
+// 	modalResponse = response;
+// }
+
+// this.getModalResponse = function() {
+// 	return modalResponse;
+// }
 
 
 
@@ -92,23 +103,20 @@ this.updateTheEmployeeInDBbyId = function(employee, id) {
 
 
 this.updateEmployeesWorkedInDBbyId = function (employees_worked, id) {
+	console.log("employees_worked before going to db: ", employees_worked);
 	var deferred = $q.defer();
 	$http({
 		method: "PUT",
 		url: "/api/updateEmployee/" + id,
 		data: employees_worked
 	}).then(function(response) {
+	console.log("employees_worked after going to db: ", response.data);
+
 		deferred.resolve(response);
 	});
 	return deferred.promise;
 }
 
-
-
-
-this.updateEmployeesArray = function(empArray) {
-
-}
 
 
 
@@ -123,6 +131,17 @@ this.delete_job = function(jobsite) {
         deferred.resolve(res);
     });
     return deferred.promise;
+}
+
+
+this.dayIndex = function(index) {
+	console.log("index from Service: ", index)
+	dayIndex = index;
+	console.log(dayIndex);
+}
+this.dayIndex1 = function() {
+	console.error("index from return function before going out: ", dayIndex);
+	return dayIndex;
 }
 
 

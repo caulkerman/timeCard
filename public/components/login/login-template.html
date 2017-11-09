@@ -1,34 +1,32 @@
 <link rel="stylesheet" href="components/login/login.css">
 
-<div class="page-container">
+<div>
 
     <img src="../../assets/images/Photo0140.jpg" id="login-background-img">
     <div class="login-container">
         <!-- <div id="header-div">
-    	   <h1>Login</h1>
+           <h1>Login</h1>
         </div>
-    	<hr> -->
-    	<div class="input-div">
-    		<input type="text" class="login-input" placeholder="Username:" />
-    	</div>
-    	<div class="input-div">
-    		<input type="password" class="login-input" placeholder="Password:" />
-    	</div>
-    <hr>
+        <hr> -->
+        <div class="input-div">
+            <input type="text" class="login-input" placeholder="Username:" />
+        </div>
+        <div class="input-div">
+            <input type="password" class="login-input" placeholder="Password:" />
+        </div>
 
-    	<div class="button-div">
-    		<button class="login-button" ng-click="ctrl.loginClick()">Login</button>
-    	</div>
+        <div class="button-div">
+            <button class="login-button" ng-click="ctrl.loginClick()">Login</button>
+            <button ui-sref="admin" class="input-div">admin</button>
+            <button ui-sref="employee" class="input-div">employee</button>
+        </div>
     </div>
-
-    <button ui-sref="admin" class="input-div">admin</button>
-    <button ui-sref="employee" class="input-div">employee</button>
-
 
 
     <!--///////////the modal\\\\\\\\\\\\\\\\\-->
+<!--
     <div class="modal-demo">
-    	<script type="text/ng-template" id="myModalContent.html">
+        <script type="text/ng-template" id="myModalContent.html">
             <div class="modal-header">
                 <h3 class="modal-title" id="modal-title">I'm a modal!</h3>
             </div>
@@ -47,4 +45,5 @@
         <div class="modal-parent">
         </div>
 </div>
+-->
     </div>

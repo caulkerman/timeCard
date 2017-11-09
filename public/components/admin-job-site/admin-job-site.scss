@@ -1,3 +1,6 @@
+form label {
+        margin-bottom: 10px;
+}
 #jobSiteNameBold {
     font-size: 1.7em;
     font-weight: bold;
@@ -12,19 +15,51 @@ p.warn {
 }
 
 .notes-div {
-	width: 40%;
+	width: 90%;
 }
 
 .admin-job-site-container-div {
   position: relative;
+  margin: 20px;
+}
+
+.close-button {
+    position: absolute;
+    font-size: larger;
+    right: 20px;
+    top: 11px;
+    cursor: pointer;
 }
 
 .formDiv {
-	width: 50%;
-	z-index: 300;
-	position: absolute;
-	left: 200px;
-	top: 400px;
-	border: solid 2px blue;
-	background-color: white;
+  width: 50%;
+  z-index: 35;
+  position: absolute;
+  left: 200px;
+  top: 60px;
+  background-color: white; 
+  padding: 20px;
+  border-radius: 4px;
+}
+
+.overlay {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 30;
+    top: 0;
+}
+
+.modalInputDiv {
+    margin-bottom: 15px;
+    margin-top: 0;
+}
+
+#bootstrap-overrides label {
+  margin-bottom: 0px;
+}
+
+.text-area {
+  margin-bottom: 15px;
 }

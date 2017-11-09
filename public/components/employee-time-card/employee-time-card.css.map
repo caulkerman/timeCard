@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAAA,uBAAwB;EACpB,MAAM,EAAE,IAAI",
+"sources": ["employee-time-card.scss"],
+"names": [],
+"file": "employee-time-card.css"
+}

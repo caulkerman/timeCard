@@ -1,8 +1,21 @@
+label {
+  margin-bottom: 10px; }
+
 #jobSiteName {
   color: brown;
-  font-size: 2em; }
+  font-size: 2.5em; }
+
+#textArea {
+  margin-top: 10px; }
+
+.jobDetails {
+  padding: 30px; }
 
 .date {
-  float: right; }
+  float: right;
+  font-size: 2em; }
+
+.employee-job-site-time-card-div {
+  margin: 20px; }
 
 /*# sourceMappingURL=employee-job-site-time-card.css.map */

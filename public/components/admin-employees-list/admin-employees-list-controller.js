@@ -9,8 +9,18 @@ const ctrl = this;
 	//This function automatically calls to get all the employees from the DB when the page loads
 	var functionToGetEmployees = function() {
 		admin_employees_list_service.getEmployees().then(function(response) {
-			$scope.employees = response.data;
-			console.log($scope.employees);
+			let empArray = response.data;
+			$scope.employees = empArray.sort(function(a, b) {
+			 	let nameA = a.lastName;
+  				let nameB = b.lastName;
+  				if(nameA < nameB) {
+    				return -1;
+  				};
+  				if (nameA > nameB) {
+   					return 1;
+  				};
+  				return 0;
+			});
 		});
 	};
 	functionToGetEmployees();
@@ -19,20 +29,18 @@ const ctrl = this;
 
 	//this function is called from another controller, is used to update the ng-repeated $scope.employees once the modal has closed.
 	$rootScope.updateNgRepeat = function() {
-		console.log("The rootScope function has fired");
-		admin_employees_list_service.getEmployees().then(function(response) {
-			$scope.employees = response.data;
-		});
+		functionToGetEmployees();
 	};
 
 
 
 	//This function takes the name clicked on, compares it to the array of employee names, finds it, and then uses its ._id to send to the admin-the-employee page
-	$scope.goToTheEmployee = function(name) {
+	$scope.goToTheEmployee = function(firstName, lastName) {
 		console.log(name);
 		for (var i = 0; i < $scope.employees.length; i++) {
-			if (name === $scope.employees[i].fullName) {
+			if (firstName === $scope.employees[i].firstName && lastName === $scope.employees[i].lastName) {
 				var id = $scope.employees[i]._id;
+
 					$state.go("admin-the-employee", {id: id});
 			}
 		}
@@ -41,9 +49,9 @@ const ctrl = this;
 		
 
 		
-/////////THE MODAL\\\\\\\\\
 
-ctrl.animationsEnabled = false;
+
+ctrl.animationsEnabled = false; ///all this below is to enter the modal's controller
    
   ctrl.open = function () {
     var modalInstance = $uibModal.open({
@@ -99,12 +107,13 @@ console.log("the ctrl.employees array: ", ctrl.employees);
     $uibModalInstance.dismiss('cancel');
   };
 
-	$scope.createEmployee = function(fullName, userName, password, employeeType, isValid) {
+	$scope.createEmployee = function(firstName, lastName, userName, password, employeeType, isValid) {
 
 		$scope.submitted = true;
 		
 		var employee = {
-			fullName: fullName,
+			firstName: firstName,
+			lastName: lastName,
 			userName: userName,
 			password: password,
 			employeeType: employeeType,
@@ -127,7 +136,8 @@ console.log("the ctrl.employees array: ", ctrl.employees);
 
 		$scope.submitted = false;
 
-		$scope.fullName = "";
+		$scope.firstName = "";
+		$scope.lastName = "";
 		$scope.userName = "";
 		$scope.password = "";
 		$scope.employeeType = "";

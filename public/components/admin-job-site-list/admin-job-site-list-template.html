@@ -1,86 +1,87 @@
 <link rel="stylesheet" href="components/admin-job-site-list/admin-job-site-list.css">
 
-<h1>Job Site List</h1>
+<div class="admin-job-site-list-div"> 
+    <h1>Job Site List</h1>
 
 
 
-<!-- THE MODAL -->
+    <!-- THE MODAL -->
 
-<div class="modal-demo">
-	<script type="text/ng-template" id="myModalContent.html">
-        <div class="modal-header">
-            <h3 class="modal-title" id="modal-title">Create new Job Site</h3>
+    <div class="modal-demo">
+        <script type="text/ng-template" id="myModalContent.html">
+            <div class="modal-header">
+                <h3 class="modal-title" id="modal-title">Create new Job Site</h3>
+            </div>
+
+            <!--  Add your modal html here -->
+            <form ng-submit="addNewJobsSite(newJobName, contractorName, jobAddress, superName, superTelephone, jobDetails, materialsNeeded)">
+
+                <div class="jobNameDiv">
+                    <label for="jobName">Job Name:</label>
+                    <input type="text" ng-model="newJobName" name="jobName" class="newJobForm form-control" required>
+                </div>
+
+                <div class="contractorNameDiv">
+                    <label for="contractorName">Contractor Name:</label>
+                    <input type="text"  ng-model="contractorName" name="contractorName" class="newJobForm form-control" required>
+                </div>
+
+                <div class="superName">
+                    <label for="superName">Superintendent Name:</label>
+                    <input type="text" ng-model="superName" name="superName" class="newJobForm form-control">
+                </div>
+
+                <div class="superTelephone">
+                    <label for="superTelephone">Superintendent Telephone:</label>
+                    <input type="number" ng-model="superTelephone" name="superTelephone" class="newJobForm form-control">
+                </div>
+
+                <div class="jobAddress">
+                    <label for="jobAddress">Job Address:</label>
+                    <input type="text" ng-model="jobAddress" name="jobAddress"  class="newJobForm form-control">
+                </div>
+
+                <div class="jobDetails">
+                    <label for="jobDetails">Job Contract Details:</label>
+                    <textarea name="jobDetails" ng-model="jobDetails" class="newJobForm form-control" placeholder="such as how many feet of expansion joints:"></textarea>
+                </div>
+
+                <div class="materialsNeeded">
+                    <label for="materialsNeeded">Materials Needed:</label>
+                    <textarea name="materialsNeeded" ng-model="materialsNeeded" class="newJobForm form-control" placeholder="such as whether to use ladders, silicone or urethane:"></textarea>
+                </div>
+
+                <input class="submit btn btn-success" type="submit" value="Submit">
+                <button class="btn btn-danger" type="button" ng-click="ctrl.cancel()">Cancel</button>
+            </form>
+
+        </script>
+
+        <!--//////	END OF MODAL  \\\\\\\\-->
+
+        <button type="button" class="btn" ng-click="ctrl.open()">Create New Job Site</button>
+        <div class="modal-parent">
         </div>
-        
-        <!--  Add your modal html here -->
-		<form ng-submit="addNewJobsSite(newJobName, contractorName, jobAddress, superName, superTelephone, jobDetails, materialsNeeded)">
-
-			<div class="jobNameDiv">
-				<label for="jobName">Job Name:</label>
-				<input type="text" ng-model="newJobName" name="jobName" class="newJobForm form-control" required>
-			</div>
-			
-			<div class="contractorNameDiv">
-				<label for="contractorName">Contractor Name:</label>
-				<input type="text"  ng-model="contractorName" name="contractorName" class="newJobForm form-control" required>
-			</div>
-
-			<div class="superName">
-				<label for="superName">Superintendent Name:</label>
-				<input type="text" ng-model="superName" name="superName" class="newJobForm form-control">
-			</div>
-
-			<div class="superTelephone">
-				<label for="superTelephone">Superintendent Telephone:</label>
-				<input type="number" ng-model="superTelephone" name="superTelephone" class="newJobForm form-control">
-			</div>
-
-			<div class="jobAddress">
-				<label for="jobAddress">Job Address:</label>
-				<input type="text" ng-model="jobAddress" name="jobAddress"  class="newJobForm form-control">
-			</div>
-
-			<div class="jobDetails">
-				<label for="jobDetails">Job Contract Details:</label>
-				<textarea name="jobDetails" ng-model="jobDetails" class="newJobForm form-control" placeholder="such as how many feet of expansion joints:"></textarea>
-			</div>
-
-			<div class="materialsNeeded">
-				<label for="materialsNeeded">Materials Needed:</label>
-				<textarea name="materialsNeeded" ng-model="materialsNeeded" class="newJobForm form-control" placeholder="such as whether to use ladders, silicone or urethane:"></textarea>
-			</div>
-			
-			<input class="submit btn btn-success" type="submit" value="Submit">
-	        <button class="btn btn-danger" type="button" ng-click="ctrl.cancel()">Cancel</button>
-		</form>
-		
-    </script>
-
-    <!--//////	END OF MODAL  \\\\\\\\-->
-
-    <button type="button" class="btn btn-success" ng-click="ctrl.open()">Create New Job Site</button>
-    <div class="modal-parent">
     </div>
+
+
+
+
+
+
+
+
+    <br />
+    <input type="text" placeholder="filter jobs" ng-model="ctrl.jobs">
+
+    <ul ng-repeat="job_site in ctrl.job_sites | filter: {name:ctrl.jobs} track by $index">
+        <li>
+            <a href="" ng-click="ctrl.gotoSelectedJobsite($index, job_site._id)">{{job_site.name}}</a>
+        </li>
+    </ul>
+
+    <br />
+    <button ui-sref="admin-old-job-site-list" href="#/admin-old-job-site-list">Old/Completed Job Sites</button>
+
+    <!--maybe you can make it so that any job sites worked on today will be highlighted, or at least have them in their own separate div at the top.-->
 </div>
-
-
-
-
-
-
-
-
-<br />
-<input type="text" placeholder="filter jobs" ng-model="ctrl.jobs">
-
-<ul ng-repeat="job_site in ctrl.job_sites | filter: {name:ctrl.jobs} track by $index">
-	<li>
-		<a href="" ng-click="ctrl.gotoSelectedJobsite($index, job_site._id)">{{job_site.name}}</a>
-	</li>
-</ul>
-
-<br />
-<button ui-sref="admin-old-job-site-list" href="#/admin-old-job-site-list">Old/Completed Job Sites</button>
-
-<!--maybe you can make it so that any job sites worked on today will be highlighted, or at least have them in their own separate div at the top.-->
-

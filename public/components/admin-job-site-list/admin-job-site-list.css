@@ -12,4 +12,13 @@ input.submit {
 label {
   margin-left: 15px; }
 
+.admin-job-site-list-div {
+  margin: 20px; }
+
+.modal-demo button {
+  background-color: #8EB843; }
+
+form {
+  padding: 10px; }
+
 /*# sourceMappingURL=admin-job-site-list.css.map */

@@ -1,6 +1,6 @@
 {
 "version": 3,
-"mappings": "AAAA,mBAAoB;EAClB,WAAW,EAAE,IAAI;;AAEnB,qCAAqC;AAErC,sCAAsC",
+"mappings": "AAAA,gBAAiB;EAEb,MAAM,EAAE,IAAI;EAEf,mBAAG;IACF,WAAW,EAAE,IAAI;;AAMnB,qCAAqC;AAErC,sCAAsC",
 "sources": ["admin.scss"],
 "names": [],
 "file": "admin.css"

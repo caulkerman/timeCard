@@ -14,4 +14,10 @@ p.warning {
 #fldsRqd {
   color: red; }
 
-/*# sourceMappingURL=admin-employees.css.map */
+.admin-employee-container {
+  margin: 20px; }
+
+#bootstrap-overrides label {
+  margin-bottom: 0px; }
+
+/*# sourceMappingURL=admin-employees-list.css.map */

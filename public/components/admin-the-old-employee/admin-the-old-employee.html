@@ -1,63 +1,67 @@
+<link rel="stylesheet" href="components/admin-the-old-employee/admin-the-old-employee.css">
+
 <div class="admin-the-old-employee-container-div" ng-hide="ctrl.finalFarewell">
 
-<h1>{{ctrl.theOldEmployee.fullName}}</h1>
+    <h1>{{ctrl.theOldEmployee.fullName}}</h1>
 
-    <div ng-hide="ctrl.deleteWarning">
-        
         <div>
-            <p>The Employee's User Name: <span>{{ctrl.theOldEmployee.userName}}{{ctrl.theOldEmployee.email}}</span></p> 
-         <!--make sure you take off the in-line styling-->
-            <p>The Employee's Current Password: <span>{{ctrl.theOldEmployee.password}}</span></p>
-            <p>The Employee's Type: <span>{{ctrl.theOldEmployee.employeeType}}</span></p>
+            <div ng-hide="ctrl.deleteWarning">
+
+                <div>
+                    <p>The Employee's User Name: <span>{{ctrl.theOldEmployee.userName}}{{ctrl.theOldEmployee.email}}</span></p> 
+                 <!--make sure you take off the in-line styling-->
+                    <p>The Employee's Current Password: <span>{{ctrl.theOldEmployee.password}}</span></p>
+                    <p>The Employee's Type: <span>{{ctrl.theOldEmployee.employeeType}}</span></p>
+                </div>
+
+                <div>
+                    <button ng-click="ctrl.resurrectOldEmployee()">Resurrect Old Employee</button>
+                    <button ng-click="ctrl.deleteEmployee()">Delete Employee</button>
+                </div>
+
+                <div>
+                    <input type="text" ng-model="dateFilter" placeholder="Search For Dates">
+                </div>
+
+                <!-- div>
+                    <button ng-click="ctrl.retireEmployee()">Retire the Employee</button>
+                </div> -->
+
+                <div>
+
+                    <table st-table="students" class="table table-striped">
+
+                        <thead>
+                            <tr>
+                                <td>Date</td>
+                                <td>Hours</td>
+                                <td>Job Site</td>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr ng-repeat="hours in ctrl.hours_worked | filter: {date_worked:dateFilter} track by $index">
+                                <td>{{hours.date_worked}}</td>
+                                <td>{{hours.hours_worked}}</td>
+                                <td>{{hours.job_site}}</td>
+                                <!-- <td ng-hide="ctrl.noJobSite[$index]"><a href="" ng-click="ctrl.goToJobSite(hours.job_site, $index)">{{hours.job_site}}</a></td> -->
+                                <!-- <td ng-show="ctrl.noJobSite[$index]" class="rw-warning">Oops! This job site has been completed and is now inactive.</td> -->
+                            </tr>
+                        </tbody>
+
+                    </table>
+
+                </div>
+            </div>
+
+            <div ng-show="ctrl.deleteWarning">
+                <p class="warn">Are you sure you want to delete this employee?  Clicking yes will delete the whole Employee. You WILL NOT be able to get this employee back</p>
+                <button ng-click="ctrl.deleteYes()">YES</button>
+                <button ng-click="ctrl.deleteNo()">NO</button>
+            </div>
+
         </div>
 
-        <div>
-        	<button ng-click="ctrl.resurrectOldEmployee()">Resurrect Old Employee</button>
-            <button ng-click="ctrl.deleteEmployee()">Delete Employee</button>
-        </div>
-
-        <div>
-            <input type="text" ng-model="dateFilter" placeholder="Search For Dates">
-        </div>
-
-        <!-- div>
-            <button ng-click="ctrl.retireEmployee()">Retire the Employee</button>
-        </div> -->
-
-        <div>
-
-            <table st-table="students" class="table table-striped">
-                
-                <thead>
-                    <tr>
-                        <td>Date</td>
-                        <td>Hours</td>
-                        <td>Job Site</td>
-                    </tr>
-                </thead>
-
-                <tbody>
-                    <tr ng-repeat="hours in ctrl.hours_worked | filter: {date_worked:dateFilter} track by $index">
-                        <td>{{hours.date_worked}}</td>
-                        <td>{{hours.hours_worked}}</td>
-                        <td>{{hours.job_site}}</td>
-                        <!-- <td ng-hide="ctrl.noJobSite[$index]"><a href="" ng-click="ctrl.goToJobSite(hours.job_site, $index)">{{hours.job_site}}</a></td> -->
-                        <!-- <td ng-show="ctrl.noJobSite[$index]" class="rw-warning">Oops! This job site has been completed and is now inactive.</td> -->
-                    </tr>
-                </tbody>
-
-            </table>
-
-        </div>
-    </div>
-
-    <div ng-show="ctrl.deleteWarning">
-        <p class="warn">Are you sure you want to delete this employee?  Clicking yes will delete the whole Employee. You WILL NOT be able to get this employee back</p>
-        <button ng-click="ctrl.deleteYes()">YES</button>
-        <button ng-click="ctrl.deleteNo()">NO</button>
-    </div>
-
+        <p ng-show="ctrl.finalFarewellResurrected">The {{ctrl.theOldEmployee.fullName}} employee has been resurrected.</p>
+        <p ng-show="ctrl.finalFarewellDeleted">The {{ctrl.theOldEmployee.fullName}} employee has been deleted!</p>
 </div>
-
-<p ng-show="ctrl.finalFarewellResurrected">The {{ctrl.theOldEmployee.fullName}} employee has been resurrected.</p>
-<p ng-show="ctrl.finalFarewellDeleted">The {{ctrl.theOldEmployee.fullName}} employee has been deleted!</p>

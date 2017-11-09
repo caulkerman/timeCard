@@ -1,5 +1,6 @@
 <link rel="stylesheet" href="components/admin-job-site/admin-job-site.css">
 
+<div class="overlay" ng-if="showNotesDiv"></div>
 <div class="admin-job-site-container-div" ng-hide="finalFarewell">
     <p><span id="jobSiteNameBold">{{jobsite.name}}<span></p>
 
@@ -7,61 +8,64 @@
     <button ng-click="ctrl.open()">Create Late Time Card</button>
     <button ng-click="completedJob()">Completed</button>
     <button ng-click="showUpdateForm()" ng-hide="showUpdateJobSite">Show Jobsite Details</button>
-    <button ng-click="hideUpdateForm()" ng-show="showUpdateJobSite">Hide Jobsite Details</button>
 
 
-    <div class="formDiv">
-        <form ng-show="showUpdateJobSite" ng-submit="updateTheJobSite(jobsite.contractor, jobsite.job_address, jobsite.job_details, jobsite.materials_needed, jobsite.name, jobsite.superintendent_name, jobsite.superintendent_telephone, jobsite.notes)">
-            
-            <p>You can edit and change the job site details</p>
+    <div class="formDiv" ng-show="showUpdateJobSite">
+        <form ng-submit="updateTheJobSite(jobsite.contractor, jobsite.job_address, jobsite.job_details, jobsite.materials_needed, jobsite.name, jobsite.superintendent_name, jobsite.superintendent_telephone, jobsite.notes)">
+            <div class="close-button" ng-click="hideUpdateForm()">X</div>
+            <h2>Update Job Site</h2>
 
             <p>Total Job Site Hours Worked: {{totalJobSiteHours}}</p>
 
 
             <div>
                 <label for="name">Job Name: </label>
-                <input type="text" class="updateJobSite" ng-model="jobsite.name" name="name">
+                <input type="text" class="updateJobSite form-control" ng-model="jobsite.name" name="name">
             </div>
 
             <div >
                 <label for="contractor">Contractor: </label>
-                <input type="text" class="updateJobSite" ng-model="jobsite.contractor" name="contractor">
+                <input type="text" class="updateJobSite form-control" ng-model="jobsite.contractor" name="contractor">
             </div>
 
             <div>
                 <label for="superintendent_name">Superintendent Name: </label>
-                <input type="text" class="updateJobSite" ng-model="jobsite.superintendent_name" name="superintendent_name">
+                <input type="text" class="updateJobSite form-control" ng-model="jobsite.superintendent_name" name="superintendent_name">
             </div>
 
             <div>
                 <label for="superintendent_telephone">Superintendant Telephone: </label>
-                <input type="number" class="updateJobSite" ng-model="jobsite.superintendent_telephone" name="superintendent_telephone">
+                <input type="number" class="updateJobSite form-control" ng-model="jobsite.superintendent_telephone" name="superintendent_telephone">
             </div>
 
             <div>
                 <label for="job_address">Job Address: </label>
-                <input type="text" class="updateJobSite" ng-model="jobsite.job_address" name="job_address">
+                <input type="text" class="updateJobSite form-control" ng-model="jobsite.job_address" name="job_address">
             </div>
 
             <div>
                 <label for="job_details">Job Details: </label>
-                <textarea class="updateJobSite" ng-model="jobsite.job_details" name="job_details"></textarea>
+                <textarea class="updateJobSite form-control" ng-model="jobsite.job_details" name="job_details"></textarea>
             </div>
 
             <div>
                 <label for="materials_needed">Materials Needed: </label>
-                <textarea class="updateJobSite" ng-model="jobsite.materials_needed" name="materials_needed"></textarea>
+                <textarea class="updateJobSite form-control" ng-model="jobsite.materials_needed" name="materials_needed"></textarea>
             </div>
 
             <div>
                 <div>
                     <label for="notes">Notes: </label>
-                    <textarea class="updateJobSite" ng-model="jobsite.notes" name="notes"></textarea>
+                    <textarea class="updateJobSite form-control" ng-model="jobsite.notes" name="notes"></textarea>
                 </div>
-
+<div ng-show="showNotesDiv">
+            <button type="button" ng-click="viewNotes()" ng-hide="seeNotes">View Notes</button>
+            <button type="button" ng-click="hideNotes()" ng-show="seeNotes">Hide Notes</button>
+        </div>
 
                 <div ng-repeat="notes in jobsite.jobSiteNotes" class="notes-div" ng-show="seeNotes">
                     <ul>
+                       <h2>Notes:</h2>
                         <label>{{notes.noteDate}}:</label>
                         <p>{{notes.theNote}}</p>
                     </ul>
@@ -71,10 +75,6 @@
             <input type="submit" class="updateJobSite" value="Update Jobsite">
         </form>
             <!-- YOU SHOULD DO SOMETHING WITH THE WAY THESE BUTTONS ARE PLACED. cant put button inside the form because it will call the submit function-->
-        <div ng-show="showNotesDiv">
-            <button ng-click="viewNotes()" ng-hide="seeNotes">View Notes</button>
-            <button ng-click="hideNotes()" ng-show="seeNotes">Hide Notes</button>
-        </div>
 
     </div>
 
@@ -90,27 +90,41 @@
             <div class="modal-body" id="modal-body">
                 <div>
                     <p>Is this Time and Material?</p>
-                    <button ng-click="ctrl.isTandM()">Yes</button>
-                    <button ng-click="ctrl.isNotTandM()">No</button>
+                    <button ng-click="ctrl.isTandM()" class="btn btn-primary">Yes</button>
+                    <button ng-click="ctrl.isNotTandM()" class="btn btn-warning">No</button>
+                    <span ng-show="ctrl.TandMUndefined" class="warn">You Must Choose Whether Time and Material or Contract.</span>
+                    <span ng-show="ctrl.showTandMYes"> Time and Material</span>
+                    <span ng-show="ctrl.showContractYes"> Contract</span>
                 </div>
                 <div>
-                    <p>Please Enter The Late Date</p>
-                    <input type="text" ng-model="ctrl.newDate" placeholder="Example: May 2, 2016: Monday">
+                    <form>
+                        <div id="year" class="modalInputDiv">
+                            <label for="year">Year:</label>
+                            <input ng-model="ctrl.year" name="year" class="form-control" type="number">
+                        </div>
+                        <div id="month" class="modalInputDiv">
+                            <label for="month">Month:</label>
+                            <input type="text" ng-model="ctrl.month" placeholder="Month" name="month" class="form-control" focus required>
+                        </div>
+                        <div id="day" class="modalInputDiv">
+                            <label for="day">Day</label>
+                            <input type="number" ng-model="ctrl.day" placeholder="Day" name="day" class="form-control" required>
+                        </div>
+                        <div id="weekDay" class="modalInputDiv">
+                            <label for="weekDay">Week Day</label>
+                            <input type="text" ng-model="ctrl.weekDay" placeholder="Day of Week" name="weekDay" class="form-control" required>
+                        </div>
+                        <br/>
+                        <div>
+                            <button ng-click="ok(ctrl.year, ctrl.month, ctrl.day, ctrl.weekDay)" class="btn btn-success">Submit</button>
+                            <button class="btn btn-danger" type="button" ng-click="ctrl.cancel()">Cancel</button>
+                        </div>
+                    </form>
                 </div>
             </div>
-            <div class="modal-footer">
-                <button class="btn btn-primary" type="button" ng-click="ctrl.ok(ctrl.newDate)">Submit</button>
-                <button class="btn btn-warning" type="button" ng-click="ctrl.cancel()">Cancel</button>
-            </div>
         </script>
-
-       
     </div>
-
-
-
-        <!--  You need to set up a spot to show whether the job time is T&M, maybe use hide/show if it is.-->
-           
+          <!-- End of modal  -->
         <br />
     <input type="text" placeholder="Filter the Dates" ng-model="filter_date"> 
         
@@ -136,14 +150,13 @@
                         
                         <!--MAKE SURE TO MAKE THESE STYLED AS display: block -->
                 <div>
-                    <p for="materials"><b>Materials Used: </b></p>
-                    <textarea name="materials" ng-model="timecard.materials_used"></textarea>
+                    <label for="materials">Materials Used:</label>
+                    <textarea name="materials" ng-model="timecard.materials_used" class="form-control text-area"></textarea>
                 </div>
 
                 <div>
-                    <p ng-show="updating[$index]">UPDATING!</p>
-
                     <button ng-click="addMaterials(timecard.materials_used, $index, timecard.theDate)">Submit Materials</button>
+                    <span ng-show="updating[$index]">UPDATING!</span>
                 </div>
                         <!-- THE TABLE -->
                 <table st-table="students" class="table table-striped">
@@ -161,13 +174,16 @@
                             <td ng-show="badName[$index]" class="warn">Oops! There is something wrong with the employee's name</td>
                             <td ng-show="noName[$index]" class="warn">Oops!  You forgot the Employee Name</td> 
                             <td ng-show="name_already_exists[$index]" class="warn">Oops! This employee already has time for this day</td>                                
-                            <td ng-hide="hide_late_employee_td[$index]"><input type="text" ng-model="late_employee" placeholder="Add Missing Employee"></td>
+                            <td ng-hide="hide_late_employee_td[$index]">
+                                <input type="text" ng-model="firstName" placeholder="First Name">
+                                <input type="test" ng-model="lastName" placeholder="Last Name">
+                            </td>
                             <td ng-show="noTime[$index]" class="warn">Oops!  There is something wrong with the hours</td>                                
                             <td ng-hide="hide_late_hours_td[$index]"><input type="number" min=".25" max="24" ng-model="late_hours" placeholder="Hours"></td>
                             <td></td>
                             <td></td>
                             <td>
-                                <button ng-click="lateEmployee(late_employee, late_hours, timecard.theDate, $index, timecard.TandM, timecard.late)" >Submit</button>
+                                <button ng-click="lateEmployee(firstName, lastName, late_hours, timecard.theDate, timecard.dateStamp, $index, timecard.TandM, timecard.late)" >Submit</button>
                             </td>
                          </tr>
 
@@ -176,7 +192,7 @@
 
 
                         <tr ng-repeat="employees in timecard.employees_worked track by $index" > <!--make sure to ng-repeat this -->
-                            <td>{{employees.employeeName}}</td>
+                            <td>{{employees.firstName}} {{employees.lastName}}</td>
                             <td>{{employees.hours_worked}}</td>
                             <td>
                                 <button ng-click="showTheEditHours($parent.$index, $index)" ng-hide="editHours[$parent.$index][$index]">Edit Hours</button>
@@ -204,10 +220,9 @@
         </div>
         <hr>
     </div>
-</div>
 
     <p ng-show="finalFarewell">This job site has been moved to the admin-old-job-sites page</p>
-    
+</div>
 
 
 

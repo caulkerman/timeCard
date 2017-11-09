@@ -26,7 +26,7 @@ angular.module("timeCard").controller("loginController", loginControllerCB)
 })();
 
 
-
+////////Modal Controller here\\\\\\\\\\\
 app.controller('ModalInstanceCtrl1', function ($uibModalInstance/*, items*/, $scope) {//make sure you change the name of your controller so as not to get controller conflicts
   var ctrl = this;
 
@@ -48,4 +48,7 @@ app.controller('ModalInstanceCtrl1', function ($uibModalInstance/*, items*/, $sc
 });
 
 // Please note that the close and dismiss bindings are from $uibModalInstance.
+
+
+
 

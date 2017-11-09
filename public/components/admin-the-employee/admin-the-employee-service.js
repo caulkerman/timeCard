@@ -1,6 +1,16 @@
 app.service("theEmployeeService", ["$q", "$http", function($q, $http) {
 
 
+    this.weekNumber = function() {
+        let startDate = new Date("Jan 1, 2017").getTime();
+        let now = new Date().getTime();
+        let diff = now - startDate;
+        let weekNum = Math.floor((diff / (60 * 60 * 24 * 1000) / 7));
+        return weekNum;
+    };
+
+
+
     this.getEmployeeById = function(id) {
         // console.log("the id in service before it goes through api ", id);
         var deferred = $q.defer();

@@ -1,105 +1,81 @@
 .page-container {
-	overflow: auto;
-	height: 700px;
-}
+  overflow: auto;
+  height: 700px; }
 
 #login-background-img {
-	position: absolute;
-	background-size: cover;
-	-webkit-filter: blur(4px);
-  	filter: blur(4px);
-  	z-index: -999;
-  	height: 700px;
-  	width: 100%;
+  display: block;
+  background-size: cover;
+  height: 700px;
+  width: 100%; 
+  opacity: .7;
+}
+
+.button-div {
+    margin-left: 20px;
+    padding: 20px 20px 10px 0;
 }
 
 .login-container {
-	z-index: 999;
-	background-color: white;
-	width: 40%;
-	margin-left: auto;
-	margin-right: auto;
-	margin-top: 30px;
-	border: solid #cccccc 1px;
-	padding-top: 40px;
-	
-
-	.input-div {
-
-	}
-
-	.login-input {
-		color: #464a53;
-		font-size: 1.5em;
-		font-weight: bold;
-		height: 40px;
-		width: 90%;
-		margin: 10px 0 10px 20px;
-		border-top: none;
-		border-left: none;
-		border-right: none;
-		border-bottom-width: 1px;
-		border-bottom-color: #747c8b;
-	}
-
-	::-webkit-input-placeholder {
-		font-weight: normal;
-		font-size: 16px;
-	}
-
-	:-moz-placeholder { /* Firefox 18- */
-   		font-weight: normal;  
-   		font-size: 16px;
-	}
-
-	::-moz-placeholder {  /* Firefox 19+ */
-   		font-weight: normal;  
-   		font-size: 16px;
-	}
-
-	:-ms-input-placeholder {  
-   		font-weight: normal;
-   		font-size: 16px;
-	}
-
-	.login-button {
-	  	border: none;
-		margin: 10px 0 30px 20px;
-		padding-left: 0;
-		height: 45px;
-	  	background-color: #0073e6;
-	  	color: #FFFFFF;
-	  	width: 90%;
-	}
-
-	.login-button:active {
-		background-color: #004080;
-	}
-
+  position: absolute;
+  z-index: 999;
+  background-color: white;
+  width: 40%;
+  left: 28%;
+  top: 35%;
+  border: solid #cccccc 1px;
+  padding-top: 25px; 
+  border-radius: 4px;
 }
+.login-container .login-input {
+  color: #464a53;
+  font-size: 1.5em;
+  font-weight: bold;
+  height: 35px;
+  width: 90%;
+  margin: 10px 0 10px 20px;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom-width: 1px;
+  border-bottom-color: #747c8b; 
+  border-radius: 0px;
+}
+  .login-container ::-webkit-input-placeholder {
+    font-weight: normal;
+    font-size: 16px; }
+  .login-container :-moz-placeholder {
+    /* Firefox 18- */
+    font-weight: normal;
+    font-size: 16px; }
+  .login-container ::-moz-placeholder {
+    /* Firefox 19+ */
+    font-weight: normal;
+    font-size: 16px; }
+  .login-container :-ms-input-placeholder {
+    font-weight: normal;
+    font-size: 16px; }
+  .login-container .login-button {
+    border: none;
+    margin: 10px 0;
+    padding-left: 0;
+    height: 45px;
+    background-color: #193E4E;
+    color: #FFFFFF;
+    width: 97%; }
+  .login-container .login-button:active, .login-container .login-button:hover {
+    background-color: #8EB843; }
 
-				/*SMARTPHONE SIZE SCREENS*/
+/*SMARTPHONE SIZE SCREENS*/
 @media only screen and (min-width: 15em) and (max-width: 30em) {
+  .login-container {
+    width: 90%;
+    padding-top: 0;
+    margin-top: 10%; }
 
-	.login-container {
-		width: 90%;
-		padding-top: 0;
-		margin-top: 10%;
-	}
-
-	.login-input {
-		height: 20px;
-		margin: 10px 0 10px 0;
-
-	}
-
-
-
-}
-
-				/*TABLET SIZE SCREENS*/
+  .login-input {
+    height: 20px;
+    margin: 10px 0 10px 0; } }
+/*TABLET SIZE SCREENS*/
 @media only screen and (min-width: 30em) and (max-width: 50em) {
-	.login-container {
-	width: 60%;
-	}
-}
+  .login-container {
+    width: 60%; } }

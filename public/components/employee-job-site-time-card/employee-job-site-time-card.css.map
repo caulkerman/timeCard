@@ -1,8 +1,7 @@
 {
 "version": 3,
-"mappings": "AAAA,YAAa;EACT,KAAK,EAAE,KAAK;EACZ,SAAS,EAAE,KAAK;;AAGpB,KAAM;EACF,KAAK,EAAE,KAAK",
-"mappings": "AAAA,YAAa;EACT,KAAK,EAAE,KAAK;EACZ,SAAS,EAAE,GAAG",
-"sources": ["rw-employee-job-site-time-card.scss"],
+"mappings": "AAAA,KAAM;EACF,aAAa,EAAE,IAAI;;AAEvB,YAAa;EACT,KAAK,EAAE,KAAK;EACZ,SAAS,EAAE,KAAK;;AAEpB,SAAU;EACN,UAAU,EAAE,IAAI;;AAGpB,WAAY;EACR,OAAO,EAAE,IAAI;;AAGjB,KAAM;EACF,KAAK,EAAE,KAAK;EACZ,SAAS,EAAE,GAAG;;AAElB,gCAAiC;EAC7B,MAAM,EAAE,IAAI",
+"sources": ["employee-job-site-time-card.scss"],
 "names": [],
 "file": "employee-job-site-time-card.css"
 }

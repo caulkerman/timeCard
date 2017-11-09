@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAAA,6BAA8B;EAC1B,MAAM,EAAE,IAAI",
+"sources": ["admin-old-employees-list.scss"],
+"names": [],
+"file": "admin-old-employees-list.css"
+}

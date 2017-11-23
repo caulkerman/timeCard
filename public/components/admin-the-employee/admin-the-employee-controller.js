@@ -21,7 +21,7 @@ ctrl.other_hours = []
 const getTheEmployeeFromDBbyId = function() {
     theEmployeeService.getEmployeeById(theEmployeeId).then(function(response) {
         console.log("the employee from controller ", response.data);      
-        if (response) {
+        if (response.status === 200) {
             ctrl.theEmployee = response.data;
             ctrl.employeeName = ctrl.theEmployee.firstName + " " + ctrl.theEmployee.lastName;
             let daily_hours_worked = ctrl.theEmployee.job_site_hours_worked;
@@ -55,31 +55,35 @@ function firstWeek() {
     });
 };
 
+//make a counter = 0;  this will compare to the week number
+//create a forEach that takes in ctrl.theEmployee.job_site_hours_worked
+//forEach callback will create let arr2 = new Array() and compare the week number of the time card to the counter, and if the same will push into the new arr2.
 
-$scope.filterWeek = function(num) {
-    console.error("filterWeek parameter for num: ", num);
-    if (!num) {
-        ctrl.filtered = false;
-    } else {
-        ctrl.add_more_week_hrs = [];
-        ctrl.other_hours = [];
-        let weekNumber = theEmployeeService.weekNumber();
-        let diff = weekNumber - num;
-        ctrl.theEmployee.job_site_hours_worked.forEach(function(obj) {
-            if (obj.week >= diff && obj.week < weekNumber) {
-                ctrl.add_more_week_hrs.push(obj);
-            } else if (obj.week < diff) {
-                ctrl.other_hours.push(obj);
-            }
-        });
-        ctrl.hrs_this_period = 0;
-        ctrl.add_more_week_hrs.forEach(function(obj) {
-            ctrl.hrs_this_period += obj.hours_worked;
-        });
-        ctrl.filtered = true;
-        ctrl.weeksNumber = undefined;
-    };
-};
+
+// $scope.filterWeek = function(num) {
+//     console.error("filterWeek parameter for num: ", num);
+//     if (!num) {
+//         ctrl.filtered = false;
+//     } else {
+//         ctrl.add_more_week_hrs = [];
+//         ctrl.other_hours = [];
+//         let weekNumber = theEmployeeService.weekNumber();
+//         let diff = weekNumber - num;
+//         ctrl.theEmployee.job_site_hours_worked.forEach(function(obj) {
+//             if (obj.week >= diff && obj.week < weekNumber) {
+//                 ctrl.add_more_week_hrs.push(obj);
+//             } else if (obj.week < diff) {
+//                 ctrl.other_hours.push(obj);
+//             }
+//         });
+//         ctrl.hrs_this_period = 0;
+//         ctrl.add_more_week_hrs.forEach(function(obj) {
+//             ctrl.hrs_this_period += obj.hours_worked;
+//         });
+//         ctrl.filtered = true;
+//         ctrl.weeksNumber = undefined;
+//     };
+// };
 
 
 

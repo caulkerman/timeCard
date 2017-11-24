@@ -15,14 +15,7 @@
 
         <div>
             <input type="text" ng-model="dateFilter" placeholder="Search For Dates" class="input">
-            <input type="number" ng-model="ctrl.weeksNumber" placeholder="Filter Number of Weeks" min="0" max="52" class="input">
-            <button ng-click="filterWeek(ctrl.weeksNumber)">Go</button>
         </div>
-
-        <!-- <div> -->
-            <!-- <span>Hours Worked This Week: {{ctrl.hrs_this_week}}</span> -->
-        <!-- </div> -->
-        you should show the pay period dates
         <div>
             <table st-table="students" class="table table-striped">
                 <thead>
@@ -41,45 +34,30 @@
                 </tbody>
             </table>
         </div>
-        <!-- <div ng-show="ctrl.filtered">
+                <!-- You know? You would save a lot of trouble if you would just get away from these tables. then you wouldn't be stuck inside of all of these <td>'s and stuff making it so your info doesn't show up.-->
+        <div ng-repeat="week in ctrl.weeksArray | filter: {date_worked:dateFilter} track by $index">
+            <!-- <hr> -->
             <table st-table="students" class="table table-striped">
                 <thead>
                     <tr>
-                        <td>Date</td>
-                        <td>Hours This Period: {{ctrl.hrs_this_period}}</td>
-                        <td>Job Site</td>
+                        <td>Week</td>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="hours in ctrl.add_more_week_hrs | filter: {date_worked:dateFilter} track by $index">
-                        <td>{{hours.date_worked}}</td>
-                        <td>{{hours.hours_worked}}</td>
-                        <td><a href="" ng-click="ctrl.goToJobSite(hours.job_site, $index)">{{hours.job_site}}</a><span ng-show="hours.TandM">  T &amp M</span></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div> -->
-        <div>
-            <hr>
-            <hr>
-            <table st-table="students" class="table table-striped">
-                <thead>
-                    <tr>
-                        <td>Date</td>
-                        <td>Hours</td>
-                        <td>Job Site</td>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr ng-repeat="hours in ctrl.other_hours | filter: {date_worked:dateFilter} track by $index">
-                        <td>{{hours.date_worked}}</td>
-                        <td>{{hours.hours_worked}}</td>
-                        <td ng-hide="ctrl.noJobSite[$index]"><a href="" ng-click="ctrl.goToJobSite(hours.job_site, $index)">{{hours.job_site}}</a><span ng-show="hours.TandM">  T &amp M</span></td>
+                    <tr ng-repeat="day in week | filter: {date_worked:dateFilter} track by $index">
+                        <td>{{day.date_worked}}</td>
+                        <td>{{day.hours_worked}}</td>
+                        <td ng-hide="ctrl.noJobSite[$index]"><a href="" ng-click="ctrl.goToJobSite(day.job_site, $index)">{{day.job_site}}</a><span ng-show="day.TandM">  T &amp M</span></td>
+                        <!-- need to make sure that the ng-show works with $index and/or $parent.$index so the warning shows up for just that link clicked when job site is completed. -->
                         <td ng-show="ctrl.noJobSite[$index]" class="rw-warning">Oops! This job site has been completed and is now inactive.</td>
+                       <td>{{day.hours}}</td>
                     </tr>
+                   
                 </tbody>
             </table>
         </div>
+        <br />
+        <br />
     </div>
 
     <div ng-show="ctrl.finalFarewell">

@@ -20,8 +20,11 @@
   "dependencies": {
     "bluebird": "^3.5.1",
     "body-parser": "^1.15.2",
+    "bootstrap": "^3.3.7",
+    "bower": "^1.8.2",
     "cors": "^2.7.1",
     "express": "^4.14.0",
+    "install": "^0.10.2",
     "mongoose": "^4.5.2"
   }
 }

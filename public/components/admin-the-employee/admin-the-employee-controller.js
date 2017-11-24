@@ -15,7 +15,8 @@ ctrl.noJobSite = []; //this is for the ng-hide/show within the ng-repeat.
 ctrl.date = new Date();
 ctrl.add_this_week_hrs = [];
 ctrl.add_more_week_hrs = [];
-ctrl.other_hours = []
+ctrl.other_hours = [];
+ctrl.weeksArray = [];
 
 //this function gets the chosen employee object from DB
 const getTheEmployeeFromDBbyId = function() {
@@ -33,6 +34,7 @@ const getTheEmployeeFromDBbyId = function() {
             });
         };
         firstWeek();
+        otherWeeks();
     });
 };
 getTheEmployeeFromDBbyId(); 
@@ -55,35 +57,46 @@ function firstWeek() {
     });
 };
 
-//make a counter = 0;  this will compare to the week number
-//create a forEach that takes in ctrl.theEmployee.job_site_hours_worked
-//forEach callback will create let arr2 = new Array() and compare the week number of the time card to the counter, and if the same will push into the new arr2.
 
+//The function below takes the job_site_hours_worked array and pushes all objects with common week numbers 
+//into their own array so they can be displayed in the view by week blocks.
+function otherWeeks() {
+    let numArr = [], weekArray = [];
+    ctrl.theEmployee.job_site_hours_worked.forEach(function(obj) {
+        numArr.push(obj.week);
+    });
+    let numberOfWeeks = numArr.reduce(function(start, num) {
+        if (start === num) {
+            return num;
+        } else if (start > num) {
+            return start;
+        } else {
+            return num;
+        }
+    });
+    let counter = 0;
+    for (let i = 0; i < numberOfWeeks; i++) {
+        for (let j = 0; j < ctrl.theEmployee.job_site_hours_worked.length; j++) {
+            if (counter === ctrl.theEmployee.job_site_hours_worked[j].week) {
+                weekArray.push(ctrl.theEmployee.job_site_hours_worked[j]);
+            }
+        }
+        if (weekArray.length > 0) {
+            let hours = {};
+            let hrs_worked = 0;
+            weekArray.forEach(function(obj) {
+                hrs_worked += obj.hours_worked;
+            })
+            hours.hours = hrs_worked;
+            weekArray.push(hours);
+            ctrl.weeksArray.unshift(weekArray);
+        }
+        weekArray = [];
+        counter++;
+    }
+        console.log("the weeksArray: ",ctrl.weeksArray);
+};
 
-// $scope.filterWeek = function(num) {
-//     console.error("filterWeek parameter for num: ", num);
-//     if (!num) {
-//         ctrl.filtered = false;
-//     } else {
-//         ctrl.add_more_week_hrs = [];
-//         ctrl.other_hours = [];
-//         let weekNumber = theEmployeeService.weekNumber();
-//         let diff = weekNumber - num;
-//         ctrl.theEmployee.job_site_hours_worked.forEach(function(obj) {
-//             if (obj.week >= diff && obj.week < weekNumber) {
-//                 ctrl.add_more_week_hrs.push(obj);
-//             } else if (obj.week < diff) {
-//                 ctrl.other_hours.push(obj);
-//             }
-//         });
-//         ctrl.hrs_this_period = 0;
-//         ctrl.add_more_week_hrs.forEach(function(obj) {
-//             ctrl.hrs_this_period += obj.hours_worked;
-//         });
-//         ctrl.filtered = true;
-//         ctrl.weeksNumber = undefined;
-//     };
-// };
 
 
 

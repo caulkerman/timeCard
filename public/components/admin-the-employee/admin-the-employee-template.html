@@ -47,9 +47,9 @@
                     <tr ng-repeat="day in week | filter: {date_worked:dateFilter} track by $index">
                         <td>{{day.date_worked}}</td>
                         <td>{{day.hours_worked}}</td>
-                        <td ng-hide="ctrl.noJobSite[$index]"><a href="" ng-click="ctrl.goToJobSite(day.job_site, $index)">{{day.job_site}}</a><span ng-show="day.TandM">  T &amp M</span></td>
+                        <td ng-hide="ctrl.noJobSite[$parent.$index][$index]"><a href="" ng-click="ctrl.goToJobSite(day.job_site, $parent.$index, $index)">{{day.job_site}}</a><span ng-show="day.TandM">  T &amp M</span></td>
                         <!-- need to make sure that the ng-show works with $index and/or $parent.$index so the warning shows up for just that link clicked when job site is completed. -->
-                        <td ng-show="ctrl.noJobSite[$index]" class="rw-warning">Oops! This job site has been completed and is now inactive.</td>
+                        <td ng-show="ctrl.noJobSite[$parent.$index][$index]" class="rw-warning">Oops! This job site has been completed and is now inactive.</td>
                        <td>{{day.hours}}</td>
                     </tr>
                    

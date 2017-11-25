@@ -120,7 +120,7 @@ const getEmployeesList = function() {
 getEmployeesList();
 
 
-ctrl.goToJobSite = function(jobName, index) {
+ctrl.goToJobSite = function(jobName, pIndex, index) {
     var flag = false;
     
     console.log("the goToJobSite function has fired");
@@ -136,9 +136,10 @@ ctrl.goToJobSite = function(jobName, index) {
     };
      
     if (flag === false){
-        ctrl.noJobSite[index] = true
+        ctrl.noJobSite[pIndex] = [];
+        ctrl.noJobSite[pIndex][index] = true
         $timeout(function() {
-            ctrl.noJobSite[index] = false;
+            ctrl.noJobSite[pIndex][index] = false;
         }, 2500);
     };
 };

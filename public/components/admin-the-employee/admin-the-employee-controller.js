@@ -55,6 +55,7 @@ function firstWeek() {
     ctrl.add_this_week_hrs.forEach(function(obj) {
         ctrl.hrs_this_week += obj.hours_worked;
     });
+    console.log("the other_hours array: ", ctrl.other_hours)
 };
 
 
@@ -62,7 +63,7 @@ function firstWeek() {
 //into their own array so they can be displayed in the view by week blocks.
 function otherWeeks() {
     let numArr = [], weekArray = [];
-    ctrl.theEmployee.job_site_hours_worked.forEach(function(obj) {
+    ctrl.other_hours.forEach(function(obj) {
         numArr.push(obj.week);
     });
     let numberOfWeeks = numArr.reduce(function(start, num) {
@@ -74,11 +75,11 @@ function otherWeeks() {
             return num;
         }
     });
-    let counter = 0;
+    let counter = 1;
     for (let i = 0; i < numberOfWeeks; i++) {
-        for (let j = 0; j < ctrl.theEmployee.job_site_hours_worked.length; j++) {
-            if (counter === ctrl.theEmployee.job_site_hours_worked[j].week) {
-                weekArray.push(ctrl.theEmployee.job_site_hours_worked[j]);
+        for (let j = 0; j < ctrl.other_hours.length; j++) {
+            if (counter === ctrl.other_hours[j].week) {
+                weekArray.push(ctrl.other_hours[j]);
             }
         }
         if (weekArray.length > 0) {

@@ -55,7 +55,6 @@ function firstWeek() {
     ctrl.add_this_week_hrs.forEach(function(obj) {
         ctrl.hrs_this_week += obj.hours_worked;
     });
-    console.log("the other_hours array: ", ctrl.other_hours)
 };
 
 
@@ -94,8 +93,7 @@ function otherWeeks() {
         }
         weekArray = [];
         counter++;
-    }
-        console.log("the weeksArray: ",ctrl.weeksArray);
+    };
 };
 
 
@@ -104,7 +102,7 @@ function otherWeeks() {
 //this function gets the array of job site objects from DB
 const getTheJobSitesFromDB = function() {
     theEmployeeService.getTheJobSitesFromDB().then(function(response) {
-        console.log("the job sites: ", response.data);
+        console.log("The list of job sites: ", response.data);
         ctrl.jobSites = response.data;
     });
 };
@@ -114,7 +112,7 @@ getTheJobSitesFromDB();
 //this function gets the array of employee objects from DB
 const getEmployeesList = function() {
     admin_employees_list_service.getEmployees().then(function(response) {
-        console.log("the employees list array: ", response.data);
+        console.log("The list of employees: ", response.data);
         ctrl.employeesList = response.data;
     })
 }
@@ -123,11 +121,7 @@ getEmployeesList();
 
 ctrl.goToJobSite = function(jobName, pIndex, index) {
     var flag = false;
-    
-    console.log("the goToJobSite function has fired");
-
     for (let i = 0; i < ctrl.jobSites.length; i++) {
-         
         if (jobName === ctrl.jobSites[i].name) {
             flag = true;
             let id = ctrl.jobSites[i]._id;
@@ -135,7 +129,6 @@ ctrl.goToJobSite = function(jobName, pIndex, index) {
             break;  
         };
     };
-     
     if (flag === false){
         ctrl.noJobSite[pIndex] = [];
         ctrl.noJobSite[pIndex][index] = true
@@ -146,20 +139,14 @@ ctrl.goToJobSite = function(jobName, pIndex, index) {
 };
 
 
-//deletes the employee from the employeesList array and sends it to DB
+//creates a copy of the employee and saves it to oldEmployee db, then deletes it from the createEmployee db
 ctrl.retireEmployee = function() {
     ctrl.finalFarewell = true;
-    
     for (let i = 0; i < ctrl.employeesList.length; i++) {
-        
         if (ctrl.theEmployee._id === ctrl.employeesList[i]._id) {
-            
             theEmployeeService.createOldEmployee(ctrl.theEmployee).then(function(response) {
-                
                 theEmployeeService.deleteEmployee(ctrl.theEmployee._id).then(function(response) {
-                    console.log("the employee has been deleted");
-                    console.log("the employee _id ", theEmployeeId);
-
+                    console.log("The employee has been moved to retired employees list");
                     $timeout(function() {
                         $state.go("admin-employees-list");
                     }, 1500);
@@ -169,10 +156,7 @@ ctrl.retireEmployee = function() {
     };
 };
 
-
-
-
-
+                                //////End of code\\\\\\\
 }
 adminTheEmployeeControllerCB.$inject = $inject;
 angular.module("timeCard").controller("adminTheEmployee", adminTheEmployeeControllerCB);

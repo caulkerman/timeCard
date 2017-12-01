@@ -12,6 +12,7 @@ const theEmployeeId = $stateParams.id;
 console.log("the employee _id ", theEmployeeId);
 
 ctrl.noJobSite = []; //this is for the ng-hide/show within the ng-repeat.
+ctrl.noJobSite1 = [];//this is for another ng-hide/show within the ng-repeat.
 ctrl.date = new Date();
 ctrl.add_this_week_hrs = [];
 ctrl.add_more_week_hrs = [];
@@ -119,7 +120,9 @@ const getEmployeesList = function() {
 getEmployeesList();
 
 
-ctrl.goToJobSite = function(jobName, pIndex, index) {
+
+ctrl.goToJobSite = function(jobName, index, pIndex) {
+    console.log("goToJobSite function has fired");
     var flag = false;
     for (let i = 0; i < ctrl.jobSites.length; i++) {
         if (jobName === ctrl.jobSites[i].name) {
@@ -130,11 +133,15 @@ ctrl.goToJobSite = function(jobName, pIndex, index) {
         };
     };
     if (flag === false){
+        console.log("The flag is false");
         ctrl.noJobSite[pIndex] = [];
-        ctrl.noJobSite[pIndex][index] = true
+        ctrl.noJobSite[pIndex][index] = true;
+        ctrl.noJobSite1[index] = true;
         $timeout(function() {
+            console.log("the timeout function has fired")
             ctrl.noJobSite[pIndex][index] = false;
-        }, 2500);
+            ctrl.noJobSite1[index] = false;
+        }, 2000);
     };
 };
 

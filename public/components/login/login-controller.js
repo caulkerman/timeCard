@@ -9,10 +9,8 @@ const ctrl = this;
 
 
 ctrl.loginClick = function() {
-	alert("You just tried to log in!");
   ctrl.username = "";
   ctrl.password = "";
-
 }
 
 

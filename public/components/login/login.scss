@@ -70,6 +70,7 @@
   .login-container {
     width: 90%;
     padding-top: 0;
+    left: 5%;
     margin-top: 10%; }
 
   .login-input {
@@ -78,4 +79,6 @@
 /*TABLET SIZE SCREENS*/
 @media only screen and (min-width: 30em) and (max-width: 50em) {
   .login-container {
-    width: 60%; } }
+    width: 80%; 
+    left: 10%;
+    } }

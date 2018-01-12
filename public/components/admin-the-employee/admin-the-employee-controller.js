@@ -12,12 +12,12 @@ const theEmployeeId = $stateParams.id;
 console.log("the employee _id ", theEmployeeId);
 
 ctrl.noJobSite = []; //this is for the ng-hide/show within the ng-repeat.
-ctrl.noJobSite1 = [];//this is for another ng-hide/show within the ng-repeat.
 ctrl.date = new Date();
 ctrl.add_this_week_hrs = [];
 ctrl.add_more_week_hrs = [];
 ctrl.other_hours = [];
 ctrl.weeksArray = [];
+ctrl.employee_details = false;
 
 //this function gets the chosen employee object from DB
 const getTheEmployeeFromDBbyId = function() {
@@ -120,9 +120,8 @@ const getEmployeesList = function() {
 getEmployeesList();
 
 
-
-ctrl.goToJobSite = function(jobName, index, pIndex) {
-    console.log("goToJobSite function has fired");
+ctrl.goToJobSite = function(jobName, pIndex, index) {
+    console.log("the goToJobSite function has fired: ", jobName, pIndex, index);
     var flag = false;
     for (let i = 0; i < ctrl.jobSites.length; i++) {
         if (jobName === ctrl.jobSites[i].name) {
@@ -133,15 +132,11 @@ ctrl.goToJobSite = function(jobName, index, pIndex) {
         };
     };
     if (flag === false){
-        console.log("The flag is false");
         ctrl.noJobSite[pIndex] = [];
-        ctrl.noJobSite[pIndex][index] = true;
-        ctrl.noJobSite1[index] = true;
+        ctrl.noJobSite[pIndex][index] = true
         $timeout(function() {
-            console.log("the timeout function has fired")
             ctrl.noJobSite[pIndex][index] = false;
-            ctrl.noJobSite1[index] = false;
-        }, 2000);
+        }, 2500);
     };
 };
 
@@ -162,6 +157,15 @@ ctrl.retireEmployee = function() {
         };   
     };
 };
+
+
+ctrl.showDetails = () => {
+    ctrl.employee_details = true;
+};
+
+ctrl.hideDetails = () => {
+    ctrl.employee_details = false;
+}
 
                                 //////End of code\\\\\\\
 }

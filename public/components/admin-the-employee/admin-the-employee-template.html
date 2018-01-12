@@ -4,58 +4,49 @@
     <div ng-hide="ctrl.finalFarewell">
 
     <h2>{{ctrl.employeeName}}</h2>
+    <div ng-click="ctrl.showDetails()" ng-hide="ctrl.employee_details" id="emp-details"><a href="">Show Employee Details</a></div>
+    <!-- <button ng-click="ctrl.hideDetails()" ng-show="ctrl.employee_details">Hide Employee Details</button> -->
 
-        <div>
-            <p>The Employee's User Name: <span>{{ctrl.theEmployee.userName}}{{ctrl.theEmployee.email}}</span></p> 
-         <!--make sure you take off the in-line styling-->
+        <div class="employee-details" ng-show="ctrl.employee_details">
+            <!-- <p>The Employee's User Name: <span>{{ctrl.theEmployee.userName}}{{ctrl.theEmployee.email}}</span></p>
             <p>The Employee's Current Password: <span>{{ctrl.theEmployee.password}}</span></p>
-            <p>The Employee's Type: <span>{{ctrl.theEmployee.employeeType}}</span></p>
-            <button ng-click="ctrl.retireEmployee()">Retire the Employee</button>
+            <p>The Employee's Type: <span>{{ctrl.theEmployee.employeeType}}</span></p> -->
+            <label for="username">Employee Username: </label>
+            <p name="username">{{ctrl.theEmployee.userName}}</p>
+            <label for="password">Employee Password: </label>
+            <p name="password">{{ctrl.theEmployee.password}}</p>
+            <label for="type">Employee Type: </label>
+            <p name="type">{{ctrl.theEmployee.employeeType}}</p>
+            <button ng-click="ctrl.retireEmployee()" class="details-button">Retire the Employee</button>
+            <button ng-click="ctrl.hideDetails()" ng-show="ctrl.employee_details" class="details-button" id="close-details-button">Close</button>
         </div>
 
         <div>
             <input type="text" ng-model="dateFilter" placeholder="Search For Dates" class="input">
         </div>
-        <div>
-            <table st-table="students" class="table table-striped">
-                <thead>
-                    <tr>
-                        <td>Date</td>
-                        <td>Hours This Week: {{ctrl.hrs_this_week}}</td>
-                        <td>Job Site</td>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr ng-repeat="hours in ctrl.add_this_week_hrs | filter: {date_worked:dateFilter} track by $index">
-                        <td>{{hours.date_worked}}</td>
-                        <td>{{hours.hours_worked}}</td>
-                        <td ng-hide="ctrl.noJobSite1[$index]"><a href="" ng-click="ctrl.goToJobSite(hours.job_site, $index)">{{hours.job_site}}</a><span ng-show="hours.TandM">  T &amp M</span></td>
-                        <td ng-show="ctrl.noJobSite1[$index]" class="rw-warning">Oops! This job site has been completed and is now inactive.</td>
-                    </tr>
-                </tbody>
-            </table>
+
+        <div class="worked-class-class">
+            <div class="worked-class"><p class="table-header">Date</p></div>
+            <div class="worked-class"><p class="table-header">Hours This Week: {{ctrl.hrs_this_week}}</p></div>
+            <div class="worked-class"><p class="table-header">Job Site</p></div>
         </div>
-                <!-- You know? You would save a lot of trouble if you would just get away from these tables. then you wouldn't be stuck inside of all of these <td>'s and stuff making it so your info doesn't show up.-->
+
+        <div class="worked-class-class" ng-repeat="hours in ctrl.add_this_week_hrs | filter: {date_worked:dateFilter} track by $index">
+            <div class="worked-class date_worked">{{hours.date_worked}}</div>
+            <div class="worked-class hours_worked">{{hours.hours_worked}}</div>
+            <div class="worked-class job_site"><a href="" ng-click="ctrl.goToJobSite(hours.job_site, $index)">{{hours.job_site}}</a><span ng-show="hours.TandM"> T &amp M</span></div>
+        </div>
+        
         <div ng-repeat="week in ctrl.weeksArray | filter: {date_worked:dateFilter} track by $index">
-            <!-- <hr> -->
-            <table st-table="students" class="table table-striped">
-                <thead>
-                    <tr>
-                        <td>Week</td>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr ng-repeat="day in week | filter: {date_worked:dateFilter} track by $index">
-                        <td>{{day.date_worked}}</td>
-                        <td>{{day.hours_worked}}</td>
-                        <td ng-hide="ctrl.noJobSite[$parent.$index][$index]"><a href="" ng-click="ctrl.goToJobSite(day.job_site, $index, $parent.$index)">{{day.job_site}}</a><span ng-show="day.TandM">  T &amp M</span></td>
-                        <!-- need to make sure that the ng-show works with $index and/or $parent.$index so the warning shows up for just that link clicked when job site is completed. -->
-                        <td ng-show="ctrl.noJobSite[$parent.$index][$index]" class="rw-warning">Oops! This job site has been completed and is now inactive.</td>
-                       <td>{{day.hours}}</td>
-                    </tr>
-                   
-                </tbody>
-            </table>
+            <hr>
+            <div class="worked-class" id="week-div"><p class="table-header">Week</p></div>
+            <div ng-repeat="day in week | filter: {date_worked:dateFilter} track by $index" class="worked-class-class">
+                <div class="worked-class date_worked">{{day.date_worked}}</div>
+                <div class="worked-class hours_worked">{{day.hours_worked}}</div>
+                <div class="worked-class job_site" ng-hide="ctrl.noJobSite[$parent.$index][$index]"><a href="" ng-click="ctrl.goToJobSite(day.job_site, $parent.$index, $index)">{{day.job_site}}</a><span ng-show="day.TandM"> T &amp M</span></div>
+                <div ng-show="ctrl.noJobSite[$parent.$index][$index]" class="rw-warning worked-class">Oops! This job site has been completed and is now inactive.</div>
+            </div>
+            <div class="no-class" id="hours-div">{{week.hours}}</div>
         </div>
         <br />
         <br />

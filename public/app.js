@@ -1,15 +1,15 @@
 var app = angular.module("timeCard", ["ui.router", "smart-table", "ui.bootstrap", "ngAnimate"])
 	.config(function($stateProvider, $urlRouterProvider) {
 		
-		$urlRouterProvider.otherwise("/southern-utah-caulking");
+		$urlRouterProvider.otherwise("/login");
 		$stateProvider
 
-		.state("southern-utah-caulking", {
-			url: "/southern-utah-caulking",
-			templateUrl: "components/landing-page/landing-page-template.html",
-			controller: "landingPageController",
-			controllerAs: "ctrl"
-		})
+		// .state("southern-utah-caulking", {
+		// 	url: "/southern-utah-caulking",
+		// 	templateUrl: "components/landing-page/landing-page-template.html",
+		// 	controller: "landingPageController",
+		// 	controllerAs: "ctrl"
+		// })
 
 		.state("login", {
 			url: "/login",

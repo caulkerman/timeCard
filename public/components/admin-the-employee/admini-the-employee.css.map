@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAAA,YAAa;EACT,OAAQ;IAAE,OAAO,EAAC,EAAE;;EACpB,aAAc;IAAE,OAAO,EAAE,eAAe;AAI5C,MAAO;EACN,KAAK,EAAE,GAAG;EACV,MAAM,EAAE,gBAAgB;;AAGzB,2BAA4B;EACxB,MAAM,EAAE,IAAI;;AAGhB,mBAAoB;EACnB,OAAO,EAAE,IAAI;;AAGd,aAAc;EACb,SAAS,EAAE,CAAC",
+"sources": ["admin-the-employee.scss"],
+"names": [],
+"file": "admini-the-employee.css"
+}

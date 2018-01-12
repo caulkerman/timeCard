@@ -1,0 +1,20 @@
+@media print {
+  a:after {
+    content: ''; }
+
+  a[href]:after {
+    content: none !important; } }
+.input {
+  width: 40%;
+  margin: 15px 10px 15px 0; }
+
+.the-employee-container-div {
+  margin: 20px; }
+
+.worked-class-class {
+  display: flex; }
+
+.worked-class {
+  flex-grow: 0; }
+
+/*# sourceMappingURL=admini-the-employee.css.map */

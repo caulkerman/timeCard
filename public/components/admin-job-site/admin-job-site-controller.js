@@ -11,8 +11,6 @@ const ctrl = this;
 const jobSiteId = $stateParams.id;
 $scope.alteredDate;
 $scope.dayIndex1;
-$scope.theDate = employeeJobSiteTimeCardService.theDate();
-
 ///be aware of any variables or properties on objects calle fullName.  it is no longer used.
 
 function getTheJobSiteFromDBbyId() {// we might want to have this function call for the job site using its own service rather than sending to another
@@ -181,23 +179,32 @@ $scope.updateTheJobSite = function(contractor, jobAddress, jobDetails, materials
 	j.name = name;
 	j.superintendent_name = superintendent;
 	j.superintendent_telephone = superintendentTelephone;
+	// j.jobSiteNotes = new AddToNotesArray();
+
 		var jobNotes = new AddToNotesArray();
+		
 		if (notes) {
 			$scope.jobsite.jobSiteNotes.unshift(jobNotes);
 		};
+
+	
 	adminJobSiteService.delete_job($scope.jobsite).then(function(response) {
+
+		console.error("The Job Site Has Been DELETED!!!!!!!!....but will be back in a split second")
+		
 		adminJobSiteService.updateJobsite($scope.jobsite, $scope.jobsite._id).then(function(response) {
 		console.log("the updateTheJobSite function response from db: ", response);
 		addAllTheHours();
 		getTheJobSiteFromDBbyId();
         $scope.hideUpdateForm();
-        //just a thought, since changing the name of the jobsite here doesn't mean changing the job site 
-        //name on the employee's time card. Maybe make a function that is called here at this point to loop 
-        //over both this jobsite object and all of the employee's time cards and change all of the jobsite 
-        //names in all of the employee's time cards.
 		});
 	});	
 };
+
+
+
+
+$scope.theDate = employeeJobSiteTimeCardService.theDate();
 
 
 $rootScope.createLateTimeCard = function(TandM, newDate, dayIndex1, dateString) {

@@ -49,6 +49,7 @@ getEmployees();
 ctrl.resurrectOldEmployee = function() {
 
 	ctrl.employees.push(ctrl.theOldEmployee);
+	
 	adminTheOldEmployeeService.resurrectOldEmployee(ctrl.theOldEmployee).then(function(response) {
 		
 		for(var i = 0; i < ctrl.oldEmployeesArray.length; i++) {
@@ -60,7 +61,7 @@ ctrl.resurrectOldEmployee = function() {
 					ctrl.finalFarewell = true;
 					$timeout(function() {
 						$state.go("admin-employees-list");
-					}, 1500);
+					}, 1000);
 				});
 				// getTheOldEmployeeFromDB();
 			};

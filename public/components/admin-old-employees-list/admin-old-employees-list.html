@@ -1,9 +1,9 @@
-<link rel="stylesheet" href="components/admin-old-empoyees-list/admin-old-employees-list.css">
+<link rel="stylesheet" href="components/admin-old-employees-list/admin-old-employees-list.css">
 
 <div class="admin-old-employees-list">
     <h1>Old Employees List</h1>
-
+    <p ng-show="ctrl.no_old_employees">Sorry, there are no old employees in the database.  Redirecting to the current employees list"</p>
     <ul>
-        <li ng-repeat="oldEmployee in ctrl.oldEmployees track by $index"><a href="" ng-click="ctrl.goToTheOldEmployee(oldEmployee.fullName)">{{oldEmployee.firstName}} {{oldEmployee.lastName}}</a></li>
+        <li ng-repeat="oldEmployee in ctrl.oldEmployees track by $index"><a href="" ng-click="ctrl.goToTheOldEmployee(oldEmployee._id)">{{oldEmployee.firstName}} {{oldEmployee.lastName}}</a></li>
     </ul>
 </div>

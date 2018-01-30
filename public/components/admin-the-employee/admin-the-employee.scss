@@ -33,7 +33,7 @@ a:hover {
 }
 
 .hours_worked {
-	padding-left: 20%;
+	padding-left: 10%;
 }
 
 .table-header {
@@ -47,14 +47,22 @@ a:hover {
 	font-weight: strong;
 }
 
-.details-button {
-  background-color: #FFFFFF; 
-  color: red;
+#hours-div {
+	font-weight: 600;
+}
+
+#retire-details-button {
+  background-color: #a04f1c; 
+  color: #ffffff;
   border: none;
 }
 
 #close-details-button {
-	color: green;
+	color: #ffffff;
+	background-color: #9BC159;
+	border: none;
+	width: 40%;
+	margin-left: 5px;
 }
 
 /*SMARTPHONE SIZE SCREENS*/

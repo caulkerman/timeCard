@@ -13,9 +13,18 @@
   margin-left: 20px;
   padding: 20px 20px 10px 0; }
 
+.go-button {
+  width: 48%;
+  background-color: #9BC159;
+  color: #ffffff;
+  border: none; }
+
+.go-button:hover {
+  background-color: #193E4E; }
+
 .login-container {
   position: absolute;
-  z-index: 999;
+  z-index: 2;
   background-color: white;
   width: 40%;
   left: 28%;
@@ -65,7 +74,7 @@
   color: #FFFFFF;
   width: 97%; }
 
-.login-container .login-button:active, .login-container .login-button:hover {
+.login-container .button-div .login-button:hover {
   background-color: #8EB843; }
 
 /*SMARTPHONE SIZE SCREENS*/

@@ -11,12 +11,14 @@ const ctrl = this;
 const jobSiteId = $stateParams.id;
 $scope.alteredDate;
 $scope.dayIndex1;
+$scope.reservedJobSiteName;
 ///be aware of any variables or properties on objects calle fullName.  it is no longer used.
 
 function getTheJobSiteFromDBbyId() {// we might want to have this function call for the job site using its own service rather than sending to another
 	
 	employeeJobSiteTimeCardService.getTheJobSiteFromDBbyId(jobSiteId).then(function(response) {
 		$scope.jobsite = response.data;
+		$scope.reservedJobSiteName = $scope.jobsite.name;
 		let dailyTCs = $scope.jobsite.daily_time_cards;
 		
 		$scope.dailyTCs = dailyTCs.sort(function(a, b) {
@@ -39,8 +41,9 @@ getTheJobSiteFromDBbyId();
 function getEmployees() {
 
 	adminJobSiteService.getEmployees().then(function(response){
-		console.log("the getEmployees function response object: ", response.data);
 		$scope.employeesArray = response.data;
+		console.log("$scope.employeesArray: ", response.data);
+
 	});
 };
 getEmployees();
@@ -197,6 +200,7 @@ $scope.updateTheJobSite = function(contractor, jobAddress, jobDetails, materials
 		addAllTheHours();
 		getTheJobSiteFromDBbyId();
         $scope.hideUpdateForm();
+        $scope.updateJobsiteNameOnEmployeeArray(name);
 		});
 	});	
 };
@@ -311,8 +315,6 @@ $scope.lateEmployee = function(firstName, lastName, late_hours, date, dateStamp,
 
 
 			function NameHoursDate(f, l, h, d) {
-				// this.dayIndex = adminJobSiteService.dayIndex1();
-				// this.dayIndex = $scope.dayIndex1;
 				this.firstName = f;
 				this.lastName = l;
 				this.hours_worked = h;
@@ -569,6 +571,17 @@ function deleteTimeFromEmployee(index) {
 
 
 
+$scope.completedJob = function() {
+	adminJobSiteService.addOldJob($scope.jobsite).then(function(response) {
+		adminJobSiteService.delete_job($scope.jobsite).then(function(response) {
+			$scope.finalFarewell = true;
+			$timeout(function() {
+				$state.go("admin-job-site-list");
+			}, 1500);			
+		});
+	});
+};
+
 
 function deleteEmployeeFromEmployees(theOne) {
 
@@ -593,23 +606,20 @@ function deleteEmployeeFromEmployees(theOne) {
 
 
 
-
-$scope.completedJob = function() {
-	adminJobSiteService.addOldJob($scope.jobsite).then(function(response) {
-
-		adminJobSiteService.delete_job($scope.jobsite).then(function(response) {
-
-			// console.error("The Job Site Has Been DELETED!!!!!!!!")
-			$scope.finalFarewell = true;
-
-			$timeout(function() {
-				$state.go("admin-job-site-list");
-			}, 1500);			
-		});
-	});
-};
-
-
+$scope.updateJobsiteNameOnEmployeeArray = function(name) {
+	for (let i = 0; i < $scope.employeesArray.length; i++) {
+		for (let j = 0; j < $scope.employeesArray[i].job_site_hours_worked.length; j++) {
+			if ($scope.employeesArray[i].job_site_hours_worked[j].job_site === $scope.reservedJobSiteName) {
+				$scope.employeesArray[i].job_site_hours_worked[j].job_site = name;
+			}
+		}
+		adminJobSiteService.updateEmployeesWorkedInDBbyId($scope.employeesArray[i].job_site_hours_worked, $scope.employeesArray[i]._id).then((response) => {
+			if (response.status = 200) {
+				console.log("response: ", response.data);
+			}
+		})
+	}
+}
 
 
 

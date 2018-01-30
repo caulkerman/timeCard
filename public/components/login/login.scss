@@ -15,9 +15,20 @@
     padding: 20px 20px 10px 0;
 }
 
+.go-button {
+  width: 48%;
+  background-color: #9BC159;
+  color: #ffffff;
+  border: none;
+}
+
+.go-button:hover {
+  background-color: #193E4E;
+}
+
 .login-container {
   position: absolute;
-  z-index: 999;
+  z-index: 2;
   background-color: white;
   width: 40%;
   left: 28%;
@@ -42,18 +53,26 @@
 }
   .login-container ::-webkit-input-placeholder {
     font-weight: normal;
-    font-size: 16px; }
+    font-size: 16px; 
+  }
+
   .login-container :-moz-placeholder {
     /* Firefox 18- */
     font-weight: normal;
-    font-size: 16px; }
+    font-size: 16px; 
+  }
+
   .login-container ::-moz-placeholder {
     /* Firefox 19+ */
     font-weight: normal;
-    font-size: 16px; }
+    font-size: 16px; 
+  }
+
   .login-container :-ms-input-placeholder {
     font-weight: normal;
-    font-size: 16px; }
+    font-size: 16px; 
+  }
+
   .login-container .login-button {
     border: none;
     margin: 10px 0;
@@ -61,24 +80,33 @@
     height: 45px;
     background-color: #193E4E;
     color: #FFFFFF;
-    width: 97%; }
-  .login-container .login-button:active, .login-container .login-button:hover {
-    background-color: #8EB843; }
+    width: 97%; 
+  }
+
+  .login-container .button-div .login-button:hover {
+    background-color: #8EB843; 
+  }
 
 /*SMARTPHONE SIZE SCREENS*/
 @media only screen and (min-width: 15em) and (max-width: 30em) {
+  
   .login-container {
     width: 90%;
     padding-top: 0;
     left: 5%;
-    margin-top: 10%; }
+    margin-top: 10%; 
+  }
 
   .login-input {
     height: 20px;
-    margin: 10px 0 10px 0; } }
+    margin: 10px 0 10px 0; 
+  }
+}
+
 /*TABLET SIZE SCREENS*/
 @media only screen and (min-width: 30em) and (max-width: 50em) {
   .login-container {
     width: 80%; 
     left: 10%;
-    } }
+   } 
+}

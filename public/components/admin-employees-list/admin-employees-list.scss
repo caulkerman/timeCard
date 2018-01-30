@@ -1,32 +1,74 @@
-li {
-	list-style-type: none;
-}
-
-input.form-control {
-	margin-bottom: 15px;
-}
-
-p.warning {
-	color: red;
-}
-
-#employeeName {
-	font-size: 1.25em;
-	font-weight: bold;
-}
-
-#fldsRqd {
-	color: red;
-}
-
 .admin-employee-container {
-    margin: 20px;
-}
 
-#create-button {
-	margin-top: 10px;
-}
+	margin-left: 20px;
 
-#bootstrap-overrides label {
-	margin-bottom: 0px;
+	h1 {
+    	text-align: left;
+    	color: #193E4E;
+    	padding: 10px 0 10px 0;
+	}
+
+	li {
+		list-style-type: none;
+	}
+
+	input.form-control {
+		margin-bottom: 15px;
+	}
+
+	p.warning {
+		color: red;
+	}
+
+	#employeeName {
+		font-size: 1.25em;
+		font-weight: bold;
+	}
+
+	#fldsRqd {
+		color: red;
+	}
+
+	#create-button {
+		margin-top: 10px;
+		background-color: #8EB843;
+		color: #ffffff;
+		border: none;
+		padding:  7px 10px 10px 10px;
+	}
+
+	#create-button:hover {
+		background-color: #193E4E;
+	}
+
+	#old-button {
+		background-color: #193E4E;
+		border: none;
+		color: #ffffff;
+		padding: 7px 10px 10px 10px;
+	}
+
+	#old-button:hover {
+		background-color: #8EB843;
+	}
+
+	#bootstrap-overrides label {
+		margin-bottom: 0px;
+	}
+
+  @media only screen and (min-width: 15em) and (max-width: 30em) {
+
+  	#old-button {
+  		height: 40px;
+		padding: 9px 10px 10px 10px;
+  	}
+
+  	#create-button {
+  		height: 45px;
+		padding: 9px 10px 10px 10px;
+
+  	}
+
+  }
+
 }

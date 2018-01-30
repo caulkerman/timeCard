@@ -17,8 +17,8 @@
             <p name="password">{{ctrl.theEmployee.password}}</p>
             <label for="type">Employee Type: </label>
             <p name="type">{{ctrl.theEmployee.employeeType}}</p>
-            <button ng-click="ctrl.retireEmployee()" class="details-button">Retire the Employee</button>
-            <button ng-click="ctrl.hideDetails()" ng-show="ctrl.employee_details" class="details-button" id="close-details-button">Close</button>
+            <button ng-click="ctrl.retireEmployee()" id="retire-details-button">Retire the Employee</button>
+            <button ng-click="ctrl.hideDetails()" ng-show="ctrl.employee_details" id="close-details-button">Close</button>
         </div>
 
         <div>
@@ -34,19 +34,22 @@
         <div class="worked-class-class" ng-repeat="hours in ctrl.add_this_week_hrs | filter: {date_worked:dateFilter} track by $index">
             <div class="worked-class date_worked">{{hours.date_worked}}</div>
             <div class="worked-class hours_worked">{{hours.hours_worked}}</div>
-            <div class="worked-class job_site"><a href="" ng-click="ctrl.goToJobSite(hours.job_site, $index)">{{hours.job_site}}</a><span ng-show="hours.TandM"> T &amp M</span></div>
+            <div class="worked-class job_site"><a href="" ng-click="ctrl.goToJobSite(hours.job_site, $index)">{{hours.job_site}}</a><!-- <span ng-show="hours.TandM"> T &amp M</span> --></div>
         </div>
         
         <div ng-repeat="week in ctrl.weeksArray | filter: {date_worked:dateFilter} track by $index">
             <hr>
             <div class="worked-class" id="week-div"><p class="table-header">Week</p></div>
+
             <div ng-repeat="day in week | filter: {date_worked:dateFilter} track by $index" class="worked-class-class">
-                <div class="worked-class date_worked">{{day.date_worked}}</div>
+                <div class="worked-class date_worked">{{day.date_worked}}
+                    <div class="no-class" id="hours-div">{{day.hours}}</div>
+                </div>
                 <div class="worked-class hours_worked">{{day.hours_worked}}</div>
-                <div class="worked-class job_site" ng-hide="ctrl.noJobSite[$parent.$index][$index]"><a href="" ng-click="ctrl.goToJobSite(day.job_site, $parent.$index, $index)">{{day.job_site}}</a><span ng-show="day.TandM"> T &amp M</span></div>
+                <div class="worked-class job_site" ng-hide="ctrl.noJobSite[$parent.$index][$index]"><a href="" ng-click="ctrl.goToJobSite(day.job_site, $parent.$index, $index)">{{day.job_site}}</a><!-- <span ng-show="day.TandM"> T &amp M</span> --></div>
                 <div ng-show="ctrl.noJobSite[$parent.$index][$index]" class="rw-warning worked-class">Oops! This job site has been completed and is now inactive.</div>
+
             </div>
-            <div class="no-class" id="hours-div">{{week.hours}}</div>
         </div>
         <br />
         <br />

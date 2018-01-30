@@ -309,7 +309,7 @@ function pushToJobSiteHoursWorked(hours_worked, index, employeeTimeId) {
 		this.hours_worked = h;
 		this.job_site = j;
 		this.employeeTimeId = employeeTimeId;
-		this.TandM = ctrl.dailyTimeCard.TandM;
+		// this.TandM = ctrl.dailyTimeCard.TandM;
 		this.week = timeFunc();
 	}
 	var employeeNameHoursJob = new EmployeeNameHoursJob(ctrl.theDate, hours_worked, ctrl.jobsite.name);

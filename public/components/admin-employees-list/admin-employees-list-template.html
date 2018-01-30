@@ -6,15 +6,18 @@
         <h1>Employee List</h1>
         <input type="text" placeholder="Filter Last Names" ng-model="employee_filter"/>
         <!--<button class="btn btn-success" data-toggle="modal" data-target="#myModal">Create New Employee</button>-->
-        <button type="button" class="btn btn-success" id="create-button" ng-click="ctrl.open()">Create New Employee</button>
+        <button type="button" id="create-button" ng-click="ctrl.open()">Create New Employee</button>
 
     </div>
 
+
+<!-- GIT RID OF THIS TABLE AND PUT IT INTO DIVS -->
+    
     <table st-table="students" class="table table-striped">
       <thead>
         <tr>
           <td>Employee Name</td>
-          <td>Hours This Pay Period</td>
+          <!-- <td>Hours This Pay Period</td> -->
         </tr>
       </thead>
       <tbody>
@@ -25,7 +28,7 @@
       </tbody>
     </table>
 
-    <button ng-click="ctrl.oldEmployees()">Old Employees</button>
+    <button ng-click="ctrl.oldEmployees()" id="old-button">Old Employees</button>
 
 
 

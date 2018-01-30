@@ -1,9 +1,8 @@
-Maybe make the employee details an ng-show or hide.
 
 Create a function that adds up all the employee's time (maybe for the year or something, perhaps buttons that can do it for week, weeks, month, year).
 
 In addition to making it so the hours add up, make it so it shows time noticably for the work week/pay period, like put a line in it or something.
 
-change the first function in controller to contain all the ctrl. variables in an if statement if the response is true.  Else, make it so the ctrl variables are given a defffualt value so the user will know if it has loaded or not.  Make it so if it is 404 that user will be told to refresh the page to reload.  Perhaps use a timeout or something so the expectation for loading will not take forever.
-
 working on making a way to filter employee time by week blocks, (0-6) and numbering the blocks using a counter.  I think that I may be able to use temporary arrays to put the different filters into.
+
+should make it so admin can update/change employee details.

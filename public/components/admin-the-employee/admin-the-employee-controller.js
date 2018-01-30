@@ -43,7 +43,6 @@ getTheEmployeeFromDBbyId();
 
 
 function firstWeek() {
-    console.warn("firstWeek function has fired");
     let weekNumber = theEmployeeService.weekNumber();
     for (let i = 0; i < ctrl.theEmployee.job_site_hours_worked.length; i++) {
         if (ctrl.theEmployee.job_site_hours_worked[i].week === weekNumber) {
@@ -63,10 +62,12 @@ function firstWeek() {
 //into their own array so they can be displayed in the view by week blocks.
 function otherWeeks() {
     let numArr = [], weekArray = [];
-    ctrl.other_hours.forEach(function(obj) {
+    ctrl.other_hours.forEach((obj) => {
         numArr.push(obj.week);
     });
-    let numberOfWeeks = numArr.reduce(function(start, num) {
+    //the reduce method tells us how many weeks, or rather the largest week number there is.
+    // We are just getting a number.
+    let numberOfWeeks = numArr.reduce((start, num) => {
         if (start === num) {
             return num;
         } else if (start > num) {
@@ -75,24 +76,26 @@ function otherWeeks() {
             return num;
         }
     });
+
     let counter = 1;
     for (let i = 0; i < numberOfWeeks; i++) {
         for (let j = 0; j < ctrl.other_hours.length; j++) {
-            if (counter === ctrl.other_hours[j].week) {
+            if (counter === ctrl.other_hours[j].week) {//grouping all employee timecard days of the same week into the weekArray
                 weekArray.push(ctrl.other_hours[j]);
             }
         }
         if (weekArray.length > 0) {
             let hours = {};
             let hrs_worked = 0;
-            weekArray.forEach(function(obj) {
+            weekArray.forEach((obj) => {
                 hrs_worked += obj.hours_worked;
             })
             hours.hours = hrs_worked;
             weekArray.push(hours);
             ctrl.weeksArray.unshift(weekArray);
+
         }
-        weekArray = [];
+        weekArray = [];//week array gets emptied for the next group of hours of the same week.
         counter++;
     };
 };
@@ -103,7 +106,6 @@ function otherWeeks() {
 //this function gets the array of job site objects from DB
 const getTheJobSitesFromDB = function() {
     theEmployeeService.getTheJobSitesFromDB().then(function(response) {
-        console.log("The list of job sites: ", response.data);
         ctrl.jobSites = response.data;
     });
 };

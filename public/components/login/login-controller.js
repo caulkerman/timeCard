@@ -1,6 +1,6 @@
 (function() {
-var $inject = ["$scope", "$state", "$uibModal", "$log", "$document"];
-function loginControllerCB($scope, $state, $uibModal, $log, $document) {
+var $inject = ["$scope", "$state", "$uibModal", "$log", "$document", "$timeout"];
+function loginControllerCB($scope, $state, $uibModal, $log, $document, $timeout) {
 'use strict'
 const ctrl = this;
 // ctrl.loginClick = function() {alert("this button clicks")};
@@ -9,8 +9,12 @@ const ctrl = this;
 
 
 ctrl.loginClick = function() {
-  ctrl.username = "";
-  ctrl.password = "";
+	$timeout(() => {
+		ctrl.username = "";
+		ctrl.password = "";
+	}, 3000)
+		ctrl.username = "No Authentication yet!";
+  		ctrl.password = "No Authentication yet!";
 }
 
 

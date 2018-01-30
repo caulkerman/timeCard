@@ -87,8 +87,9 @@ this.updateTheJobSiteInDBbyId = function(daily_time_card, id) {
 };
 
 
-
+//this function updates the job site time card, not the employee
 this.updateTheEmployeeInDBbyId = function(employee, id) {
+	console.error("employee: ", employee, "id: ", id);
 	var deferred = $q.defer();
 	$http({
 		method: "PUT",
@@ -101,7 +102,7 @@ this.updateTheEmployeeInDBbyId = function(employee, id) {
 	}
 
 
-
+//this function updates the employee object, not the job site time card
 this.updateEmployeesWorkedInDBbyId = function (employees_worked, id) {
 	console.log("employees_worked before going to db: ", employees_worked);
 	var deferred = $q.defer();

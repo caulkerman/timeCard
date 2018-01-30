@@ -1,4 +1,3 @@
-I changed the employee object and now it won't render on the page the way it is supposed to do.
 
 Make it so employees list alphabetically by last name.  Use sort() method.
 
@@ -7,3 +6,5 @@ Styling: make it so when the user has submitted time that the submit button does
 Make it so whoever is the forman signed in to make the time card that he has access to the timecard to make changes for the rest of the day, but no one else.
 
 Maybe make it so when forman pushes the button to add time that it adds to a list above of all who have had time added to them.
+
+Make it so if the forman clicks the wrong type of time card that it can be immediately corrected without creating two time cards, one by mistake.

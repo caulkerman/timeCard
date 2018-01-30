@@ -1,13 +1,48 @@
 .admin-container {
     
     margin: 20px;
+    padding: 0;
 
 	h1 {
 		margin-left: 10px;
+    	text-align: left;
+    	color: #193E4E;
+    	padding: 10px 0 10px 0;
+	}
+
+	.button-div {
+
+		margin-left: 10px;
+
+		.rw-button {
+			width: 20%;
+			background-color: #8EB944;
+			color: #ffffff;
+			border: none;
+		}
+
+		.rw-button:hover {
+			background-color: #193E4E;
+			color: #ffffff;
+		}
+	}
+
+
+	@media only screen and (min-width: 15em) and (max-width: 30em) {
+	
+		.button-div {
+		
+			.rw-button {
+				width: 48%;
+				height: 50px;
+			}
+		}
 	}
 
 
 }
+
+
 
 /*# sourceMappingURL=admin.css.map */
 

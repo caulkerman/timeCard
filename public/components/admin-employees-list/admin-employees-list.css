@@ -1,26 +1,43 @@
-li {
-  list-style-type: none; }
-
-input.form-control {
-  margin-bottom: 15px; }
-
-p.warning {
-  color: red; }
-
-#employeeName {
-  font-size: 1.25em;
-  font-weight: bold; }
-
-#fldsRqd {
-  color: red; }
-
 .admin-employee-container {
-  margin: 20px; }
-
-#create-button {
-  margin-top: 10px; }
-
-#bootstrap-overrides label {
-  margin-bottom: 0px; }
+  margin-left: 20px; }
+  .admin-employee-container h1 {
+    text-align: left;
+    color: #193E4E;
+    padding: 10px 0 10px 0; }
+  .admin-employee-container li {
+    list-style-type: none; }
+  .admin-employee-container input.form-control {
+    margin-bottom: 15px; }
+  .admin-employee-container p.warning {
+    color: red; }
+  .admin-employee-container #employeeName {
+    font-size: 1.25em;
+    font-weight: bold; }
+  .admin-employee-container #fldsRqd {
+    color: red; }
+  .admin-employee-container #create-button {
+    margin-top: 10px;
+    background-color: #8EB843;
+    color: #ffffff;
+    border: none;
+    padding: 7px 10px 10px 10px; }
+  .admin-employee-container #create-button:hover {
+    background-color: #193E4E; }
+  .admin-employee-container #old-button {
+    background-color: #193E4E;
+    border: none;
+    color: #ffffff;
+    padding: 7px 10px 10px 10px; }
+  .admin-employee-container #old-button:hover {
+    background-color: #8EB843; }
+  .admin-employee-container #bootstrap-overrides label {
+    margin-bottom: 0px; }
+  @media only screen and (min-width: 15em) and (max-width: 30em) {
+    .admin-employee-container #old-button {
+      height: 40px;
+      padding: 9px 10px 10px 10px; }
+    .admin-employee-container #create-button {
+      height: 45px;
+      padding: 9px 10px 10px 10px; } }
 
 /*# sourceMappingURL=admin-employees-list.css.map */

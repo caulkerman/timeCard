@@ -1,34 +1,24 @@
 <link rel="stylesheet" href="components/employee-job-site-time-card/employee-job-site-time-card.css">
-
 <div class="employee-job-site-time-card-div">
         <p class="date">{{ctrl.theDate}}</p>
-
         <span id="jobSiteName">{{ctrl.jobsite.name}}</span> 
         <p>Contractor:  {{ctrl.jobsite.contractor}}
         <br />
         <br />
-
                     <!--With these text areas you need to make a hide/show that shows a success note saying that the note or materials has been saved to the database successfully that dissapears after 2 or 3 seconds-->
-
-
         <div class="jobDetails">
             <button ng-click="ctrl.showJobDetails()" ng-hide="ctrl.jobDetails">Show Job Details</button>
             <button ng-click="ctrl.hideJobDetails()" ng-show="ctrl.jobDetails">Hide Job Details</button>
-
-            <button ng-click="ctrl.timeAndMaterialOptions()" ng-hide="ctrl.timeCardCreated">Create a New Time Card</button>
-
+            <button ng-click="ctrl.timeAndMaterialOptions()" ng-hide="ctrl.timeCardCreated">Create New Time Card</button>
             <div class="tAndmOptions" ng-show="ctrl.showtAndmOptions">
                 <p>Is this a Time And Material Time Card?</p>
                 <button ng-click="ctrl.tAndmYes()">Yes</button>
                 <button ng-click="ctrl.tAndmNo()">No</button>
             </div>
-
             <div ng-show="ctrl.timeCardAlreadyExists" class="warning">
                 <p>Oops! A regular time card already exists for this day. A new time card will not be created.</p>
             </div>
-
-
-        <div class="jobDetails" ng-show="ctrl.jobDetails">
+            <div class="jobDetails" ng-show="ctrl.jobDetails">
                 <div>
                     <label>Total Jobsite Man Hours Worked: </label><span> {{ctrl.totalJobSiteHours}}
                 </div>
@@ -70,50 +60,29 @@
                         </ul>
                     </div>
                 </div>
-        </div>
+            </div>
         <br />
-
-        <!--<button class="addPhotos">Add Photos</button>-->
-
-
         <div class="materials" ng-show="ctrl.showMaterialsDiv">
-            <!-- <button ng-click="ctrl.hideTextBox()" ng-show="ctrl.textAreaShow">Close</button> -->
-             <!-- <button ng-click="ctrl.showTextArea()" ng-hide="ctrl.textAreaShow" >Materials Used</button> -->
-             <!-- <br /> -->
-
-            <!-- <div id="textArea" ng-show="ctrl.textAreaShow"> -->
             <div id="textArea">
             <p>Enter the materials used for this day</p>
                 <textarea ng-model="ctrl.materials"></textarea>
                 <button ng-click="ctrl.addMaterials(ctrl.materials)">Add</button>
             </div>
         </div>
-
-
-
         <div name="employeesDiv" ng-show="ctrl.timeCardCreated">
-
             <p ng-show="ctrl.needMaterials" class="warning">Oops! You must enter the materials used for today before submitting time for employees</p>
-
-            
             <br />
-
             <div class="notesAndMaterials">
                 <button ng-click="ctrl.hideNoteTextBox()" ng-show="ctrl.noteShow">Close</button>
                 <button ng-click="ctrl.showNoteTextBox()" ng-hide="ctrl.noteShow">Make a Note</button>
-
                 <div id="noteTextArea" ng-show="ctrl.noteShow">
                     <textarea ng-model="ctrl.notes"></textarea>
                     <button ng-click="ctrl.addNote(ctrl.notes)">Add</button>
                 </div>
             </div>
             <br />
-
-
             <label for="employeeFilter">Filter Employee: </label>
-
             <input type="text" name="employeeFilter" ng-model="ctrl.employee_filter">
-
             <table st-table="students" class="table table-striped">
                 <thead>
                     <tr>
@@ -124,7 +93,6 @@
                 <br />
                 <tbody>       
                     <tr ng-repeat="employee in ctrl.employees | filter: {lastName:ctrl.employee_filter} track by $index">
-
                         <td >
                             {{employee.firstName}} {{employee.lastName}}
                         </td>

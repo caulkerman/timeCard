@@ -1,3 +1,6 @@
+h1 {
+  margin-left: -10px; }
+
 input.form-control {
   margin: 0 0 15px 15px;
   width: 90%; }
@@ -13,12 +16,46 @@ label {
   margin-left: 15px; }
 
 .admin-job-site-list-div {
-  margin: 20px; }
+  margin: 50px; }
+
+#list-div {
+  margin: 15px 0 15px 0; }
 
 .modal-demo button {
   background-color: #8EB843; }
 
 form {
   padding: 10px; }
+
+#create-button {
+  background-color: #8eb843;
+  color: #ffffff;
+  padding: 0 10px 0 10px;
+  border-radius: 5px;
+  border: none; }
+
+#create-button:hover {
+  background-color: #193E4E; }
+
+#old-button {
+  background-color: #193E4E;
+  color: #ffffff;
+  border: none; }
+
+#old-button:hover {
+  background-color: #8eb843; }
+
+#filter-jobs {
+  padding-left: 10px; }
+
+@media only screen and (min-width: 15em) and (max-width: 30em) {
+  .admin-job-site-list-div {
+    margin: 20px; }
+
+  #create-button {
+    height: 50px; }
+
+  #old-button {
+    height: 50px; } }
 
 /*# sourceMappingURL=admin-job-site-list.css.map */

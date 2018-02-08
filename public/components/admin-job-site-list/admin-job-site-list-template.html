@@ -59,7 +59,7 @@
 
         <!--//////	END OF MODAL  \\\\\\\\-->
 
-        <button type="button" class="btn" ng-click="ctrl.open()">Create New Job Site</button>
+        <button type="button" id="create-button" ng-click="ctrl.open()">Create New Job Site</button>
         <div class="modal-parent">
         </div>
     </div>
@@ -72,16 +72,13 @@
 
 
     <br />
-    <input type="text" placeholder="filter jobs" ng-model="ctrl.jobs">
-
-    <ul ng-repeat="job_site in ctrl.job_sites | filter: {name:ctrl.jobs} track by $index">
-        <li>
+    <input id="filter-jobs" type="text" placeholder="filter jobs" ng-model="ctrl.jobs">
+    <div id="list-div" ng-repeat="job_site in ctrl.job_sites | filter: {name:ctrl.jobs} track by $index">
+        <p>
             <a href="" ng-click="ctrl.gotoSelectedJobsite($index, job_site._id)">{{job_site.name}}</a>
-        </li>
-    </ul>
-
-    <br />
-    <button ui-sref="admin-old-job-site-list" href="#/admin-old-job-site-list">Old/Completed Job Sites</button>
+        </p>
+    </div>
+    <button ui-sref="admin-old-job-site-list" href="#/admin-old-job-site-list" id="old-button">Old/Completed Job Sites</button>
 
     <!--maybe you can make it so that any job sites worked on today will be highlighted, or at least have them in their own separate div at the top.-->
 </div>

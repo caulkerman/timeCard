@@ -11,6 +11,9 @@ a:hover {
   width: 40%;
   margin: 15px 10px 15px 0; }
 
+.button-div {
+  width: 40%; }
+
 .the-employee-container-div {
   margin: 20px; }
 
@@ -47,7 +50,6 @@ a:hover {
   color: #ffffff;
   background-color: #9BC159;
   border: none;
-  width: 40%;
   margin-left: 5px; }
 
 /*SMARTPHONE SIZE SCREENS*/
@@ -59,7 +61,32 @@ a:hover {
     padding-left: 10%; }
 
   .input {
-    width: 100%; } }
+    width: 100%; }
+
+  .button-div {
+    width: 100%; }
+
+  #retire-details-button {
+    height: 40px;
+    padding: 7px 15px 7px 15px;
+    margin: 5px 3px 5px 0; }
+
+  #close-details-button {
+    height: 40px;
+    padding: 7px 15px 7px 15px;
+    margin: 5px 3px 5px 3px; } }
+@media only screen and (min-width: 5em) and (max-width: 15em) {
+  #retire-details-button {
+    height: 60px; }
+
+  #close-details-button {
+    height: 60px; } }
 /*TABLET SIZE SCREENS*/
+@media only screen and (min-width: 30em) and (max-width: 50em) {
+  .button-div {
+    width: 100%; }
+
+  .input {
+    width: 80%; } }
 
 /*# sourceMappingURL=admin-the-employee.css.map */

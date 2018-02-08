@@ -17,8 +17,10 @@
             <p name="password">{{ctrl.theEmployee.password}}</p>
             <label for="type">Employee Type: </label>
             <p name="type">{{ctrl.theEmployee.employeeType}}</p>
-            <button ng-click="ctrl.retireEmployee()" id="retire-details-button">Retire the Employee</button>
-            <button ng-click="ctrl.hideDetails()" ng-show="ctrl.employee_details" id="close-details-button">Close</button>
+            <div class="button-div">
+                <button ng-click="ctrl.retireEmployee()" id="retire-details-button">Retire the Employee</button>
+                <button ng-click="ctrl.hideDetails()" ng-show="ctrl.employee_details" id="close-details-button">Close</button>
+            </div>
         </div>
 
         <div>
@@ -42,10 +44,10 @@
             <div class="worked-class" id="week-div"><p class="table-header">Week</p></div>
 
             <div ng-repeat="day in week | filter: {date_worked:dateFilter} track by $index" class="worked-class-class">
-                <div class="worked-class date_worked">{{day.date_worked}}
+                <div class="worked-class date_worked">{{day.date_worked}}</div>
+                <div class="worked-class hours_worked">{{day.hours_worked}}
                     <div class="no-class" id="hours-div">{{day.hours}}</div>
                 </div>
-                <div class="worked-class hours_worked">{{day.hours_worked}}</div>
                 <div class="worked-class job_site" ng-hide="ctrl.noJobSite[$parent.$index][$index]"><a href="" ng-click="ctrl.goToJobSite(day.job_site, $parent.$index, $index)">{{day.job_site}}</a><!-- <span ng-show="day.TandM"> T &amp M</span> --></div>
                 <div ng-show="ctrl.noJobSite[$parent.$index][$index]" class="rw-warning worked-class">Oops! This job site has been completed and is now inactive.</div>
 

@@ -452,16 +452,15 @@ console.error("sendLateToEmpArray function has fired ", dateStamp)
 $scope.deleteTC = function(id, index) {//need to make it so the time from this deleted time card gets deleted from the employee's time.
 	console.log("the id: ", id, "and the index from html: ,", index)
 	for (var i = 0; i < $scope.dailyTCs.length; i++) {
-		
 		if (id === $scope.dailyTCs[i]._id) {
-			
-			var TCindex = [i];
-			console.log("the Tindex: ", TCindex);
-			deleteTimeFromEmployee(TCindex)
-	
+			console.log("$scope.dailyTCs[i] ", $scope.dailyTCs[i], "indexOf: ", $scope.dailyTCs.indexOf($scope.dailyTCs[i]))
+			// deleteTimeFromEmployee(TCindex);
+			deleteTimeFromEmployee(index);
 			$scope.hideDeleteWarning(index);
 	
-			$scope.dailyTCs.splice(TCindex, 1);
+			// $scope.dailyTCs.splice(TCindex, 1);
+			$scope.dailyTCs.splice(index, 1);
+
 	
 			employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId($scope.dailyTCs, $scope.jobsite._id).then(function(response) {
 				getTheJobSiteFromDBbyId();
@@ -555,7 +554,7 @@ function deleteTimeFromEmployee(index) {
 		for (let j = 0; j < $scope.employeesArray[i].job_site_hours_worked.length; j++) {
 			for (let p = 0; p < $scope.dailyTCs[index].employees_worked.length; p++) {
 				
-				if ($scope.dailyTCs[index].employees_worked[p].firstName === $scope.employeesArray[i].firstName && $scope.dailyTCs[index].employees_worked[p].lastName === $scope.employeesArray[i].lastName && $scope.dailyTCs[index].theDate === $scope.employeesArray[i].job_site_hours_worked[j].date_worked) {
+				if ($scope.dailyTCs[index].employees_worked[p].firstName === $scope.employeesArray[i].firstName && $scope.dailyTCs[index].employees_worked[p].lastName === $scope.employeesArray[i].lastName && $scope.dailyTCs[index].theDate === $scope.employeesArray[i].job_site_hours_worked[j].date_worked && $scope.jobsite.name === $scope.employeesArray[i].job_site_hours_worked[j].job_site) {
 					
 					let hours_worked_array = $scope.employeesArray[i].job_site_hours_worked
 

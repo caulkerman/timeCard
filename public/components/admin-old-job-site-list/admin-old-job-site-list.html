@@ -3,13 +3,12 @@
 <div class="admin-old-job-site-list-div">
     <h1> Old Job Site List</h1>
 
-    <p>there will be a ng-repeated list of all old job sites that are in an array.  It may be set up in an un-ordered list or table.</p>
-    <p>inside the ul or table will be a button next to the name of the job site which will resurrect the job site and add it back to the list of jobsites.</p>
+    <!-- <p>inside the ul or table will be a button next to the name of the job site which will resurrect the job site and add it back to the list of jobsites.</p> -->
 
     <label for="oldjobSiteFilter">Filter Old Job Site Names: </label>
     <input type="text" ng-model="oldJobSiteNames" name="oldJobSiteFilter">
 
     <div ng-repeat="oldJobSite in oldJobSites | filter: {name: oldJobSiteNames} track by $index">
-        <p><a href="" ng-click="goToOldJobSite($index)">{{oldJobSite.name}}</a></p>
+        <p><a href="" ng-click="goToOldJobSite(oldJobSite._id)">{{oldJobSite.name}}</a></p>
     </div>
 </div>

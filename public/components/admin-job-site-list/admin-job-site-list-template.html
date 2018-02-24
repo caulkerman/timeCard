@@ -72,7 +72,7 @@
 
 
     <br />
-    <input id="filter-jobs" type="text" placeholder="filter jobs" ng-model="ctrl.jobs">
+    <input id="filter-jobs" type="text" placeholder="Filter Job Names" ng-model="ctrl.jobs">
     <div id="list-div" ng-repeat="job_site in ctrl.job_sites | filter: {name:ctrl.jobs} track by $index">
         <p>
             <a href="" ng-click="ctrl.gotoSelectedJobsite($index, job_site._id)">{{job_site.name}}</a>

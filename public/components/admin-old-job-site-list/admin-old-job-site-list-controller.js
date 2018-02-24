@@ -18,8 +18,9 @@ getOldJobSites();
 
 
 
-$scope.goToOldJobSite = function(index) {
-    var id = $scope.oldJobSites[index]._id;
+$scope.goToOldJobSite = function(id) {
+	console.log(id);
+    var id = id
     $state.go("admin-old-job-site", {id: id});
 }
 

@@ -15,11 +15,9 @@ var oldJobSites;
 
 //////This function gets the job site by ID
 function getOldJobSiteFromDBbyId() {
-	
 	adminOldJobSiteService.getOldJobSiteFromDBbyId(oldJobSiteId).then(function(response) {
 		ctrl.oldJobSite = response.data;
         ctrl.oldDTCs = ctrl.oldJobSite.daily_time_cards;
-		
 		console.warn("ctrl.oldJobsite ", ctrl.oldJobSite);
 	});
 };
@@ -29,7 +27,6 @@ getOldJobSiteFromDBbyId();
 
 //////This function gets all Old Jobs
 function getAllOldJobSites() {
-
 	adminOldJobSiteService.getAllOldJobSites().then(function(response) {
 		oldJobSites = response.data;
 		console.log("oldJobSites: ", oldJobSites);
@@ -53,25 +50,14 @@ getAllOldJobSites();
 
 ////////This function pushes this job site back into the current/live jobs and deletes it from the old jobs
 ctrl.resurrectJob = function() {
-
 	ctrl.finalFarewell = true;
-
 	for (var i = 0; i < oldJobSites.length; i++) {
-
 		if (oldJobSites[i]._id === oldJobSiteId) {
-			
-
 			adminOldJobSiteService.recreateJob(oldJobSites[i]).then(function(response) {
-				
 				adminOldJobSiteService.deleteTheJobById(oldJobSiteId).then(function(response) {
-					
-					ctrl.finalFarewellResurrected = true;
-
 					$timeout(function() {
 						$state.go("admin-job-site-list")
-					}, 1500);				
-					
-					// getOldJobSiteFromDBbyId();
+					}, 1500);
 				});
 			});
 		};

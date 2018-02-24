@@ -2,13 +2,11 @@
 
  <div class="employee-job-site-list-div">
     <h1>Job Site List</h1>
-
-    <label for="jobSiteFilter">Filter Job Name:</label>
     <input name="jobSiteFilter" type="text" placeholder="Filter Job Names" ng-model="filterJob" autofocus>
 
-    <ul ng-repeat="jobs in jobSiteList | filter: {name:filterJob} track by $index">
-        <li>
+    <div ng-repeat="jobs in jobSiteList | filter: {name:filterJob} track by $index" class="jobSiteList">
+        <p>
             <a href="" ng-click="gotoSelectedJobsite($index, jobs._id)">{{jobs.name}}</a>
-        </li>
-    </ul>
+        </p>
+    </div>
 </div>

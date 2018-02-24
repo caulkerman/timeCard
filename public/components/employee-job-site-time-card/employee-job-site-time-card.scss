@@ -1,5 +1,5 @@
 label {
-    margin-bottom: 10px;
+    margin: 0;
 }
 #jobSiteName {
     color: brown;
@@ -9,14 +9,147 @@ label {
     margin-top: 10px;
 }
 
+#noteTextArea {
+	margin-top: 15px;
+}
+
+p {
+	margin: 0;
+}
+
 .jobDetails {
-    padding: 30px;
+    margin-top: 15px;
+}
+
+.details-divs {
+	margin-top: 10px;
 }
 
 .date {
-    float: right;
-    font-size: 2em;
+    font-size: 1.5em;
+    
 }
 .employee-job-site-time-card-div {
     margin: 20px;
+}
+
+.buttons {
+	background-color: #8eb843;
+	border: none;
+	color: #ffffff;
+	border-radius: 5px;
+	padding: 0 10px 0 10px;
+
+}
+
+.buttons:hover {
+	background-color: #193E4E;
+}
+
+.tandmbuttons {
+	background-color: #b25013;
+	border: none;
+	color: #ffffff;
+	border-radius: 5px;
+	padding: 0 10px 0 10px;
+}
+
+.tandmbuttons:hover {
+	background-color: #193E4E;
+}
+
+.red-button {
+	background-color: #b25013;
+	border: none;
+	color: #ffffff;
+	border-radius: 5px;
+	padding: 0 10px 0 10px;
+}
+
+.red-button:hover {
+	background-color: #193E4E;
+}
+
+#contractor-span {
+	font-size: 1.15em;
+	font-weight: 600;
+}
+
+#contractor-id {
+	height: 25px;
+	margin-bottom: 10px;
+}
+
+textarea {
+	width: 100%;
+	border-left: solid gray 1px;
+}
+
+.header-div {
+	height: 30px;
+	margin: 10px 0 10px 0;
+}
+
+.header-elem {
+	width: 33%;
+	float: left
+
+}
+
+.header-elem p {
+	font-weight: 600;
+}
+
+.employee-div {
+	width: 33%;
+	float: left;
+	margin: 5px 0 5px 0;
+}
+
+#employeeSubmit-id {
+	background-color: #b25013;
+	border: none;
+	border-radius: 5px;
+	color: #ffffff;
+}
+
+
+#employeeName-id {
+	font-weight: 450;
+}
+
+@media only screen and (min-width: 15em) and (max-width: 30em) {
+
+	.buttons {
+		margin: 5px 0 5px 0;
+		height: 50px;
+		font-size: 1.10em;
+	}
+
+	.date {
+		font-size: 1em;
+	}
+
+	.table-body {
+		height: 60px;
+	}
+
+	.header-elem p {
+		
+	}
+
+	#employeeHours-id {
+		
+	}
+
+	.employee-div #employeeHours-id {
+		width: 80%;
+	}
+
+	#employeeSubmit-id {
+		font-size: .75em;
+		
+	}
+
+
 }

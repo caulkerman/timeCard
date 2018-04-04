@@ -8,15 +8,32 @@
     <!-- <button ng-click="ctrl.hideDetails()" ng-show="ctrl.employee_details">Hide Employee Details</button> -->
 
         <div class="employee-details" ng-show="ctrl.employee_details">
-            <!-- <p>The Employee's User Name: <span>{{ctrl.theEmployee.userName}}{{ctrl.theEmployee.email}}</span></p>
-            <p>The Employee's Current Password: <span>{{ctrl.theEmployee.password}}</span></p>
-            <p>The Employee's Type: <span>{{ctrl.theEmployee.employeeType}}</span></p> -->
-            <label for="username">Employee Username: </label>
-            <p name="username">{{ctrl.theEmployee.userName}}</p>
-            <label for="password">Employee Password: </label>
-            <p name="password">{{ctrl.theEmployee.password}}</p>
-            <label for="type">Employee Type: </label>
-            <p name="type">{{ctrl.theEmployee.employeeType}}</p>
+            <form id="the-form" name="employeeForm" ng-submit="ctrl.updateEmployeeDetails(ctrl.theEmployee.firstName, ctrl.theEmployee.lastName, ctrl.theEmployee.userName, ctrl.theEmployee.password, ctrl.theEmployee.employeeType)">
+                <div>
+                    <label for="firstName">First Name: </label>
+                    <input type="text" name="firstName" ng-model="ctrl.theEmployee.firstName" class="form-control">
+                </div>
+                <div>
+                    <label for="lastName">Last Name: </label>
+                    <input type="text" name="lastName" ng-model="ctrl.theEmployee.lastName" class="form-control">
+                </div>
+                <div>
+                    <label for="username">Employee Username: </label>
+                    <input type="text" name="username" ng-model="ctrl.theEmployee.userName" class="form-control">
+                </div>
+                <div>
+                    <label for="password">Employee Password: </label>
+                    <input type="text" name="password" ng-model="ctrl.theEmployee.password" class="form-control">
+                </div>
+                <div>
+                    <label for="type">Employee Type: </label>
+                    <select name="type" form="employeeForm" ng-model="ctrl.theEmployee.employeeType" value="worker" class="form-control">
+                        <option value="worker">Worker</option>
+                        <option value="admin">Admin</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-success" id="update-employee-button" >Update Employee</button>
+            </form>
             <div class="button-div">
                 <button ng-click="ctrl.retireEmployee()" id="retire-details-button">Retire the Employee</button>
                 <button ng-click="ctrl.hideDetails()" ng-show="ctrl.employee_details" id="close-details-button">&#x2718</button>
@@ -33,7 +50,7 @@
             <div class="worked-class"><p class="table-header">Job Site</p></div>
         </div>
 
-        <div class="worked-class-class" ng-repeat="hours in ctrl.add_this_week_hrs | filter: {date_worked:dateFilter} track by $index">
+        <div ng-repeat="hours in ctrl.add_this_week_hrs | filter: {date_worked:dateFilter} track by $index" class="worked-class-class">
             <div class="worked-class date_worked">{{hours.date_worked}}</div>
             <div class="worked-class hours_worked">{{hours.hours_worked}}</div>
             <div class="worked-class job_site"><a href="" ng-click="ctrl.goToJobSite(hours.job_site, $index)">{{hours.job_site}}</a><!-- <span ng-show="hours.TandM"> T &amp M</span> --></div>

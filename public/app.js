@@ -39,6 +39,13 @@ var app = angular.module("timeCard", ["ui.router", "smart-table", "ui.bootstrap"
 			controllerAs: "ctrl"
 		})
 
+		.state("admin-the-daily-time-card", {
+			url: "/admin-the-daily-time-card/:id/:date/:timeCardId",
+			templateUrl: "components/admin-the-daily-time-card/admin-the-daily-time-card.html",
+			controller: "adminTheDailyTimeCardController",
+			controllerAs: "ctrl"
+		})
+
 		.state("admin-job-site-list", {
 			url: "/admin-job-site-list",
 			templateUrl: "components/admin-job-site-list/admin-job-site-list-template.html",

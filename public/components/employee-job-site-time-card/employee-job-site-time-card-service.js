@@ -35,7 +35,11 @@ app.service("employeeJobSiteTimeCardService", ["$q", "$http", "$timeout", functi
 	
 					/////////CRUD FUNCTIONS\\\\\\\\\\\\\
 	
-	//Remember that the id is available from the controller from the previous state.  The only way you get to this current state is by passing through the previous state and you pick up and send the id by clicking on a jobsite $index.  Data in the service persists through page refreshes. The function below calls for the object based on its id that still persists and makes it availble to the view.
+	//Remember that the id is available from the controller from the previous state.  
+	//The only way you get to this current state is by passing through the previous state 
+	//and you pick up and send the id by clicking on a jobsite $index.  Data in the 
+	//service persists through page refreshes. The function below calls for the object
+	//based on its id that still persists and makes it availble to the view.
 	
 	this.getTheJobSiteFromDBbyId = function(id) {
 	 var deferred = $q.defer();

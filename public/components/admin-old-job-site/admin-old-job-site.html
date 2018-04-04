@@ -41,7 +41,7 @@
 
                 <tbody>
                      <tr ng-repeat="employees in oldDTC.employees_worked track by $index">
-                        <td>{{employees.employeeName}}</td>
+                        <td>{{employees.firstName}} {{employees.lastName}}</td>
                         <td>{{employees.hours_worked}}</td>
                     </tr>
                 </tbody>

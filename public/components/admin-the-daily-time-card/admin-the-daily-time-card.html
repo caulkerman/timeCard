@@ -1,0 +1,87 @@
+<link rel="stylesheet" href="components/admin-the-daily-time-card/admin-the-daily-time-card.css">
+<div class="container-div">
+	<div class="header-div">
+		<p class="header" id="date-header">{{ctrl.the_daily_time_card.theDate}}</p>
+		<p class="header" id="name-header">{{ctrl.jobSite.name}}</p>
+		<p class="header" id="contractor-header">{{ctrl.jobSite.contractor}}</p>
+	</div>
+	<hr>
+	<div class="daily-info">
+		<div name="hide_and_show_edit_form">
+			<div class="daily-info-header">
+				<p class="employee-header-info" id="employee-name-id">Name:</p>
+				<p class="employee-header-info" id="employee-hours-id">Hours:</p>
+				<p class="employee-header-info" id="employee-edit-id">Edit/Delete:</p>
+			</div>
+			<div ng-repeat="employee in ctrl.the_daily_time_card.employees_worked track by $index" class="repeat-div">
+				<div class="employee-div" ng-hide="ctrl.showEmpDeleteWarning[$index]">
+					<p class="employee-info" id="name-id">{{employee.firstName}} {{employee.lastName}}</p>
+					<p class="employee-info" id="hours-id">{{employee.hours_worked}}</p>
+					<div class="employee-info" id="edit-div">
+						<button id="edit-button-id" ng-click="ctrl.editHours()">&#9998;</button>
+						<button id="delete-button-id" ng-click="ctrl.showDeleteEmployeeTimeWarning($index)">&#10008;</button>
+					</div>
+				</div>
+				<div ng-show="ctrl.showEmpDeleteWarning[$index]">
+					<p class="rw-warning employee-info">Are You Sure You Want To Delete This Employee's Time?</p>
+					<div class="employee-info">
+						<button ng-click="ctrl.deleteTime(employee.employeeTimeId, $index)">Yes</button>
+						<button ng-click="ctrl.hideDeleteEmployeeTimeWarning($index)">No</button>
+					</div>
+				</div>
+			</div>
+			<hr>
+			<div class="materials-div" ng-hide="ctrl.showUpdateTimeCardDiv">
+				<p id="materials-label">Materials Used:</p>
+				<pre id="materials-text-area1">{{ctrl.the_daily_time_card.materials_used}}</pre>
+			</div>
+			<hr>
+		</div>
+		<!-- Everything Below This Must Be Inluded In The @media print Media Query -->
+		<div class="update-edit-button-div">
+			<button ng-click="ctrl.showUpdateDiv()" ng-hide="ctrl.showUpdateTimeCardDiv" class="edit-time-card-button">Edit Time Card</button>
+			<button ng-click="ctrl.hideUpdateDiv()" ng-show="ctrl.showUpdateTimeCardDiv" class="edit-time-card-button make-red">Hide Edit Form</button>
+			<button ng-click="ctrl.deleteTimeCard()" id="delete-time-card-button" class="edit-time-card-button">Delete This Time Card</button>
+		</div>
+	</div>
+	<div class="update-timecard-div" ng-show="ctrl.showUpdateTimeCardDiv">
+		<div class="add-employee-form">
+			<p  ng-show="ctrl.nothing_there" class="rw-warning nothing-there">Oops! You Need To Enter Something Into The Input Fields</p>
+			<p ng-show="ctrl.no_first_name" class="rw-warning">Oops! There Is Something Wrong With The Employee's First Name</p>
+            <p ng-show="ctrl.no_last_name" class="rw-warning">Oops!  There Is Someting Wrong With The Employee's Last Name</p>
+            <p ng-show="ctrl.name_already_exists" class="rw-warning">Oops! This Employee Already Has Time For This Day</p>
+            <p ng-show="ctrl.noTime" class="rw-warning">Oops!  There Is Something Wrong With The Hours</p>
+            <p ng-show="ctrl.noNames" class="rw-warning">Oops!  You Need To Enter The Employee's First And Last Names
+            <p ng-show="ctrl.badName" class="rw-warning">Oops! There Is Something Wrong With The Employee's Name</p>
+            <p ng-show="ctrl.finish_fields" class="rw-warning">Oops! You Need To Finish Filling In The Input Fields</p>
+			<div class="add-employee-inputs-div" ng-hide="ctrl.make_div_dissapear">
+					<input type="text" class="employees-input" placeholder="First Name" ng-model="ctrl.lateFirstName" name="first-name">
+					<input type="text" class="employees-input" placeholder="Last Name" ng-model="ctrl.lateLastName" name="last-name">
+					<input type="number" class="employees-input" min=".25" max="24" placeholder="Hours Worked" ng-model="ctrl.lateEmployeeHours" name="hours-worked">
+			</div>
+			<div >
+				<button ng-click="ctrl.addLateEmployee(ctrl.lateFirstName, ctrl.lateLastName, ctrl.lateEmployeeHours)" class="edit-time-card-button">Add Employee To Time Card</button>
+			</div>
+		</div>
+		<div>
+			<p id="materials-label">Add or Edit Materials Used:</p>
+			<textarea ng-model="ctrl.the_daily_time_card.materials_used"></textarea>
+			<div>
+				<button class="edit-time-card-button" ng-click="ctrl.submitMaterials(ctrl.the_daily_time_card.materials_used)">Submit Materials</button>
+				<span ng-show="ctrl.updating_materials" class="updating-span">UPDATING!</span>
+				<span ng-show="ctrl.updated_materials" class="updating-span" id="updated">MATERIALS UPDATED!</span>
+			</div>
+		</div>
+		<div>
+			<p id="notes-label">Add or Edit Notes:</p>
+			<textarea ng-model="ctrl.notes"></textarea>
+			<div>
+				<button class="edit-time-card-button" ng-click="ctrl.submitNote(ctrl.notes)">Submit Note</button>
+				<span ng-show="ctrl.updating_note" class="updating-span">UPDATING!</span>
+				<span ng-show="ctrl.updated_note" class="updating-span" id="updated">Notes UPDATED!</span>
+			</div>
+		</div>
+	</div>
+</div>
+
+

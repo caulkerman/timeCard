@@ -1,19 +1,20 @@
 <link rel="stylesheet" href="components/admin-job-site/admin-job-site.css">
-
 <div class="overlay" ng-if="showNotesDiv"></div>
 <div class="admin-job-site-container-div" ng-hide="finalFarewell">
     <p><span id="jobSiteNameBold">{{jobsite.name}}<span></p>
 
-
-    <button ng-click="ctrl.open()">Create Time Card</button>
-    <button ng-click="completedJob()">Completed</button>
-    <button ng-click="showUpdateForm()" ng-hide="showUpdateJobSite">Show Jobsite Details</button>
+    <div class="button-div">
+        <button class="buttons" ng-click="ctrl.open()">Create Time Card</button>
+        <button class="buttons" ng-click="showUpdateForm()" ng-hide="showUpdateJobSite">Show Jobsite Details</button>
+    </div>
 
 
     <div class="formDiv" ng-show="showUpdateJobSite">
+    <button id="closeOut-button" ng-click="completedJob()">Close Out {{jobsite.name}}</button>
+
         <form ng-submit="updateTheJobSite(jobsite.contractor, jobsite.job_address, jobsite.job_details, jobsite.materials_needed, jobsite.name, jobsite.superintendent_name, jobsite.superintendent_telephone, jobsite.notes)">
             <div class="close-button" ng-click="hideUpdateForm()">X</div>
-            <h2>Update Job Site</h2>
+            <h2>{{jobsite.name}} Details:</h2>
 
             <p>Total Job Site Hours Worked: {{totalJobSiteHours}}</p>
 
@@ -58,21 +59,16 @@
                     <label for="notes">Notes: </label>
                     <textarea class="updateJobSite form-control" ng-model="jobsite.notes" name="notes"></textarea>
                 </div>
-<div ng-show="showNotesDiv"><!-- 
-            <button type="button" ng-click="viewNotes()" ng-hide="seeNotes">View Notes</button>
-            <button type="button" ng-click="hideNotes()" ng-show="seeNotes">Hide Notes</button> -->
-        </div>
-
-                <div ng-repeat="notes in jobsite.jobSiteNotes" class="notes-div" ng-show="seeNotes">
+                <input type="submit" class="updateJobSite" id="updateJobsite-button" value="Update Jobsite">
+                <h2>Notes:</h2>
+                <div ng-repeat="notes in jobsite.jobSiteNotes" class="notes-div">
                     <ul>
-                       <h2>Notes:</h2>
+                       
                         <label>{{notes.noteDate}}:</label>
                         <p>{{notes.theNote}}</p>
                     </ul>
                 </div>
             </div>
-
-            <input type="submit" class="updateJobSite" value="Update Jobsite">
         </form>
             <!-- YOU SHOULD DO SOMETHING WITH THE WAY THESE BUTTONS ARE PLACED. cant put button inside the form because it will call the submit function-->
 
@@ -131,22 +127,58 @@
     <br />
 
 
-    <div ng-repeat="timecard in dailyTCs | filter: {theDate:filter_date} track by $index">  
-        <hr> 
+    
+
+
+
+
+
+
+
+
+
+
+
+    <div ng-repeat="timecard in dailyTCs | filter: {theDate:filter_date} track by $index" class="daily-timeCard-div">   
         <div>
-            <div ng-show="deleteWarning[$index]">
+            <div ng-show="deleteWarning[$index]" id="delete-warning-div">
                 <p class="warn">Are you sure you want to delete this day's time card?  Clicking yes will delete the whole time card for this day including all time, materials, employees, etc... You WILL NOT be able to get this day back</p>
-                <button ng-click="hideDeleteWarning($index)">NO</button>
-                <button ng-click="deleteTC(timecard._id, $index)">YES</button>
+                <div id="delete-buttons-div">
+                    <button ng-click="hideDeleteWarning($index)" id="delete-no-button">NO</button>
+                    <button ng-click="deleteTC(timecard._id, $index)" id="delete-yes-button">YES</button>
+                </div>
             </div>
-                    
-            <a ng-hide="showDTCs[$index]" href="" ng-click="showDailyTCs($index)" >{{timecard.theDate}}</a>
-            <a href="" ng-show="showDTCs[$index]" ng-click="hideDailyTCs($index)" >{{timecard.theDate}}</a>
+             
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <!-- <a ng-hide="showDTCs[$index]" href="" ng-click="showDailyTCs($index)" >{{timecard.theDate}}</a>
+            <a href="" ng-show="showDTCs[$index]" ng-click="hideDailyTCs($index)" >{{timecard.theDate}}</a> -->
+            
+            <a href="" ng-click="goToTimeCardPage(timecard.theDate, timecard._id)">{{timecard.theDate}}</a>
+            
+
+
             <!-- <span id="late" ng-show="timecard.late">LATE!</span> -->
             <span id="t&m" ng-show="timecard.TandM">T &amp M</span>
-            <button ng-click="showDeleteWarning($index)" class="glyphicon glyphicon-trash"></button>
+            <!-- <button ng-click="showDeleteWarning($index)" class="glyphicon glyphicon-trash"></button> -->
                     
             <div class="hidden-daily-time-card" ng-show="showDTCs[$index]"> 
+               <!--  <button ng-click="showDeleteWarning($index)" class="glyphicon glyphicon-trash"></button> -->
+                <button ng-click="showDeleteWarning($index)" id="delete-timecard" ng-hide="deleteWarning[$index]">Delete This Time Card?</button>
                         
                         <!--MAKE SURE TO MAKE THESE STYLED AS display: block -->
                 <div>
@@ -154,10 +186,29 @@
                     <textarea name="materials" ng-model="timecard.materials_used" class="form-control text-area"></textarea>
                 </div>
 
-                <div>
+                <div class="submit-materials-button">
                     <button ng-click="addMaterials(timecard.materials_used, $index, timecard.theDate)">Submit Materials</button>
                     <span ng-show="updating[$index]">UPDATING!</span>
                 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                         <!-- THE TABLE -->
                 <table st-table="students" class="table table-striped">
                     <thead>
@@ -168,57 +219,79 @@
                             <td></td>
                         </tr>
                     </thead>
-
                     <tbody>
-                        <tr>
+                        <tr class="input-row">
                             <td ng-show="badName[$index]" class="warn">Oops! There is something wrong with the employee's name</td>
                             <td ng-show="noName[$index]" class="warn">Oops!  You forgot the Employee Name</td> 
-                            <td ng-show="name_already_exists[$index]" class="warn">Oops! This employee already has time for this day</td>                                
+                            <td ng-show="name_already_exists[$index]" class="warn">Oops! This employee already has time for this day</td>
                             <td ng-hide="hide_late_employee_td[$index]">
                                 <input type="text" ng-model="firstName" placeholder="First Name">
                                 <input type="test" ng-model="lastName" placeholder="Last Name">
                             </td>
                             <td ng-show="noTime[$index]" class="warn">Oops!  There is something wrong with the hours</td>                                
-                            <td ng-hide="hide_late_hours_td[$index]"><input type="number" min=".25" max="24" ng-model="late_hours" placeholder="Hours"></td>
+                            <td ng-hide="hide_late_hours_td[$index]">
+                                <input type="number" min=".25" max="24" ng-model="late_hours" placeholder="Hours">
+                            </td>
                             <td></td>
                             <td></td>
                             <td>
                                 <button ng-click="lateEmployee(firstName, lastName, late_hours, timecard.theDate, timecard.dateStamp, $index, timecard.TandM, timecard.late)" >Submit</button>
                             </td>
-                         </tr>
+                        </tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
                         
-
-
-
                         <tr ng-repeat="employees in timecard.employees_worked track by $index" > <!--make sure to ng-repeat this -->
                             <td>{{employees.firstName}} {{employees.lastName}}</td>
                             <td>{{employees.hours_worked}}</td>
                             <td>
-                                <button ng-click="showTheEditHours($parent.$index, $index)" ng-hide="editHours[$parent.$index][$index]">Edit Hours</button>
-                            </td>
-                                    
+                                <button class="employees-buttons" ng-click="showTheEditHours($parent.$index, $index)" ng-hide="editHours[$parent.$index][$index]">Edit Hours</button>
+                            </td>  
                             <td>
-                                <input ng-show="editHours[$parent.$index][$index]" type="number" min=".25" max="24" ng-model="newHours">
+                                <input class="employees-buttons" ng-show="editHours[$parent.$index][$index]" type="number" min=".25" max="24" ng-model="newHours">
                                 <p ng-show="editHours[$parent.$index][$index]">
                                     Note: The new hours will not be updated until the employee approves of the change.
                                 </p>
                             </td>
                             <!--<td><button ng-click="editEmployee(employees.hours_worked, employees._id)">Edit</button></td>-->
                             <td ng-show="editHours[$parent.$index][$index]">
-                                <button ng-click="editEmployee(newHours, employees._id, $parent.$index, $index)">submit</button>
+                                <button class="employees-buttons" ng-click="editEmployee(newHours, employees._id, $parent.$index, $index)">submit</button>
                             </td>
                             <td>
-                                <button ng-click="deleteEmployeeFromTC(employees.employeeTimeId)" class="glyphicon glyphicon-trash"></button>
+                                <button ng-click="deleteEmployeeFromTC(employees.employeeTimeId)" class="glyphicon glyphicon-trash employees-buttons"></button>
                             </td>
                         </tr>
-                    
-
                     </tbody>
                 </table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             </div>
         </div>
-        <hr>
     </div>
 
     <p ng-show="finalFarewell">This job site has been moved to the admin-old-job-sites page</p>

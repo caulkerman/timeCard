@@ -10,17 +10,33 @@ form label {
     color: red;
 }
 
-p.warn {
+#delete-warning-div {
     background-color: blanchedalmond;
+    border: solid #a04f1c 2px;
+    padding-left: 15px;
 }
 
 .notes-div {
 	width: 90%;
 }
 
+#updateJobsite-button {
+  margin-top: 10px;
+  background-color: #8eb843;
+  color: #ffffff;
+}
+
+#updateJobsite-button:hover {
+  background-color: #193E4E;
+}
+
 .admin-job-site-container-div {
   position: relative;
   margin: 20px;
+}
+
+.daily-timeCard-div {
+  margin: 15px 0 15px 0;
 }
 
 .close-button {
@@ -32,7 +48,7 @@ p.warn {
 }
 
 .formDiv {
-  width: 50%;
+  width: 60%;
   z-index: 35;
   position: absolute;
   left: 200px;
@@ -62,4 +78,119 @@ p.warn {
 
 .text-area {
   margin-bottom: 15px;
+}
+
+.buttons {
+  background-color: #8eb843;
+  color: #ffffff;
+  padding: 0 10px 0 10px;
+  border-radius: 5px;
+  border: none;
+}
+
+.buttons:hover {
+  background-color: #193E4E;
+}
+
+#closeOut-button, #delete-timecard {
+  background-color: #a04f1c;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  margin: 10px 0 10px 0;
+}
+
+  #delete-no-button {
+    background-color: #8eb843;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    margin: 10px 5px 10px 5px;
+  }
+
+  #delete-yes-button {
+    background-color: #a04f1c;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    margin: 10px 5px 10px 5px;
+  }
+
+/*tablet sized screen*/
+@media only screen and (min-width: 30em) and (max-width: 60em) {
+
+  .formDiv {
+    width: 70%;
+    left: 90px;
+    top: 50px;
+  }
+}
+
+/*phone sized screen*/
+@media only screen and (min-width: 15em) and (max-width: 30em) {
+
+  .formDiv {
+    width: 95%;
+    left: 10px;
+    top: 20px;
+  }
+
+  .buttons {
+    height: 50px;
+    margin: 5px 0 5px 0;
+  }
+
+  #closeOut-button {
+    height: 50px;
+  }
+
+  #delete-warning-div {
+    width: 95%;
+  }
+
+  #delete-timecard {
+    height: 40px;
+  }
+
+  #delete-no-button {
+    height: 40px;
+    width: 70px;
+  }
+
+  #delete-yes-button {
+    height: 40px;
+    width: 70px;
+  }
+
+  #updateJobsite-button {
+    height: 50px;
+  }
+
+}
+
+@media print {
+
+  .button-div {
+    display: none;
+  }
+
+  #delete-timecard {
+    display: none;
+  }
+
+  .submit-materials-button {
+    display: none;
+  }
+
+  .input-row {
+    display: none;
+  }
+
+  .employees-buttons {
+    display: none;
+  }
+
+  .daily-timeCard-div {
+    height: 900px;
+  }
 }

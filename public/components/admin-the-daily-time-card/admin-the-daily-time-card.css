@@ -1,0 +1,239 @@
+.container-div {
+  margin-left: 2%;
+  padding: 0; }
+
+.header {
+  margin: 0;
+  padding: 0;
+  width: 33%;
+  float: left; }
+
+#name-header {
+  padding-left: 5%;
+  font-size: 1.5em;
+  font-weight: 400; }
+
+#contractor-header {
+  font-size: 1.15em;
+  font-weight: 300;
+  margin-top: 7px; }
+
+#date-header {
+  font-size: 1.5em;
+  font-weight: 600; }
+
+.daily-info-header {
+  height: 30px;
+  margin-bottom: 20px; }
+
+.header-div {
+  height: 60px;
+  margin-top: 20px; }
+
+.employee-div {
+  clear: left;
+  height: 45px;
+  margin-top: 5px; }
+
+.employee-div:hover {
+  background-color: #b5d1b8;
+  color: #FFFFFF; }
+
+#name-id {
+  padding-top: 10px; }
+
+#hours-id {
+  padding-top: 10px; }
+
+.employee-header-info {
+  width: 33%;
+  float: left;
+  font-size: 1.15em;
+  font-weight: 600; }
+
+.employee-info {
+  width: 33%;
+  float: left; }
+
+#materials-label, #notes-label {
+  font-size: 1.15em;
+  font-weight: 600; }
+
+.update-timecard-div {
+  margin-top: 20px; }
+
+textarea {
+  width: 95%;
+  height: 100px; }
+
+#materials-text-area1 {
+  border: none;
+  background-color: #ffffff; }
+
+#edit-div {
+  padding-top: 5px; }
+
+#edit-button-id {
+  background-color: #9BC159;
+  color: #ffffff;
+  margin: 0 3px 0 3px;
+  border: none; }
+
+#delete-button-id {
+  background-color: #A04F1C;
+  color: #ffffff;
+  margin: 0 3px 0 3px;
+  border: none; }
+
+#edit-button-id:hover {
+  background-color: #193E4E; }
+
+#delete-button-id:hover {
+  background-color: #193E4E; }
+
+.update-edit-button-div button {
+  display: inline-block; }
+
+.edit-time-card-button {
+  background-color: #9BC159;
+  border: none;
+  color: #ffffff;
+  margin: 10px 0 10px 0; }
+
+.edit-time-card-button:hover {
+  background-color: #193E4E; }
+
+#delete-time-card-button {
+  background-color: #9BC159;
+  color: #ffffff;
+  border: none; }
+
+#delete-time-card-button:hover {
+  background-color: #193E4E; }
+
+.employees-input {
+  width: 30%;
+  margin-right: 10px;
+  padding-left: 10px; }
+
+.add-employee-inputs-div {
+  margin: 10px 0 20px 0; }
+
+.make-red {
+  background-color: #A04F1C; }
+
+.make-red:hover {
+  background-color: #193E4E; }
+
+.updating-span {
+  margin: 0 0 0 10px;
+  font-size: 1.2em;
+  font-weight: 600;
+  color: #A04F1C; }
+
+.materials-div {
+  margin-top: 15px;
+  width: 95%;
+  padding-left: 20px; }
+
+/*phone sized screen*/
+@media only screen and (min-width: 15em) and (max-width: 30em) {
+  .container-div {
+    margin-left: 5%; }
+
+  #name-header {
+    margin-top: 0;
+    padding: 0; }
+
+  #contractor-header {
+    margin-top: 0; }
+
+  #date-header {
+    margin-top: 0; }
+
+  .header-div {
+    height: 150px;
+    clear: left; }
+
+  .header-div .header {
+    width: 100%;
+    clear: left;
+    margin: 5px 0 5px 0; }
+
+  .employee-header-info {
+    height: 40px;
+    font-size: 1em;
+    margin-top: 30px; }
+
+  #employee-name-id {
+    width: 40%; }
+
+  #employee-hours-id {
+    width: 20%; }
+
+  #employee-edit-id {
+    width: 15%; }
+
+  .employee-div {
+    clear: left; }
+
+  #name-id {
+    width: 40%; }
+
+  #hours-id {
+    width: 20%; }
+
+  .edit-div {
+    width: 15%; }
+
+  .employees-input {
+    width: 95%;
+    height: 40px;
+    margin: 5px 0 10px 0; }
+
+  #late-employee-submit {
+    height: 40px; }
+
+  .edit-time-card-button {
+    height: 40px; }
+
+  #delete-time-card-button {
+    height: 40px; }
+
+  #materials-text-area1 {
+    width: 95%; } }
+@media print {
+  .main-header {
+    display: none; }
+
+  .container-div {
+    margin-top: 40px; }
+
+  #name-header {
+    padding-left: 0; }
+
+  #name-id {
+    width: 50%; }
+
+  #hours-id {
+    width: 50%; }
+
+  #edit-div {
+    display: none; }
+
+  #employee-hours-id {
+    width: 50%; }
+
+  #employee-name-id {
+    width: 50%; }
+
+  #employee-edit-id {
+    display: none; }
+
+  .update-edit-button-div {
+    display: none; }
+
+  .update-timecard-div {
+    display: none; } }
+
+/*# sourceMappingURL=admin-the-daily-time-card.css.map */

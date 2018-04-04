@@ -1,9 +1,3 @@
-@media print {
-  a:after {
-    content: ''; }
-
-  a[href]:after {
-    content: none !important; } }
 a:hover {
   text-decoration: none; }
 
@@ -16,6 +10,11 @@ a:hover {
 
 .the-employee-container-div {
   margin: 20px; }
+
+.employee-details {
+  width: 50%;
+  border-bottom: gray solid 1px;
+  padding-bottom: 15px; }
 
 .worked-class-class {
   display: flex; }
@@ -52,8 +51,14 @@ a:hover {
   border: none;
   margin-left: 5px; }
 
+#update-employee-button {
+  margin: 15px 0 15px 0; }
+
 /*SMARTPHONE SIZE SCREENS*/
 @media only screen and (min-width: 15em) and (max-width: 30em) {
+  .employee-details {
+    width: 100%; }
+
   .table-header {
     font-size: 1em; }
 

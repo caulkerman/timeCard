@@ -11,22 +11,23 @@
 </head>
 <!-- <body src="assets/images/Photo0109.jpg"> -->
 <body id="bootstrap-overrides">
-<header>
-    <img class="logo" src="/assets/images/logo.png">
-	<nav class="nav-bar">
-		<ul>
-			<li>
-				<a ui-sref="login">Login</a>
-			</li>
-			<!-- <li>About</li>
-			<li>Projects</li>
-			<li id="login">
-				<a ui-sref="login">Login</a>
-			</li>-->
-		</ul>
-	</nav>
-</header>
+	<header class="main-header">
+	    <img class="logo" src="/assets/images/logo.png">
+		<nav class="nav-bar">
+			<ul>
+				<li>
+					<a ui-sref="login">Login</a>
+				</li>
+				<!-- <li>About</li>
+				<li>Projects</li>
+				<li id="login">
+					<a ui-sref="login">Login</a>
+				</li>-->
+			</ul>
+		</nav>
+	</header>
 	<div ui-view></div>
+	<footer id="footer"></footer>
 		
 					<!--SCRIPTS-->
 	<script src="bower_components/angular/angular.js"></script>
@@ -65,6 +66,7 @@
 	<script src="components/admin-old-employees-list/admin-old-employees-list-controller.js"></script>
 	<script src="components/admin-the-old-employee/admin-the-old-employee-service.js"></script>
 	<script src="components/admin-the-old-employee/admin-the-old-employee-controller.js"></script>
+	<script src="components/admin-the-daily-time-card/admin-the-daily-time-card-controller.js"></script>
 	
 	
 	

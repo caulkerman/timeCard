@@ -1,6 +1,6 @@
 (function() {
-var $inject = ["$scope", "$stateParams", "theEmployeeService", "$state", "$timeout", "admin_employees_list_service"];
-function adminTheEmployeeControllerCB($scope, $stateParams, theEmployeeService, $state, $timeout, admin_employees_list_service) {
+var $inject = ["$scope", "$stateParams", "theEmployeeService", "employeeJobSiteTimeCardService", "$state", "$timeout", "admin_employees_list_service"];
+function adminTheEmployeeControllerCB($scope, $stateParams, theEmployeeService, employeeJobSiteTimeCardService, $state, $timeout, admin_employees_list_service) {
 
 
 'use strict'
@@ -9,7 +9,7 @@ var ctrl = this;
 
 
 const theEmployeeId = $stateParams.id;
-console.log("the employee _id ", theEmployeeId);
+// console.log("the employee _id ", theEmployeeId);
 
 ctrl.noJobSite = []; //this is for the ng-hide/show within the ng-repeat.
 ctrl.date = new Date();
@@ -18,13 +18,17 @@ ctrl.add_more_week_hrs = [];
 ctrl.other_hours = [];
 ctrl.weeksArray = [];
 ctrl.employee_details = false;
+let oldFirstName;
+let oldLastName;
 
-//this function gets the chosen employee object from DB
+//this function gets the chosen employee object from DB and does stuff with it.
 const getTheEmployeeFromDBbyId = function() {
     theEmployeeService.getEmployeeById(theEmployeeId).then(function(response) {
-        console.log("the employee from controller ", response.data);      
+        // console.log("the employee from controller ", response.data);      
         if (response.status === 200) {
             ctrl.theEmployee = response.data;
+            oldFirstName = ctrl.theEmployee.firstName;
+            oldLastName = ctrl.theEmployee.lastName;
             ctrl.employeeName = ctrl.theEmployee.firstName + " " + ctrl.theEmployee.lastName;
             let daily_hours_worked = ctrl.theEmployee.job_site_hours_worked;
             
@@ -107,6 +111,7 @@ function otherWeeks() {
 const getTheJobSitesFromDB = function() {
     theEmployeeService.getTheJobSitesFromDB().then(function(response) {
         ctrl.jobSites = response.data;
+        // console.error("the job sites: ", ctrl.jobSites);
     });
 };
 getTheJobSitesFromDB();
@@ -115,7 +120,7 @@ getTheJobSitesFromDB();
 //this function gets the array of employee objects from DB
 const getEmployeesList = function() {
     admin_employees_list_service.getEmployees().then(function(response) {
-        console.log("The list of employees: ", response.data);
+        // console.log("The list of employees: ", response.data);
         ctrl.employeesList = response.data;
     })
 }
@@ -123,7 +128,6 @@ getEmployeesList();
 
 
 ctrl.goToJobSite = function(jobName, pIndex, index) {
-    console.log("the goToJobSite function has fired: ", jobName, pIndex, index);
     var flag = false;
     for (let i = 0; i < ctrl.jobSites.length; i++) {
         if (jobName === ctrl.jobSites[i].name) {
@@ -141,6 +145,48 @@ ctrl.goToJobSite = function(jobName, pIndex, index) {
         }, 2500);
     };
 };
+
+
+
+//updates the employee information by deleting it from database first and taking the employee 
+// that is currently present in the front end and saving it over with any changes that may 
+//have been made.
+ctrl.updateEmployeeDetails = function(firstName, lastName, userName, password, employeeType) {
+    theEmployeeService.deleteEmployee(ctrl.theEmployee._id).then((response) => {
+        if (response.status === 200) {
+            admin_employees_list_service.createEmployee(ctrl.theEmployee).then((response) => {
+                updateNameOnJobSite(firstName, lastName);
+            })
+        }
+    })
+}
+
+
+//Created a function that loops over all of the employees on all of the time cards 
+//of every job site to correct the first and last names and call it with the 
+//updateEmployeeDetails function above.
+
+const updateNameOnJobSite = (firstName, lastName) => {
+    ctrl.jobSites.forEach((obj) => {
+        obj.daily_time_cards.forEach((obj2) => {
+            obj2.employees_worked.forEach((obj3) => {
+                if (obj3.firstName === oldFirstName && obj3.lastName === oldLastName) {
+                    obj3.firstName = firstName;
+                    obj3.lastName = lastName;
+                    employeeJobSiteTimeCardService.updateTheJobSiteInDBbyId(obj.daily_time_cards, obj._id).then((response) => {
+                        if (response.status !== 200) {
+                            return;
+                        }
+                    })
+                }
+            })
+        })
+    })
+    $timeout(() => {
+        $state.go("admin-employees-list");
+    }, 1500);
+}
+
 
 
 //creates a copy of the employee and saves it to oldEmployee db, then deletes it from the createEmployee db

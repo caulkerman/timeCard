@@ -118,6 +118,18 @@ this.updateEmployeesWorkedInDBbyId = function (employees_worked, id) {
 	return deferred.promise;
 }
 
+this.updateTheNote = (notesArray, id) => {
+	let deferred = $q.defer();
+	$http({
+		method: "PUT",
+		url: "/api/update_job_site_notes/" + id,
+		data: notesArray
+	}).then((response) => {
+		deferred.resolve(response);
+	});
+	return deferred.promise;
+}
+
 
 
 

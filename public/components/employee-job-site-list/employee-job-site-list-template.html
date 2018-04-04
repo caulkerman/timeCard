@@ -2,7 +2,7 @@
 
  <div class="employee-job-site-list-div">
     <h1>Job Site List</h1>
-    <input name="jobSiteFilter" type="text" placeholder="Filter Job Names" ng-model="filterJob" autofocus>
+    <input name="jobSiteFilter" type="text" placeholder="Filter Job Names" ng-model="filterJob">
 
     <div ng-repeat="jobs in jobSiteList | filter: {name:filterJob} track by $index" class="jobSiteList">
         <p>

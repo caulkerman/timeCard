@@ -42,15 +42,13 @@ module.exports = {
 
 
 
-  // update_jobsite_notes: function(res, req) {
-  //    console.log("update_jobsite res.body ", res.body);
-  //   console.log("update_jobsite req.body ", req.body);
-  //   NewJob.findByIdAndUpdate(req.params.id, {jobSiteNotes: req.body}, {new: true},
-  //     function(err, result) {
-  //       if(err) return res.status(500);
-  //       else res.send(result);
-  //     });
-  // },
+  update_jobsite_notes: function(req, res) {//not sure if this works
+    NewJob.findByIdAndUpdate(req.params.id, {jobSiteNotes: req.body}, {new: true},
+      function(err, result) {
+        if(err) return res.status(500);
+        else res.send(result);
+      });
+  },
 
 
 

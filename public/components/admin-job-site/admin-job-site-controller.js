@@ -116,13 +116,13 @@ $scope.hideUpdateForm = function() {
 	$scope.showUpdateJobSite = false;
 };
 
-$scope.viewNotes = function() {
-	$scope.seeNotes = true;
-}
+// $scope.viewNotes = function() {
+// 	$scope.seeNotes = true;
+// }
 
-$scope.hideNotes = function() {
-	$scope.seeNotes = false;
-}
+// $scope.hideNotes = function() {
+// 	$scope.seeNotes = false;
+// }
 
 $scope.deleteWarning = [];
 $scope.showDeleteWarning = function(index) {
